@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/player/Player.cs" type="Script" id=1]
+[ext_resource path="res://scenes/player/RightController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/player/LeftController.tscn" type="PackedScene" id=3]
+
+[node name="Player" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+
+[node name="LeftController" parent="ARVROrigin" instance=ExtResource( 3 )]
+
+[node name="RightController" parent="ARVROrigin" instance=ExtResource( 2 )]
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.5
+margin_top = -10.0
+margin_right = 117.5
+margin_bottom = 90.0
+text = "Enter VR"
