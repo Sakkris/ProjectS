@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/cristovaosampaio/Documents/GodotProjects/ProjectS/Project S.csproj": {}
+  },
+  "projects": {
+    "/home/cristovaosampaio/Documents/GodotProjects/ProjectS/Project S.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/cristovaosampaio/Documents/GodotProjects/ProjectS/Project S.csproj",
+        "projectName": "Project S",
+        "projectPath": "/home/cristovaosampaio/Documents/GodotProjects/ProjectS/Project S.csproj",
+        "packagesPath": "/home/cristovaosampaio/.nuget/packages/",
+        "outputPath": "/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/cristovaosampaio/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.2, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/193/sdk/6.0.406/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

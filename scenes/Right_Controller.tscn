@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cahvboniheu43"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqv1w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vflh8"]
+material = SubResource("StandardMaterial3D_pqv1w")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="RightController" type="XRController3D"]
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vflh8")

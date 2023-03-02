@@ -1,0 +1,9 @@
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/bin/ExportDebug/Project S.dll
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/bin/ExportDebug/Project S.pdb
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/ExportDebug/Project S.csproj.AssemblyReference.cache
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/ExportDebug/Project S.GeneratedMSBuildEditorConfig.editorconfig
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/ExportDebug/Project S.AssemblyInfoInputs.cache
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/ExportDebug/Project S.AssemblyInfo.cs
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/ExportDebug/Project S.csproj.CoreCompileInputs.cache
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/ExportDebug/Project S.dll
+/home/cristovaosampaio/Documents/GodotProjects/ProjectS/.mono/temp/obj/ExportDebug/Project S.pdb
