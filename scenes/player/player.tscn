@@ -1,20 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://g33vsvgkkato"]
+[gd_scene load_steps=7 format=3 uid="uid://ckcfqojt4mu37"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_njvok"]
-[ext_resource type="PackedScene" uid="uid://cw0ll5h2s8k3h" path="res://scenes/controller/shooting_controller/shooting_controller.tscn" id="2_6o3xs"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_80ysr"]
+[ext_resource type="PackedScene" uid="uid://bgiqvhdlnvc53" path="res://scenes/controller/gun_controller/gun_controller.tscn" id="2_nt7io"]
 [ext_resource type="Script" path="res://scenes/player/left_controller.gd" id="2_q7xsc"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_iackg"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_ikdel"]
 [ext_resource type="Script" path="res://scenes/player/right_controller.gd" id="5_mwfwx"]
 
-[node name="Player" type="Node3D"]
-script = ExtResource("1_njvok")
+[node name="Player" type="Node3D" groups=["player"]]
+script = ExtResource("1_80ysr")
 
-[node name="ShootingController" parent="." groups=["player"] instance=ExtResource("2_6o3xs")]
+[node name="GunController" parent="." instance=ExtResource("2_nt7io")]
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"left_hand"
@@ -23,7 +21,7 @@ script = ExtResource("2_q7xsc")
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("3_iackg")]
 
 [node name="GunNuzzle" type="Node3D" parent="XROrigin3D/LeftController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0332535, -0.00854868, -0.0209431)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327924, -0.0115635, -0.0300624)
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
@@ -32,7 +30,9 @@ script = ExtResource("5_mwfwx")
 [node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("4_ikdel")]
 
 [node name="GunNuzzle" type="Node3D" parent="XROrigin3D/RightController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0271938, -0.00936321, -0.0442346)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227536, -0.0147435, -0.0273369)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -43,12 +43,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.0
-offset_top = -25.0
+offset_top = -50.0
 offset_right = 75.0
-offset_bottom = 25.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Enter VR"
 
-[connection signal="shooting_request" from="XROrigin3D/LeftController" to="ShootingController" method="_on_controller_shooting_request"]
-[connection signal="shooting_request" from="XROrigin3D/RightController" to="ShootingController" method="_on_controller_shooting_request"]
+[connection signal="shooting_request" from="XROrigin3D/LeftController" to="GunController" method="_on_controller_shooting_request"]
+[connection signal="stop_shooting_request" from="XROrigin3D/LeftController" to="GunController" method="_on_controller_stop_shooting_request"]
+[connection signal="shooting_request" from="XROrigin3D/RightController" to="GunController" method="_on_controller_shooting_request"]
+[connection signal="stop_shooting_request" from="XROrigin3D/RightController" to="GunController" method="_on_controller_stop_shooting_request"]

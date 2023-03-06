@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgiqvhdlnvc53"]
+
+[ext_resource type="Script" path="res://scenes/controller/gun_controller/gun_controller.gd" id="1_tnj7s"]
+[ext_resource type="PackedScene" uid="uid://d17xcbk0b5usr" path="res://scenes/bullet/player_bullet.tscn" id="2_s4u4i"]
+
+[node name="GunController" type="Node"]
+script = ExtResource("1_tnj7s")
+bullet_scene = ExtResource("2_s4u4i")
+
+[node name="LeftGunCooldown" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="RightGunCooldown" type="Timer" parent="."]
+wait_time = 0.2

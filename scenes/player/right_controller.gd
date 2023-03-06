@@ -1,7 +1,8 @@
 extends XRController3D
 
 
-signal shooting_request(controller: int)
+signal shooting_request(controller_id: int)
+signal stop_shooting_request(controller_id: int)
 
 
 func _ready():
@@ -12,9 +13,12 @@ func _ready():
 func _on_right_controller_button_pressed(button: String) -> void:
 	match(button):
 		"trigger_click":
-			# Emite um sinal com o valor "2" que é equivalente ao comando direito
+			# Emite o sinal de shooting request com valor 2 para indicar que é o comando esquerdo
 			shooting_request.emit(2)
  
 
 func _on_right_controller_button_released(button: String) -> void:
-	print ("Button release: " + button)
+	match(button):
+		"trigger_click":
+			# Emite o sinal de shooting request com valor 2 para indicar que é o comando esquerdo
+			stop_shooting_request.emit(2)

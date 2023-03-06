@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy0urqc5gyhl1"]
+[gd_scene load_steps=5 format=3 uid="uid://d17xcbk0b5usr"]
 
-[ext_resource type="Script" path="res://scenes/bullet/bullet.gd" id="1_vyy36"]
+[ext_resource type="Script" path="res://scenes/bullet/player_bullet.gd" id="1_pcqe7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ax7i"]
 size = Vector3(0.3, 0.3, 0.8)
@@ -17,8 +17,10 @@ height = 0.5
 radial_segments = 4
 rings = 1
 
-[node name="Bullet" type="Area3D"]
-script = ExtResource("1_vyy36")
+[node name="PlayerBullet" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_pcqe7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6ax7i")

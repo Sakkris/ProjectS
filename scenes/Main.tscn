@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwrh7ynu1w560"]
+[gd_scene load_steps=9 format=3 uid="uid://cwrh7ynu1w560"]
 
-[ext_resource type="PackedScene" uid="uid://g33vsvgkkato" path="res://scenes/player/player.tscn" id="1_mct3u"]
+[ext_resource type="PackedScene" uid="uid://ckcfqojt4mu37" path="res://scenes/player/player.tscn" id="1_mct3u"]
 [ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
+[ext_resource type="PackedScene" uid="uid://dsepfoieem4kh" path="res://scenes/enemy/basic_enemy/enemy_drone.tscn" id="3_2u2t4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
 panorama = ExtResource("2_b35sd")
@@ -26,16 +27,23 @@ size = Vector2(100, 100)
 
 [node name="BulletManager" type="Node" parent="." groups=["bullet_manager"]]
 
-[node name="Player" parent="." instance=ExtResource("1_mct3u")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_emxrp")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.740582, 0.671966, 0, -0.671966, 0.740582, 0, 8.81694, 4.691)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_u6taq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("PlaneMesh_r86mm")
+
+[node name="EnemyDrone" parent="." instance=ExtResource("3_2u2t4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.063, 2, -4.784)
+
+[node name="Player" parent="." instance=ExtResource("1_mct3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1279, 0)
