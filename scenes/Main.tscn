@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1wqkubuedbr1"]
+[gd_scene load_steps=8 format=3 uid="uid://cwrh7ynu1w560"]
 
-[ext_resource type="PackedScene" uid="uid://d520xiv475op" path="res://scenes/Player.tscn" id="1_b8qt3"]
+[ext_resource type="PackedScene" uid="uid://cgcpel0mnpbpm" path="res://scenes/player/player.tscn" id="1_mct3u"]
 [ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
@@ -16,11 +16,26 @@ sky = SubResource("Sky_47kps")
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.5
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6taq"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r86mm"]
+size = Vector2(100, 100)
+
 [node name="Main" type="Node"]
 
-[node name="Bullets" type="Node" parent="."]
+[node name="BulletManager" type="Node" parent="." groups=["bullet_manager"]]
 
-[node name="Player" parent="." instance=ExtResource("1_b8qt3")]
+[node name="Player" parent="." instance=ExtResource("1_mct3u")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_emxrp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_u6taq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_r86mm")
