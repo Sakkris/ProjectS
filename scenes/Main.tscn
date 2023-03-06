@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwrh7ynu1w560"]
 
-[ext_resource type="PackedScene" uid="uid://cgcpel0mnpbpm" path="res://scenes/player/player.tscn" id="1_mct3u"]
+[ext_resource type="PackedScene" uid="uid://g33vsvgkkato" path="res://scenes/player/player.tscn" id="1_mct3u"]
 [ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
