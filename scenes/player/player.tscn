@@ -50,6 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Enter VR"
 
+[connection signal="gun_shot" from="GunController" to="XROrigin3D/RightController" method="_on_controller_gun_shot"]
 [connection signal="shooting_request" from="XROrigin3D/LeftController" to="GunController" method="_on_controller_shooting_request"]
 [connection signal="stop_shooting_request" from="XROrigin3D/LeftController" to="GunController" method="_on_controller_stop_shooting_request"]
 [connection signal="shooting_request" from="XROrigin3D/RightController" to="GunController" method="_on_controller_shooting_request"]

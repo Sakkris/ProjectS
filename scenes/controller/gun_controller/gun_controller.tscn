@@ -6,9 +6,21 @@
 [node name="GunController" type="Node"]
 script = ExtResource("1_tnj7s")
 bullet_scene = ExtResource("2_s4u4i")
+magazine_size = 15
 
 [node name="LeftGunCooldown" type="Timer" parent="."]
 wait_time = 0.2
 
+[node name="LeftGunStartRecharge" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="LeftGunRechargeCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
 [node name="RightGunCooldown" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="RightGunStartRecharge" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="RightGunRechargeCooldown" type="Timer" parent="."]
