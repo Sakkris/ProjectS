@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwrh7ynu1w560"]
+[gd_scene load_steps=14 format=3 uid="uid://cwrh7ynu1w560"]
 
 [ext_resource type="PackedScene" uid="uid://0tkwalidyo8f" path="res://scenes/player/player.tscn" id="1_mct3u"]
 [ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
@@ -29,6 +29,17 @@ albedo_texture = ExtResource("2_tkn41")
 uv1_scale = Vector3(100, 100, 100)
 uv2_scale = Vector3(100, 100, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgim0"]
+albedo_texture = ExtResource("2_tkn41")
+uv1_scale = Vector3(6, 10, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kimq2"]
+material = SubResource("StandardMaterial3D_lgim0")
+size = Vector3(2, 5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jvuu"]
+size = Vector3(2, 5, 2)
+
 [node name="Main" type="Node"]
 
 [node name="BulletManager" type="Node" parent="." groups=["bullet_manager"]]
@@ -50,6 +61,50 @@ shape = SubResource("BoxShape3D_u6taq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/Floor"]
 mesh = SubResource("PlaneMesh_r86mm")
 surface_material_override/0 = SubResource("StandardMaterial3D_f2wrn")
+
+[node name="Pillar" type="StaticBody3D" parent="TestMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_kimq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_4jvuu")
+
+[node name="Pillar2" type="StaticBody3D" parent="TestMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_kimq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_4jvuu")
+
+[node name="Pillar3" type="StaticBody3D" parent="TestMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/Pillar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_kimq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/Pillar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_4jvuu")
+
+[node name="Pillar4" type="StaticBody3D" parent="TestMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/Pillar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_kimq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/Pillar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_4jvuu")
 
 [node name="EnemyManager" type="Node" parent="."]
 
