@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckcfqojt4mu37"]
+[gd_scene load_steps=7 format=3 uid="uid://0tkwalidyo8f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://bgiqvhdlnvc53" path="res://scenes/controller/gun_controller/gun_controller.tscn" id="2_nt7io"]
-[ext_resource type="Script" path="res://scenes/player/left_controller.gd" id="2_q7xsc"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_iackg"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_ikdel"]
 [ext_resource type="PackedScene" uid="uid://dbh8kjc3exfb2" path="res://scenes/player/state_machine/manager/state_manager.tscn" id="5_3qd4h"]
-[ext_resource type="Script" path="res://scenes/player/right_controller.gd" id="5_mwfwx"]
+[ext_resource type="Script" path="res://scenes/player/controller.gd" id="6_6apf3"]
 
 [node name="Player" type="Node3D" groups=["player"]]
 script = ExtResource("1_80ysr")
@@ -17,7 +16,8 @@ script = ExtResource("1_80ysr")
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"left_hand"
-script = ExtResource("2_q7xsc")
+script = ExtResource("6_6apf3")
+controller_id = 1
 
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("3_iackg")]
 
@@ -29,7 +29,8 @@ controller = 1
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
-script = ExtResource("5_mwfwx")
+script = ExtResource("6_6apf3")
+controller_id = 2
 
 [node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("4_ikdel")]
 
@@ -58,7 +59,3 @@ grow_vertical = 2
 text = "Enter VR"
 
 [connection signal="gun_shot" from="GunController" to="XROrigin3D/RightController" method="_on_controller_gun_shot"]
-[connection signal="shooting_request" from="XROrigin3D/LeftController" to="GunController" method="_on_controller_shooting_request"]
-[connection signal="stop_shooting_request" from="XROrigin3D/LeftController" to="GunController" method="_on_controller_stop_shooting_request"]
-[connection signal="shooting_request" from="XROrigin3D/RightController" to="GunController" method="_on_controller_shooting_request"]
-[connection signal="stop_shooting_request" from="XROrigin3D/RightController" to="GunController" method="_on_controller_stop_shooting_request"]

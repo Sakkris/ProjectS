@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cwrh7ynu1w560"]
 
-[ext_resource type="PackedScene" uid="uid://ckcfqojt4mu37" path="res://scenes/player/player.tscn" id="1_mct3u"]
+[ext_resource type="PackedScene" uid="uid://0tkwalidyo8f" path="res://scenes/player/player.tscn" id="1_mct3u"]
 [ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
 [ext_resource type="PackedScene" uid="uid://dsepfoieem4kh" path="res://scenes/enemy/basic_enemy/enemy_drone.tscn" id="3_2u2t4"]
 
