@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0tkwalidyo8f"]
+[gd_scene load_steps=12 format=3 uid="uid://0tkwalidyo8f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://bgiqvhdlnvc53" path="res://scenes/controller/gun_controller/gun_controller.tscn" id="2_nt7io"]
@@ -7,12 +7,37 @@
 [ext_resource type="PackedScene" uid="uid://dbh8kjc3exfb2" path="res://scenes/player/state_machine/manager/state_manager.tscn" id="5_3qd4h"]
 [ext_resource type="Script" path="res://scenes/player/controller.gd" id="6_6apf3"]
 
-[node name="Player" type="Node3D" groups=["player"]]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sr6s"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_57e5n"]
+material = SubResource("StandardMaterial3D_4sr6s")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32scs"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r7qnk"]
+material = SubResource("StandardMaterial3D_32scs")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_80ysr")
 
 [node name="GunController" parent="." instance=ExtResource("2_nt7io")]
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3fje1")
+
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_57e5n")
+skeleton = NodePath("")
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"left_hand"
@@ -42,6 +67,8 @@ controller = 2
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
+[node name="Neck" type="Node3D" parent="XROrigin3D/XRCamera3D"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="CanvasLayer"]
@@ -57,5 +84,9 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Enter VR"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_r7qnk")
 
 [connection signal="gun_shot" from="GunController" to="XROrigin3D/RightController" method="_on_controller_gun_shot"]

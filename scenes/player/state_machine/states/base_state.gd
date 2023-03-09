@@ -7,10 +7,10 @@ var persistent_state
 var controller_id
 
 
-func setup(change_state, persistent_state, controller_id):
-	self.change_state = change_state
-	self.persistent_state = persistent_state
-	self.controller_id = controller_id
+func setup(_change_state, _persistent_state, _controller_id):
+	self.change_state = _change_state
+	self.persistent_state = _persistent_state
+	self.controller_id = _controller_id
 
 
 func thumbstick_pressed():

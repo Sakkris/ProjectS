@@ -28,5 +28,5 @@ func _on_controller_button_released(button: String) -> void:
 			state_manager.trigger_released()
 
 
-func _on_controller_gun_shot(controller_id):
+func _on_controller_gun_shot(_controller_id):
 	XRServer.primary_interface.trigger_haptic_pulse("haptic", "right_hand", 50, 1.0, 1.0, 0.0)
