@@ -1,4 +1,4 @@
-extends Node
+extends BaseState
 
 class_name MovingState
 

@@ -164,7 +164,7 @@ func start_fast_recharge(gun_id):
 	gun_dict[gun_id].fast_recharge = true
 
 
-func _on_controller_shooting_request(controller_id):
+func start_shooting(controller_id):
 	if !gun_dict.has(controller_id):
 		return
 	
@@ -172,7 +172,7 @@ func _on_controller_shooting_request(controller_id):
 	stop_passive_recharge(controller_id)
 
 
-func _on_controller_stop_shooting_request(controller_id):
+func stop_shooting(controller_id):
 	if !gun_dict.has(controller_id):
 		return
 	
