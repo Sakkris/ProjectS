@@ -50,7 +50,7 @@ environment = SubResource("Environment_emxrp")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.740582, 0.671966, 0, -0.671966, 0.740582, 0, 8.81694, 4.691)
 
-[node name="TestMap" type="Node" parent="."]
+[node name="TestMap" type="Node3D" parent="."]
 
 [node name="Floor" type="StaticBody3D" parent="TestMap"]
 
