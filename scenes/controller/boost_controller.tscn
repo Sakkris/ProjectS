@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://sevlsdun6qqh"]
+[gd_scene load_steps=2 format=3 uid="uid://sevlsdun6qqh"]
+
+[ext_resource type="Script" path="res://scenes/controller/boost_controller.gd" id="1_aqkoc"]
 
 [node name="BoostController" type="Node"]
+script = ExtResource("1_aqkoc")

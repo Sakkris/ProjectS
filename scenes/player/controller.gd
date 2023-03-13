@@ -18,15 +18,15 @@ func _ready():
 func _on_controller_button_pressed(button: String) -> void:
 	match(button):
 		"trigger_click":
-			state_manager.grip_pressed()
+			state_manager.trigger_pressed()
 		"thumbstick_click":
 			state_manager.thumbstick_pressed()
 		"grip_click":
 			state_manager.grip_pressed()
 		"ax_button":
-			state_manager.trigger_pressed()
+			state_manager.ax_button_pressed()
 		"by_button":
-			state_manager.trigger_pressed()
+			state_manager.by_button_pressed()
  
 
 func _on_controller_button_released(button: String) -> void:
@@ -34,9 +34,9 @@ func _on_controller_button_released(button: String) -> void:
 		"trigger_click":
 			state_manager.trigger_released()
 		"ax_button":
-			state_manager.trigger_released()
+			state_manager.ax_button_released()
 		"by_button":
-			state_manager.trigger_released()
+			state_manager.by_button_released()
 
 
 func _on_controller_gun_shot(_controller_id):

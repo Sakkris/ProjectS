@@ -37,3 +37,22 @@ func trigger_released():
 
 func grip_pressed():
 	current_state.grip_pressed()
+
+
+func ax_button_pressed():
+	current_state.ax_button_pressed()
+
+
+func ax_button_released():
+	current_state.ax_button_released()
+
+
+func by_button_pressed():
+	current_state.by_button_pressed()
+
+
+func by_button_released():
+	current_state.by_button_released()
+
+
+

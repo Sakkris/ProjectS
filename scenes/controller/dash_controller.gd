@@ -18,8 +18,8 @@ func dash():
 			return
 	
 	var basis = controller.global_transform.basis
-	var player = get_tree().get_first_node_in_group("player")
-	player.velocity = -basis.z * dash_force
+	var player_velocity_component = get_tree().get_first_node_in_group("player").get_node("VelocityComponent")
+	player_velocity_component.velocity = -basis.z * dash_force
 
 
 func get_controller():

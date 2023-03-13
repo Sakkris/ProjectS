@@ -27,3 +27,19 @@ func trigger_released():
 
 func grip_pressed():
 	pass
+
+
+func ax_button_pressed():
+	pass
+
+
+func ax_button_released():
+	pass
+
+
+func by_button_pressed():
+	pass
+
+
+func by_button_released():
+	pass

@@ -111,15 +111,7 @@ func _get_movement_input() -> Vector2:
 
 
 func _process_movement_on_input(delta):
-	var movement_input = _get_movement_input()
-	var direction = global_transform.basis * Vector3(movement_input.x, 0, movement_input.y)
-	
-	if direction:
-		velocity.x = direction.x
-		velocity.z = direction.z
-#	else:
-#		velocity.x = move_toward(velocity.x, 0, delta)
-#		velocity.z = move_toward(velocity.z, 0, delta)
+	velocity = $VelocityComponent.velocity
 	
 	move_and_slide()
 

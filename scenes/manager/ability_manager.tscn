@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj7cfflhl21yr"]
+[gd_scene load_steps=5 format=3 uid="uid://cj7cfflhl21yr"]
 
 [ext_resource type="Script" path="res://scenes/manager/ability_manager.gd" id="1_uik70"]
 [ext_resource type="PackedScene" uid="uid://ylp4stsi5tep" path="res://scenes/controller/dash_controller.tscn" id="2_5y1gk"]
+[ext_resource type="PackedScene" uid="uid://ohbtwagaamfk" path="res://scenes/controller/brake_controller.tscn" id="3_iesgs"]
+[ext_resource type="PackedScene" uid="uid://sevlsdun6qqh" path="res://scenes/controller/boost_controller.tscn" id="4_kmjy8"]
 
 [node name="AbilityManager" type="Node"]
 script = ExtResource("1_uik70")
 
 [node name="DashController" parent="." instance=ExtResource("2_5y1gk")]
+
+[node name="BrakeController" parent="." instance=ExtResource("3_iesgs")]
+
+[node name="BoostController" parent="." instance=ExtResource("4_kmjy8")]
