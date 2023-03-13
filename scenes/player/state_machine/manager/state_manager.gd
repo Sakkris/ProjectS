@@ -33,3 +33,7 @@ func trigger_pressed():
 
 func trigger_released():
 	current_state.trigger_released()
+
+
+func grip_pressed():
+	current_state.grip_pressed()

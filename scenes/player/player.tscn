@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://0tkwalidyo8f"]
+[gd_scene load_steps=14 format=3 uid="uid://0tkwalidyo8f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_80ysr"]
+[ext_resource type="PackedScene" uid="uid://cdge0fljqtx5g" path="res://scenes/component/velocity_component.tscn" id="2_25rjh"]
 [ext_resource type="PackedScene" uid="uid://bgiqvhdlnvc53" path="res://scenes/controller/gun_controller/gun_controller.tscn" id="2_nt7io"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_iackg"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_ikdel"]
 [ext_resource type="PackedScene" uid="uid://dbh8kjc3exfb2" path="res://scenes/player/state_machine/manager/state_manager.tscn" id="5_3qd4h"]
 [ext_resource type="Script" path="res://scenes/player/controller.gd" id="6_6apf3"]
+[ext_resource type="PackedScene" uid="uid://cj7cfflhl21yr" path="res://scenes/manager/ability_manager.tscn" id="7_55but"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
 
@@ -25,6 +27,8 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_80ysr")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_25rjh")]
 
 [node name="GunController" parent="." instance=ExtResource("2_nt7io")]
 
@@ -52,6 +56,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327924, -0.0115635, -0.03
 [node name="LeftStateManager" parent="XROrigin3D/LeftController" instance=ExtResource("5_3qd4h")]
 controller = 1
 
+[node name="LeftAbilityManager" parent="XROrigin3D/LeftController" instance=ExtResource("7_55but")]
+controller_id = 1
+
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
 script = ExtResource("6_6apf3")
@@ -64,6 +71,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227536, -0.0147435, -0.027
 
 [node name="RightStateManager" parent="XROrigin3D/RightController" instance=ExtResource("5_3qd4h")]
 controller = 2
+
+[node name="RightAbilityManager" parent="XROrigin3D/RightController" instance=ExtResource("7_55but")]
+controller_id = 2
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 

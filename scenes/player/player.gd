@@ -117,9 +117,9 @@ func _process_movement_on_input(delta):
 	if direction:
 		velocity.x = direction.x
 		velocity.z = direction.z
-	else:
-		velocity.x = move_toward(velocity.x, 0, delta)
-		velocity.z = move_toward(velocity.z, 0, delta)
+#	else:
+#		velocity.x = move_toward(velocity.x, 0, delta)
+#		velocity.z = move_toward(velocity.z, 0, delta)
 	
 	move_and_slide()
 

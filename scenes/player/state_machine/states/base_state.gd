@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 class_name BaseState
 
@@ -22,4 +22,8 @@ func trigger_pressed():
 
 
 func trigger_released():
+	pass
+
+
+func grip_pressed():
 	pass

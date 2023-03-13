@@ -4,6 +4,7 @@ extends XRController3D
 
 var state_manager
 
+
 func _ready():
 	button_pressed.connect(self._on_controller_button_pressed)
 	button_released.connect(self._on_controller_button_released)
@@ -17,14 +18,24 @@ func _ready():
 func _on_controller_button_pressed(button: String) -> void:
 	match(button):
 		"trigger_click":
-			state_manager.trigger_pressed()
+			state_manager.grip_pressed()
 		"thumbstick_click":
 			state_manager.thumbstick_pressed()
+		"grip_click":
+			state_manager.grip_pressed()
+		"ax_button":
+			state_manager.trigger_pressed()
+		"by_button":
+			state_manager.trigger_pressed()
  
 
 func _on_controller_button_released(button: String) -> void:
 	match(button):
 		"trigger_click":
+			state_manager.trigger_released()
+		"ax_button":
+			state_manager.trigger_released()
+		"by_button":
 			state_manager.trigger_released()
 
 

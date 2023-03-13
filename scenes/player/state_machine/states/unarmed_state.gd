@@ -1,5 +1,4 @@
 extends MovingState
-
 class_name UnarmedState
 
 
