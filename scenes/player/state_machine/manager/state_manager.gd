@@ -39,6 +39,10 @@ func grip_pressed():
 	current_state.grip_pressed()
 
 
+func grip_released():
+	current_state.grip_released()
+
+
 func ax_button_pressed():
 	current_state.ax_button_pressed()
 

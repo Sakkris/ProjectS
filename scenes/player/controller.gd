@@ -33,6 +33,8 @@ func _on_controller_button_released(button: String) -> void:
 	match(button):
 		"trigger_click":
 			state_manager.trigger_released()
+		"grip_click":
+			state_manager.grip_released()
 		"ax_button":
 			state_manager.ax_button_released()
 		"by_button":

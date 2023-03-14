@@ -46,7 +46,7 @@ func _webxr_session_started() -> void:
 	get_viewport().use_xr = true
 	
 	print ("Reference space type: " + webxr_interface.reference_space_type)
- 
+
 
 func _webxr_session_ended() -> void:
 	$CanvasLayer.visible = true
@@ -105,20 +105,8 @@ func _process_rotation_on_input(delta):
 	rotation.y += _get_rotational_input() * delta
 
 
-func _get_movement_input() -> Vector2:
-	# Implement this to return requested directional movement in meters per second.
-	return Vector2()
-
-
-func _process_movement_on_input(delta):
-	$VelocityComponent.move(delta)
-
-
 func _physics_process(delta):
 	var is_colliding = _process_on_physical_movement(delta)
 	if !is_colliding:
 		_process_rotation_on_input(delta)
-		_process_movement_on_input(delta)
-
-
-
+		$VelocityComponent.move(delta)

@@ -39,7 +39,7 @@ shape = SubResource("CapsuleShape3D_3fje1")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D"]
+[node name="PhysicalOrigin" type="MeshInstance3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 mesh = SubResource("BoxMesh_57e5n")
 skeleton = NodePath("")
@@ -96,7 +96,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Enter VR"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="CharacterOrigin" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 mesh = SubResource("BoxMesh_r7qnk")
 
