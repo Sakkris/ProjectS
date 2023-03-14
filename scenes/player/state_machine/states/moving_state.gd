@@ -4,16 +4,14 @@ class_name MovingState
 
 
 func ax_button_pressed():
-	GameEvents.emit_start_boosting_request(controller_id)
+	if controller_id == 1:
+		GameEvents.emit_start_braking_request()
+	elif controller_id == 2:
+		GameEvents.emit_start_boosting_request()
 
 
 func ax_button_released():
-	GameEvents.emit_stop_boosting_request(controller_id)
-
-
-func by_button_pressed():
-	GameEvents.emit_start_braking_request(controller_id)
-
-
-func by_button_released():
-	GameEvents.emit_stop_braking_request(controller_id)
+	if controller_id == 1:
+		GameEvents.emit_stop_braking_request()
+	elif controller_id == 2:
+		GameEvents.emit_stop_boosting_request()

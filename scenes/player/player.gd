@@ -111,9 +111,7 @@ func _get_movement_input() -> Vector2:
 
 
 func _process_movement_on_input(delta):
-	velocity = $VelocityComponent.velocity
-	
-	move_and_slide()
+	$VelocityComponent.move(delta)
 
 
 func _physics_process(delta):

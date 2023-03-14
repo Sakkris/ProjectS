@@ -25,10 +25,7 @@ func _ready():
 
 func shoot():
 	recharge_cooldown_timer.stop()
-	
 	var bullet = bullet_scene.instantiate()
-	var controllers = get_tree().get_nodes_in_group("controller")
-	var gun_nuzzle : Node3D
 	
 	get_tree().get_first_node_in_group("bullet_manager").add_child(bullet)
 	bullet.global_transform = nuzzle.global_transform

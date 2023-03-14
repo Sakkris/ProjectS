@@ -18,9 +18,9 @@ func _physics_process(delta):
 	player_velocity_component.decelerate(delta)
 
 
-func on_start_braking_request(controller_id):
+func on_start_braking_request():
 	is_braking = true
 
 
-func on_stop_braking_request(controller_id):
+func on_stop_braking_request():
 	is_braking = false

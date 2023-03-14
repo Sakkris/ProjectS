@@ -29,6 +29,7 @@ size = Vector3(0.1, 0.1, 0.1)
 script = ExtResource("1_80ysr")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_25rjh")]
+max_speed = 5.0
 
 [node name="GunController" parent="." instance=ExtResource("2_nt7io")]
 

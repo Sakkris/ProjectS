@@ -14,9 +14,13 @@ func trigger_pressed():
 	change_state.call("shooting")
 
 
-func grip_pressed():
+func by_button_pressed():
 	GameEvents.emit_dash_request(controller_id)
 
 
-func thruster():
-	pass
+func grip_pressed():
+	GameEvents.emit_start_thrusting_request(controller_id)
+
+
+func grip_released():
+	GameEvents.emit_stop_thrusting_request(controller_id)

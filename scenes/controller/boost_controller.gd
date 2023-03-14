@@ -18,9 +18,9 @@ func _physics_process(delta):
 	player_velocity_component.accelerate(delta)
 
 
-func on_start_boosting_request(controller_id):
+func on_start_boosting_request():
 	is_boosting = true
 
 
-func on_stop_boosting_request(controller_id):
+func on_stop_boosting_request():
 	is_boosting = false
