@@ -27,7 +27,7 @@ func shoot():
 	recharge_cooldown_timer.stop()
 	var bullet = bullet_scene.instantiate()
 	
-	get_tree().get_first_node_in_group("bullet_manager").add_child(bullet)
+	get_tree().get_first_node_in_group("projectile_manager").add_child(bullet)
 	bullet.global_transform = nuzzle.global_transform
 	
 	shooting_cooldown_timer.start()

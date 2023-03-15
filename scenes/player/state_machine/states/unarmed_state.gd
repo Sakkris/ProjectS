@@ -11,11 +11,7 @@ func thumbstick_pressed():
 
 
 func trigger_pressed():
-	GameEvents.emit_start_hooking_request(controller_id)
-
-
-func trigger_released():
-	GameEvents.emit_stop_hooking_request(controller_id)
+	change_state.call("hooked")
 
 
 func grab():

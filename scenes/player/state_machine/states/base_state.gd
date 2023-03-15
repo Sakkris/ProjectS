@@ -29,6 +29,10 @@ func grip_pressed():
 	pass
 
 
+func grip_released():
+	pass
+
+
 func ax_button_pressed():
 	pass
 

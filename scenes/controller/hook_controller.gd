@@ -1,16 +1,14 @@
 extends Node
 
-@onready var hook = $Hook
-@onready var hook_line: CSGCylinder3D = $%Line
+signal hook_finished_retracting
 
-@export var hook_max_lenght: float = 15
+@export var hook_scene: PackedScene
 
-enum states {HOOKING, COLLIDING, RETRACTING}
-
-var current_state
 var controller_id
 var controller
-
+var hook_instance
+var gun_nuzzle
+var is_hooking: bool = false
 
 func _ready():
 	GameEvents.start_hooking_request.connect(on_start_hooking_request)
@@ -19,53 +17,58 @@ func _ready():
 	controller_id = get_parent().controller_id
 
 
-func _physics_process(delta):
-	if controller == null:
-		controller = get_controller_node()
-		
-		if controller == null:
-			return
-		
-		place_hook_on_controller()
-	
-	match (current_state):
-		states.HOOKING:
-			throw_hook(delta)
-		states.COLLIDING:
-			pass
-		states.RETRACTING:
-			retract_hook(delta)
-		_:
-			pass
+func _physics_process(_delta):
+	if is_hooking:
+		hook_instance.player_gun_nuzzle = gun_nuzzle 
 
 
 func get_controller_node():
 	var controllers = get_tree().get_nodes_in_group("controller")
 	
-	for controller in controllers:
-		if controller.get_tracker_hand() == controller_id:
-			return controller
+	for current_controller in controllers:
+		if current_controller.get_tracker_hand() == controller_id:
+			gun_nuzzle = current_controller.get_node("GunNuzzle")
+			
+			return current_controller
 	
 	return null
 
 
-func retract_hook(delta):
-	hook_line.height -= 0.5 * delta
+func retract_hook():
+	hook_instance.change_state(hook_instance.states.RETRACTING)
 
 
-func throw_hook(delta):
-	hook_line.height += 0.2 * delta
-
-
-func place_hook_on_controller():
-	pass
+func throw_hook():
+	hook_instance = hook_scene.instantiate()
+	hook_instance.player_gun_nuzzle = controller.get_node("GunNuzzle")
+	hook_instance.global_transform = hook_instance.player_gun_nuzzle.global_transform
+	hook_instance.change_state(hook_instance.states.HOOKING)
+	hook_instance.hook_finished_retracting.connect(on_hook_finished_retracting)
+	
+	get_tree().get_first_node_in_group("projectile_manager").add_child(hook_instance)
 
 
 func on_start_hooking_request(signal_controller_id: int):
 	if signal_controller_id == controller_id:
-		current_state = states.HOOKING
+		if controller == null:
+			controller = get_controller_node()
+			
+			if controller == null:
+				return
+		
+		throw_hook()
 
 
 func on_stop_hooking_request(signal_controller_id: int):
 	if signal_controller_id == controller_id:
-		current_state = states.RETRACTING
+		if controller == null:
+			controller = get_controller_node()
+			
+			if controller == null:
+				return
+		
+		retract_hook()
+
+
+func on_hook_finished_retracting():
+	GameEvents.emit_hook_finished_retracting(controller_id)

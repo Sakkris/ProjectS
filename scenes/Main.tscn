@@ -42,7 +42,7 @@ size = Vector3(2, 5, 2)
 
 [node name="Main" type="Node"]
 
-[node name="BulletManager" type="Node" parent="." groups=["bullet_manager"]]
+[node name="ProjectileManager" type="Node" parent="." groups=["projectile_manager"]]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_emxrp")

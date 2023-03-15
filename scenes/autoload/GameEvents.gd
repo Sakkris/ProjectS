@@ -11,6 +11,7 @@ signal start_thrusting_request
 signal stop_thrusting_request
 signal start_hooking_request
 signal stop_hooking_request
+signal hook_finished_retracting
 
 
 func emit_start_shooting_request(controller_id: int):
@@ -56,3 +57,6 @@ func emit_start_hooking_request(controller_id: int):
 func emit_stop_hooking_request(controller_id: int):
 	stop_hooking_request.emit(controller_id)
 
+
+func emit_hook_finished_retracting(controller_id: int):
+	hook_finished_retracting.emit(controller_id)
