@@ -19,8 +19,16 @@ var current_state
 var last_length = 0
 
 
+func _ready():
+	hook_line.scale.y = 0
+	hook_line.visible = true
+	hook_line.rotate_x(PI/2)
+
+
 func _physics_process(delta):
-	$GunNuzzle.global_transform = player_gun_nuzzle.global_transform
+	#$GunNuzzle.global_transform = player_gun_nuzzle.global_transform
+	draw_line()
+	
 	
 	match current_state:
 		states.HOOKING:
@@ -62,6 +70,13 @@ func retract_hook(delta):
 	else:
 		hook_finished_retracting.emit()
 		queue_free()
+
+
+func draw_line():
+	hook_line.global_transform = player_gun_nuzzle.global_transform
+	hook_line.scale.y = hook_current_length() / 2
+	hook_line.global_translate(-hook_tip.global_transform.basis.z * hook_current_length() / 2)
+	hook_line.look_at(hook_tip.global_transform.origin, hook_line.global_transform.basis.y)
 
 
 func change_state(new_state):
