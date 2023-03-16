@@ -26,10 +26,12 @@ material = SubResource("StandardMaterial3D_32scs")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 0
 script = ExtResource("1_80ysr")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_25rjh")]
 max_speed = 5.0
+max_overloaded_speed = 10.0
 
 [node name="GunController" parent="." instance=ExtResource("2_nt7io")]
 

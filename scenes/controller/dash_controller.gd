@@ -1,6 +1,6 @@
 extends Node
 
-@export var dash_force: float = 2
+@export var dash_force: float = 10
 
 var controller_id
 var controller
@@ -18,13 +18,12 @@ func dash():
 			return
 	
 	var basis = controller.global_transform.basis
-	var player_velocity_component = get_tree().get_first_node_in_group("player").get_node("VelocityComponent")
+	var player_velocity_component: VelocityComponent = get_tree().get_first_node_in_group("player").get_node("VelocityComponent")
 	var current_velocity = player_velocity_component.velocity
 	
-	if is_same_general_direction(-basis.z, current_velocity):
-		player_velocity_component.velocity += -basis.z * dash_force
-	else:
-		player_velocity_component.velocity = -basis.z * dash_force
+	player_velocity_component.reset_if_opposite_velocity(-basis.z)
+	
+	player_velocity_component.velocity += -basis.z * dash_force
 
 
 func get_controller():
@@ -34,14 +33,6 @@ func get_controller():
 		if current_controller.get_tracker_hand() == self.controller_id:
 			controller = current_controller
 			break
-
-
-# Verifica se os dois vetores estão na mesma direção geral (até um máximo de 45º de diferença)
-func is_same_general_direction(dash_vector: Vector3, velocity_vector: Vector3) -> bool:
-	var dash_norm = dash_vector.normalized()
-	var velocity_norm = velocity_vector.normalized()
-	
-	return dash_norm.dot(velocity_norm) > 0.5 
 
 
 func on_dash_request(signal_controller_id):

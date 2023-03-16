@@ -4,6 +4,7 @@ class_name VelocityComponent
 @onready var parent_node: CharacterBody3D = get_parent()
 
 @export var max_speed: float = 10
+@export var max_overloaded_speed: float = 15
 @export var acceleration_coeficient: float = .2
 
 var velocity: Vector3
@@ -44,7 +45,7 @@ func accelerate_to_velocity(target_velocity: Vector3, delta):
 func accelerate_in_direction(direction: Vector3, delta):
 	velocity += direction * delta
 	
-	if velocity.length() > max_speed:
+	if velocity.length() > max_overloaded_speed:
 		velocity = calculate_max_velocity()
 
 
@@ -52,5 +53,16 @@ func calculate_max_velocity() -> Vector3:
 	return velocity.normalized() * max_speed
 
 
-func stop():
-	pass
+func calculate_max_overloaded_velocity() -> Vector3:
+	return velocity.normalized() * max_overloaded_speed
+
+
+func reset_if_opposite_velocity(direction: Vector3):
+	var direction_norm = direction.normalized()
+	var velocity_norm = velocity.normalized()
+	
+	if direction_norm.dot(velocity_norm) <= 0.5:
+		full_stop() 
+
+func full_stop():
+	velocity = Vector3.ZERO
