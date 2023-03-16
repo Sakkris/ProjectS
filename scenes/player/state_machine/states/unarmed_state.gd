@@ -14,5 +14,5 @@ func trigger_pressed():
 	change_state.call("hooked")
 
 
-func grab():
-	pass
+func grip_pressed():
+	change_state.call("grabbing")

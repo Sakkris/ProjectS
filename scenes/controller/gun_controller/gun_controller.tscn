@@ -7,7 +7,6 @@
 [node name="GunController" type="Node"]
 script = ExtResource("1_tnj7s")
 bullet_scene = ExtResource("2_s4u4i")
-magazine_size = 15
 
 [node name="LeftGun" parent="." instance=ExtResource("3_vweo1")]
 

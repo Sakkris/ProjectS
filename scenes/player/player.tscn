@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0tkwalidyo8f"]
+[gd_scene load_steps=16 format=3 uid="uid://0tkwalidyo8f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://cdge0fljqtx5g" path="res://scenes/component/velocity_component.tscn" id="2_25rjh"]
@@ -17,6 +17,12 @@ albedo_color = Color(0, 1, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_57e5n"]
 material = SubResource("StandardMaterial3D_4sr6s")
 size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_66fwa"]
+radius = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32scs"]
 albedo_color = Color(0, 1, 1, 1)
@@ -37,6 +43,7 @@ max_overloaded_speed = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_3fje1")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
@@ -63,6 +70,12 @@ controller = 1
 [node name="LeftAbilityManager" parent="XROrigin3D/LeftController" instance=ExtResource("7_55but")]
 controller_id = 1
 
+[node name="GrabArea" type="Area3D" parent="XROrigin3D/LeftController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftController/GrabArea"]
+shape = SubResource("SphereShape3D_dapnm")
+
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
 script = ExtResource("6_6apf3")
@@ -79,7 +92,14 @@ controller = 2
 [node name="RightAbilityManager" parent="XROrigin3D/RightController" instance=ExtResource("7_55but")]
 controller_id = 2
 
+[node name="GrabArea" type="Area3D" parent="XROrigin3D/RightController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightController/GrabArea"]
+shape = SubResource("SphereShape3D_66fwa")
+
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+visible = false
 
 [node name="Neck" type="Node3D" parent="XROrigin3D/XRCamera3D"]
 

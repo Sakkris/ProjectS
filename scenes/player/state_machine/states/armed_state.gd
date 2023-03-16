@@ -7,6 +7,7 @@ func _ready():
 
 
 func thumbstick_pressed():
+	GameEvents.emit_stop_thrusting_request(controller_id)
 	change_state.call("unarmed")
 
 

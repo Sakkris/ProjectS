@@ -10,6 +10,7 @@ func _init():
 		"unarmed" : UnarmedState,
 		"shooting" : ShootingState,
 		"hooked" : HookedState,
+		"grabbing" : GrabbingState,
 	}
 
 

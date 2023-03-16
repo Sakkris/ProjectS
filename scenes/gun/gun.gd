@@ -6,12 +6,12 @@ class_name Gun
 @onready var recharge_cooldown_timer: Timer = $RechargeCooldownTimer
 
 @export var bullet_scene : PackedScene
-@export var magazine_size : int = 15
+@export var magazine_size : int = 6
 
 var is_shooting: bool
 var current_bullets: int
-var passive_recharge_cooldown: float = .5
-var fast_recharge_cooldown: float = 0.05
+var passive_recharge_cooldown: float = .1
+var fast_recharge_cooldown: float = 0.5
 var nuzzle: Node3D
 
 
@@ -73,7 +73,6 @@ func start_shooting():
 
 func stop_shooting():
 	is_shooting = false
-	start_recharge_timer.start()
 
 
 func on_shooting_cooldown_timer_timeout():

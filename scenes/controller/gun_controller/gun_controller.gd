@@ -3,7 +3,6 @@ extends Node
 signal gun_shot(controller_id)
 
 @export var bullet_scene : PackedScene
-@export var magazine_size : int = 30
 
 @onready var left_gun: Gun = $LeftGun
 @onready var right_gun: Gun = $RightGun
