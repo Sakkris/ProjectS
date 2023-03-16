@@ -9,7 +9,8 @@ const HOOK_RETRACT_SPEED = 35.0
 @export var hook_max_length: float = 15
 
 @onready var hook_tip = $HookTip
-@onready var hook_line = $Line
+@onready var hook_line_origin = $LineOrigin
+@onready var hook_line = $%Line
 
 var player_gun_nuzzle: Node3D
 
@@ -20,9 +21,8 @@ var last_length = 0
 
 
 func _ready():
-	hook_line.scale.y = 0
+	hook_line_origin.scale.z = 0
 	hook_line.visible = true
-	hook_line.rotate_x(PI/2)
 
 
 func _physics_process(delta):
@@ -73,10 +73,14 @@ func retract_hook(delta):
 
 
 func draw_line():
-	hook_line.global_transform = player_gun_nuzzle.global_transform
-	hook_line.scale.y = hook_current_length() / 2
-	hook_line.global_translate(-hook_tip.global_transform.basis.z * hook_current_length() / 2)
-	hook_line.look_at(hook_tip.global_transform.origin, hook_line.global_transform.basis.y)
+	if hook_current_length() == 0:
+		return
+	
+	hook_line_origin.global_transform = player_gun_nuzzle.global_transform
+	#hook_line.global_translate(-hook_tip.global_transform.basis.z * hook_current_length() / 2)
+	hook_line_origin.look_at(hook_tip.global_transform.origin, player_gun_nuzzle.global_transform.basis.y)
+	hook_line_origin.scale.z = hook_current_length()
+	
 
 
 func change_state(new_state):

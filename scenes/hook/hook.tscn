@@ -12,6 +12,7 @@ size = Vector3(0.04, 0.04, 0.04)
 [sub_resource type="CylinderMesh" id="CylinderMesh_rywy2"]
 top_radius = 0.02
 bottom_radius = 0.02
+height = 1.0
 radial_segments = 5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dc12y"]
@@ -27,10 +28,13 @@ script = ExtResource("1_cyy4e")
 [node name="HookTip" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_1mb73")
 
-[node name="Line" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
-visible = false
+[node name="LineOrigin" type="Node3D" parent="."]
+
+[node name="Line" type="MeshInstance3D" parent="LineOrigin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
 mesh = SubResource("CylinderMesh_rywy2")
+skeleton = NodePath("../..")
 
 [node name="GunNuzzle" type="MeshInstance3D" parent="."]
 visible = false
