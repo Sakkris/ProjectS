@@ -1,5 +1,7 @@
 extends Node
 
+@onready var _averager := XRToolsVelocityAveragerLinear.new(5)
+
 var player: CharacterBody3D
 var player_velocity_component: VelocityComponent
 var grab_area: Area3D
@@ -32,10 +34,12 @@ func _physics_process(delta):
 	var offset_movement = Vector3.ZERO
 	var current_position = controller.global_transform.origin
 	
-	offset_movement = current_position - grab_position
+	offset_movement =  grab_position - current_position
 	
-	player.move_and_collide(-offset_movement)
+	player.move_and_collide(offset_movement)
 	player_velocity_component.full_stop()
+	
+	_averager.add_distance(delta, offset_movement)
 	
 	return true
 
@@ -49,9 +53,10 @@ func on_stop_grabbing_request(signal_controller_id: int):
 	if controller_id == signal_controller_id:
 		grab_area_collision.disabled = true
 		is_grabbing = false
+		player_velocity_component.velocity = _averager.velocity()
 
 
 func on_body_entered(other_body):
-	player_velocity_component.full_stop()
 	grab_position = controller.global_transform.origin
 	is_grabbing = true
+	_averager.clear()
