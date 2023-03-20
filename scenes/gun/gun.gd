@@ -24,6 +24,10 @@ func _ready():
 
 
 func shoot():
+	if current_bullets == 0:
+		shooting_cooldown_timer.start()
+		return
+	
 	recharge_cooldown_timer.stop()
 	var bullet = bullet_scene.instantiate()
 	
