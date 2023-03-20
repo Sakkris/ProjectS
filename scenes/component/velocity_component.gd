@@ -8,9 +8,13 @@ class_name VelocityComponent
 @export var acceleration_coeficient: float = .2
 
 var velocity: Vector3
+var can_move: bool = true
 
 
 func move(delta):
+	if !can_move:
+		return 
+	
 	if exceeds_max_speed():
 		decelerate_to_max_speed(delta)
 	

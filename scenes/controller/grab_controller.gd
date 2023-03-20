@@ -36,8 +36,8 @@ func _physics_process(delta):
 	
 	offset_movement =  grab_position - current_position
 	
-	player.move_and_collide(offset_movement)
 	player_velocity_component.full_stop()
+	player.move_and_collide(offset_movement)
 	
 	_averager.add_distance(delta, offset_movement)
 	
@@ -54,9 +54,11 @@ func on_stop_grabbing_request(signal_controller_id: int):
 		grab_area_collision.disabled = true
 		is_grabbing = false
 		player_velocity_component.velocity = _averager.velocity()
+		player_velocity_component.can_move = true
 
 
 func on_body_entered(other_body):
 	grab_position = controller.global_transform.origin
 	is_grabbing = true
 	_averager.clear()
+	player_velocity_component.can_move = false
