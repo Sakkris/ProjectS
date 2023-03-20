@@ -72,6 +72,8 @@ controller_id = 1
 
 [node name="GrabArea" type="Area3D" parent="XROrigin3D/LeftController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
+collision_layer = 0
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftController/GrabArea"]
 shape = SubResource("SphereShape3D_dapnm")
@@ -94,8 +96,9 @@ controller = 2
 controller_id = 2
 
 [node name="GrabArea" type="Area3D" parent="XROrigin3D/RightController"]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
+collision_layer = 0
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightController/GrabArea"]
 shape = SubResource("SphereShape3D_66fwa")

@@ -34,6 +34,7 @@ func _ready():
 	
 	# Connect to the GrabArea
 	grab_area.body_entered.connect(on_body_entered)
+	grab_area.area_entered.connect(on_area_entered)
 	
 	# Get the Player Node and its VelocityComponent 
 	player = get_tree().get_first_node_in_group("player") as CharacterBody3D
@@ -63,6 +64,20 @@ func _physics_process(delta):
 	return true
 
 
+func start_grab():
+	# Get the Grab Position and start grabbing
+	grab_position = controller.global_transform.origin
+	is_grabbing = true
+	
+	# Save the Current Player's Velocity and start the Timer
+	perserve_velocity_timer.start()
+	previous_velocity = player_velocity_component.velocity
+	
+	# Clear the _avarager distances and disable the default player movement
+	_averager.clear()
+	player_velocity_component.can_move = false
+
+
 func on_start_grabbing_request(signal_controller_id: int):
 	# Check if the signal corresponds to this controller
 	if controller_id == signal_controller_id:
@@ -73,6 +88,11 @@ func on_start_grabbing_request(signal_controller_id: int):
 func on_stop_grabbing_request(signal_controller_id: int):
 	# Check if the signal corresponds to this controller
 	if controller_id == signal_controller_id:
+		# If player didn't grab anything no need to do anything other than disable the CollisionShape
+		if !is_grabbing:
+			grab_area_collision.disabled = true
+			return
+		
 		# Disable the CollisionShape and stop grabbing 
 		grab_area_collision.disabled = true
 		is_grabbing = false
@@ -86,19 +106,12 @@ func on_stop_grabbing_request(signal_controller_id: int):
 			# Make the player velocity the avarage velocity form the _avarager 
 			player_velocity_component.velocity = _averager.velocity()
 		
-		
 		player_velocity_component.can_move = true
 
 
-func on_body_entered(other_body):
-	# Get the Grab Position and start grabbing
-	grab_position = controller.global_transform.origin
-	is_grabbing = true
-	
-	# Save the Current Player's Velocity and start the Timer
-	perserve_velocity_timer.start()
-	previous_velocity = player_velocity_component.velocity
-	
-	# Clear the _avarager distances and disable the default player movement
-	_averager.clear()
-	player_velocity_component.can_move = false
+func on_body_entered(_other_body):
+	start_grab()
+
+
+func on_area_entered(_other_area):
+	start_grab()

@@ -56,7 +56,7 @@ func start_fast_recharge():
 	
 	recharge_cooldown_timer.wait_time = fast_recharge_cooldown
 	recharge_cooldown_timer.start()
-	print("Started Fast Charging")
+#	print("Started Fast Charging")
 
 
 func recharge():
