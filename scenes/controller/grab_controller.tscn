@@ -4,3 +4,7 @@
 
 [node name="GrabController" type="Node"]
 script = ExtResource("1_m1ekt")
+
+[node name="PerserveVelocityTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

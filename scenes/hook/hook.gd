@@ -17,6 +17,7 @@ var player_gun_nuzzle: Node3D
 
 enum states {HOOKING, COLLIDING, RETRACTING}
 
+var started_colliding = false
 var current_state
 var last_length = 0
 var colliding_body = null
@@ -81,7 +82,11 @@ func retract_hook(delta):
 
 func go_to_colliding_body(delta):
 	var direction = player_gun_nuzzle.global_position.direction_to(hook_tip.global_position)
-	player_velocity_component.reset_if_opposite_velocity(direction)
+	
+	if started_colliding:
+		player_velocity_component.reset_if_opposite_velocity(direction)
+		started_colliding = false
+	
 	player_velocity_component.accelerate_in_direction(direction * HOOK_PULL_SPEED, delta)
 	
 	if hook_current_length() < 1:
@@ -122,5 +127,6 @@ func disable_collision():
 
 func on_body_entered(other_body):
 	change_state(states.COLLIDING)
+	started_colliding = true
 	call_deferred("disable_collision")
 	colliding_body = other_body
