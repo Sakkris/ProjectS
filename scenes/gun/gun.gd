@@ -16,6 +16,7 @@ var nuzzle: Node3D
 
 
 func _ready():
+	GameEvents.player_changed_state.connect(on_player_changed_state)
 	shooting_cooldown_timer.timeout.connect(on_shooting_cooldown_timer_timeout)
 	start_recharge_timer.timeout.connect(on_start_recharge_timer_timeout)
 	recharge_cooldown_timer.timeout.connect(on_recharge_cooldown_timer_timeout)
@@ -55,6 +56,7 @@ func start_fast_recharge():
 	
 	recharge_cooldown_timer.wait_time = fast_recharge_cooldown
 	recharge_cooldown_timer.start()
+	print("Started Fast Charging")
 
 
 func recharge():
@@ -67,7 +69,7 @@ func recharge():
 	
 	current_bullets += 1
 	recharge_cooldown_timer.start()
-	print(current_bullets, " / ", magazine_size)
+#	print(current_bullets, " / ", magazine_size)
 
 
 func start_shooting():
@@ -90,3 +92,8 @@ func on_start_recharge_timer_timeout():
 
 func on_recharge_cooldown_timer_timeout():
 	recharge()
+
+
+func on_player_changed_state(new_state: String):
+	if new_state == "unarmed":
+		start_fast_recharge()

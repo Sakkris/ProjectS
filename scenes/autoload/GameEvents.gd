@@ -14,6 +14,11 @@ signal stop_hooking_request
 signal hook_finished_retracting
 signal start_grabbing_request
 signal stop_grabbing_request
+signal player_changed_state
+
+
+func emit_player_changed_state(new_state: String):
+	player_changed_state.emit(new_state)
 
 
 func emit_start_shooting_request(controller_id: int):
