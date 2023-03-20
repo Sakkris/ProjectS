@@ -26,13 +26,13 @@ func set_nuzzles():
 	var controllers = get_tree().get_nodes_in_group("controller")
 	
 	for controller in controllers:
-		print(controller, " - ", controller.get_tracker_hand())
+#		print(controller, " - ", controller.get_tracker_hand())
 		if controller.get_tracker_hand() == GUN.LEFT:
 			left_gun.nuzzle = controller.get_node("GunNuzzle")
-			print("left gun: ", left_gun.nuzzle)
+#			print("left gun: ", left_gun.nuzzle)
 		elif controller.get_tracker_hand() == GUN.RIGHT:
 			right_gun.nuzzle = controller.get_node("GunNuzzle")
-			print("right gun: ", right_gun.nuzzle)
+#			print("right gun: ", right_gun.nuzzle)
 
 
 func on_start_shooting_request(gun_id):

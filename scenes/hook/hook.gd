@@ -113,7 +113,7 @@ func hook_current_length() -> float:
 
 
 func are_numbers_close(number1: float, number2: float) -> float:
-	return number2 - 0.5 < number1 && number1 < number2 + 0.5
+	return number2 - 0.8 < number1 && number1 < number2 + 0.8
 
 
 func disable_collision():

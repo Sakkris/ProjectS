@@ -19,7 +19,6 @@ func dash():
 	
 	var basis = controller.global_transform.basis
 	var player_velocity_component: VelocityComponent = get_tree().get_first_node_in_group("player").get_node("VelocityComponent")
-	var current_velocity = player_velocity_component.velocity
 	
 	player_velocity_component.reset_if_opposite_velocity(-basis.z)
 	

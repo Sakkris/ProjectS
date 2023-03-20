@@ -64,7 +64,7 @@ controller_id = 1
 [node name="GunNuzzle" type="Node3D" parent="XROrigin3D/LeftController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327924, -0.0115635, -0.0300624)
 
-[node name="LeftStateManager" parent="XROrigin3D/LeftController" instance=ExtResource("5_3qd4h")]
+[node name="StateManager" parent="XROrigin3D/LeftController" instance=ExtResource("5_3qd4h")]
 controller = 1
 
 [node name="LeftAbilityManager" parent="XROrigin3D/LeftController" instance=ExtResource("7_55but")]
@@ -75,6 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftController/GrabArea"]
 shape = SubResource("SphereShape3D_dapnm")
+disabled = true
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
@@ -86,17 +87,19 @@ controller_id = 2
 [node name="GunNuzzle" type="Node3D" parent="XROrigin3D/RightController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227536, -0.0147435, -0.0273369)
 
-[node name="RightStateManager" parent="XROrigin3D/RightController" instance=ExtResource("5_3qd4h")]
+[node name="StateManager" parent="XROrigin3D/RightController" instance=ExtResource("5_3qd4h")]
 controller = 2
 
 [node name="RightAbilityManager" parent="XROrigin3D/RightController" instance=ExtResource("7_55but")]
 controller_id = 2
 
 [node name="GrabArea" type="Area3D" parent="XROrigin3D/RightController"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightController/GrabArea"]
 shape = SubResource("SphereShape3D_66fwa")
+disabled = true
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 visible = false

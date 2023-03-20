@@ -2,20 +2,18 @@ extends XRController3D
 
 @export_enum("Left:1", "Right:2") var controller_id
 
-var state_manager
+@onready var grab_area_collision: CollisionShape3D = $GrabArea/CollisionShape3D
+@onready var state_manager: StateManager = $StateManager
 
 
 func _ready():
-	button_pressed.connect(self._on_controller_button_pressed)
-	button_released.connect(self._on_controller_button_released)
-	
-	if controller_id == 1:
-		state_manager = $LeftStateManager
-	elif controller_id == 2:
-		state_manager = $RightStateManager
+	button_pressed.connect(self.on_controller_button_pressed)
+	button_released.connect(self.on_controller_button_released)
+	GameEvents.start_grabbing_request.connect(on_start_grabbing_request)
+	GameEvents.stop_grabbing_request.connect(on_stop_grabbing_request)
 
 
-func _on_controller_button_pressed(button: String) -> void:
+func on_controller_button_pressed(button: String) -> void:
 	match(button):
 		"trigger_click":
 			state_manager.trigger_pressed()
@@ -29,7 +27,7 @@ func _on_controller_button_pressed(button: String) -> void:
 			state_manager.by_button_pressed()
  
 
-func _on_controller_button_released(button: String) -> void:
+func on_controller_button_released(button: String) -> void:
 	match(button):
 		"trigger_click":
 			state_manager.trigger_released()
@@ -41,5 +39,15 @@ func _on_controller_button_released(button: String) -> void:
 			state_manager.by_button_released()
 
 
-func _on_controller_gun_shot(_controller_id):
+func on_controller_gun_shot(_controller_id):
 	XRServer.primary_interface.trigger_haptic_pulse("haptic", "right_hand", 50, 1.0, 1.0, 0.0)
+
+
+func on_start_grabbing_request(signal_controller_id: int):
+	if controller_id == signal_controller_id:
+		grab_area_collision.disabled = false
+
+
+func on_stop_grabbing_request(signal_controller_id: int):
+	if controller_id == signal_controller_id:
+		grab_area_collision.disabled = true
