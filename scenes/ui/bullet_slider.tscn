@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8quoqtprswi7"]
+
+[ext_resource type="Script" path="res://scenes/ui/bullet_slider.gd" id="1_gi0aq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtm16"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_roh1y"]
+size = Vector2(0.06, 0.01)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3o8b"]
+bg_color = Color(0.262745, 0, 0.137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjaqy"]
+bg_color = Color(0, 0.941176, 0.921569, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.262745, 0, 0.137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="BulletSlider" type="Node3D"]
+script = ExtResource("1_gi0aq")
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_mtm16")
+mesh = SubResource("QuadMesh_roh1y")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(512, 64)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport/CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hjaqy")
+max_value = 16.0
+step = 1.0
+value = 6.0
+show_percentage = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0tkwalidyo8f"]
+[gd_scene load_steps=17 format=3 uid="uid://0tkwalidyo8f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://cdge0fljqtx5g" path="res://scenes/component/velocity_component.tscn" id="2_25rjh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dbh8kjc3exfb2" path="res://scenes/player/state_machine/manager/state_manager.tscn" id="5_3qd4h"]
 [ext_resource type="Script" path="res://scenes/player/controller.gd" id="6_6apf3"]
 [ext_resource type="PackedScene" uid="uid://cj7cfflhl21yr" path="res://scenes/manager/ability_manager.tscn" id="7_55but"]
+[ext_resource type="PackedScene" uid="uid://b8quoqtprswi7" path="res://scenes/ui/bullet_slider.tscn" id="8_khyoy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
 
@@ -79,6 +80,9 @@ collision_mask = 9
 shape = SubResource("SphereShape3D_dapnm")
 disabled = true
 
+[node name="BulletSlider" parent="XROrigin3D/LeftController" instance=ExtResource("8_khyoy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.02, 0.2)
+
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
 script = ExtResource("6_6apf3")
@@ -103,6 +107,9 @@ collision_mask = 9
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightController/GrabArea"]
 shape = SubResource("SphereShape3D_66fwa")
 disabled = true
+
+[node name="BulletSlider" parent="XROrigin3D/RightController" instance=ExtResource("8_khyoy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.02, 0.2)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 visible = false
