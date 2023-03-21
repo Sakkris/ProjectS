@@ -15,6 +15,7 @@ signal hook_finished_retracting
 signal start_grabbing_request
 signal stop_grabbing_request
 signal player_changed_state
+signal player_bullets_updated
 
 
 func emit_player_changed_state(new_state: String):
@@ -75,3 +76,7 @@ func emit_start_grabbing_request(controller_id: int):
 
 func emit_stop_grabbing_request(controller_id: int):
 	stop_grabbing_request.emit(controller_id)
+
+
+func emit_player_bullets_updated(controller_id: int, current_bullets: int, magazine_size: int):
+	player_bullets_updated.emit(controller_id, current_bullets, magazine_size)

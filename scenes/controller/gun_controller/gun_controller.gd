@@ -29,9 +29,11 @@ func set_nuzzles():
 #		print(controller, " - ", controller.get_tracker_hand())
 		if controller.get_tracker_hand() == GUN.LEFT:
 			left_gun.nuzzle = controller.get_node("GunNuzzle")
+			left_gun.controller_id = GUN.LEFT
 #			print("left gun: ", left_gun.nuzzle)
 		elif controller.get_tracker_hand() == GUN.RIGHT:
 			right_gun.nuzzle = controller.get_node("GunNuzzle")
+			right_gun.controller_id = GUN.RIGHT
 #			print("right gun: ", right_gun.nuzzle)
 
 

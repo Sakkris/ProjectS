@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/bullet_slider.gd" id="1_gi0aq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtm16"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vb1f"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_roh1y"]
 size = Vector2(0.06, 0.01)
@@ -30,29 +30,22 @@ corner_radius_bottom_left = 8
 script = ExtResource("1_gi0aq")
 
 [node name="ViewportQuad" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_mtm16")
+material_override = SubResource("StandardMaterial3D_3vb1f")
 mesh = SubResource("QuadMesh_roh1y")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
 size = Vector2i(512, 64)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
-
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="SubViewport/CanvasLayer/MarginContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
+offset_right = 512.0
+offset_bottom = 64.0
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hjaqy")
 max_value = 16.0
 step = 1.0
-value = 6.0
+value = 16.0
 show_percentage = false

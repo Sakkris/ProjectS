@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://0tkwalidyo8f"]
+[gd_scene load_steps=19 format=3 uid="uid://0tkwalidyo8f"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://cdge0fljqtx5g" path="res://scenes/component/velocity_component.tscn" id="2_25rjh"]
@@ -22,8 +22,12 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg2ef"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_66fwa"]
 radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ec1yd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32scs"]
 albedo_color = Color(0, 1, 1, 1)
@@ -82,6 +86,10 @@ disabled = true
 
 [node name="BulletSlider" parent="XROrigin3D/LeftController" instance=ExtResource("8_khyoy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.02, 0.2)
+controller_id = 1
+
+[node name="ViewportQuad" parent="XROrigin3D/LeftController/BulletSlider" index="0"]
+material_override = SubResource("StandardMaterial3D_vg2ef")
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
@@ -110,6 +118,10 @@ disabled = true
 
 [node name="BulletSlider" parent="XROrigin3D/RightController" instance=ExtResource("8_khyoy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.02, 0.2)
+controller_id = 2
+
+[node name="ViewportQuad" parent="XROrigin3D/RightController/BulletSlider" index="0"]
+material_override = SubResource("StandardMaterial3D_ec1yd")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 visible = false
@@ -138,3 +150,6 @@ visible = false
 mesh = SubResource("BoxMesh_r7qnk")
 
 [connection signal="gun_shot" from="GunController" to="XROrigin3D/RightController" method="_on_controller_gun_shot"]
+
+[editable path="XROrigin3D/LeftController/BulletSlider"]
+[editable path="XROrigin3D/RightController/BulletSlider"]

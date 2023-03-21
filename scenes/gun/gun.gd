@@ -10,13 +10,15 @@ class_name Gun
 
 var is_shooting: bool
 var current_bullets: int
-var passive_recharge_cooldown: float = .1
-var fast_recharge_cooldown: float = 0.5
+var passive_recharge_cooldown: float = .6
+var fast_recharge_cooldown: float = 0.3
 var nuzzle: Node3D
+var controller_id: int
 
 
 func _ready():
 	GameEvents.player_changed_state.connect(on_player_changed_state)
+	
 	shooting_cooldown_timer.timeout.connect(on_shooting_cooldown_timer_timeout)
 	start_recharge_timer.timeout.connect(on_start_recharge_timer_timeout)
 	recharge_cooldown_timer.timeout.connect(on_recharge_cooldown_timer_timeout)
@@ -40,7 +42,11 @@ func shoot():
 
 
 func decrease_bullet_count():
-	current_bullets -= 1
+	if current_bullets > 0:
+		current_bullets -= 1
+		GameEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
+		print(current_bullets, " / ", magazine_size)
+	
 	
 	if current_bullets == 0: 
 		start_fast_recharge()
@@ -69,7 +75,8 @@ func recharge():
 	
 	current_bullets += 1
 	recharge_cooldown_timer.start()
-#	print(current_bullets, " / ", magazine_size)
+	print(current_bullets, " / ", magazine_size)
+	GameEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
 
 
 func start_shooting():
@@ -79,6 +86,7 @@ func start_shooting():
 
 func stop_shooting():
 	is_shooting = false
+	start_recharge_timer.start()
 
 
 func on_shooting_cooldown_timer_timeout():
