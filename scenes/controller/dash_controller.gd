@@ -1,13 +1,19 @@
 extends Node
 
+@onready var cooldown_timer: Timer = $DashCooldownTimer
+
 @export var dash_force: float = 10
 
+var can_dash: bool = true
 var controller_id
 var controller
 
 
 func _ready():
 	GameEvents.dash_request.connect(on_dash_request)
+	
+	cooldown_timer.timeout.connect(on_cooldown_timer_timeout)
+	
 	controller_id = get_parent().controller_id
 
 
@@ -17,12 +23,22 @@ func dash():
 		if controller == null:
 			return
 	
+	if !can_dash:
+		return
+	
 	var basis = controller.global_transform.basis
 	var player_velocity_component: VelocityComponent = get_tree().get_first_node_in_group("player").get_node("VelocityComponent")
 	
 	player_velocity_component.reset_if_opposite_velocity(-basis.z)
 	
 	player_velocity_component.velocity += -basis.z * dash_force
+	
+	start_cooldown()
+
+
+func start_cooldown():
+	cooldown_timer.start()
+	can_dash = false
 
 
 func get_controller():
@@ -37,3 +53,7 @@ func get_controller():
 func on_dash_request(signal_controller_id):
 	if controller_id == signal_controller_id:
 		dash()
+
+
+func on_cooldown_timer_timeout():
+	can_dash = true
