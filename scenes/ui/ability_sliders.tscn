@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8quoqtprswi7"]
+
+[ext_resource type="Script" path="res://scenes/ui/bullet_slider.gd" id="1_wdbra"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vb1f"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_roh1y"]
+size = Vector2(0.12, 0.06)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3o8b"]
+bg_color = Color(0.262745, 0, 0.137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjaqy"]
+bg_color = Color(0, 0.941176, 0.921569, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.262745, 0, 0.137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="AbilitySliders" type="Node3D"]
+script = ExtResource("1_wdbra")
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3vb1f")
+mesh = SubResource("QuadMesh_roh1y")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(512, 256)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+custom_minimum_size = Vector2(512, 256)
+offset_right = 512.0
+offset_bottom = 256.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+color = Color(0.14902, 0, 0.0705882, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/ColorRect"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 1
+offset_right = 512.0
+offset_bottom = 256.0
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BulletHBoxContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/BulletHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Bullets"
+
+[node name="BulletProgressBar" type="ProgressBar" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/BulletHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hjaqy")
+max_value = 16.0
+step = 1.0
+value = 16.0
+show_percentage = false
+
+[node name="ThrusterHBoxContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/ThrusterHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Thruster"
+
+[node name="ThrusterProgressBar" type="ProgressBar" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/ThrusterHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hjaqy")
+max_value = 16.0
+step = 1.0
+value = 16.0
+show_percentage = false
+
+[node name="DashHBoxContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/DashHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Dash"
+
+[node name="DashProgressBar" type="ProgressBar" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/DashHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hjaqy")
+max_value = 16.0
+step = 1.0
+value = 16.0
+show_percentage = false
