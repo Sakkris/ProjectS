@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cwrh7ynu1w560"]
+[gd_scene load_steps=18 format=3 uid="uid://br5iirj34tefk"]
 
-[ext_resource type="PackedScene" uid="uid://0tkwalidyo8f" path="res://scenes/player/player.tscn" id="1_mct3u"]
+[ext_resource type="PackedScene" uid="uid://bmhoeohxr8rd5" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
 [ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
 [ext_resource type="Texture2D" uid="uid://cobdl2vbmow24" path="res://resources/textures/tmp/UE4_1m x 1m.png" id="2_tkn41"]
-[ext_resource type="PackedScene" uid="uid://dsepfoieem4kh" path="res://scenes/enemy/basic_enemy/enemy_drone.tscn" id="3_2u2t4"]
-[ext_resource type="PackedScene" uid="uid://cecv12b4nvyqn" path="res://scenes/grab_block/grab_block.tscn" id="3_gwon7"]
+[ext_resource type="PackedScene" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="3_2u2t4"]
+[ext_resource type="PackedScene" uid="uid://cecv12b4nvyqn" path="res://scenes/game_object/grab_block/grab_block.tscn" id="3_gwon7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
 panorama = ExtResource("2_b35sd")

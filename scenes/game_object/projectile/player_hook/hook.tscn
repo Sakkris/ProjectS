@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://b08vg0tcaqmbr"]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="Script" path="res://scenes/hook/hook.gd" id="1_cyy4e"]
+[ext_resource type="Script" path="res://scenes/game_object/projectile/player_hook/hook.gd" id="1_cyy4e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dd4s"]
 albedo_color = Color(0, 1, 0, 1)

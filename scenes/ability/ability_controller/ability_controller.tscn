@@ -1,0 +1,24 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcld4u45mnms3"]
+
+[ext_resource type="Script" path="res://scenes/ability/ability_controller/ability_controller.gd" id="1_37b3k"]
+[ext_resource type="PackedScene" path="res://scenes/ability/dash_ability/dash_controller.tscn" id="2_xc5rg"]
+[ext_resource type="PackedScene" path="res://scenes/ability/brake_ability/brake_controller.tscn" id="3_51fmt"]
+[ext_resource type="PackedScene" path="res://scenes/ability/boost_ability/boost_controller.tscn" id="4_t28tf"]
+[ext_resource type="PackedScene" path="res://scenes/ability/thruster_ability/thruster_controller.tscn" id="5_mkw1u"]
+[ext_resource type="PackedScene" uid="uid://bw8fbc4aai0ol" path="res://scenes/ability/hook_ability/hook_controller.tscn" id="6_hhjly"]
+[ext_resource type="PackedScene" path="res://scenes/ability/grab_ability/grab_controller.tscn" id="7_yngqm"]
+
+[node name="AbilityManager" type="Node"]
+script = ExtResource("1_37b3k")
+
+[node name="DashController" parent="." instance=ExtResource("2_xc5rg")]
+
+[node name="BrakeController" parent="." instance=ExtResource("3_51fmt")]
+
+[node name="BoostController" parent="." instance=ExtResource("4_t28tf")]
+
+[node name="ThrusterController" parent="." instance=ExtResource("5_mkw1u")]
+
+[node name="HookController" parent="." instance=ExtResource("6_hhjly")]
+
+[node name="GrabController" parent="." instance=ExtResource("7_yngqm")]

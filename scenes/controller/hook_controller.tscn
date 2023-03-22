@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjt0e5qo8kdvu"]
-
-[ext_resource type="Script" path="res://scenes/controller/hook_controller.gd" id="1_0kynd"]
-[ext_resource type="PackedScene" uid="uid://b08vg0tcaqmbr" path="res://scenes/hook/hook.tscn" id="2_5aoct"]
-
-[node name="HookController" type="Node"]
-script = ExtResource("1_0kynd")
-hook_scene = ExtResource("2_5aoct")

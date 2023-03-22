@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ylp4stsi5tep"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scenes/controller/dash_controller.gd" id="1_jqxia"]
+[ext_resource type="Script" path="res://scenes/ability/dash_ability/dash_controller.gd" id="1_jqxia"]
 
 [node name="DashController" type="Node"]
 script = ExtResource("1_jqxia")
