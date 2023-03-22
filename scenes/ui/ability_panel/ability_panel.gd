@@ -10,6 +10,7 @@ extends Node3D
 func _ready():
 	GameEvents.player_bullets_updated.connect(on_player_bullets_updated)
 	GameEvents.player_thruster_updated.connect(on_player_thruster_updated)
+	GameEvents.player_dash_updated.connect(on_player_dash_updated)
 	
 	# Clear the viewport.
 	var viewport = $SubViewport
@@ -30,6 +31,11 @@ func update_thruster_slider(current_charge: float, max_charge: float):
 	thruster_slider.max_value = max_charge
 
 
+func update_dash_slider(cooldown_left, cooldown):
+	dash_slider.value = cooldown_left
+	dash_slider.max_value = cooldown
+
+
 func on_player_bullets_updated(signal_controller_id: int, current_bullets: int, magazine_size: int):
 #	print("Got the signals - ", signal_controller_id)
 	if signal_controller_id == controller_id:
@@ -39,3 +45,8 @@ func on_player_bullets_updated(signal_controller_id: int, current_bullets: int, 
 func on_player_thruster_updated(signal_controller_id: int, current_charge: float, max_charge: float):
 	if signal_controller_id == controller_id:
 		update_thruster_slider(current_charge, max_charge)
+
+
+func on_player_dash_updated(signal_controller_id: int, cooldown_left, cooldown):
+	if signal_controller_id == controller_id:
+		update_dash_slider(cooldown_left, cooldown)

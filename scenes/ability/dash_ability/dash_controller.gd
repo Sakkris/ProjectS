@@ -7,6 +7,7 @@ extends Node
 var can_dash: bool = true
 var controller_id
 var controller
+var cooldown_left
 
 
 func _ready():
@@ -15,6 +16,12 @@ func _ready():
 	cooldown_timer.timeout.connect(on_cooldown_timer_timeout)
 	
 	controller_id = get_parent().controller_id
+
+
+func _process(delta):
+	if !can_dash:
+		cooldown_left = cooldown_timer.wait_time - cooldown_timer.time_left
+		GameEvents.emit_player_dash_updated(controller_id, cooldown_left, cooldown_timer.wait_time)
 
 
 func dash():

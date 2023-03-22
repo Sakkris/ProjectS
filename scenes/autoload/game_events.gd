@@ -17,6 +17,7 @@ signal stop_grabbing_request
 signal player_changed_state
 signal player_bullets_updated
 signal player_thruster_updated
+signal player_dash_updated
 
 
 func emit_player_changed_state(new_state: String):
@@ -85,3 +86,7 @@ func emit_player_bullets_updated(controller_id: int, current_bullets: int, magaz
 
 func emit_player_thruster_updated(controller_id: int, current_charge: float, maximum_charge: float):
 	player_thruster_updated.emit(controller_id, current_charge, maximum_charge)
+
+
+func emit_player_dash_updated(controller_id: int, cooldown_left, cooldown):
+	player_dash_updated.emit(controller_id, cooldown_left, cooldown)
