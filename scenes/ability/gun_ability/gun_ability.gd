@@ -75,7 +75,7 @@ func recharge():
 	
 	current_bullets += 1
 	recharge_cooldown_timer.start()
-	print(current_bullets, " / ", magazine_size)
+#	print(current_bullets, " / ", magazine_size)
 	GameEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
 
 

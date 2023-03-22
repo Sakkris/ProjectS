@@ -1,5 +1,4 @@
 extends Node
-
 class_name BaseState
 
 var change_state

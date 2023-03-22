@@ -1,5 +1,4 @@
 extends Node
-
 class_name StateManager
 
 @export_enum("Left:1", "Right:2") var controller

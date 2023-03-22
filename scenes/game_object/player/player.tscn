@@ -1,14 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmhoeohxr8rd5"]
+[gd_scene load_steps=19 format=3 uid="uid://ctgu83ypdttse"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://7spnfacotrv5" path="res://scenes/component/velocity_component/velocity_component.tscn" id="2_25rjh"]
 [ext_resource type="PackedScene" uid="uid://b1irfqfot2ybu" path="res://scenes/ability/gun_controller/gun_controller.tscn" id="2_nt7io"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_iackg"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_ikdel"]
-[ext_resource type="PackedScene" path="res://scenes/game_object/player/state_machine/manager/state_manager.tscn" id="5_3qd4h"]
+[ext_resource type="PackedScene" uid="uid://bjjqux7xum68t" path="res://scenes/game_object/player/state_machine/manager/state_manager.tscn" id="5_3qd4h"]
 [ext_resource type="Script" path="res://scenes/game_object/player/controller.gd" id="6_6apf3"]
-[ext_resource type="PackedScene" path="res://scenes/ability/ability_controller/ability_controller.tscn" id="7_55but"]
-[ext_resource type="PackedScene" uid="uid://b8quoqtprswi7" path="res://scenes/ui/ability_sliders.tscn" id="8_khyoy"]
+[ext_resource type="PackedScene" uid="uid://dcld4u45mnms3" path="res://scenes/ability/ability_controller/ability_controller.tscn" id="7_55but"]
+[ext_resource type="PackedScene" uid="uid://dwvas05wkcn4b" path="res://scenes/ui/ability_panel/ability_panel.tscn" id="8_khyoy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
 
@@ -19,15 +19,15 @@ albedo_color = Color(0, 1, 0, 1)
 material = SubResource("StandardMaterial3D_4sr6s")
 size = Vector3(0.1, 0.1, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg2ef"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg2ef"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ec1yd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_66fwa"]
 radius = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ec1yd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32scs"]
 albedo_color = Color(0, 1, 1, 1)
@@ -64,16 +64,23 @@ tracker = &"left_hand"
 script = ExtResource("6_6apf3")
 controller_id = 1
 
-[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("3_iackg")]
-
-[node name="GunNuzzle" type="Node3D" parent="XROrigin3D/LeftController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327924, -0.0115635, -0.0300624)
-
 [node name="StateManager" parent="XROrigin3D/LeftController" instance=ExtResource("5_3qd4h")]
 controller = 1
 
-[node name="LeftAbilityManager" parent="XROrigin3D/LeftController" instance=ExtResource("7_55but")]
+[node name="AbilityManager" parent="XROrigin3D/LeftController" instance=ExtResource("7_55but")]
 controller_id = 1
+
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("3_iackg")]
+
+[node name="AbilityPanel" parent="XROrigin3D/LeftController" instance=ExtResource("8_khyoy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.02, 0.2)
+controller_id = 1
+
+[node name="ViewportQuad" parent="XROrigin3D/LeftController/AbilityPanel" index="0"]
+material_override = SubResource("StandardMaterial3D_vg2ef")
+
+[node name="GunNuzzle" type="Node3D" parent="XROrigin3D/LeftController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327924, -0.0115635, -0.0300624)
 
 [node name="GrabArea" type="Area3D" parent="XROrigin3D/LeftController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
@@ -84,28 +91,28 @@ collision_mask = 9
 shape = SubResource("SphereShape3D_dapnm")
 disabled = true
 
-[node name="BulletSlider" parent="XROrigin3D/LeftController" instance=ExtResource("8_khyoy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.02, 0.2)
-controller_id = 1
-
-[node name="ViewportQuad" parent="XROrigin3D/LeftController/BulletSlider" index="0"]
-material_override = SubResource("StandardMaterial3D_vg2ef")
-
 [node name="RightController" type="XRController3D" parent="XROrigin3D" groups=["controller"]]
 tracker = &"right_hand"
 script = ExtResource("6_6apf3")
 controller_id = 2
 
-[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("4_ikdel")]
-
-[node name="GunNuzzle" type="Node3D" parent="XROrigin3D/RightController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227536, -0.0147435, -0.0273369)
-
 [node name="StateManager" parent="XROrigin3D/RightController" instance=ExtResource("5_3qd4h")]
 controller = 2
 
-[node name="RightAbilityManager" parent="XROrigin3D/RightController" instance=ExtResource("7_55but")]
+[node name="AbilityManager" parent="XROrigin3D/RightController" instance=ExtResource("7_55but")]
 controller_id = 2
+
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("4_ikdel")]
+
+[node name="AbilityPanel" parent="XROrigin3D/RightController" instance=ExtResource("8_khyoy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.02, 0.2)
+controller_id = 2
+
+[node name="ViewportQuad" parent="XROrigin3D/RightController/AbilityPanel" index="0"]
+material_override = SubResource("StandardMaterial3D_ec1yd")
+
+[node name="GunNuzzle" type="Node3D" parent="XROrigin3D/RightController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227536, -0.0147435, -0.0273369)
 
 [node name="GrabArea" type="Area3D" parent="XROrigin3D/RightController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
@@ -115,13 +122,6 @@ collision_mask = 9
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightController/GrabArea"]
 shape = SubResource("SphereShape3D_66fwa")
 disabled = true
-
-[node name="BulletSlider" parent="XROrigin3D/RightController" instance=ExtResource("8_khyoy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.02, 0.2)
-controller_id = 2
-
-[node name="ViewportQuad" parent="XROrigin3D/RightController/BulletSlider" index="0"]
-material_override = SubResource("StandardMaterial3D_ec1yd")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 visible = false
@@ -151,5 +151,5 @@ mesh = SubResource("BoxMesh_r7qnk")
 
 [connection signal="gun_shot" from="GunController" to="XROrigin3D/RightController" method="_on_controller_gun_shot"]
 
-[editable path="XROrigin3D/LeftController/BulletSlider"]
-[editable path="XROrigin3D/RightController/BulletSlider"]
+[editable path="XROrigin3D/LeftController/AbilityPanel"]
+[editable path="XROrigin3D/RightController/AbilityPanel"]

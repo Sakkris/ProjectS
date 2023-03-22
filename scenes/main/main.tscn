@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://br5iirj34tefk"]
 
-[ext_resource type="PackedScene" uid="uid://bmhoeohxr8rd5" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
+[ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
 [ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
 [ext_resource type="Texture2D" uid="uid://cobdl2vbmow24" path="res://resources/textures/tmp/UE4_1m x 1m.png" id="2_tkn41"]
 [ext_resource type="PackedScene" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="3_2u2t4"]
@@ -298,85 +298,85 @@ mesh = SubResource("BoxMesh_crur6")
 shape = SubResource("BoxShape3D_si6dy")
 
 [node name="GrabBlock" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 2.90874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 2.15526, -7.59295)
 
 [node name="GrabBlock2" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 2.90874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 2.15526, -6.89295)
 
 [node name="GrabBlock3" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 2.90874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 2.15526, -6.19295)
 
 [node name="GrabBlock4" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 2.90874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 2.15526, -6.19295)
 
 [node name="GrabBlock5" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 2.90874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 2.15526, -6.89295)
 
 [node name="GrabBlock6" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 2.90874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 2.15526, -7.59295)
 
 [node name="GrabBlock7" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 2.90874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 2.15526, -7.59295)
 
 [node name="GrabBlock8" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 2.90874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 2.15526, -6.89295)
 
 [node name="GrabBlock9" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 2.90874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 2.15526, -6.19295)
 
 [node name="GrabBlock10" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 3.60874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 2.85526, -6.19295)
 
 [node name="GrabBlock11" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 3.60874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 2.85526, -6.89295)
 
 [node name="GrabBlock12" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 3.60874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 2.85526, -7.59295)
 
 [node name="GrabBlock13" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 3.60874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 2.85526, -7.59295)
 
 [node name="GrabBlock14" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 3.60874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 2.85526, -6.89295)
 
 [node name="GrabBlock15" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 3.60874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 2.85526, -6.19295)
 
 [node name="GrabBlock16" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 3.60874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 2.85526, -6.19295)
 
 [node name="GrabBlock17" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 3.60874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 2.85526, -6.89295)
 
 [node name="GrabBlock18" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 3.60874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 2.85526, -7.59295)
 
 [node name="GrabBlock19" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 4.30874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 3.55526, -7.59295)
 
 [node name="GrabBlock20" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 4.30874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 3.55526, -6.89295)
 
 [node name="GrabBlock21" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37097, 4.30874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548454, 3.55526, -6.19295)
 
 [node name="GrabBlock22" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 4.30874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 3.55526, -6.19295)
 
 [node name="GrabBlock23" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 4.30874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 3.55526, -6.89295)
 
 [node name="GrabBlock24" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07097, 4.30874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151546, 3.55526, -7.59295)
 
 [node name="GrabBlock25" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 4.30874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 3.55526, -7.59295)
 
 [node name="GrabBlock26" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 4.30874, 0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 3.55526, -6.89295)
 
 [node name="GrabBlock27" parent="TestMap" instance=ExtResource("3_gwon7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77097, 4.30874, 1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851547, 3.55526, -6.19295)
 
 [node name="EnemyManager" type="Node" parent="."]
 

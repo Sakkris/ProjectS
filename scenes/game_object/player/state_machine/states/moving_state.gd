@@ -1,5 +1,4 @@
 extends BaseState
-
 class_name MovingState
 
 
