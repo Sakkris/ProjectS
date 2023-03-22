@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ability/gun_controller/gun_controller.gd" id="1_tnj7s"]
 [ext_resource type="PackedScene" path="res://scenes/game_object/projectile/player_bullet/player_bullet.tscn" id="2_s4u4i"]
-[ext_resource type="PackedScene" path="res://scenes/ability/gun_ability/gun_ability.tscn" id="3_vweo1"]
+[ext_resource type="PackedScene" uid="uid://bqd5hfk550pli" path="res://scenes/ability/gun_ability/gun_ability.tscn" id="3_vweo1"]
 
 [node name="GunController" type="Node"]
 script = ExtResource("1_tnj7s")

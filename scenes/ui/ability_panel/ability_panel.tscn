@@ -101,9 +101,9 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hjaqy")
-max_value = 16.0
-step = 1.0
-value = 16.0
+step = 10.0
+value = 100.0
+rounded = true
 show_percentage = false
 
 [node name="DashHBoxContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]

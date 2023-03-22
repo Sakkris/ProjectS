@@ -16,6 +16,7 @@ signal start_grabbing_request
 signal stop_grabbing_request
 signal player_changed_state
 signal player_bullets_updated
+signal player_thruster_updated
 
 
 func emit_player_changed_state(new_state: String):
@@ -80,3 +81,7 @@ func emit_stop_grabbing_request(controller_id: int):
 
 func emit_player_bullets_updated(controller_id: int, current_bullets: int, magazine_size: int):
 	player_bullets_updated.emit(controller_id, current_bullets, magazine_size)
+
+
+func emit_player_thruster_updated(controller_id: int, current_charge: float, maximum_charge: float):
+	player_thruster_updated.emit(controller_id, current_charge, maximum_charge)
