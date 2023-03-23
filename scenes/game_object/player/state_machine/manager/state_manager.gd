@@ -20,6 +20,7 @@ func change_state(new_state_name):
 	current_state.setup(Callable(self, "change_state"), self, controller)
 	current_state.name = "current_state"
 	add_child(current_state)
+	PlayerEvents.emit_player_changed_state(current_state.controller_id, new_state_name)
 
 
 func thumbstick_pressed():

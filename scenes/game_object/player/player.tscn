@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctgu83ypdttse"]
+[gd_scene load_steps=17 format=3 uid="uid://ctgu83ypdttse"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://7spnfacotrv5" path="res://scenes/component/velocity_component/velocity_component.tscn" id="2_25rjh"]
@@ -19,7 +19,11 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77qy8"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_856iv"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22qbk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nao43"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32scs"]
 albedo_color = Color(0, 1, 1, 1)
@@ -73,6 +77,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023, -0.015, -0.03)
 [node name="GrabArea" parent="XROrigin3D/LeftController" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
 
+[node name="StateIdentifier" parent="XROrigin3D/LeftController" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0, 0.15)
+material_override = SubResource("StandardMaterial3D_856iv")
+
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("3_iackg")]
 
 [node name="RightController" parent="XROrigin3D" instance=ExtResource("4_hbqme")]
@@ -97,6 +105,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.015, -0.03)
 
 [node name="GrabArea" parent="XROrigin3D/RightController" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
+
+[node name="StateIdentifier" parent="XROrigin3D/RightController" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0, 0.15)
+material_override = SubResource("StandardMaterial3D_nao43")
 
 [node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("4_ikdel")]
 

@@ -100,6 +100,9 @@ func on_recharge_cooldown_timer_timeout():
 	recharge()
 
 
-func on_player_changed_state(new_state: String):
+func on_player_changed_state(signal_controller_id: int, new_state: String):
+	if signal_controller_id != controller_id:
+		return
+	
 	if new_state == "unarmed":
 		start_fast_recharge()
