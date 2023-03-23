@@ -5,8 +5,8 @@ var player_velocity_component: VelocityComponent
 
 
 func _ready():
-	GameEvents.start_boosting_request.connect(on_start_boosting_request)
-	GameEvents.stop_boosting_request.connect(on_stop_boosting_request)
+	PlayerEvents.start_boosting_request.connect(on_start_boosting_request)
+	PlayerEvents.stop_boosting_request.connect(on_stop_boosting_request)
 	
 	player_velocity_component = get_tree().get_first_node_in_group("player").get_node("VelocityComponent")
 

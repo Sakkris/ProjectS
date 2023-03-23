@@ -9,8 +9,8 @@ extends XRController3D
 func _ready():
 	button_pressed.connect(self.on_controller_button_pressed)
 	button_released.connect(self.on_controller_button_released)
-	GameEvents.start_grabbing_request.connect(on_start_grabbing_request)
-	GameEvents.stop_grabbing_request.connect(on_stop_grabbing_request)
+	PlayerEvents.start_grabbing_request.connect(on_start_grabbing_request)
+	PlayerEvents.stop_grabbing_request.connect(on_stop_grabbing_request)
 
 
 func on_controller_button_pressed(button: String) -> void:

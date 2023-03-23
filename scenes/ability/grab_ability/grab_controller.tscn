@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://b0tivsw4mv7ju"]
 
 [ext_resource type="Script" path="res://scenes/ability/grab_ability/grab_controller.gd" id="1_m1ekt"]
 

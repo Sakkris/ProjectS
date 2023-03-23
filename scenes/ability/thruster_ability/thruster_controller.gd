@@ -15,8 +15,8 @@ var is_charging: bool = false
 
 
 func _ready():
-	GameEvents.start_thrusting_request.connect(on_start_thrusting_request)
-	GameEvents.stop_thrusting_request.connect(on_stop_thrusting_request)
+	PlayerEvents.start_thrusting_request.connect(on_start_thrusting_request)
+	PlayerEvents.stop_thrusting_request.connect(on_stop_thrusting_request)
 	
 	start_recharge_timer.timeout.connect(on_start_recharge_timer_timeout)
 	
@@ -46,7 +46,7 @@ func thrust(delta):
 	player_velocity_component.accelerate_in_direction(-basis.z * thruster_force, delta)
 	
 	current_charge -= discharge_rate * delta
-	GameEvents.emit_player_thruster_updated(controller_id, current_charge, max_charge)
+	PlayerEvents.emit_player_thruster_updated(controller_id, current_charge, max_charge)
 
 
 func recharge(delta):
@@ -55,7 +55,7 @@ func recharge(delta):
 		return
 	
 	current_charge += recharge_rate * delta
-	GameEvents.emit_player_thruster_updated(controller_id, current_charge, max_charge)
+	PlayerEvents.emit_player_thruster_updated(controller_id, current_charge, max_charge)
 
 
 func get_controller():

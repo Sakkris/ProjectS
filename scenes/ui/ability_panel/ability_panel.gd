@@ -8,9 +8,9 @@ extends Node3D
 
 
 func _ready():
-	GameEvents.player_bullets_updated.connect(on_player_bullets_updated)
-	GameEvents.player_thruster_updated.connect(on_player_thruster_updated)
-	GameEvents.player_dash_updated.connect(on_player_dash_updated)
+	PlayerEvents.player_bullets_updated.connect(on_player_bullets_updated)
+	PlayerEvents.player_thruster_updated.connect(on_player_thruster_updated)
+	PlayerEvents.player_dash_updated.connect(on_player_dash_updated)
 	
 	# Clear the viewport.
 	var viewport = $SubViewport

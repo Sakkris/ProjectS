@@ -17,7 +17,7 @@ var controller_id: int
 
 
 func _ready():
-	GameEvents.player_changed_state.connect(on_player_changed_state)
+	PlayerEvents.player_changed_state.connect(on_player_changed_state)
 	
 	shooting_cooldown_timer.timeout.connect(on_shooting_cooldown_timer_timeout)
 	start_recharge_timer.timeout.connect(on_start_recharge_timer_timeout)
@@ -43,7 +43,7 @@ func shoot():
 func decrease_bullet_count():
 	if current_bullets > 0:
 		current_bullets -= 1
-		GameEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
+		PlayerEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
 #		print(current_bullets, " / ", magazine_size)
 	
 	if current_bullets == 0: 
@@ -74,7 +74,7 @@ func recharge():
 	current_bullets += 1
 	recharge_cooldown_timer.start()
 #	print(current_bullets, " / ", magazine_size)
-	GameEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
+	PlayerEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
 
 
 func start_shooting():

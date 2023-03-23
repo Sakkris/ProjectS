@@ -11,8 +11,8 @@ var gun_nuzzle
 var is_hooking: bool = false
 
 func _ready():
-	GameEvents.start_hooking_request.connect(on_start_hooking_request)
-	GameEvents.stop_hooking_request.connect(on_stop_hooking_request)
+	PlayerEvents.start_hooking_request.connect(on_start_hooking_request)
+	PlayerEvents.stop_hooking_request.connect(on_stop_hooking_request)
 	
 	controller_id = get_parent().controller_id
 
@@ -71,4 +71,4 @@ func on_stop_hooking_request(signal_controller_id: int):
 
 
 func on_hook_finished_retracting():
-	GameEvents.emit_hook_finished_retracting(controller_id)
+	PlayerEvents.emit_hook_finished_retracting(controller_id)

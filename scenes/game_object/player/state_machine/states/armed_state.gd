@@ -7,8 +7,8 @@ func _ready():
 
 
 func thumbstick_pressed():
-	GameEvents.emit_stop_thrusting_request(controller_id)
-	GameEvents.emit_player_changed_state("unarmed")
+	PlayerEvents.emit_stop_thrusting_request(controller_id)
+	PlayerEvents.emit_player_changed_state("unarmed")
 	change_state.call("unarmed")
 
 
@@ -17,12 +17,12 @@ func trigger_pressed():
 
 
 func by_button_pressed():
-	GameEvents.emit_dash_request(controller_id)
+	PlayerEvents.emit_dash_request(controller_id)
 
 
 func grip_pressed():
-	GameEvents.emit_start_thrusting_request(controller_id)
+	PlayerEvents.emit_start_thrusting_request(controller_id)
 
 
 func grip_released():
-	GameEvents.emit_stop_thrusting_request(controller_id)
+	PlayerEvents.emit_stop_thrusting_request(controller_id)

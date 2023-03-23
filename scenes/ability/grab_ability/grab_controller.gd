@@ -20,9 +20,9 @@ var previous_velocity: Vector3
 
 
 func _ready():
-	# Connect to GameEvents 
-	GameEvents.start_grabbing_request.connect(on_start_grabbing_request)
-	GameEvents.stop_grabbing_request.connect(on_stop_grabbing_request)
+	# Connect to PlayerEvents 
+	PlayerEvents.start_grabbing_request.connect(on_start_grabbing_request)
+	PlayerEvents.stop_grabbing_request.connect(on_stop_grabbing_request)
 	
 	# Get Controller Id and Controller Node
 	controller_id = get_parent().controller_id

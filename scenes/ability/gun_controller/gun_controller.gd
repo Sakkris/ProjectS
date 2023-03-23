@@ -13,8 +13,8 @@ var gun_dict # Dicionário que guarda as duas armas
 
 
 func _ready():
-	GameEvents.start_shooting_request.connect(on_start_shooting_request)
-	GameEvents.stop_shooting_request.connect(on_stop_shooting_request)
+	PlayerEvents.start_shooting_request.connect(on_start_shooting_request)
+	PlayerEvents.stop_shooting_request.connect(on_stop_shooting_request)
 	
 	gun_dict = {
 		GUN.LEFT: left_gun,
