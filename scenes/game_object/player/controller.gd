@@ -22,8 +22,10 @@ func change_state_identifier(new_state):
 	
 	if new_state == "unarmed":
 		material.albedo_color = Color(0, 1, 0)
-	else:
+	elif new_state == "armed":
 		material.albedo_color = Color(1, 0, 0)
+	elif new_state == "hooked":
+		material.albedo_color = Color(1, 1, 0)
 	
 	$StateIdentifier.material_override = material
 
@@ -72,5 +74,4 @@ func on_player_changed_state(signal_controller_id, new_state):
 	if signal_controller_id != controller_id:
 		return
 	
-	if new_state == "unarmed" || new_state == "armed":
-		change_state_identifier(new_state)
+	change_state_identifier(new_state)
