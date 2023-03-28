@@ -32,4 +32,5 @@ func on_timer_timeout():
 
 
 func on_hit_taken(_area):
+	GameEvents.emit_enemy_died()
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://ciowisqs1ayti"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.gd" id="1_skoqc"]
 

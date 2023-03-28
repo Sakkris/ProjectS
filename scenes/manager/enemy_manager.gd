@@ -8,10 +8,12 @@ var enemy = preload("res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn
 
 
 func _ready():
-	timer.timeout.connect(func(): spawn_enemy())
+#	timer.timeout.connect(func(): spawn_enemy())
+	GameEvents.enemy_died.connect(func(): spawn_enemy())
 	
 	spawn_areas = get_children()
 	spawn_areas.pop_front()
+	spawn_enemy()
 
 
 func spawn_enemy():
@@ -28,6 +30,8 @@ func spawn_enemy():
 	var enemy_instance = enemy.instantiate()
 	enemy_instance.position = positionInArea
 	add_child(enemy_instance)
+	
+	GameEvents.emit_enemy_spawned(enemy_instance)
 
 
 func get_rand_position(area):
