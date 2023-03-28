@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://br5iirj34tefk"]
+[gd_scene load_steps=14 format=3 uid="uid://br5iirj34tefk"]
 
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
 [ext_resource type="PackedScene" uid="uid://cko4rua4k8ahg" path="res://scenes/manager/game_time_manager.tscn" id="1_mj5n6"]
@@ -14,6 +14,12 @@ size = Vector3(24, 15, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s8vek"]
 size = Vector3(24, 6, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jxx8b"]
+size = Vector3(30, 10, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rmg0i"]
+size = Vector3(30, 10, 14)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
 panorama = ExtResource("2_b35sd")
@@ -38,14 +44,14 @@ ambient_light_sky_contribution = 0.5
 spawn_areas = Array[Node]([null, null, null])
 
 [node name="SpawnArea1" type="Area3D" parent="EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 37, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 37, -1.21945)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, 0)
 shape = SubResource("BoxShape3D_bshss")
 
 [node name="SpawnArea2" type="Area3D" parent="EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -4.90991)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -4.26298)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, 0)
@@ -57,6 +63,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -28.8871)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
 shape = SubResource("BoxShape3D_s8vek")
+
+[node name="SpawnArea4" type="Area3D" parent="EnemyManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.7713, 41.0313, -55.4823)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
+shape = SubResource("BoxShape3D_jxx8b")
+
+[node name="SpawnArea5" type="Area3D" parent="EnemyManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69998, 15.2423, -55.4823)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26237, -7.70208, -9.97609)
+shape = SubResource("BoxShape3D_rmg0i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_emxrp")
