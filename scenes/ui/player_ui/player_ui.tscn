@@ -5,7 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_se4fe"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1e48m"]
-size = Vector2(0.7, 0.4)
+size = Vector2(0.6, 0.35)
 
 [node name="PlayerUI" type="Node3D"]
 script = ExtResource("1_uakqs")
@@ -40,6 +40,7 @@ size_flags_vertical = 0
 text = "00:00"
 
 [node name="SpeedLabel" type="Label" parent="SubViewport/MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -47,10 +48,11 @@ text = "14 m/s
 "
 
 [node name="KillLabel" type="Label" parent="SubViewport/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "20 DESTROYED
+text = "00 DESTROYED
 "
 
 [node name="FPSCounter" type="Label" parent="SubViewport/MarginContainer"]
