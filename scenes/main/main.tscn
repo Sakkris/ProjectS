@@ -23,7 +23,7 @@ size = Vector3(24, 6, 30)
 size = Vector3(30, 10, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rmg0i"]
-size = Vector3(30, 10, 14)
+size = Vector3(4, 5, 20)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
 panorama = ExtResource("2_b35sd")
@@ -51,270 +51,315 @@ script = ExtResource("3_ts5cl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point2" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -12)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point2"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point4" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -22)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point4"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point6" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -32)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point6"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point8" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -42)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point8"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point10" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -42)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point10"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point12" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -42)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point12"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point14" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -52)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point14"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point16" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -62)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point16"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point18" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -66.5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point18"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point20" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -42)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point20"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point22" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -52)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point22"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point23" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -62)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point23"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point25" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -66.5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point25"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point3" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point3"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point4" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -22)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point4"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point5" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point5"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point6" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -32)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point6"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point7" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point7"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point8" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point8"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point9" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 39, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point9"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point10" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point10"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point11" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 39, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point11"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point12" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point12"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point13" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 39, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point13"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point14" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -52)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point14"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point15" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 39, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point15"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point16" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -62)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point16"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point17" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 39, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point17"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point18" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -66.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point18"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point19" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 39, -12)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point19"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point20" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point20"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point21" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 39, -22)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point21"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point22" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -52)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point22"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point23" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -62)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point23"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point24" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 39, -34.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point24"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point25" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -66.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point25"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point26" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.5, 39, -34.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point26"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point28" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5, 39, -34.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point28"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point31" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5, 39, -49.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point31"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point32" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5, 39, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point32"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point33" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5, 33.54, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point33"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point34" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point34"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point35" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point35"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point36" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point36"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point37" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point37"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point38" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point38"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point39" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point39"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point40" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point40"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point41" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 33.5, -59.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point41"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point42" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 33.5, -64.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point42"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point43" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 33.5, -64.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point43"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point44" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 33.5, -64.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point44"]
-mesh = SubResource("BoxMesh_xqcsk")
-
-[node name="Point48" type="Node3D" parent="PathFinder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 33.5, -66.5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point48"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point45" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 23.5, -66.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point45"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point46" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.5, -66.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point46"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="Point47" type="Node3D" parent="PathFinder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5, -66.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point47"]
+visible = false
+mesh = SubResource("BoxMesh_xqcsk")
+
+[node name="Point48" type="Node3D" parent="PathFinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 33.5, -66.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/Point48"]
+visible = false
 mesh = SubResource("BoxMesh_xqcsk")
 
 [node name="EnemyManager" parent="." instance=ExtResource("2_jpo0f")]
@@ -353,6 +398,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69998, 15.2423, -55.4823)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26237, -7.70208, -9.97609)
+shape = SubResource("BoxShape3D_rmg0i")
+
+[node name="SpawnArea6" type="Area3D" parent="EnemyManager"]
+transform = Transform3D(1, 0, 0, 0, 0.999953, -0.00969614, 0, 0.00969614, 0.999953, 50.233, 39.0693, -19.9213)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea6"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.86265e-09, 0, 1.86265e-09, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_rmg0i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
