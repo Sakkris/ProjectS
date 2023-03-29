@@ -20,8 +20,7 @@ func _ready():
 
 
 func _process(delta):
-#	fps_counter.set_text(str(Engine.get_frames_per_second()) + " fps")
-	time_label.set_text(str(Engine.get_frames_per_second()) + " fps")
+	fps_counter.set_text(str(Engine.get_frames_per_second()) + " fps")
 
 
 func update_kill_label():
@@ -33,6 +32,5 @@ func on_game_time_updated(time_elapsed):
 	var minute: int = time_elapsed / 60
 	var second: int = time_elapsed - minute * 60
 	
-	fps_counter.set_text("%02d:%02d" % [minute, second])
-#	time_label.set_text("%02d:%02d" % [minute, second])
+	time_label.set_text("%02d:%02d" % [minute, second])
 #	print("%02d:%02d" % [minute, second])

@@ -87,13 +87,6 @@ func create_arrays(orig_id, dest_id):
 		vertices.push_back(nav_points[prev_vertice].position)
 		vertices.push_back(destiny_node.position)
 	
-#	vertices.push_back(pos1)
-#	vertices.push_back(pos2)
-#
-#	if destiny_node != null:
-#		vertices.push_back(get_nearest_nav_point_to_node(destiny_node).position)
-#		vertices.push_back(destiny_node.position)
-	
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices

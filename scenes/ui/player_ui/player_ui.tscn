@@ -35,8 +35,9 @@ theme_override_constants/margin_bottom = 16
 [node name="TimeLabel" type="Label" parent="SubViewport/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 35
 text = "00:00"
 
 [node name="SpeedLabel" type="Label" parent="SubViewport/MarginContainer"]
@@ -52,13 +53,14 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
 text = "00 DESTROYED
 "
 
 [node name="FPSCounter" type="Label" parent="SubViewport/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 20
 text = "18 fps"

@@ -367,6 +367,8 @@ spawn_areas = Array[Node]([null, null, null])
 
 [node name="SpawnArea1" type="Area3D" parent="EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 37, -1.21945)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, 0)
@@ -374,6 +376,8 @@ shape = SubResource("BoxShape3D_bshss")
 
 [node name="SpawnArea2" type="Area3D" parent="EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -4.26298)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, 0)
@@ -381,6 +385,8 @@ shape = SubResource("BoxShape3D_vlur0")
 
 [node name="SpawnArea3" type="Area3D" parent="EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -28.8871)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
@@ -388,6 +394,8 @@ shape = SubResource("BoxShape3D_s8vek")
 
 [node name="SpawnArea4" type="Area3D" parent="EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.7713, 41.0313, -55.4823)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
@@ -395,6 +403,8 @@ shape = SubResource("BoxShape3D_jxx8b")
 
 [node name="SpawnArea5" type="Area3D" parent="EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69998, 15.2423, -55.4823)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26237, -7.70208, -9.97609)
@@ -402,6 +412,8 @@ shape = SubResource("BoxShape3D_rmg0i")
 
 [node name="SpawnArea6" type="Area3D" parent="EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 0.999953, -0.00969614, 0, 0.00969614, 0.999953, 50.233, 39.0693, -19.9213)
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea6"]
 transform = Transform3D(1, 0, 0, 0, 1, -1.86265e-09, 0, 1.86265e-09, 1, 0, 0, 0)

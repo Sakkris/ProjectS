@@ -6,5 +6,5 @@
 script = ExtResource("1_n1wl1")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 300.0
+wait_time = 10.0
 autostart = true

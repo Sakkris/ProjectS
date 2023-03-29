@@ -13,6 +13,9 @@ func _ready():
 
 
 func _process(delta):
+	if timer.is_stopped():
+		pass
+	
 	elapsed_time = timer.wait_time * time_checkpoint_rechead + timer.wait_time - timer.time_left
 	
 	if last_time != int(elapsed_time):
@@ -29,6 +32,9 @@ func add_time():
 	elapsed_time = 0
 
 
+func finish_game():
+	timer.stop()
+
+
 func on_timer_timeout():
-	time_checkpoint_rechead += 1
-	timer.start()
+	finish_game()
