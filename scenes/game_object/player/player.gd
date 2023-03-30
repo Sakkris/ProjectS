@@ -1,5 +1,6 @@
 extends CharacterBody3D
- 
+class_name  Player
+
 @onready var origin_node = $XROrigin3D
 @onready var camera_node = $XROrigin3D/XRCamera3D
 @onready var neck_position_node = $XROrigin3D/XRCamera3D/Neck

@@ -1,6 +1,7 @@
 extends MovingState
 class_name HookedState
 
+
 func _ready():
 	PlayerEvents.hook_finished_retracting.connect(on_hook_finished_retracting)
 	

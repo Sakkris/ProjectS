@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=10 format=3 uid="uid://3qjmkjv737j6"]
 
-[ext_resource type="Script" path="res://scenes/game_object/player/controller.gd" id="1_3lvfv"]
-[ext_resource type="PackedScene" uid="uid://bjjqux7xum68t" path="res://scenes/game_object/player/state_machine/manager/state_manager.tscn" id="2_wx823"]
+[ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
+[ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
+[ext_resource type="PackedScene" uid="uid://bjjqux7xum68t" path="res://scenes/game_object/player/state_machine/manager/state_manager.tscn" id="2_wu0i1"]
 [ext_resource type="PackedScene" uid="uid://dcld4u45mnms3" path="res://scenes/ability/ability_controller/ability_controller.tscn" id="3_4f8yc"]
+[ext_resource type="Script" path="res://scenes/state_machine/controller_states/moving_state.gd" id="3_lflfa"]
 [ext_resource type="PackedScene" uid="uid://dwvas05wkcn4b" path="res://scenes/ui/ability_panel/ability_panel.tscn" id="5_cgq1h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
@@ -14,9 +16,14 @@ radius = 0.1
 size = Vector3(0.05, 0.05, 0.05)
 
 [node name="Controller" type="XRController3D" groups=["controller"]]
-script = ExtResource("1_3lvfv")
+script = ExtResource("1_l0t0k")
 
-[node name="StateManager" parent="." instance=ExtResource("2_wx823")]
+[node name="StateMachine" parent="." instance=ExtResource("2_klrwm")]
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("3_lflfa")
+
+[node name="StateManager" parent="." instance=ExtResource("2_wu0i1")]
 
 [node name="AbilityManager" parent="." instance=ExtResource("3_4f8yc")]
 
