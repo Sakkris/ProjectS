@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1vnl7lx5n0f"]
+
+[ext_resource type="Script" path="res://scenes/state_machine/controller_states/shooting_state/shooting_state.gd" id="1_7jcje"]
+
+[node name="Shooting" type="Node"]
+script = ExtResource("1_7jcje")

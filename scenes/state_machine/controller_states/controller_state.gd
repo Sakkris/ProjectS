@@ -7,8 +7,8 @@ var controller_id: int
 
 
 func _ready():
-	await owner.owner.ready
+	await owner.ready
 	
-	controller = owner.owner as XRController3D
-#	assert(controller != null)
-#	controller_id = controller.get_tracker_hand()
+	controller = owner as XRController3D
+	assert(controller != null)
+	controller_id = controller.get_tracker_hand()

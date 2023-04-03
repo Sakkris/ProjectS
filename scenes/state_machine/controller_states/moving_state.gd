@@ -2,11 +2,14 @@ extends ControllerState
 class_name MovingStateR 
 
 
-func enter(_msg = {}):
-	super.enter(_msg)
+func _ready():
+	await super._ready()
 	
-	controller.button_pressed.connect(on_controller_button_pressed)
-	controller.button_released.connect(on_controller_button_released)
+	if !controller.button_pressed.is_connected(on_controller_button_pressed):
+		controller.button_pressed.connect(on_controller_button_pressed)
+	
+	if !controller.button_released.is_connected(on_controller_button_released):
+		controller.button_released.connect(on_controller_button_released)
 
 
 func ax_button_pressed():
