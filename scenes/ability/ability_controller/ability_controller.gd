@@ -1,7 +1,6 @@
 extends Node
 class_name AbilityManager
 
-@export_enum("Left:1", "Right:2") var controller_id
 @export var velocity_component: VelocityComponent
 
 @onready var gun_nuzzle = $"../GunNuzzle"
