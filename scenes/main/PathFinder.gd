@@ -35,7 +35,7 @@ func _ready():
 	current_line = create_array_mesh(orig_id, dest_id)
 
 
-func _process(delta):
+func _process(_delta):
 	var orig_id = get_nearest_nav_point_to_node(player)
 	var dest_id = get_nearest_nav_point_to_node(destiny_node)
 	

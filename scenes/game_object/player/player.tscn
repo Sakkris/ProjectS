@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctgu83ypdttse"]
+[gd_scene load_steps=19 format=3 uid="uid://ctgu83ypdttse"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://7spnfacotrv5" path="res://scenes/component/velocity_component/velocity_component.tscn" id="2_25rjh"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_iackg"]
 [ext_resource type="PackedScene" uid="uid://3qjmkjv737j6" path="res://scenes/game_object/player/controller/controller.tscn" id="4_hbqme"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_ikdel"]
+[ext_resource type="PackedScene" uid="uid://dfujh6qr0fr2t" path="res://scenes/ability/brake_ability/brake_controller.tscn" id="5_3fnfe"]
 [ext_resource type="PackedScene" uid="uid://dxa63lby52pci" path="res://scenes/ui/player_ui/player_ui.tscn" id="7_15od0"]
+[ext_resource type="PackedScene" uid="uid://bwxk255d7fh2x" path="res://scenes/ability/boost_ability/boost_controller.tscn" id="7_o7c0m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
 
@@ -58,26 +60,35 @@ skeleton = NodePath("")
 tracker = &"left_hand"
 controller_id = 1
 
-[node name="StateManager" parent="XROrigin3D/LeftController" index="0"]
+[node name="StateMachine" parent="XROrigin3D/LeftController" index="0"]
+initial_state = NodePath("Armed")
+
+[node name="StateManager" parent="XROrigin3D/LeftController" index="1"]
 controller = 1
 
-[node name="AbilityManager" parent="XROrigin3D/LeftController" index="1"]
+[node name="AbilityManager" parent="XROrigin3D/LeftController" index="2" node_paths=PackedStringArray("velocity_component")]
 controller_id = 1
+velocity_component = NodePath("../../../VelocityComponent")
 
-[node name="AbilityPanel" parent="XROrigin3D/LeftController" index="2"]
+[node name="GrabController" parent="XROrigin3D/LeftController/AbilityManager" index="3" node_paths=PackedStringArray("grab_area")]
+grab_area = NodePath("../../GrabArea")
+
+[node name="BrakeController" parent="XROrigin3D/LeftController/AbilityManager" index="4" instance=ExtResource("5_3fnfe")]
+
+[node name="AbilityPanel" parent="XROrigin3D/LeftController" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.02, 0.2)
 controller_id = 1
 
 [node name="ViewportQuad" parent="XROrigin3D/LeftController/AbilityPanel" index="0"]
 material_override = SubResource("StandardMaterial3D_77qy8")
 
-[node name="GunNuzzle" parent="XROrigin3D/LeftController" index="3"]
+[node name="GunNuzzle" parent="XROrigin3D/LeftController" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023, -0.015, -0.03)
 
-[node name="GrabArea" parent="XROrigin3D/LeftController" index="4"]
+[node name="GrabArea" parent="XROrigin3D/LeftController" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
 
-[node name="StateIdentifier" parent="XROrigin3D/LeftController" index="5"]
+[node name="StateIdentifier" parent="XROrigin3D/LeftController" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_856iv")
 
@@ -87,26 +98,35 @@ material_override = SubResource("StandardMaterial3D_856iv")
 tracker = &"right_hand"
 controller_id = 2
 
-[node name="StateManager" parent="XROrigin3D/RightController" index="0"]
+[node name="StateMachine" parent="XROrigin3D/RightController" index="0"]
+initial_state = NodePath("Armed")
+
+[node name="StateManager" parent="XROrigin3D/RightController" index="1"]
 controller = 2
 
-[node name="AbilityManager" parent="XROrigin3D/RightController" index="1"]
+[node name="AbilityManager" parent="XROrigin3D/RightController" index="2" node_paths=PackedStringArray("velocity_component")]
 controller_id = 2
+velocity_component = NodePath("../../../VelocityComponent")
 
-[node name="AbilityPanel" parent="XROrigin3D/RightController" index="2"]
+[node name="GrabController" parent="XROrigin3D/RightController/AbilityManager" index="3" node_paths=PackedStringArray("grab_area")]
+grab_area = NodePath("../../GrabArea")
+
+[node name="BoostController" parent="XROrigin3D/RightController/AbilityManager" index="4" instance=ExtResource("7_o7c0m")]
+
+[node name="AbilityPanel" parent="XROrigin3D/RightController" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.02, 0.2)
 controller_id = 2
 
 [node name="ViewportQuad" parent="XROrigin3D/RightController/AbilityPanel" index="0"]
 material_override = SubResource("StandardMaterial3D_22qbk")
 
-[node name="GunNuzzle" parent="XROrigin3D/RightController" index="3"]
+[node name="GunNuzzle" parent="XROrigin3D/RightController" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.015, -0.03)
 
-[node name="GrabArea" parent="XROrigin3D/RightController" index="4"]
+[node name="GrabArea" parent="XROrigin3D/RightController" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
 
-[node name="StateIdentifier" parent="XROrigin3D/RightController" index="5"]
+[node name="StateIdentifier" parent="XROrigin3D/RightController" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_nao43")
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdojs0r4wb121"]
+
+[ext_resource type="Script" path="res://scenes/state_machine/controller_states/armed_state/armed_state.gd" id="1_6p86k"]
+
+[node name="Armed" type="Node"]
+script = ExtResource("1_6p86k")

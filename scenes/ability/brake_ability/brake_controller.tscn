@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://dfujh6qr0fr2t"]
 
 [ext_resource type="Script" path="res://scenes/ability/brake_ability/brake_controller.gd" id="1_n2d0s"]
 

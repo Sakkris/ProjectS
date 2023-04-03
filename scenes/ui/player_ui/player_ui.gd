@@ -19,7 +19,7 @@ func _ready():
 	$ViewportQuad.material_override.flags_transparent = true
 
 
-func _process(delta):
+func _process(_delta):
 	fps_counter.set_text(str(Engine.get_frames_per_second()) + " fps")
 
 

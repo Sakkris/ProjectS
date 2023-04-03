@@ -10,5 +10,5 @@ func _ready():
 	await owner.owner.ready
 	
 	controller = owner.owner as XRController3D
-	controller_id = controller.get_tracker_hand()
-	assert(controller != null)
+#	assert(controller != null)
+#	controller_id = controller.get_tracker_hand()

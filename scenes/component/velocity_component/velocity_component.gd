@@ -23,6 +23,10 @@ func move(delta):
 	#print("Current Speed: ", velocity.length(), "m/s")
 
 
+func fixed_movement(movement: Vector3):
+	parent_node.move_and_collide(movement)
+
+
 func accelerate(delta):
 	velocity = velocity.lerp(velocity.normalized() * max_speed, 1.0 - exp(-acceleration_coeficient * delta))
 

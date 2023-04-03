@@ -2,6 +2,7 @@ class_name State
 extends Node
 
 var state_machine = null
+var ability_manager: AbilityManager = null
 
 
 func update(_delta: float) -> void:

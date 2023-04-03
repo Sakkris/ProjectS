@@ -1,74 +1,47 @@
-extends Node
-
-signal hook_finished_retracting
+extends Ability
 
 @export var hook_scene: PackedScene
 
-var controller_id
-var controller
 var hook_instance
-var gun_nuzzle
-var is_hooking: bool = false
+var in_use: bool = false
 
-func _ready():
-	PlayerEvents.start_hooking_request.connect(on_start_hooking_request)
-	PlayerEvents.stop_hooking_request.connect(on_stop_hooking_request)
+
+func _physics_process(delta):
+	if in_use && gun_nuzzle != null:
+		hook_instance.origin = gun_nuzzle 
+		hook_instance.update(delta)
+		
+		if hook_instance.current_state == hook_instance.states.RETRACTING:
+			go_to_collision_point(delta)
+
+
+func use():
+	if gun_nuzzle == null:
+		return
 	
-	controller_id = get_parent().controller_id
-
-
-func _physics_process(_delta):
-	if is_hooking:
-		hook_instance.player_gun_nuzzle = gun_nuzzle 
-
-
-func get_controller_node():
-	var controllers = get_tree().get_nodes_in_group("controller")
+	hook_instance = hook_scene.instantiate()
+	hook_instance.origin = gun_nuzzle 
+	hook_instance.global_transform = gun_nuzzle.global_transform
+	hook_instance.change_state(hook_instance.states.HOOKING)
 	
-	for current_controller in controllers:
-		if current_controller.get_tracker_hand() == controller_id:
-			gun_nuzzle = current_controller.get_node("GunNuzzle")
-			
-			return current_controller
+	get_tree().get_first_node_in_group("projectile_manager").add_child(hook_instance)
 	
-	return null
+	in_use = true
+	
+	await hook_instance.finished_retracting
+	in_use = false
 
 
-func retract_hook():
+func stop():
 	hook_instance.change_state(hook_instance.states.RETRACTING)
 
 
-func throw_hook():
-	hook_instance = hook_scene.instantiate()
-	hook_instance.player_gun_nuzzle = controller.get_node("GunNuzzle")
-	hook_instance.global_transform = hook_instance.player_gun_nuzzle.global_transform
-	hook_instance.change_state(hook_instance.states.HOOKING)
-	hook_instance.hook_finished_retracting.connect(on_hook_finished_retracting)
+func reset():
+	hook_instance.emit_finished_retracting()
+	hook_instance.queue_free()
+
+
+func go_to_collision_point(delta):
+	var direction = gun_nuzzle.global_position.direction_to(hook_instance.hook_tip.global_position)
 	
-	get_tree().get_first_node_in_group("projectile_manager").add_child(hook_instance)
-
-
-func on_start_hooking_request(signal_controller_id: int):
-	if signal_controller_id == controller_id:
-		if controller == null:
-			controller = get_controller_node()
-			
-			if controller == null:
-				return
-		
-		throw_hook()
-
-
-func on_stop_hooking_request(signal_controller_id: int):
-	if signal_controller_id == controller_id:
-		if controller == null:
-			controller = get_controller_node()
-			
-			if controller == null:
-				return
-		
-		retract_hook()
-
-
-func on_hook_finished_retracting():
-	PlayerEvents.emit_hook_finished_retracting(controller_id)
+	velocity_component.accelerate_in_direction(direction * hook_instance.HOOK_PULL_SPEED, delta)

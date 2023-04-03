@@ -12,7 +12,7 @@ func _ready():
 	GameEvents.enemy_died.connect(func(): add_time())
 
 
-func _process(delta):
+func _process(_delta):
 	if timer.is_stopped():
 		pass
 	

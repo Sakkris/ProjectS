@@ -4,4 +4,3 @@
 
 [node name="StateMachine" type="Node"]
 script = ExtResource("1_wjbak")
-initial_state = null

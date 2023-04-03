@@ -1,11 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=15 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
 [ext_resource type="PackedScene" uid="uid://bjjqux7xum68t" path="res://scenes/game_object/player/state_machine/manager/state_manager.tscn" id="2_wu0i1"]
 [ext_resource type="PackedScene" uid="uid://dcld4u45mnms3" path="res://scenes/ability/ability_controller/ability_controller.tscn" id="3_4f8yc"]
 [ext_resource type="Script" path="res://scenes/state_machine/controller_states/moving_state.gd" id="3_lflfa"]
+[ext_resource type="PackedScene" uid="uid://cdojs0r4wb121" path="res://scenes/state_machine/controller_states/armed_state/armed_state.tscn" id="4_o5uvq"]
 [ext_resource type="PackedScene" uid="uid://dwvas05wkcn4b" path="res://scenes/ui/ability_panel/ability_panel.tscn" id="5_cgq1h"]
+[ext_resource type="PackedScene" uid="uid://00veudhsxqwx" path="res://scenes/ability/dash_ability/dash_controller.tscn" id="6_7bl1k"]
+[ext_resource type="PackedScene" uid="uid://dy70c5uolio06" path="res://scenes/ability/thruster_ability/thruster_controller.tscn" id="8_8fq8e"]
+[ext_resource type="PackedScene" uid="uid://bw8fbc4aai0ol" path="res://scenes/ability/hook_ability/hook_controller.tscn" id="8_lkbr2"]
+[ext_resource type="PackedScene" uid="uid://b0tivsw4mv7ju" path="res://scenes/ability/grab_ability/grab_controller.tscn" id="9_2bikd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
@@ -23,9 +28,19 @@ script = ExtResource("1_l0t0k")
 [node name="Moving" type="Node" parent="StateMachine"]
 script = ExtResource("3_lflfa")
 
+[node name="Armed" parent="StateMachine" instance=ExtResource("4_o5uvq")]
+
 [node name="StateManager" parent="." instance=ExtResource("2_wu0i1")]
 
 [node name="AbilityManager" parent="." instance=ExtResource("3_4f8yc")]
+
+[node name="DashController" parent="AbilityManager" instance=ExtResource("6_7bl1k")]
+
+[node name="HookController" parent="AbilityManager" instance=ExtResource("8_lkbr2")]
+
+[node name="ThrusterController" parent="AbilityManager" instance=ExtResource("8_8fq8e")]
+
+[node name="GrabController" parent="AbilityManager" instance=ExtResource("9_2bikd")]
 
 [node name="AbilityPanel" parent="." instance=ExtResource("5_cgq1h")]
 

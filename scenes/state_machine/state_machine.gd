@@ -6,6 +6,7 @@ signal transitioned(state_name)
 @export var initial_state := NodePath()
 
 @onready var state: State = get_node(initial_state)
+@onready var ability_manager = $"../AbilityManager"
 
 
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
 	
 	for child in get_children():
 		child.state_machine = self
+		child.ability_manager = ability_manager
 	
 	state.enter()
 
@@ -32,4 +34,4 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)
-	emit_signal("transitioned", state.name)
+	transitioned.emit(state.name)
