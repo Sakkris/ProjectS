@@ -4,6 +4,7 @@ class_name  Player
 @onready var origin_node = $XROrigin3D
 @onready var camera_node = $XROrigin3D/XRCamera3D
 @onready var neck_position_node = $XROrigin3D/XRCamera3D/Neck
+@onready var velocity_component = $VelocityComponent
 
 var webxr_interface
 
@@ -26,7 +27,7 @@ func _physics_process(delta):
 	var is_colliding = _process_on_physical_movement(delta)
 	if !is_colliding:
 		_process_rotation_on_input(delta)
-		$VelocityComponent.move(delta)
+		velocity_component.move(delta)
 
 
 func _process_on_physical_movement(delta) -> bool:
@@ -99,6 +100,8 @@ func _webxr_session_started() -> void:
 	$CanvasLayer.visible = false
 	
 	get_viewport().use_xr = true
+	
+	GameEvents.emit_game_start()
 	
 	print ("Reference space type: " + webxr_interface.reference_space_type)
 

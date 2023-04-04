@@ -33,7 +33,7 @@ func add_time():
 
 
 func finish_game():
-	timer.stop()
+	GameEvents.emit_game_over()
 
 
 func on_timer_timeout():

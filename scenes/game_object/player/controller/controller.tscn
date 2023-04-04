@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=22 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bw8fbc4aai0ol" path="res://scenes/ability/hook_ability/hook_controller.tscn" id="8_lkbr2"]
 [ext_resource type="PackedScene" uid="uid://b0tivsw4mv7ju" path="res://scenes/ability/grab_ability/grab_controller.tscn" id="9_2bikd"]
 [ext_resource type="PackedScene" uid="uid://bqd5hfk550pli" path="res://scenes/ability/gun_ability/gun_ability.tscn" id="13_0wntn"]
+[ext_resource type="Script" path="res://scenes/game_object/player/controller/ui_raycast.gd" id="15_4trpf"]
+[ext_resource type="Shader" uid="uid://6xpuyqtf6yes" path="res://scenes/game_object/player/controller/gradual_transparency.tres" id="15_den8e"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
@@ -22,6 +24,16 @@ radius = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_f4ese"]
 size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu8l4"]
+render_priority = 0
+shader = ExtResource("15_den8e")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_r7n5b"]
+material = SubResource("ShaderMaterial_wu8l4")
+radius = 0.005
+radial_segments = 4
+rings = 1
 
 [node name="Controller" type="XRController3D" groups=["controller"]]
 script = ExtResource("1_l0t0k")
@@ -66,3 +78,12 @@ disabled = true
 [node name="StateIdentifier" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_6jc2u")
 mesh = SubResource("BoxMesh_f4ese")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)
+collision_mask = 16
+script = ExtResource("15_4trpf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+mesh = SubResource("CapsuleMesh_r7n5b")

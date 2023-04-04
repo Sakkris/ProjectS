@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd6nx8nuesutt"]
+
+[ext_resource type="Script" path="res://scenes/ui/end_screen/end_screen.gd" id="1_cbeka"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1e4vh"]
+size = Vector3(1.5, 1, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kd6nm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yrb5u"]
+size = Vector2(1.5, 1)
+
+[node name="EndScreen" type="StaticBody3D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_cbeka")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="SubViewport/MarginContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "RESET GAME"
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_1e4vh")
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_kd6nm")
+mesh = SubResource("PlaneMesh_yrb5u")
