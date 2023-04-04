@@ -11,7 +11,7 @@ func _physics_process(delta):
 		hook_instance.origin = gun_nuzzle 
 		hook_instance.update(delta)
 		
-		if hook_instance.current_state == hook_instance.states.RETRACTING:
+		if hook_instance.current_state == hook_instance.states.COLLIDING:
 			go_to_collision_point(delta)
 
 
@@ -27,7 +27,6 @@ func use():
 	get_tree().get_first_node_in_group("projectile_manager").add_child(hook_instance)
 	
 	in_use = true
-	
 	await hook_instance.finished_retracting
 	in_use = false
 
