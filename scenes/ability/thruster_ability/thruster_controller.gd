@@ -13,6 +13,8 @@ var is_charging: bool = false
 
 
 func _ready():
+	start_recharge_timer.timeout.connect(func(): is_charging = true)
+	
 	current_charge = max_charge
 
 
@@ -53,7 +55,3 @@ func use():
 func stop():
 	is_thrusting = false
 	start_recharge_timer.start()
-
-
-func on_start_recharge_timer_timeout():
-	is_charging = true
