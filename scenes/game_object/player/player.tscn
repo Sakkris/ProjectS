@@ -65,9 +65,11 @@ grab_area = NodePath("../../GrabArea")
 
 [node name="BrakeController" parent="XROrigin3D/LeftController/AbilityManager" index="4" instance=ExtResource("5_3fnfe")]
 
-[node name="AbilityPanel" parent="XROrigin3D/LeftController" index="2"]
+[node name="AbilityPanel" parent="XROrigin3D/LeftController" index="2" node_paths=PackedStringArray("gun_ability", "thruster_ability", "dash_ability")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.02, 0.2)
-controller_id = 1
+gun_ability = NodePath("../AbilityManager/GunController")
+thruster_ability = NodePath("../AbilityManager/ThrusterController")
+dash_ability = NodePath("../AbilityManager/DashController")
 
 [node name="ViewportQuad" parent="XROrigin3D/LeftController/AbilityPanel" index="0"]
 material_override = SubResource("StandardMaterial3D_77qy8")
@@ -96,9 +98,11 @@ grab_area = NodePath("../../GrabArea")
 
 [node name="BoostController" parent="XROrigin3D/RightController/AbilityManager" index="4" instance=ExtResource("7_o7c0m")]
 
-[node name="AbilityPanel" parent="XROrigin3D/RightController" index="2"]
+[node name="AbilityPanel" parent="XROrigin3D/RightController" index="2" node_paths=PackedStringArray("gun_ability", "thruster_ability", "dash_ability")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.02, 0.2)
-controller_id = 2
+gun_ability = NodePath("../AbilityManager/GunController")
+thruster_ability = NodePath("../AbilityManager/ThrusterController")
+dash_ability = NodePath("../AbilityManager/DashController")
 
 [node name="ViewportQuad" parent="XROrigin3D/RightController/AbilityPanel" index="0"]
 material_override = SubResource("StandardMaterial3D_22qbk")

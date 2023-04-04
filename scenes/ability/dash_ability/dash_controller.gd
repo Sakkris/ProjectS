@@ -5,7 +5,6 @@ extends Ability
 @export var dash_force: float = 10
 
 var can_dash: bool = true
-var cooldown_left
 
 
 func _ready():
