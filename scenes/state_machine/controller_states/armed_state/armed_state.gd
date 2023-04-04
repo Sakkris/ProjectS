@@ -57,4 +57,4 @@ func handle_input_released(button: String):
 	
 	match(button):
 		"grip_click":
-			grip_pressed()
+			grip_released()

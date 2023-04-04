@@ -35,7 +35,7 @@ func thrust(delta):
 	var basis = gun_nuzzle.global_transform.basis
 	
 	velocity_component.accelerate_in_direction(-basis.z * thruster_force, delta)
-	current_charge -= discharge_rate * delta
+	current_charge = max(current_charge - discharge_rate * delta, 0)
 
 
 func recharge(delta):
