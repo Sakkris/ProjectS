@@ -13,12 +13,9 @@ var current_bullets: int
 var passive_recharge_cooldown: float = .6
 var fast_recharge_cooldown: float = .3
 var nuzzle: Node3D
-var controller_id: int
 
 
 func _ready():
-	PlayerEvents.player_changed_state.connect(on_player_changed_state)
-	
 	shooting_cooldown_timer.timeout.connect(on_shooting_cooldown_timer_timeout)
 	start_recharge_timer.timeout.connect(on_start_recharge_timer_timeout)
 	recharge_cooldown_timer.timeout.connect(on_recharge_cooldown_timer_timeout)
@@ -43,8 +40,6 @@ func shoot():
 func decrease_bullet_count():
 	if current_bullets > 0:
 		current_bullets -= 1
-		PlayerEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
-#		print(current_bullets, " / ", magazine_size)
 	
 	if current_bullets == 0: 
 		start_fast_recharge()
@@ -60,7 +55,6 @@ func start_fast_recharge():
 	
 	recharge_cooldown_timer.wait_time = fast_recharge_cooldown
 	recharge_cooldown_timer.start()
-#	print("Started Fast Charging")
 
 
 func recharge():
@@ -73,8 +67,6 @@ func recharge():
 	
 	current_bullets += 1
 	recharge_cooldown_timer.start()
-#	print(current_bullets, " / ", magazine_size)
-	PlayerEvents.emit_player_bullets_updated(controller_id, current_bullets, magazine_size)
 
 
 func start_shooting():
@@ -85,6 +77,15 @@ func start_shooting():
 func stop_shooting():
 	is_shooting = false
 	start_recharge_timer.start()
+
+
+func reset():
+	recharge_cooldown_timer.stop()
+	shooting_cooldown_timer.stop()
+	start_recharge_timer.stop()
+	
+	current_bullets = magazine_size
+	is_shooting = false
 
 
 func on_shooting_cooldown_timer_timeout():
@@ -98,11 +99,3 @@ func on_start_recharge_timer_timeout():
 
 func on_recharge_cooldown_timer_timeout():
 	recharge()
-
-
-func on_player_changed_state(signal_controller_id: int, new_state: String):
-	if signal_controller_id != controller_id:
-		return
-	
-	if new_state == "unarmed":
-		start_fast_recharge()

@@ -11,11 +11,11 @@ func physics_update(_delta: float) -> void:
 
 
 func enter(_msg := {}) -> void:
-	ability_manager.use_ability("Shoot")
+	ability_manager.use_ability("Gun")
 
 
 func exit() -> void:
-	ability_manager.stop_ability("Shoot")
+	ability_manager.stop_ability("Gun")
 
 
 func handle_input_released(button: String):

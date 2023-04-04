@@ -17,7 +17,6 @@ func _ready() -> void:
 		child.ability_manager = ability_manager
 	
 	state.enter()
-	print("Started with: ", state.name)
 
 
 func _process(delta: float) -> void:
@@ -36,7 +35,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state = get_node(target_state_name)
 	state.enter(msg)
 	transitioned.emit(owner.get_tracker_hand(), state.name)
-	print(owner.get_tracker_hand(), state.name)
 
 
 func handle_input_pressed(button: String):

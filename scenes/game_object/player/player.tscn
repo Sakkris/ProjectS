@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctgu83ypdttse"]
+[gd_scene load_steps=18 format=3 uid="uid://ctgu83ypdttse"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://7spnfacotrv5" path="res://scenes/component/velocity_component/velocity_component.tscn" id="2_25rjh"]
-[ext_resource type="PackedScene" uid="uid://b1irfqfot2ybu" path="res://scenes/ability/gun_controller/gun_controller.tscn" id="2_nt7io"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_iackg"]
 [ext_resource type="PackedScene" uid="uid://3qjmkjv737j6" path="res://scenes/game_object/player/controller/controller.tscn" id="4_hbqme"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_ikdel"]
@@ -41,8 +40,6 @@ script = ExtResource("1_80ysr")
 [node name="VelocityComponent" parent="." instance=ExtResource("2_25rjh")]
 max_speed = 5.0
 max_overloaded_speed = 10.0
-
-[node name="GunController" parent="." instance=ExtResource("2_nt7io")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
