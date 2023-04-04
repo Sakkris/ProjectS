@@ -9,14 +9,13 @@ var abilities = {}
 
 
 func _ready() -> void:
-	await velocity_component.ready
+	await owner.ready
 	
 	for child in get_children():
-		if child.is_class("Ability"):
-			child.velocitiy_component = velocity_component
-			child.gun_nuzzle = gun_nuzzle
-			
-			abilities[child.name] = child
+		child.velocity_component = velocity_component
+		child.gun_nuzzle = gun_nuzzle
+		
+		abilities[child.name] = child
 
 
 func use_ability(ability_name: String):

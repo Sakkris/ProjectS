@@ -2,58 +2,41 @@ extends XRController3D
 
 @export_enum("Left:1", "Right:2") var controller_id
 
-@onready var grab_area_collision: CollisionShape3D = $GrabArea/CollisionShape3D
-@onready var state_manager: StateManager = $StateManager
+@onready var grab_area_collision: CollisionShape3D = $GrabArea/CollisionShape3D 
+@onready var state_machine: StateMachine = $StateMachine
 
 
 func _ready():
-	PlayerEvents.start_grabbing_request.connect(on_start_grabbing_request)
-	PlayerEvents.stop_grabbing_request.connect(on_stop_grabbing_request)
-	PlayerEvents.player_changed_state.connect(on_player_changed_state)
-	
+#	PlayerEvents.start_grabbing_request.connect(on_start_grabbing_request)
+#	PlayerEvents.stop_grabbing_request.connect(on_stop_grabbing_request)
+#	PlayerEvents.player_changed_state.connect(on_player_changed_state)
+#
 	button_pressed.connect(self.on_controller_button_pressed)
 	button_released.connect(self.on_controller_button_released)
+	state_machine.transitioned.connect(on_player_changed_state)
 	
-	change_state_identifier("unarmed")
+	change_state_identifier("Unarmed")
 
 
 func change_state_identifier(new_state):
 	var material = $StateIdentifier.material_override
 	
-	if new_state == "unarmed":
+	if new_state == "Unarmed":
 		material.albedo_color = Color(0, 1, 0)
-	elif new_state == "armed":
+	elif new_state == "Armed":
 		material.albedo_color = Color(1, 0, 0)
-	elif new_state == "hooked":
+	elif new_state == "Hooking":
 		material.albedo_color = Color(1, 1, 0)
 	
 	$StateIdentifier.material_override = material
 
 
 func on_controller_button_pressed(button: String) -> void:
-	match(button):
-		"trigger_click":
-			state_manager.trigger_pressed()
-		"thumbstick_click":
-			state_manager.thumbstick_pressed()
-		"grip_click":
-			state_manager.grip_pressed()
-		"ax_button":
-			state_manager.ax_button_pressed()
-		"by_button":
-			state_manager.by_button_pressed()
- 
+	state_machine.handle_input_pressed(button)
+
 
 func on_controller_button_released(button: String) -> void:
-	match(button):
-		"trigger_click":
-			state_manager.trigger_released()
-		"grip_click":
-			state_manager.grip_released()
-		"ax_button":
-			state_manager.ax_button_released()
-		"by_button":
-			state_manager.by_button_released()
+	state_machine.handle_input_released(button)
 
 
 func on_controller_gun_shot(_controller_id):

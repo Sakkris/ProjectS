@@ -1,5 +1,5 @@
 extends MovingStateR
-class_name ShootingState
+class_name HookingStateR
 
 
 func update(_delta: float) -> void:
@@ -11,15 +11,17 @@ func physics_update(_delta: float) -> void:
 
 
 func enter(_msg := {}) -> void:
-	ability_manager.use_ability("Shoot")
+	await ability_manager.use_ability("Hook")
+	state_machine.transition_to("Unarmed")
 
 
 func exit() -> void:
-	ability_manager.stop_ability("Shoot")
+	pass
 
 
 func handle_input_released(button: String):
 	super.handle_input_released(button)
 	
 	if button == "trigger_click":
-		state_machine.transition_to("Armed")
+		ability_manager.stop_ability("Hook")
+		

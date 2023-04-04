@@ -1,5 +1,5 @@
 extends MovingStateR
-class_name ArmedState
+class_name UnarmedStateR
 
 
 func update(_delta: float) -> void:
@@ -19,23 +19,15 @@ func exit() -> void:
 
 
 func trigger_pressed():
-	state_machine.transition_to("Shooting")
+	state_machine.transition_to("Hooking")
 
 
 func thumbstick_pressed():
-	state_machine.transition_to("Unarmed")
+	state_machine.transition_to("Armed")
 
 
 func grip_pressed():
-	ability_manager.use_ability("Thruster")
-
-
-func grip_released():
-	ability_manager.stop_ability("Thruster")
-
-
-func by_button_pressed():
-	ability_manager.use_ability("Dash")
+	state_machine.transition_to("Grabbing")
 
 
 func handle_input_pressed(button: String):
@@ -46,15 +38,5 @@ func handle_input_pressed(button: String):
 			trigger_pressed()
 		"thumbstick_click":
 			thumbstick_pressed()
-		"grip_click":
-			grip_pressed()
-		"by_button":
-			by_button_pressed()
-
-
-func handle_input_released(button: String):
-	super.handle_input_released(button)
-	
-	match(button):
 		"grip_click":
 			grip_pressed()

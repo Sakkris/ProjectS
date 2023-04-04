@@ -60,14 +60,7 @@ skeleton = NodePath("")
 tracker = &"left_hand"
 controller_id = 1
 
-[node name="StateMachine" parent="XROrigin3D/LeftController" index="0"]
-initial_state = NodePath("Armed")
-
-[node name="StateManager" parent="XROrigin3D/LeftController" index="1"]
-controller = 1
-
-[node name="AbilityManager" parent="XROrigin3D/LeftController" index="2" node_paths=PackedStringArray("velocity_component")]
-controller_id = 1
+[node name="AbilityManager" parent="XROrigin3D/LeftController" index="1" node_paths=PackedStringArray("velocity_component")]
 velocity_component = NodePath("../../../VelocityComponent")
 
 [node name="GrabController" parent="XROrigin3D/LeftController/AbilityManager" index="3" node_paths=PackedStringArray("grab_area")]
@@ -75,20 +68,20 @@ grab_area = NodePath("../../GrabArea")
 
 [node name="BrakeController" parent="XROrigin3D/LeftController/AbilityManager" index="4" instance=ExtResource("5_3fnfe")]
 
-[node name="AbilityPanel" parent="XROrigin3D/LeftController" index="3"]
+[node name="AbilityPanel" parent="XROrigin3D/LeftController" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.02, 0.2)
 controller_id = 1
 
 [node name="ViewportQuad" parent="XROrigin3D/LeftController/AbilityPanel" index="0"]
 material_override = SubResource("StandardMaterial3D_77qy8")
 
-[node name="GunNuzzle" parent="XROrigin3D/LeftController" index="4"]
+[node name="GunNuzzle" parent="XROrigin3D/LeftController" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023, -0.015, -0.03)
 
-[node name="GrabArea" parent="XROrigin3D/LeftController" index="5"]
+[node name="GrabArea" parent="XROrigin3D/LeftController" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
 
-[node name="StateIdentifier" parent="XROrigin3D/LeftController" index="6"]
+[node name="StateIdentifier" parent="XROrigin3D/LeftController" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_856iv")
 
@@ -98,14 +91,7 @@ material_override = SubResource("StandardMaterial3D_856iv")
 tracker = &"right_hand"
 controller_id = 2
 
-[node name="StateMachine" parent="XROrigin3D/RightController" index="0"]
-initial_state = NodePath("Armed")
-
-[node name="StateManager" parent="XROrigin3D/RightController" index="1"]
-controller = 2
-
-[node name="AbilityManager" parent="XROrigin3D/RightController" index="2" node_paths=PackedStringArray("velocity_component")]
-controller_id = 2
+[node name="AbilityManager" parent="XROrigin3D/RightController" index="1" node_paths=PackedStringArray("velocity_component")]
 velocity_component = NodePath("../../../VelocityComponent")
 
 [node name="GrabController" parent="XROrigin3D/RightController/AbilityManager" index="3" node_paths=PackedStringArray("grab_area")]
@@ -113,20 +99,20 @@ grab_area = NodePath("../../GrabArea")
 
 [node name="BoostController" parent="XROrigin3D/RightController/AbilityManager" index="4" instance=ExtResource("7_o7c0m")]
 
-[node name="AbilityPanel" parent="XROrigin3D/RightController" index="3"]
+[node name="AbilityPanel" parent="XROrigin3D/RightController" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.02, 0.2)
 controller_id = 2
 
 [node name="ViewportQuad" parent="XROrigin3D/RightController/AbilityPanel" index="0"]
 material_override = SubResource("StandardMaterial3D_22qbk")
 
-[node name="GunNuzzle" parent="XROrigin3D/RightController" index="4"]
+[node name="GunNuzzle" parent="XROrigin3D/RightController" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.015, -0.03)
 
-[node name="GrabArea" parent="XROrigin3D/RightController" index="5"]
+[node name="GrabArea" parent="XROrigin3D/RightController" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
 
-[node name="StateIdentifier" parent="XROrigin3D/RightController" index="6"]
+[node name="StateIdentifier" parent="XROrigin3D/RightController" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_nao43")
 

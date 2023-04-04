@@ -1,7 +1,7 @@
 class_name StateMachine
 extends Node
 
-signal transitioned(state_name)
+signal transitioned(controller_id, state_name)
 
 @export var initial_state := NodePath()
 
@@ -17,6 +17,7 @@ func _ready() -> void:
 		child.ability_manager = ability_manager
 	
 	state.enter()
+	print("Started with: ", state.name)
 
 
 func _process(delta: float) -> void:
@@ -34,4 +35,13 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)
-	transitioned.emit(state.name)
+	transitioned.emit(owner.get_tracker_hand(), state.name)
+	print(owner.get_tracker_hand(), state.name)
+
+
+func handle_input_pressed(button: String):
+	state.handle_input_pressed(button)
+
+
+func handle_input_released(button: String):
+	state.handle_input_released(button)

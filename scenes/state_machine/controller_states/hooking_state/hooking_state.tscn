@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://de8x4plwkvt7k"]
+
+[ext_resource type="Script" path="res://scenes/state_machine/controller_states/hooking_state/hooking_state.gd" id="1_lp1ou"]
+
+[node name="Hooking" type="Node"]
+script = ExtResource("1_lp1ou")
