@@ -1,11 +1,7 @@
 extends CharacterBody3D
 
-
 const SPEED = 2.0
-const JUMP_VELOCITY = 4.5
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var direction = transform.basis * Vector3.LEFT
 var turn_flag = 1
 

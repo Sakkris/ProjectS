@@ -1,5 +1,5 @@
 extends ControllerState
-class_name GrabbingStateR
+class_name GrabbingState
 
 
 func update(_delta: float) -> void:

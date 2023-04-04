@@ -1,5 +1,5 @@
-extends MovingStateR
-class_name HookingStateR
+extends MovingState
+class_name HookingState
 
 
 func update(_delta: float) -> void:

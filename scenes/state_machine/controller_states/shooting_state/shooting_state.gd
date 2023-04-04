@@ -1,4 +1,4 @@
-extends MovingStateR
+extends MovingState
 class_name ShootingState
 
 

@@ -1,5 +1,5 @@
 extends ControllerState
-class_name MovingStateR 
+class_name MovingState
 
 
 func ax_button_pressed():

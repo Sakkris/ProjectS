@@ -157,18 +157,3 @@ func setup_astar():
 
 func on_enemy_spawned(enemy):
 	destiny_node = enemy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

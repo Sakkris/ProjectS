@@ -72,5 +72,6 @@ func reset_if_opposite_velocity(direction: Vector3):
 	if direction_norm.dot(velocity_norm) <= 0:
 		full_stop() 
 
+
 func full_stop():
 	velocity = Vector3.ZERO

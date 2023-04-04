@@ -55,7 +55,6 @@ skeleton = NodePath("")
 
 [node name="LeftController" parent="XROrigin3D" instance=ExtResource("4_hbqme")]
 tracker = &"left_hand"
-controller_id = 1
 
 [node name="AbilityManager" parent="XROrigin3D/LeftController" index="1" node_paths=PackedStringArray("velocity_component")]
 velocity_component = NodePath("../../../VelocityComponent")
@@ -88,7 +87,6 @@ material_override = SubResource("StandardMaterial3D_856iv")
 
 [node name="RightController" parent="XROrigin3D" instance=ExtResource("4_hbqme")]
 tracker = &"right_hand"
-controller_id = 2
 
 [node name="AbilityManager" parent="XROrigin3D/RightController" index="1" node_paths=PackedStringArray("velocity_component")]
 velocity_component = NodePath("../../../VelocityComponent")

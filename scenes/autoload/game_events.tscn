@@ -1,6 +1,24 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwwpborunc26s"]
 
-[ext_resource type="Script" path="res://scenes/autoload/game_events.gd" id="1_su135"]
+[sub_resource type="GDScript" id="GDScript_ouxeh"]
+script/source = "extends Node
+
+signal game_time_updated
+signal enemy_died
+signal enemy_spawned
+
+
+func emit_game_time_updated(time_elapsed):
+	game_time_updated.emit(time_elapsed)
+
+
+func emit_enemy_died():
+	enemy_died.emit()
+
+
+func emit_enemy_spawned(enemy):
+	enemy_spawned.emit(enemy)
+"
 
 [node name="GameEvents" type="Node"]
-script = ExtResource("1_su135")
+script = SubResource("GDScript_ouxeh")

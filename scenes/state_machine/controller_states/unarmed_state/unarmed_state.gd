@@ -1,5 +1,5 @@
-extends MovingStateR
-class_name UnarmedStateR
+extends MovingState
+class_name UnarmedState
 
 
 func update(_delta: float) -> void:

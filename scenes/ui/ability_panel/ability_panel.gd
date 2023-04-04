@@ -18,7 +18,7 @@ func _ready():
 	$ViewportQuad.material_override.albedo_texture = viewport.get_texture()
 
 
-func _process(delta):
+func _process(_delta):
 	update_bullet_slider()
 	update_thruster_slider()
 	update_dash_slider()
