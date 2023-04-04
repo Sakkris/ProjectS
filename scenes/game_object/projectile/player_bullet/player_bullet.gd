@@ -1,6 +1,6 @@
 extends Area3D
 
-const BULLET_SPEED = 30.0
+const BULLET_SPEED = 50.0
 
 
 func _ready():

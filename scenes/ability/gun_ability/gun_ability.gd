@@ -1,4 +1,4 @@
-extends Node
+extends Ability
 class_name Gun
 
 @onready var shooting_cooldown_timer: Timer = $ShootingCooldownTimer
@@ -12,7 +12,6 @@ var is_shooting: bool
 var current_bullets: int
 var passive_recharge_cooldown: float = .6
 var fast_recharge_cooldown: float = .3
-var nuzzle: Node3D
 
 
 func _ready():
@@ -31,7 +30,7 @@ func shoot():
 	var bullet = bullet_scene.instantiate()
 	
 	get_tree().get_first_node_in_group("projectile_manager").add_child(bullet)
-	bullet.global_transform = nuzzle.global_transform
+	bullet.global_transform = gun_nuzzle.global_transform
 	
 	shooting_cooldown_timer.start()
 	decrease_bullet_count()
@@ -69,12 +68,12 @@ func recharge():
 	recharge_cooldown_timer.start()
 
 
-func start_shooting():
+func use():
 	is_shooting = true
 	shoot()
 
 
-func stop_shooting():
+func stop():
 	is_shooting = false
 	start_recharge_timer.start()
 

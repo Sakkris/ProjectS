@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dy70c5uolio06" path="res://scenes/ability/thruster_ability/thruster_controller.tscn" id="8_8fq8e"]
 [ext_resource type="PackedScene" uid="uid://bw8fbc4aai0ol" path="res://scenes/ability/hook_ability/hook_controller.tscn" id="8_lkbr2"]
 [ext_resource type="PackedScene" uid="uid://b0tivsw4mv7ju" path="res://scenes/ability/grab_ability/grab_controller.tscn" id="9_2bikd"]
-[ext_resource type="PackedScene" uid="uid://b1irfqfot2ybu" path="res://scenes/ability/gun_controller/gun_controller.tscn" id="13_i68jf"]
+[ext_resource type="PackedScene" uid="uid://bqd5hfk550pli" path="res://scenes/ability/gun_ability/gun_ability.tscn" id="13_0wntn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
@@ -49,7 +49,7 @@ initial_state = NodePath("Unarmed")
 
 [node name="GrabController" parent="AbilityManager" instance=ExtResource("9_2bikd")]
 
-[node name="GunController" parent="AbilityManager" instance=ExtResource("13_i68jf")]
+[node name="GunController" parent="AbilityManager" instance=ExtResource("13_0wntn")]
 
 [node name="AbilityPanel" parent="." instance=ExtResource("5_cgq1h")]
 
