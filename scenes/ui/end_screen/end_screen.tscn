@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd6nx8nuesutt"]
+[gd_scene load_steps=6 format=3 uid="uid://cd6nx8nuesutt"]
 
 [ext_resource type="Script" path="res://scenes/ui/end_screen/end_screen.gd" id="1_cbeka"]
+[ext_resource type="Script" path="res://scenes/ui/end_screen/SubViewport.gd" id="2_hdlpw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1e4vh"]
-size = Vector3(1.5, 1, 0.05)
+size = Vector3(1, 1, 0.002)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kd6nm"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yrb5u"]
-size = Vector2(1.5, 1)
+size = Vector2(1, 1)
 
 [node name="EndScreen" type="StaticBody3D"]
 collision_layer = 16
@@ -16,6 +17,8 @@ collision_mask = 0
 script = ExtResource("1_cbeka")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(720, 576)
+script = ExtResource("2_hdlpw")
 
 [node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
 anchors_preset = 15
@@ -36,7 +39,6 @@ layout_mode = 2
 color = Color(0, 0, 0, 0.490196)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
 shape = SubResource("BoxShape3D_1e4vh")
 
 [node name="ViewportQuad" type="MeshInstance3D" parent="."]

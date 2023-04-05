@@ -1,5 +1,6 @@
 extends RayCast3D
 
+var last_viewport_point = null
  
 func _process(delta):
 	var raycast_collider = get_collider()
@@ -17,19 +18,23 @@ func try_to_send_input(raycast_collider):
 	if (collider_transform * global_transform.origin).z > 0:
 		return # Don't allow pressing if we're behind the GUI.
 
-	# Convert the collision to a relative position. Expects the 2nd child to be a CollisionShape.
-	var shape_size = raycast_collider.get_child(1).shape.extents * 2
-	var collision_point = get_collision_point()
-	var collider_scale = collider_transform.basis.get_scale()
-	var local_point = collider_transform * collision_point
-	local_point /= (collider_scale * collider_scale)
-	local_point /= shape_size
-	local_point += Vector3(0.5, -0.5, 0) # X is about 0 to 1, Y is about 0 to -1.
+	var global_collision_point = get_collision_point()
+	
+	var local_colision_point = raycast_collider.get_child(1).to_local(global_collision_point);
+	var viewport_point = Vector2(local_colision_point.x, -local_colision_point.y)
+	viewport_point = viewport_point + Vector2(0.5, 0.5)
+	viewport_point.x *= viewport.size.x
+	viewport_point.y *= viewport.size.y
+	
+	if last_viewport_point && last_viewport_point != viewport_point:
+		# Send mouse motion to the GUI.
+		var event = InputEventMouseMotion.new()
+		event.position = viewport_point
+		event.relative = viewport_point - last_viewport_point;
+		event.velocity = (viewport_point - last_viewport_point) / 16.0; #?? chose an arbitrary scale here for now
+		event.global_position = viewport_point
+		viewport.push_input(event)
+		print("Global Position: ", global_collision_point, " | Local Position: ",local_colision_point, " | Event Position: ", event.position, " | Viewport Size: ", viewport.size)
+		
+	last_viewport_point = viewport_point
 
-	# Find the viewport position by scaling the relative position by the viewport size. Discard Z.
-	var viewport_point = Vector2i(local_point.x, -local_point.y) * viewport.size
-
-	# Send mouse motion to the GUI.
-	var event = InputEventMouseMotion.new()
-	event.position = viewport_point
-	viewport.push_input(event)

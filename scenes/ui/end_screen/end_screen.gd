@@ -8,3 +8,5 @@ func _ready():
 	
 	$ViewportQuad.material_override.albedo_texture = viewport.get_texture()
 	$ViewportQuad.material_override.flags_transparent = true
+	
+	print("End Screen Local Position: ", position)
