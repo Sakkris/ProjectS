@@ -13,4 +13,3 @@ func _ready():
 	$ViewportQuad.material_override.flags_transparent = true
 	
 	button.button_down.connect(func(): get_tree().reload_current_scene())
-
