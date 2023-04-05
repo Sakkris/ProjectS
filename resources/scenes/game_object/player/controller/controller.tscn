@@ -1,0 +1,89 @@
+[gd_scene load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://resources/scenes/game_object/player/controller/controller.gd" id="1_gd5qs"]
+[ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://resources/scenes/state_machine/state_machine.tscn" id="2_n4gjh"]
+[ext_resource type="PackedScene" uid="uid://cdojs0r4wb121" path="res://resources/scenes/state_machine/controller_states/armed_state/armed_state.tscn" id="3_7majm"]
+[ext_resource type="PackedScene" uid="uid://d1vnl7lx5n0f" path="res://resources/scenes/state_machine/controller_states/shooting_state/shooting.tscn" id="4_onkbj"]
+[ext_resource type="PackedScene" uid="uid://dfoqeua0brww6" path="res://resources/scenes/state_machine/controller_states/unarmed_state/unarmed_state.tscn" id="5_46gxi"]
+[ext_resource type="PackedScene" uid="uid://de8x4plwkvt7k" path="res://resources/scenes/state_machine/controller_states/hooking_state/hooking_state.tscn" id="6_1ix01"]
+[ext_resource type="PackedScene" uid="uid://751fw33qwfvo" path="res://resources/scenes/state_machine/controller_states/grabbing_state/grabbing_state.tscn" id="7_mhtnk"]
+[ext_resource type="PackedScene" path="res://resources/scenes/ability/ability_controller/ability_controller.tscn" id="8_dkae8"]
+[ext_resource type="PackedScene" path="res://resources/scenes/ability/dash_ability/dash_controller.tscn" id="9_pqufl"]
+[ext_resource type="PackedScene" path="res://resources/scenes/ability/hook_ability/hook_controller.tscn" id="10_rek72"]
+[ext_resource type="PackedScene" path="res://resources/scenes/ability/thruster_ability/thruster_controller.tscn" id="11_ln1f1"]
+[ext_resource type="PackedScene" path="res://resources/scenes/ability/grab_ability/grab_controller.tscn" id="12_pchda"]
+[ext_resource type="PackedScene" path="res://resources/scenes/ability/gun_ability/gun_ability.tscn" id="13_ygqkj"]
+[ext_resource type="PackedScene" uid="uid://dwvas05wkcn4b" path="res://resources/scenes/ui/ability_panel/ability_panel.tscn" id="14_6k8s7"]
+[ext_resource type="Script" path="res://resources/scenes/game_object/player/controller/ui_raycast.gd" id="15_54vao"]
+[ext_resource type="Shader" uid="uid://6xpuyqtf6yes" path="res://resources/scenes/game_object/player/controller/gradual_transparency.tres" id="16_c46nn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jc2u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f4ese"]
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu8l4"]
+render_priority = 0
+shader = ExtResource("16_c46nn")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_r7n5b"]
+material = SubResource("ShaderMaterial_wu8l4")
+radius = 0.005
+radial_segments = 4
+rings = 1
+
+[node name="Controller" type="XRController3D" groups=["controller"]]
+script = ExtResource("1_gd5qs")
+
+[node name="StateMachine" parent="." instance=ExtResource("2_n4gjh")]
+initial_state = NodePath("Unarmed")
+
+[node name="Armed" parent="StateMachine" instance=ExtResource("3_7majm")]
+
+[node name="Shooting" parent="StateMachine" instance=ExtResource("4_onkbj")]
+
+[node name="Unarmed" parent="StateMachine" instance=ExtResource("5_46gxi")]
+
+[node name="Hooking" parent="StateMachine" instance=ExtResource("6_1ix01")]
+
+[node name="Grabbing" parent="StateMachine" instance=ExtResource("7_mhtnk")]
+
+[node name="AbilityManager" parent="." instance=ExtResource("8_dkae8")]
+
+[node name="DashController" parent="AbilityManager" instance=ExtResource("9_pqufl")]
+
+[node name="HookController" parent="AbilityManager" instance=ExtResource("10_rek72")]
+
+[node name="ThrusterController" parent="AbilityManager" instance=ExtResource("11_ln1f1")]
+
+[node name="GrabController" parent="AbilityManager" instance=ExtResource("12_pchda")]
+
+[node name="GunController" parent="AbilityManager" instance=ExtResource("13_ygqkj")]
+
+[node name="AbilityPanel" parent="." instance=ExtResource("14_6k8s7")]
+
+[node name="GunNuzzle" type="Node3D" parent="."]
+
+[node name="GrabArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea"]
+shape = SubResource("SphereShape3D_dapnm")
+disabled = true
+
+[node name="StateIdentifier" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6jc2u")
+mesh = SubResource("BoxMesh_f4ese")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)
+collision_mask = 16
+script = ExtResource("15_54vao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+mesh = SubResource("CapsuleMesh_r7n5b")

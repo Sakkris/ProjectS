@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://resources/scenes/ui/end_screen/end_screen.gd" id="1_cbeka"]
+[ext_resource type="PackedScene" uid="uid://73hhhs8lyb1a" path="res://resources/scenes/ui/end_screen/margin_container.tscn" id="2_3o7hp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1s2ee"]
+size = Vector3(1, 1, 0.002)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7bxi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g76lt"]
+size = Vector2(1, 1)
+
+[node name="EndScreen" type="StaticBody3D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_cbeka")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="MarginContainer" parent="SubViewport" instance=ExtResource("2_3o7hp")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1s2ee")
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_d7bxi")
+mesh = SubResource("PlaneMesh_g76lt")

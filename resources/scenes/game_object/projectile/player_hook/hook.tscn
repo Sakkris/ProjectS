@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://resources/scenes/game_object/projectile/player_hook/hook.gd" id="1_cyy4e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dd4s"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1mb73"]
+material = SubResource("StandardMaterial3D_0dd4s")
+size = Vector3(0.04, 0.04, 0.04)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3nan6"]
+radius = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rywy2"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
+radial_segments = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dc12y"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ksyye"]
+material = SubResource("StandardMaterial3D_dc12y")
+size = Vector3(0.04, 0.04, 0.04)
+
+[node name="Hook" type="Node3D"]
+script = ExtResource("1_cyy4e")
+
+[node name="HookTip" type="Node3D" parent="."]
+
+[node name="HookTipMesh" type="MeshInstance3D" parent="HookTip"]
+mesh = SubResource("BoxMesh_1mb73")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="HookTip"]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HookTip/Area3D"]
+shape = SubResource("SphereShape3D_3nan6")
+
+[node name="LineOrigin" type="Node3D" parent="."]
+
+[node name="Line" type="MeshInstance3D" parent="LineOrigin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+mesh = SubResource("CylinderMesh_rywy2")
+skeleton = NodePath("../..")
+
+[node name="GunNuzzle" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_ksyye")

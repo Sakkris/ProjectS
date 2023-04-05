@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cecv12b4nvyqn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gn3av"]
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kscvk"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.494118)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_tnt5y"]
+material = SubResource("StandardMaterial3D_kscvk")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="GrabBlock" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_gn3av")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tnt5y")

@@ -1,13 +1,7 @@
 extends RayCast3D
 
 var last_viewport_point = null
-var controller: XRController3D = null 
-
-
-func _ready():
-	controller = owner
-
-
+ 
 func _process(delta):
 	var raycast_collider = get_collider()
 	
@@ -27,15 +21,7 @@ func try_to_send_input(raycast_collider):
 	viewport_point.x *= viewport.size.x
 	viewport_point.y *= viewport.size.y
 	
-	if controller.is_button_pressed("trigger_click"):
-		var event = InputEventMouseButton.new()
-		event.pressed = true
-		event.button_index = MOUSE_BUTTON_LEFT
-		event.position = viewport_point
-		event.global_position = viewport_point
-		viewport.push_input(event)
-		print("Sent input Click")
-	elif last_viewport_point && last_viewport_point != viewport_point:
+	if last_viewport_point && last_viewport_point != viewport_point:
 		# Send mouse motion to the GUI.
 		var event = InputEventMouseMotion.new()
 		event.position = viewport_point

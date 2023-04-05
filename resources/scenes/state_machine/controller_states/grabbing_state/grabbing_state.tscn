@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/scenes/state_machine/controller_states/grabbing_state/grabbing_state.gd" id="1_e8eg1"]
+
+[node name="Grabbing" type="Node"]
+script = ExtResource("1_e8eg1")

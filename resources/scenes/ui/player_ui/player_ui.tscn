@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxa63lby52pci"]
+
+[ext_resource type="Script" path="res://resources/scenes/ui/player_ui/player_ui.gd" id="1_juq7h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_se4fe"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1e48m"]
+size = Vector2(0.6, 0.35)
+
+[node name="PlayerUI" type="Node3D"]
+script = ExtResource("1_juq7h")
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_se4fe")
+transparency = 1.0
+mesh = SubResource("PlaneMesh_1e48m")
+skeleton = NodePath("../..")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TimeLabel" type="Label" parent="SubViewport/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "00:00"
+
+[node name="SpeedLabel" type="Label" parent="SubViewport/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "14 m/s
+"
+
+[node name="KillLabel" type="Label" parent="SubViewport/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "00 DESTROYED
+"
+
+[node name="FPSCounter" type="Label" parent="SubViewport/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "18 fps"
