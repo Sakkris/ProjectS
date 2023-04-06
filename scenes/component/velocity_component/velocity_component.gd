@@ -19,7 +19,14 @@ func move(delta):
 		decelerate_to_max_speed(delta)
 	
 	parent_node.velocity = velocity
-	parent_node.move_and_slide()
+	var collision = parent_node.move_and_collide(velocity * delta)
+	if collision:
+		var collision_normal = collision.get_normal()
+		
+		if velocity.normalized().dot(collision_normal) <= -0.7:
+			velocity = velocity.bounce(collision_normal) / 20.0
+		else:
+			velocity = velocity.slide(collision_normal)
 	#print("Current Speed: ", velocity.length(), "m/s")
 
 

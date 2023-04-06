@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bwxk255d7fh2x" path="res://scenes/ability/boost_ability/boost_controller.tscn" id="7_o7c0m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
+radius = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sr6s"]
 albedo_color = Color(0, 1, 0, 1)

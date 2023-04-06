@@ -28,12 +28,11 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	set_proper_player_collision()
-	var is_colliding = _process_on_physical_movement(delta)
-	if !is_colliding:
-		velocity_component.move(delta)
+	_process_on_physical_movement(delta)
+	velocity_component.move(delta)
 
 
-func _process_on_physical_movement(delta) -> bool:
+func _process_on_physical_movement(delta):
 	# Remember our current velocity, we'll apply that later
 	var current_velocity = velocity
 	
@@ -63,11 +62,6 @@ func _process_on_physical_movement(delta) -> bool:
 	
 	# Return our value
 	velocity = current_velocity
-	
-	if (player_body_location - global_transform.origin).length() > 0.01:
-		return true
-	else:
-		return false
 
 
 func set_proper_player_collision():
@@ -77,7 +71,7 @@ func set_proper_player_collision():
 		return
 	
 	player_collision.shape.height = current_height + HEIGHT_OFFSET
-	player_collision.shape.radius = 0.5
+	player_collision.shape.radius = 0.3
 	player_collision.global_position.y = ((camera_node.global_position + origin_node.global_position).y / 2) + HEIGHT_OFFSET
 
 

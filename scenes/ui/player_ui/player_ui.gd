@@ -27,7 +27,7 @@ func _ready():
 func _process(_delta):
 	fps_counter.set_text(str(Engine.get_frames_per_second()) + " fps")
 	
-	player_speed_label.set_text("%.2f m/s" % player.velocity_component.velocity.length())
+	player_speed_label.set_text("%.2f m/s" % player.velocity.length())
 
 
 func update_kill_label():
