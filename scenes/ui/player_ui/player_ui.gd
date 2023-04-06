@@ -1,10 +1,15 @@
 extends Node3D
 
-@onready var time_label = $%TimeLabel
-@onready var kill_label = $%KillLabel
-@onready var fps_counter = $%FPSCounter
+@onready var time_label = $SubViewport/PlayerUIControl/TimeLabel
+@onready var kill_label = $SubViewport/PlayerUIControl/KillLabel
+@onready var fps_counter = $SubViewport/PlayerUIControl/FPSCounter
+@onready var height_label = $SubViewport/PlayerUIControl/Height
+@onready var origin_label = $SubViewport/PlayerUIControl/Origin
 
 var num_kills = 0
+
+var height = 0
+var origin = 0
 
 
 func _ready():
@@ -21,6 +26,9 @@ func _ready():
 
 func _process(_delta):
 	fps_counter.set_text(str(Engine.get_frames_per_second()) + " fps")
+	
+	height_label.set_text("%.2f m" % height)
+	origin_label.set_text("Origin: %.2f m" % origin)
 
 
 func update_kill_label():

@@ -41,7 +41,7 @@ script = ExtResource("1_80ysr")
 max_speed = 5.0
 max_overloaded_speed = 10.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_3fje1")
 

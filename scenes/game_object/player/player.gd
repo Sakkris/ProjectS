@@ -1,12 +1,16 @@
 extends CharacterBody3D
 class_name  Player
 
+const HEIGHT_OFFSET = .20 # cm
+
 @onready var origin_node = $XROrigin3D
 @onready var camera_node = $XROrigin3D/XRCamera3D
 @onready var neck_position_node = $XROrigin3D/XRCamera3D/Neck
 @onready var velocity_component = $VelocityComponent
+@onready var player_collision: CollisionShape3D = $PlayerCollision
 
 var webxr_interface
+var previous_height = 0
 
 
 func _ready() -> void:
@@ -24,9 +28,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
+	set_proper_player_collision()
 	var is_colliding = _process_on_physical_movement(delta)
 	if !is_colliding:
-		_process_rotation_on_input(delta)
 		velocity_component.move(delta)
 
 
@@ -62,19 +66,26 @@ func _process_on_physical_movement(delta) -> bool:
 	velocity = current_velocity
 	
 	if (player_body_location - global_transform.origin).length() > 0.01:
-		# We'll talk more about what we'll do here later on
 		return true
 	else:
 		return false
 
 
-func _get_rotational_input() -> float:
-	# Implement this function to return rotation in radians per second.
-	return 0.0
-
-
-func _process_rotation_on_input(delta):
-	rotation.y += _get_rotational_input() * delta
+func set_proper_player_collision():
+	var current_height = camera_node.global_position.y - origin_node.global_position.y
+	
+	if current_height <= 0:
+		return
+	
+	player_collision.shape.height = current_height + HEIGHT_OFFSET
+	player_collision.shape.radius = 0.5
+	player_collision.global_position.y = ((camera_node.global_position + origin_node.global_position).y / 2) + HEIGHT_OFFSET
+	
+	$XROrigin3D/XRCamera3D/PlayerUI.height = player_collision.shape.height
+	$XROrigin3D/XRCamera3D/PlayerUI.origin = origin_node.position.y
+	
+#	print(player_collision.shape.height, " | ", previous_height - current_height, " | ", origin_node.position.y)
+	previous_height = current_height
 
 
 func _webxr_session_supported(session_mode: String, supported: bool) -> void:
@@ -102,7 +113,7 @@ func _webxr_session_started() -> void:
 	get_viewport().use_xr = true
 	
 	GameEvents.emit_game_start()
-	
+	set_proper_player_collision()
 	print ("Reference space type: " + webxr_interface.reference_space_type)
 
 
