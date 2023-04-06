@@ -19,10 +19,10 @@ theme_override_font_sizes/font_size = 35
 text = "00:00"
 
 [node name="SpeedLabel" type="Label" parent="."]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
 text = "14 m/s
 "
 
@@ -40,15 +40,3 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "18 fps"
-
-[node name="Height" type="Label" parent="."]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 20
-text = "1.60m "
-
-[node name="Origin" type="Label" parent="."]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 20
-text = "1.60m "

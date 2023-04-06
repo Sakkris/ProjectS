@@ -10,7 +10,6 @@ const HEIGHT_OFFSET = .20 # cm
 @onready var player_collision: CollisionShape3D = $PlayerCollision
 
 var webxr_interface
-var previous_height = 0
 
 
 func _ready() -> void:
@@ -80,12 +79,6 @@ func set_proper_player_collision():
 	player_collision.shape.height = current_height + HEIGHT_OFFSET
 	player_collision.shape.radius = 0.5
 	player_collision.global_position.y = ((camera_node.global_position + origin_node.global_position).y / 2) + HEIGHT_OFFSET
-	
-	$XROrigin3D/XRCamera3D/PlayerUI.height = player_collision.shape.height
-	$XROrigin3D/XRCamera3D/PlayerUI.origin = origin_node.position.y
-	
-#	print(player_collision.shape.height, " | ", previous_height - current_height, " | ", origin_node.position.y)
-	previous_height = current_height
 
 
 func _webxr_session_supported(session_mode: String, supported: bool) -> void:
