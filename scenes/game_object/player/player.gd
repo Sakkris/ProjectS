@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
-	#set_proper_player_collision()
+	set_proper_player_collision()
 	_process_on_physical_movement(delta)
 	velocity_component.move(delta)
 
@@ -70,9 +70,11 @@ func set_proper_player_collision():
 	if current_height <= 0:
 		return
 	
+	player_collision.global_transform.origin.y = ((camera_node.global_transform.origin + origin_node.global_transform.origin).y / 2) + HEIGHT_OFFSET
 	player_collision.shape.height = current_height + HEIGHT_OFFSET
 	player_collision.shape.radius = 0.3
-	player_collision.global_transform.origin.y = ((camera_node.global_transform.origin + origin_node.global_transform.origin).y / 2) + HEIGHT_OFFSET
+	
+	origin_node.global_transform.origin.y = global_transform.origin.y
 
 
 func pause():
