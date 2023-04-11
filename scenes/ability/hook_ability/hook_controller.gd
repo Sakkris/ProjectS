@@ -1,6 +1,6 @@
 extends Ability
 
-@export var hook_scene: PackedScene
+@onready var hook_scene: PackedScene = preload("res://scenes/game_object/projectile/player_hook/hook.tscn")
 
 var hook_instance
 var in_use: bool = false
