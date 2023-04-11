@@ -38,8 +38,10 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 
 
 func handle_input_pressed(button: String):
-	state.handle_input_pressed(button)
+	if state.has_method("handle_input_pressed"):
+		state.handle_input_pressed(button)
 
 
 func handle_input_released(button: String):
-	state.handle_input_released(button)
+	if state.has_method("handle_input_released"):
+		state.handle_input_released(button)

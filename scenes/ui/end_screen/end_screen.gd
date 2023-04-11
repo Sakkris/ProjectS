@@ -12,4 +12,9 @@ func _ready():
 	$ViewportQuad.material_override.albedo_texture = viewport.get_texture()
 	$ViewportQuad.material_override.flags_transparent = true
 	
-	button.button_down.connect(func(): get_tree().reload_current_scene())
+	button.button_down.connect(on_button_down)
+
+
+func on_button_down():
+	get_tree().paused = false
+	get_tree().reload_current_scene()

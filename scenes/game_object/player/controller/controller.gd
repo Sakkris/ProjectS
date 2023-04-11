@@ -25,6 +25,10 @@ func change_state_identifier(new_state):
 	$StateIdentifier.material_override = material
 
 
+func change_current_state(new_state: String):
+	state_machine.transition_to(new_state)
+
+
 func on_controller_button_pressed(button: String) -> void:
 	state_machine.handle_input_pressed(button)
 

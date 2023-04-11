@@ -34,7 +34,6 @@ func try_to_send_input(raycast_collider):
 		event.position = viewport_point
 		event.global_position = viewport_point
 		viewport.push_input(event)
-		print("Sent input Click")
 	elif last_viewport_point && last_viewport_point != viewport_point:
 		# Send mouse motion to the GUI.
 		var event = InputEventMouseMotion.new()
@@ -43,7 +42,6 @@ func try_to_send_input(raycast_collider):
 		event.velocity = (viewport_point - last_viewport_point) / 16.0; #?? chose an arbitrary scale here for now
 		event.global_position = viewport_point
 		viewport.push_input(event)
-		print("Global Position: ", global_collision_point, " | Local Position: ",local_colision_point, " | Event Position: ", event.position, " | Viewport Size: ", viewport.size)
-		
+	
 	last_viewport_point = viewport_point
 

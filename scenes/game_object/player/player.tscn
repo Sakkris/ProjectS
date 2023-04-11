@@ -35,6 +35,7 @@ material = SubResource("StandardMaterial3D_32scs")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+process_mode = 3
 collision_layer = 0
 script = ExtResource("1_80ysr")
 

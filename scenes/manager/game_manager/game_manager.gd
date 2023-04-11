@@ -21,6 +21,8 @@ func finish_game():
 	end_screen_instance.global_translate(end_screen_instance.transform.basis.y * 1.5)
 	
 	player.velocity_component.full_stop()
+	player.pause()
+	get_tree().paused = true
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=23 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://751fw33qwfvo" path="res://scenes/state_machine/controller_states/grabbing_state/grabbing_state.tscn" id="7_4fofj"]
 [ext_resource type="PackedScene" uid="uid://de8x4plwkvt7k" path="res://scenes/state_machine/controller_states/hooking_state/hooking_state.tscn" id="7_dcaof"]
 [ext_resource type="PackedScene" uid="uid://dy70c5uolio06" path="res://scenes/ability/thruster_ability/thruster_controller.tscn" id="8_8fq8e"]
+[ext_resource type="PackedScene" uid="uid://b37qxdi2wvypi" path="res://scenes/state_machine/controller_states/paused_state/paused.tscn" id="8_jbq58"]
 [ext_resource type="PackedScene" uid="uid://bw8fbc4aai0ol" path="res://scenes/ability/hook_ability/hook_controller.tscn" id="8_lkbr2"]
 [ext_resource type="PackedScene" uid="uid://b0tivsw4mv7ju" path="res://scenes/ability/grab_ability/grab_controller.tscn" id="9_2bikd"]
 [ext_resource type="PackedScene" uid="uid://bqd5hfk550pli" path="res://scenes/ability/gun_ability/gun_ability.tscn" id="13_0wntn"]
@@ -51,6 +52,10 @@ initial_state = NodePath("Unarmed")
 
 [node name="Grabbing" parent="StateMachine" instance=ExtResource("7_4fofj")]
 
+[node name="Paused" parent="StateMachine" node_paths=PackedStringArray("raycast_mesh", "raycast") instance=ExtResource("8_jbq58")]
+raycast_mesh = NodePath("../../RayCast3D/RayCastMesh")
+raycast = NodePath("../../RayCast3D")
+
 [node name="AbilityManager" parent="." instance=ExtResource("3_4f8yc")]
 
 [node name="DashController" parent="AbilityManager" instance=ExtResource("6_7bl1k")]
@@ -80,10 +85,12 @@ material_override = SubResource("StandardMaterial3D_6jc2u")
 mesh = SubResource("BoxMesh_f4ese")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+enabled = false
 target_position = Vector3(0, 0, -2)
 collision_mask = 16
 script = ExtResource("15_4trpf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RayCast3D"]
+[node name="RayCastMesh" type="MeshInstance3D" parent="RayCast3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+visible = false
 mesh = SubResource("CapsuleMesh_r7n5b")

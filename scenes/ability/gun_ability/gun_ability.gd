@@ -4,8 +4,8 @@ class_name Gun
 @onready var shooting_cooldown_timer: Timer = $ShootingCooldownTimer
 @onready var start_recharge_timer: Timer = $StartRechargeTimer
 @onready var recharge_cooldown_timer: Timer = $RechargeCooldownTimer
+@onready var bullet_scene : PackedScene = preload("res://scenes/game_object/projectile/player_bullet/player_bullet.tscn")
 
-@export var bullet_scene : PackedScene
 @export var magazine_size : int = 6
 
 var is_shooting: bool
@@ -18,6 +18,7 @@ func _ready():
 	shooting_cooldown_timer.timeout.connect(on_shooting_cooldown_timer_timeout)
 	start_recharge_timer.timeout.connect(on_start_recharge_timer_timeout)
 	recharge_cooldown_timer.timeout.connect(on_recharge_cooldown_timer_timeout)
+	
 	
 	current_bullets = magazine_size
 

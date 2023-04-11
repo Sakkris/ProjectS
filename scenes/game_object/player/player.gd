@@ -75,6 +75,14 @@ func set_proper_player_collision():
 	player_collision.global_position.y = ((camera_node.global_position + origin_node.global_position).y / 2) + HEIGHT_OFFSET
 
 
+func pause():
+	var left_controller = $XROrigin3D/LeftController
+	var right_controller = $XROrigin3D/RightController
+	
+	left_controller.change_current_state("Paused")
+	right_controller.change_current_state("Paused")
+
+
 func _webxr_session_supported(session_mode: String, supported: bool) -> void:
 	if session_mode == 'immersive-vr':
 		if supported:
