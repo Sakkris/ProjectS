@@ -20,6 +20,7 @@ func move(delta):
 	
 	parent_node.velocity = velocity
 	var collision = parent_node.move_and_collide(velocity * delta)
+	
 	if collision:
 		var collision_normal = collision.get_normal()
 		
@@ -35,7 +36,7 @@ func fixed_movement(movement: Vector3):
 
 
 func accelerate(delta):
-	velocity = velocity.lerp(velocity.normalized() * max_speed, 1.0 - exp(-acceleration_coeficient * delta))
+	velocity = velocity.lerp(calculate_max_velocity(), 1.0 - exp(-acceleration_coeficient * delta))
 
 
 func decelerate(delta):
@@ -61,7 +62,7 @@ func accelerate_in_direction(direction: Vector3, delta):
 	velocity += direction * delta
 	
 	if velocity.length() > max_overloaded_speed:
-		velocity = calculate_max_velocity()
+		velocity = calculate_max_overloaded_velocity()
 
 
 func calculate_max_velocity() -> Vector3:

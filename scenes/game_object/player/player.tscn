@@ -40,8 +40,9 @@ collision_layer = 0
 script = ExtResource("1_80ysr")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_25rjh")]
-max_speed = 5.0
-max_overloaded_speed = 10.0
+max_speed = 15.0
+max_overloaded_speed = 20.0
+acceleration_coeficient = 0.1
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
