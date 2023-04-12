@@ -124,7 +124,7 @@ material_override = SubResource("StandardMaterial3D_nao43")
 [node name="Neck" type="Node3D" parent="XROrigin3D/XRCamera3D"]
 
 [node name="PlayerUI" parent="XROrigin3D/XRCamera3D" instance=ExtResource("7_15od0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

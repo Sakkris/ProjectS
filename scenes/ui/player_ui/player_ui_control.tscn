@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bxvotxlmvuekr"]
+[gd_scene load_steps=2 format=3 uid="uid://bxvotxlmvuekr"]
+
+[ext_resource type="Texture2D" uid="uid://ccoi8n172pq3y" path="res://resources/textures/skull_icon/skull_icon.png" id="1_bvasu"]
 
 [node name="PlayerUIControl" type="MarginContainer"]
 anchors_preset = 15
@@ -18,23 +20,52 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 35
 text = "00:00"
 
-[node name="SpeedLabel" type="Label" parent="."]
+[node name="KillMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 25
-text = "14 m/s
-"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
 
-[node name="KillLabel" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="KillMarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="KillMarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_bvasu")
+expand_mode = 3
+
+[node name="KillLabel" type="Label" parent="KillMarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "00 DESTROYED
+text = "00 
 "
 
-[node name="FPSCounter" type="Label" parent="."]
+[node name="SpeedMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="SpeedLabel" type="Label" parent="SpeedMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 20
+text = "14 m/s
+"
+
+[node name="FPSMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+
+[node name="FPSCounter" type="Label" parent="FPSMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0

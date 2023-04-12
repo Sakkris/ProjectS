@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bxvotxlmvuekr" path="res://scenes/ui/player_ui/player_ui_control.tscn" id="2_85wfw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_se4fe"]
+no_depth_test = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1e48m"]
-size = Vector2(0.6, 0.35)
+size = Vector2(0.6, 0.6)
 
 [node name="PlayerUI" type="Node3D"]
 script = ExtResource("1_uakqs")

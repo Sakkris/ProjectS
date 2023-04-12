@@ -1,9 +1,9 @@
 extends Node3D
 
 @onready var time_label = $SubViewport/PlayerUIControl/TimeLabel
-@onready var kill_label = $SubViewport/PlayerUIControl/KillLabel
-@onready var player_speed_label = $SubViewport/PlayerUIControl/SpeedLabel
-@onready var fps_counter = $SubViewport/PlayerUIControl/FPSCounter
+@onready var kill_label = $SubViewport/PlayerUIControl/KillMarginContainer/HBoxContainer/KillLabel
+@onready var player_speed_label = $SubViewport/PlayerUIControl/SpeedMarginContainer/SpeedLabel
+@onready var fps_counter = $SubViewport/PlayerUIControl/FPSMarginContainer/FPSCounter
 
 var num_kills = 0
 var player
@@ -32,7 +32,7 @@ func _process(_delta):
 
 func update_kill_label():
 	num_kills += 1
-	kill_label.set_text("%02d DESTROYED" % num_kills)
+	kill_label.set_text("%02d" % num_kills)
 
 
 func on_game_time_updated(time_elapsed):
