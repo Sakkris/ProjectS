@@ -1,17 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxvotxlmvuekr"]
+[gd_scene load_steps=3 format=3 uid="uid://bxvotxlmvuekr"]
 
 [ext_resource type="Texture2D" uid="uid://ccoi8n172pq3y" path="res://resources/textures/skull_icon/skull_icon.png" id="1_bvasu"]
+[ext_resource type="Texture2D" uid="uid://bhb4lgs7dqavl" path="res://resources/textures/crosshair/crosshair.png" id="2_8sdq3"]
 
 [node name="PlayerUIControl" type="MarginContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="CrosshairContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TextureRect" type="TextureRect" parent="CrosshairContainer"]
+modulate = Color(0, 0.992157, 0.85098, 0.427451)
+custom_minimum_size = Vector2(412, 412)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_8sdq3")
+expand_mode = 2
 
 [node name="TimeLabel" type="Label" parent="."]
 layout_mode = 2
@@ -33,7 +45,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="KillMarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("1_bvasu")
-expand_mode = 3
+expand_mode = 2
 
 [node name="KillLabel" type="Label" parent="KillMarginContainer/HBoxContainer"]
 layout_mode = 2
