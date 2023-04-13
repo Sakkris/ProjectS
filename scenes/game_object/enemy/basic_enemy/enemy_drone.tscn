@@ -18,6 +18,8 @@ rings = 1
 [sub_resource type="BoxShape3D" id="BoxShape3D_pfvvh"]
 
 [node name="EnemyDrone" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_skoqc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

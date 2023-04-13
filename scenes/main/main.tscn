@@ -8,14 +8,8 @@
 [ext_resource type="Script" path="res://scenes/main/PathFinder.gd" id="3_ts5cl"]
 [ext_resource type="PackedScene" uid="uid://bfc2k8cuv6ixb" path="res://scenes/map/tmp_grid_map.tscn" id="7_27jvy"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_xqcsk"]
-size = Vector3(0.05, 0.05, 0.05)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_bshss"]
 size = Vector3(28, 15, 25)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vlur0"]
-size = Vector3(24, 15, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s8vek"]
 size = Vector3(24, 6, 30)
@@ -25,6 +19,12 @@ size = Vector3(30, 10, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rmg0i"]
 size = Vector3(4, 5, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xqcsk"]
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vlur0"]
+size = Vector3(24, 15, 20)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
 panorama = ExtResource("2_b35sd")
@@ -46,6 +46,51 @@ ambient_light_sky_contribution = 0.5
 [node name="ProjectileManager" type="Node" parent="." groups=["projectile_manager"]]
 
 [node name="GameTimeManager" parent="." instance=ExtResource("1_mj5n6")]
+
+[node name="SpawnArea1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 37, -1.21945)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, 0)
+shape = SubResource("BoxShape3D_bshss")
+
+[node name="SpawnArea3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -28.8871)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
+shape = SubResource("BoxShape3D_s8vek")
+
+[node name="SpawnArea4" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.7713, 41.0313, -55.4823)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
+shape = SubResource("BoxShape3D_jxx8b")
+
+[node name="SpawnArea5" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69998, 15.2423, -55.4823)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26237, -7.70208, -9.97609)
+shape = SubResource("BoxShape3D_rmg0i")
+
+[node name="SpawnArea6" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999953, -0.00969614, 0, 0.00969614, 0.999953, 50.233, 39.0693, -19.9213)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea6"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.86265e-09, 0, 1.86265e-09, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_rmg0i")
 
 [node name="PathFinder" type="Node" parent="."]
 script = ExtResource("3_ts5cl")
@@ -368,15 +413,6 @@ mesh = SubResource("BoxMesh_xqcsk")
 [node name="EnemyManager" parent="." instance=ExtResource("2_jpo0f")]
 spawn_areas = Array[Node]([null, null, null])
 
-[node name="SpawnArea1" type="Area3D" parent="EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 37, -1.21945)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, 0)
-shape = SubResource("BoxShape3D_bshss")
-
 [node name="SpawnArea2" type="Area3D" parent="EnemyManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -4.26298)
 collision_layer = 0
@@ -385,42 +421,6 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, 0)
 shape = SubResource("BoxShape3D_vlur0")
-
-[node name="SpawnArea3" type="Area3D" parent="EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 13.11, -28.8871)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
-shape = SubResource("BoxShape3D_s8vek")
-
-[node name="SpawnArea4" type="Area3D" parent="EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.7713, 41.0313, -55.4823)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.09785, -4.87242)
-shape = SubResource("BoxShape3D_jxx8b")
-
-[node name="SpawnArea5" type="Area3D" parent="EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69998, 15.2423, -55.4823)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26237, -7.70208, -9.97609)
-shape = SubResource("BoxShape3D_rmg0i")
-
-[node name="SpawnArea6" type="Area3D" parent="EnemyManager"]
-transform = Transform3D(1, 0, 0, 0, 0.999953, -0.00969614, 0, 0.00969614, 0.999953, 50.233, 39.0693, -19.9213)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea6"]
-transform = Transform3D(1, 0, 0, 0, 1, -1.86265e-09, 0, 1.86265e-09, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_rmg0i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_emxrp")

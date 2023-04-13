@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch38dt00ojdlc"]
+
+[ext_resource type="Texture2D" uid="uid://doh0tkva0vdfa" path="res://resources/textures/lock_crosshair/lock_crosshair.png" id="1_wrf38"]
+
+[sub_resource type="Animation" id="Animation_aoprm"]
+resource_name = "appear"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 0.203063),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.05, 0.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnnlh"]
+_data = {
+"appear": SubResource("Animation_aoprm")
+}
+
+[node name="LockonCrosshair" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_wrf38")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "appear"
+libraries = {
+"": SubResource("AnimationLibrary_vnnlh")
+}

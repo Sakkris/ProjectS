@@ -19,7 +19,7 @@ func try_to_send_input(raycast_collider):
 	var viewport = raycast_collider.get_child(0)
 	if not (viewport is SubViewport):
 		return # This isn't something we can give input to.
-
+	
 	var global_collision_point = get_collision_point()
 	var local_colision_point = raycast_collider.get_child(1).to_local(global_collision_point);
 	var viewport_point = Vector2(local_colision_point.x, -local_colision_point.y)
