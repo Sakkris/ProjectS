@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3]
-
-[ext_resource type="Script" path="res://resources/scenes/ability/ability_controller/ability_controller.gd" id="1_37b3k"]
-
-[node name="AbilityManager" type="Node"]
-script = ExtResource("1_37b3k")

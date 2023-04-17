@@ -1,49 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch38dt00ojdlc"]
+[gd_scene load_steps=6 format=3 uid="uid://ch38dt00ojdlc"]
 
 [ext_resource type="Texture2D" uid="uid://doh0tkva0vdfa" path="res://resources/textures/lock_crosshair/lock_crosshair.png" id="1_wrf38"]
 
-[sub_resource type="Animation" id="Animation_aoprm"]
+[sub_resource type="Animation" id="Animation_0nrjs"]
 resource_name = "appear"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("MeshInstance3D:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 0.203063),
-"update": 0,
-"values": [0.0, 3.14159]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(1.27456, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0.05, 0.05)]
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnnlh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfmi1"]
 _data = {
-"appear": SubResource("Animation_aoprm")
+"appear": SubResource("Animation_0nrjs")
 }
 
-[node name="LockonCrosshair" type="Node2D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5gb8"]
+transparency = 1
+no_depth_test = true
+albedo_texture = ExtResource("1_wrf38")
+billboard_mode = 1
+billboard_keep_scale = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.14159
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_wrf38")
+[sub_resource type="QuadMesh" id="QuadMesh_8kt02"]
+material = SubResource("StandardMaterial3D_d5gb8")
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.999997, -0.0023446, 0, 0.0023446, 0.999997, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "appear"
 libraries = {
-"": SubResource("AnimationLibrary_vnnlh")
+"": SubResource("AnimationLibrary_hfmi1")
 }
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_8kt02")
