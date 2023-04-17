@@ -55,6 +55,7 @@ shape = SubResource("CapsuleShape3D_3fje1")
 
 [node name="PhysicalOrigin" type="MeshInstance3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+visible = false
 mesh = SubResource("BoxMesh_57e5n")
 skeleton = NodePath("")
 
@@ -147,6 +148,7 @@ text = "Enter VR"
 
 [node name="CharacterOrigin" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+visible = false
 mesh = SubResource("BoxMesh_r7qnk")
 
 [editable path="XROrigin3D/LeftController"]

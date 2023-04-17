@@ -1,6 +1,8 @@
 extends Node3D
 
 @export var MAX_SCALE: float = 0.1
+@export var MIN_SCALE: float = 0.01
+@export var MAX_DISTANCE_SQUARED: float = 900
 @export var MIN_DISTANCE_SQUARED: float = 25
 
 @onready var enemy_icon_scene = preload("res://scenes/ui/misc/enemy_icon.tscn")
@@ -50,11 +52,11 @@ func draw_enemy_icon_at_position(global_icon_position, enemy_id, distance_square
 		viewport.add_child(enemy_icon_instance)
 		enemy_icons[enemy_id] = enemy_icon_instance
 	
-	var scale_factor = inverse_lerp(25, 900, distance_squared)
+	var scale_factor = inverse_lerp(MIN_DISTANCE_SQUARED, MAX_DISTANCE_SQUARED, distance_squared)
 	scale_factor = clamp(scale_factor, 0.0, 1.0)
 	scale_factor = 1 - scale_factor
 	
-	var new_scale = lerp(0.01, 0.1, scale_factor)
+	var new_scale = lerp(MIN_SCALE, MAX_SCALE, scale_factor)
 	enemy_icons[enemy_id].scale = Vector2(new_scale, new_scale)
 	
 	enemy_icons[enemy_id].position = point_to_viewport_position(global_icon_position)
