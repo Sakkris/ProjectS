@@ -7,7 +7,7 @@ extends Node3D
 @onready var lockon_crosshiar_scene = preload("res://scenes/ui/misc/lockon_crosshair.tscn")
 
 var enemies_detected = {}
-var enemies_locked_on = {}
+var instanciated_crosshairs = {}
 var next_available_id = 0
 var space_state = null
 
@@ -22,12 +22,12 @@ func _physics_process(delta):
 	
 	for enemy in enemies_detected:
 		if is_player_looking_at_enemy(enemies_detected[enemy], enemy):
-			if !enemies_locked_on.has(enemy):
-				enemies_locked_on[enemy] = enemies_detected[enemy]
+			if (!instanciated_crosshairs.has(enemy)):
+				instanciate_crosshair(enemies_detected[enemy], enemy)
 		else:
-			if enemies_locked_on.has(enemy):
-				player_ui.remove_crosshair(enemy)
-				enemies_locked_on.erase(enemy)
+			if instanciated_crosshairs.has(enemy):
+				instanciated_crosshairs[enemy].queue_free()
+				instanciated_crosshairs.erase(enemy)
 
 
 func enemy_detected(detected_enemy):
@@ -44,9 +44,9 @@ func enemy_gone(gone_enemy):
 		if enemies_detected[enemy] == gone_enemy:
 			enemies_detected.erase(enemy)
 			
-			if enemies_locked_on.has(enemy):
-				player_ui.remove_crosshair(enemy)
-				enemies_locked_on.erase(enemy)
+			if instanciated_crosshairs.has(enemy):
+				instanciated_crosshairs[enemy].queue_free()
+				instanciated_crosshairs.erase(enemy)
 			
 			next_available_id = enemy
 			break
@@ -54,29 +54,17 @@ func enemy_gone(gone_enemy):
 
 func is_player_looking_at_enemy(enemy: CharacterBody3D, enemy_id) -> bool:
 	var player_camera_foward = -player_camera.global_transform.basis.z
-	if player_camera_foward.dot(enemy.global_position.normalized()) < .5:
-		return false
+	var direction_to_enemy = player_camera.global_transform.origin.direction_to(enemy.global_transform.origin)
 	
-	var query = PhysicsRayQueryParameters3D.create(player_camera.global_position, enemy.global_position)
-	query.collision_mask = 0x0020
-	var result = space_state.intersect_ray(query)
-	
-	if result:
-		if !enemies_locked_on.has(enemy_id):
-			#player_ui.draw_crosshair_at_position(result.position, enemy_id)
-			instanciate_crosshair(enemy, enemy_id)
-			print("Instanciating")
-		return true
-	
-	return false
+	return player_camera_foward.dot(direction_to_enemy) > .85
 
 
 func instanciate_crosshair(enemy: CharacterBody3D, enemy_id):
 	var crosshair_instance = lockon_crosshiar_scene.instantiate()
 	enemy.add_child(crosshair_instance)
 	crosshair_instance.global_transform = enemy.global_transform
-#	crosshair_instance.cam = player_camera
-#	crosshair_instance.enemy = enemy
+	
+	instanciated_crosshairs[enemy_id] = crosshair_instance
 
 
 func on_detection_area_entered(other_object):
