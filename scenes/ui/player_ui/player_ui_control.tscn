@@ -17,7 +17,7 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="TextureRect" type="TextureRect" parent="CrosshairContainer"]
-modulate = Color(0, 0.992157, 0.85098, 0.427451)
+modulate = Color(0, 0.992157, 0.85098, 0.627451)
 custom_minimum_size = Vector2(412, 412)
 layout_mode = 2
 size_flags_horizontal = 4

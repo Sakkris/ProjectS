@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var lockon_crosshiar_scene = preload("res://scenes/ui/misc/lockon_crosshair.tscn")
+@onready var enemy_icon_scene = preload("res://scenes/ui/misc/enemy_icon.tscn")
 
 @onready var time_label = $SubViewport/PlayerUIControl/TimeLabel
 @onready var kill_label = $SubViewport/PlayerUIControl/KillMarginContainer/HBoxContainer/KillLabel
@@ -12,7 +12,8 @@ extends Node3D
 
 var num_kills = 0
 var player
-var lockon_crosshairs = {}
+var enemy_icons = {}
+
 
 func _ready():
 	GameEvents.game_time_updated.connect(on_game_time_updated)
@@ -40,30 +41,31 @@ func update_kill_label():
 	kill_label.set_text("%02d" % num_kills)
 
 
-func draw_crosshair_at_position(global_position: Vector3, crosshair_id: int):
-	if not lockon_crosshairs.has(crosshair_id):
-		var crosshair_instance: Node2D = lockon_crosshiar_scene.instantiate()
-		viewport.add_child(crosshair_instance)
-		lockon_crosshairs[crosshair_id] = crosshair_instance
+func draw_enemy_icon_at_position(global_icon_position, enemy_id):
+	if !enemy_icons.has(enemy_id):
+		var enemy_icon_instance = enemy_icon_scene.instantiate()
+		viewport.add_child(enemy_icon_instance)
+		enemy_icons[enemy_id] = enemy_icon_instance
 	
-	print(viewport.size, " | ", point_to_viewport_position(global_position), " | ", lockon_crosshairs[crosshair_id].position)
-	
-	lockon_crosshairs[crosshair_id].position = point_to_viewport_position(global_position)
+	enemy_icons[enemy_id].position = point_to_viewport_position(global_icon_position)
+#	print(point_to_viewport_position(global_icon_position))
 
 
-func remove_crosshair(crosshair_id: int):
-	if lockon_crosshairs.has(crosshair_id):
-		lockon_crosshairs[crosshair_id].queue_free()
-		lockon_crosshairs.erase(crosshair_id)
+func remove_enemy_icon(enemy_id):
+	if enemy_icons.has(enemy_id):
+		enemy_icons[enemy_id].queue_free()
+		enemy_icons.erase(enemy_id)
 
 
 func point_to_viewport_position(global_position: Vector3) -> Vector2: 
-	var local_colision_point = collision_shape.to_local(global_position);
+	var local_colision_point = to_local(global_position);
 	var viewport_point = Vector2(local_colision_point.x, -local_colision_point.y)
 	
 	viewport_point = viewport_point + Vector2(0.5, 0.5)
 	viewport_point.x *= viewport.size.x
 	viewport_point.y *= viewport.size.y
+	
+	#print(viewport_point)
 	
 	return viewport_point
 

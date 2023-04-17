@@ -45,3 +45,4 @@ func get_rand_position(area):
 	positionInArea.z = (randi() % int(area_size.z)) - (area_size.z/2) + center_position.z
 	
 	return positionInArea
+
