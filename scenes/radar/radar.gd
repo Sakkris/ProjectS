@@ -40,7 +40,9 @@ func _physics_process(delta):
 		if icon_position == null:
 			continue
 		
-		player_ui.draw_enemy_icon_at_position(icon_position, enemy)
+		var distance_squared = owner.position.distance_squared_to(enemies_detected[enemy].position)
+		
+		player_ui.draw_enemy_icon_at_position(icon_position, enemy, distance_squared)
 
 
 func enemy_detected(detected_enemy):
@@ -64,22 +66,19 @@ func get_enemy_icon_position(enemy_id):
 	if result:
 		return result.position
 	
-	print("missed")
-	
 	return null
 
 
 func enemy_gone(gone_enemy):
 	for enemy in enemies_detected:
 		if enemies_detected[enemy] == gone_enemy:
-			enemies_detected.erase(enemy)
-			
 			if instanciated_crosshairs.has(enemy):
 				instanciated_crosshairs[enemy].queue_free()
 				instanciated_crosshairs.erase(enemy)
 			
-			player_ui.remove_enemy_icon(gone_enemy)
+			player_ui.remove_enemy_icon(enemy)
 			
+			enemies_detected.erase(enemy)
 			next_available_id = enemy
 			break
 
