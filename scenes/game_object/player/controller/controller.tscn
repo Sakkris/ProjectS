@@ -57,10 +57,12 @@ raycast = NodePath("../../RayCast3D")
 [node name="AbilityManager" parent="." instance=ExtResource("3_4f8yc")]
 
 [node name="DashController" parent="AbilityManager" instance=ExtResource("6_7bl1k")]
+dash_force = 4.0
 
 [node name="HookController" parent="AbilityManager" instance=ExtResource("8_lkbr2")]
 
 [node name="ThrusterController" parent="AbilityManager" instance=ExtResource("8_8fq8e")]
+thruster_force = 2.0
 
 [node name="GrabController" parent="AbilityManager" instance=ExtResource("9_2bikd")]
 

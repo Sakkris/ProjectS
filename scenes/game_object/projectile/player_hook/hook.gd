@@ -3,11 +3,11 @@ class_name Hook
 
 signal finished_retracting
 
-const HOOK_THROW_SPEED = 30.0
-const HOOK_PULL_SPEED = 5.0
-const HOOK_RETRACT_SPEED = 40.0
+const HOOK_THROW_SPEED = 40.0
+const HOOK_PULL_SPEED = 10.0
+const HOOK_RETRACT_SPEED = 50.0
 
-@export var hook_max_length: float = 25
+@export var hook_max_length: float = 40 
 
 @onready var hook_tip = $HookTip
 @onready var hook_line_origin = $LineOrigin
