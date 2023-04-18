@@ -19,7 +19,7 @@ func exit() -> void:
 
 
 func handle_input_released(button: String):
-	super.handle_input_released(button)
-	
 	if button == "trigger_click":
 		state_machine.transition_to("Armed")
+	
+	super.handle_input_released(button)

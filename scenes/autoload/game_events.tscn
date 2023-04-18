@@ -1,34 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwwpborunc26s"]
 
-[sub_resource type="GDScript" id="GDScript_ouxeh"]
-script/source = "extends Node
-
-signal game_time_updated
-signal enemy_died
-signal enemy_spawned
-signal game_start
-signal game_over
-
-
-func emit_game_time_updated(time_elapsed):
-	game_time_updated.emit(time_elapsed)
-
-
-func emit_enemy_died():
-	enemy_died.emit()
-
-
-func emit_enemy_spawned(enemy):
-	enemy_spawned.emit(enemy)
-
-
-func emit_game_start():
-	game_start.emit()
-
-
-func emit_game_over():
-	game_over.emit()
-"
+[ext_resource type="Script" path="res://scenes/autoload/game_events.gd" id="1_gcbju"]
 
 [node name="GameEvents" type="Node"]
-script = SubResource("GDScript_ouxeh")
+script = ExtResource("1_gcbju")

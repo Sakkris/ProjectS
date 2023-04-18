@@ -2,6 +2,9 @@ extends MovingState
 class_name ArmedState
 
 
+func _ready():
+	super()
+
 func update(_delta: float) -> void:
 	pass
 
@@ -39,8 +42,6 @@ func by_button_pressed():
 
 
 func handle_input_pressed(button: String):
-	super.handle_input_pressed(button)
-	
 	match(button):
 		"trigger_click":
 			trigger_pressed()
@@ -50,11 +51,13 @@ func handle_input_pressed(button: String):
 			grip_pressed()
 		"by_button":
 			by_button_pressed()
+	
+	super.handle_input_pressed(button)
 
 
 func handle_input_released(button: String):
-	super.handle_input_released(button)
-	
 	match(button):
 		"grip_click":
 			grip_released()
+	
+	super.handle_input_released(button)

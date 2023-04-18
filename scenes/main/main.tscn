@@ -24,7 +24,7 @@ size = Vector3(24, 6, 30)
 size = Vector3(30, 10, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rmg0i"]
-size = Vector3(4, 5, 20)
+size = Vector3(4.06845, 4.19789, 28.5802)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
 panorama = ExtResource("2_b35sd")
@@ -410,7 +410,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26237, -7.70208, -9.97609)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32115, -8.28798, -14.3116)
 shape = SubResource("BoxShape3D_rmg0i")
 
 [node name="SpawnArea6" type="Area3D" parent="EnemyManager"]

@@ -20,8 +20,7 @@ func exit() -> void:
 
 
 func handle_input_released(button: String):
-	super.handle_input_released(button)
-	
 	if button == "trigger_click":
 		ability_manager.stop_ability("Hook")
-		
+	
+	super.handle_input_released(button)

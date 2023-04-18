@@ -31,8 +31,6 @@ func grip_pressed():
 
 
 func handle_input_pressed(button: String):
-	super.handle_input_pressed(button)
-	
 	match(button):
 		"trigger_click":
 			trigger_pressed()
@@ -40,3 +38,5 @@ func handle_input_pressed(button: String):
 			thumbstick_pressed()
 		"grip_click":
 			grip_pressed()
+	
+	super.handle_input_pressed(button)

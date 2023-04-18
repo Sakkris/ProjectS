@@ -5,7 +5,7 @@ class_name VelocityComponent
 
 @export var max_speed: float = 10
 @export var max_overloaded_speed: float = 15
-@export var acceleration_coeficient: float = .2
+@export var acceleration_coeficient: float = .5
 
 var velocity: Vector3
 var can_move: bool = true

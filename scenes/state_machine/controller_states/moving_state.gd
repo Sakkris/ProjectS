@@ -2,7 +2,11 @@ extends ControllerState
 class_name MovingState
 
 
+func _ready():
+	super()
+
 func ax_button_pressed():
+	
 	if controller_id == 1:
 		ability_manager.use_ability("Brake")
 	elif controller_id == 2:
