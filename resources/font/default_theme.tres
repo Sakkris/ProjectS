@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://gqubivv0b1co"]
+
+[ext_resource type="FontFile" uid="uid://drb05ogw16dvh" path="res://resources/font/80s-retro-future.ttf" id="1_cuffo"]
+
+[resource]
+default_font = ExtResource("1_cuffo")
+default_font_size = 26

@@ -4,9 +4,9 @@ extends Node3D
 @export var thruster_ability: Ability
 @export var dash_ability: Ability
 
-@onready var bullet_slider: ProgressBar = $%BulletProgressBar
-@onready var thruster_slider: ProgressBar = $%ThrusterProgressBar
-@onready var dash_slider: ProgressBar = $%DashProgressBar
+@onready var bullet_slider: ProgressBar = $SubViewport/ColorRect/MarginContainer/VBoxContainer/BulletHBoxContainer/BulletProgressBar
+@onready var thruster_slider: ProgressBar = $SubViewport/ColorRect/MarginContainer/VBoxContainer/ThrusterHBoxContainer/ThrusterProgressBar
+@onready var dash_slider: ProgressBar = $SubViewport/ColorRect/MarginContainer/VBoxContainer/DashHBoxContainer/DashProgressBar
 
 
 func _ready():

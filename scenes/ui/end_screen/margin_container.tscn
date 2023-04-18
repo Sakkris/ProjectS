@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://73hhhs8lyb1a"]
+[gd_scene load_steps=2 format=3 uid="uid://73hhhs8lyb1a"]
+
+[ext_resource type="Theme" uid="uid://gqubivv0b1co" path="res://resources/font/default_theme.tres" id="1_xq0ea"]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_xq0ea")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
