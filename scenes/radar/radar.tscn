@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/radar/radar.gd" id="1_5mrve"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1r5e2"]
-radius = 30.0
+radius = 60.0
 
 [node name="Radar" type="Node3D"]
 process_priority = -1

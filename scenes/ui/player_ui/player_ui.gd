@@ -2,7 +2,7 @@ extends Node3D
 
 @export var MAX_SCALE: float = 0.1
 @export var MIN_SCALE: float = 0.01
-@export var MAX_DISTANCE_SQUARED: float = 900
+@export var MAX_DISTANCE_SQUARED: float = 3600
 @export var MIN_DISTANCE_SQUARED: float = 25
 
 @onready var enemy_icon_scene = preload("res://scenes/ui/misc/enemy_icon.tscn")

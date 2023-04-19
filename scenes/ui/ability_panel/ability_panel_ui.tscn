@@ -4,18 +4,18 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3o8b"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjaqy"]
-bg_color = Color(0.235294, 0.643137, 0.494118, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjaqy"]
+bg_color = Color(0.235294, 0.643137, 0.494118, 1)
 
 [node name="ColorRect" type="ColorRect"]
 custom_minimum_size = Vector2(546, 256)
@@ -43,6 +43,7 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 20
 
 [node name="BulletHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -55,7 +56,7 @@ theme_override_font_sizes/font_size = 26
 text = "Bullets"
 
 [node name="BulletProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/BulletHBoxContainer"]
-custom_minimum_size = Vector2(400, 50)
+custom_minimum_size = Vector2(400, 35)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 1
@@ -77,7 +78,7 @@ theme_override_font_sizes/font_size = 26
 text = "Thruster"
 
 [node name="ThrusterProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/ThrusterHBoxContainer"]
-custom_minimum_size = Vector2(400, 50)
+custom_minimum_size = Vector2(400, 35)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
@@ -97,7 +98,7 @@ size_flags_horizontal = 2
 text = "Dash"
 
 [node name="DashProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/DashHBoxContainer"]
-custom_minimum_size = Vector2(400, 50)
+custom_minimum_size = Vector2(400, 35)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_e3o8b")
