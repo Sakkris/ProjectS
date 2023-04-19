@@ -10,6 +10,7 @@ const HEIGHT_OFFSET = .20 # cm
 @onready var player_collision: CollisionShape3D = $PlayerCollision
 
 var webxr_interface
+var space_state = null
 
 
 func _ready() -> void:
@@ -27,7 +28,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
-	set_proper_player_collision()
+	space_state = get_world_3d().direct_space_state
+	
+	set_proper_player_collision(delta)
 	_process_on_physical_movement(delta)
 	velocity_component.move(delta)
 
@@ -64,7 +67,7 @@ func _process_on_physical_movement(delta):
 	velocity = current_velocity
 
 
-func set_proper_player_collision():
+func set_proper_player_collision(delta):
 	var current_height = camera_node.global_transform.origin.y - origin_node.global_transform.origin.y
 	
 	if current_height <= 0:
@@ -75,6 +78,27 @@ func set_proper_player_collision():
 	player_collision.shape.radius = 0.3
 	
 	origin_node.global_transform.origin.y = global_transform.origin.y
+	
+	if is_on_floor():
+		var query = PhysicsRayQueryParameters3D.create(player_collision.global_transform.origin, global_transform.origin)
+		query.collision_mask = 0x0001
+		
+		var result = space_state.intersect_ray(query)
+		
+		if result:
+			var offset_vector = Vector3.ZERO
+			offset_vector.y -= global_transform.origin.y - result.position.y - 0.01
+			fix_player_position(offset_vector, delta)
+	
+
+
+func fix_player_position(offset: Vector3, delta):
+	var curr_velocity = velocity_component.velocity
+	
+	velocity = offset / delta
+	move_and_slide()
+	
+	velocity = curr_velocity
 
 
 func pause():
@@ -110,7 +134,6 @@ func _webxr_session_started() -> void:
 	get_viewport().use_xr = true
 	
 	GameEvents.emit_game_start()
-	set_proper_player_collision()
 	print ("Reference space type: " + webxr_interface.reference_space_type)
 
 
