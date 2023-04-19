@@ -3,7 +3,7 @@ class_name Hook
 
 signal finished_retracting
 
-const HOOK_THROW_SPEED = 40.0
+const HOOK_THROW_SPEED = 60.0
 const HOOK_PULL_SPEED = 10.0
 const HOOK_RETRACT_SPEED = 50.0
 
