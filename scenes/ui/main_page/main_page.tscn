@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgq7ded4m1ycp"]
+
+[ext_resource type="Theme" uid="uid://gqubivv0b1co" path="res://resources/font/default_theme.tres" id="1_7l4wt"]
+[ext_resource type="Texture2D" uid="uid://bjnayrrw7ejut" path="res://resources/textures/quest_controller/Quest2_controller.png" id="2_6xv2c"]
+
+[node name="MainPage" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7l4wt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="TutorialButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Tutorial"
+
+[node name="StartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start Game"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6xv2c")
+expand_mode = 2
