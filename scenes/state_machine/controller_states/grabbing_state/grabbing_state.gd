@@ -15,10 +15,10 @@ func enter(_msg := {}) -> void:
 
 
 func exit() -> void:
-	ability_manager.stop_ability("Grab")
+	await ability_manager.stop_ability("Grab")
 
 
 func handle_input_released(button: String):
-	if button == "grip_click":
+	if button == "grip_click" && state_machine.state.name == "Grabbing":
 		state_machine.transition_to("Unarmed")
 

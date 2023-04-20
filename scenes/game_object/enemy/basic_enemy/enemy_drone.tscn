@@ -28,10 +28,6 @@ shape = SubResource("BoxShape3D_olrli")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_64u71")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
-autostart = true
-
 [node name="Hurtbox" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 GameEvents="*res://scenes/autoload/game_events.tscn"
+GameProperties="*res://scenes/autoload/game_properties.gd"
 
 [editor_plugins]
 

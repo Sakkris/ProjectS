@@ -12,11 +12,13 @@ func physics_update(_delta: float) -> void:
 
 func enter(_msg := {}) -> void:
 	await ability_manager.use_ability("Hook")
-	state_machine.transition_to("Unarmed")
+	
+	if state_machine.state.name != "Paused":
+		state_machine.transition_to("Unarmed")
 
 
 func exit() -> void:
-	pass
+	await ability_manager.stop_ability("Hook")
 
 
 func handle_input_released(button: String):

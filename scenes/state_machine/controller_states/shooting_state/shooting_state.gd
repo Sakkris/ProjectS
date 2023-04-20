@@ -15,11 +15,11 @@ func enter(_msg := {}) -> void:
 
 
 func exit() -> void:
-	ability_manager.stop_ability("Gun")
+	await ability_manager.stop_ability("Gun")
 
 
 func handle_input_released(button: String):
-	if button == "trigger_click":
+	if button == "trigger_click" && state_machine.state.name == "Shooting":
 		state_machine.transition_to("Armed")
 	
 	super.handle_input_released(button)

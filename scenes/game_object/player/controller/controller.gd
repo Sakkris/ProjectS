@@ -21,6 +21,8 @@ func change_state_identifier(new_state):
 		material.albedo_color = Color(1, 0, 0)
 	elif new_state == "Hooking":
 		material.albedo_color = Color(1, 1, 0)
+	elif new_state == "Paused":
+		material.albedo_color = Color(1, 1, 1)
 	
 	$StateIdentifier.material_override = material
 

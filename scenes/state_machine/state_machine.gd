@@ -31,7 +31,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	if not has_node(target_state_name):
 		return
 
-	state.exit()
+	await state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)
 	transitioned.emit(owner.get_tracker_hand(), state.name)
