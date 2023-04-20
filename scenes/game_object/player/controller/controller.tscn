@@ -40,8 +40,6 @@ script = ExtResource("1_l0t0k")
 [node name="StateMachine" parent="." instance=ExtResource("2_klrwm")]
 initial_state = NodePath("Unarmed")
 
-[node name="Armed" parent="StateMachine" instance=ExtResource("4_o5uvq")]
-
 [node name="Shooting" parent="StateMachine" instance=ExtResource("5_adiki")]
 
 [node name="Unarmed" parent="StateMachine" instance=ExtResource("6_k3ev3")]
@@ -53,6 +51,8 @@ initial_state = NodePath("Unarmed")
 [node name="Paused" parent="StateMachine" node_paths=PackedStringArray("raycast_mesh", "raycast") instance=ExtResource("8_jbq58")]
 raycast_mesh = NodePath("../../RayCast3D/RayCastMesh")
 raycast = NodePath("../../RayCast3D")
+
+[node name="Armed" parent="StateMachine" instance=ExtResource("4_o5uvq")]
 
 [node name="AbilityManager" parent="." instance=ExtResource("3_4f8yc")]
 

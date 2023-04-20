@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name  Player
 
 const HEIGHT_OFFSET = .20 # cm
+const TURN_ANGLE = 2 * PI / 12
 
 @onready var origin_node = $XROrigin3D
 @onready var camera_node = $XROrigin3D/XRCamera3D
@@ -110,6 +111,14 @@ func pause():
 	
 	left_controller.change_current_state("Paused")
 	right_controller.change_current_state("Paused")
+
+
+func turn_left():
+	transform.basis = transform.basis.rotated(Vector3.UP, TURN_ANGLE)
+
+
+func turn_right():
+	transform.basis = transform.basis.rotated(Vector3.UP, -TURN_ANGLE)
 
 
 func _webxr_session_supported(session_mode: String, supported: bool) -> void:
