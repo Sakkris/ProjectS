@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=23 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b0tivsw4mv7ju" path="res://scenes/ability/grab_ability/grab_controller.tscn" id="9_2bikd"]
 [ext_resource type="PackedScene" uid="uid://bqd5hfk550pli" path="res://scenes/ability/gun_ability/gun_ability.tscn" id="13_0wntn"]
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/ui_raycast.gd" id="15_4trpf"]
+[ext_resource type="Shader" uid="uid://c3x0wrix6al0p" path="res://resources/shaders/transparency_gradent/transparency_gradient.tres" id="17_yey5v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
@@ -25,13 +26,14 @@ radius = 0.1
 [sub_resource type="BoxMesh" id="BoxMesh_f4ese"]
 size = Vector3(0.05, 0.05, 0.05)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfds1"]
-no_depth_test = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2umm1"]
+render_priority = 0
+shader = ExtResource("17_yey5v")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_r7n5b"]
-material = SubResource("StandardMaterial3D_cfds1")
+material = SubResource("ShaderMaterial_2umm1")
 radius = 0.005
-height = 1.0
+height = 0.5
 radial_segments = 4
 rings = 1
 
@@ -92,6 +94,5 @@ collision_mask = 16
 script = ExtResource("15_4trpf")
 
 [node name="RayCastMesh" type="MeshInstance3D" parent="RayCast3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
-visible = false
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.25)
 mesh = SubResource("CapsuleMesh_r7n5b")

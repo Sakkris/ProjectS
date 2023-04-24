@@ -1,6 +1,5 @@
 extends Node3D
 
-
 @onready var button: Button = $SubViewport/MarginContainer/Button
 
 
