@@ -31,6 +31,7 @@ no_depth_test = true
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_r7n5b"]
 material = SubResource("StandardMaterial3D_cfds1")
 radius = 0.005
+height = 1.0
 radial_segments = 4
 rings = 1
 
@@ -91,6 +92,6 @@ collision_mask = 16
 script = ExtResource("15_4trpf")
 
 [node name="RayCastMesh" type="MeshInstance3D" parent="RayCast3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
 visible = false
 mesh = SubResource("CapsuleMesh_r7n5b")

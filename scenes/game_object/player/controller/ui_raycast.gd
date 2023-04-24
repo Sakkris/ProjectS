@@ -1,5 +1,8 @@
 extends RayCast3D
 
+var pointer_scene = preload("res://scenes/ui/misc/pointer.tscn")
+var pointer_instance = null
+
 var last_viewport_point = null
 var controller: XRController3D = null 
 
@@ -13,6 +16,9 @@ func _process(delta):
 	
 	if raycast_collider:
 		try_to_send_input(raycast_collider)
+	elif pointer_instance:
+		pointer_instance.queue_free()
+		pointer_instance = null
 
 
 func try_to_send_input(raycast_collider):
@@ -43,5 +49,14 @@ func try_to_send_input(raycast_collider):
 		event.global_position = viewport_point
 		viewport.push_input(event)
 	
+	draw_pointer(viewport, viewport_point)
 	last_viewport_point = viewport_point
+
+
+func draw_pointer(viewport, vieport_point):
+	if pointer_instance == null:
+		pointer_instance = pointer_scene.instantiate()
+		viewport.add_child(pointer_instance)
+	
+	pointer_instance.position = vieport_point
 
