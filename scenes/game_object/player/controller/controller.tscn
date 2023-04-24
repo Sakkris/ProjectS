@@ -89,10 +89,11 @@ mesh = SubResource("BoxMesh_f4ese")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 enabled = false
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -3)
 collision_mask = 16
 script = ExtResource("15_4trpf")
 
 [node name="RayCastMesh" type="MeshInstance3D" parent="RayCast3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.25)
+visible = false
 mesh = SubResource("CapsuleMesh_r7n5b")

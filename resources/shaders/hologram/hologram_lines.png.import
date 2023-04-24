@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btymh8dvi7ugt"
-path.s3tc="res://.godot/imported/hologram_lines.png-f0df1608f396e63d59c9f52591aa1a83.s3tc.ctex"
-path.etc2="res://.godot/imported/hologram_lines.png-f0df1608f396e63d59c9f52591aa1a83.etc2.ctex"
+path.s3tc="res://.godot/imported/hologram_lines.png-fd305ae4e76dee2d9d4c5fd49c05576a.s3tc.ctex"
+path.etc2="res://.godot/imported/hologram_lines.png-fd305ae4e76dee2d9d4c5fd49c05576a.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/shaders/hologram_lines.png"
-dest_files=["res://.godot/imported/hologram_lines.png-f0df1608f396e63d59c9f52591aa1a83.s3tc.ctex", "res://.godot/imported/hologram_lines.png-f0df1608f396e63d59c9f52591aa1a83.etc2.ctex"]
+source_file="res://resources/shaders/hologram/hologram_lines.png"
+dest_files=["res://.godot/imported/hologram_lines.png-fd305ae4e76dee2d9d4c5fd49c05576a.s3tc.ctex", "res://.godot/imported/hologram_lines.png-fd305ae4e76dee2d9d4c5fd49c05576a.etc2.ctex"]
 
 [params]
 

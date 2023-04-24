@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://73hhhs8lyb1a"]
+[gd_scene load_steps=5 format=3 uid="uid://73hhhs8lyb1a"]
 
 [ext_resource type="Theme" uid="uid://gqubivv0b1co" path="res://resources/font/default_theme.tres" id="1_xq0ea"]
+[ext_resource type="Shader" uid="uid://rub4yl8ct3rd" path="res://resources/shaders/hologram/hologram.tres" id="2_a3mb2"]
+[ext_resource type="Texture2D" uid="uid://btymh8dvi7ugt" path="res://resources/shaders/hologram/hologram_lines.png" id="3_clp7v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxtax"]
+shader = ExtResource("2_a3mb2")
+shader_parameter/BaseColor = Color(0.141176, 0.537255, 0.611765, 1)
+shader_parameter/HologramTextureTilling = Vector2(1, 5)
+shader_parameter/Speed = 1.0
+shader_parameter/HologramLines = ExtResource("3_clp7v")
 
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15
@@ -11,14 +20,15 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_xq0ea")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 2
-mouse_filter = 2
-color = Color(0.25098, 0.25098, 0.25098, 1)
-
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(150, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "RESET GAME"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mxtax")
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.690196, 0.690196, 0.690196, 0.713726)
