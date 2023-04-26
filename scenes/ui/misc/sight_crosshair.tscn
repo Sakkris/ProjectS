@@ -11,8 +11,6 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_d34kb")
 
 [node name="SightCrosshair" type="Node3D"]
-transform = Transform3D(0.999997, -0.0023446, 0, 0.0023446, 0.999997, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 mesh = SubResource("QuadMesh_e1oyf")
