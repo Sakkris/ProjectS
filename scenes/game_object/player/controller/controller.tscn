@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=24 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b0tivsw4mv7ju" path="res://scenes/ability/grab_ability/grab_controller.tscn" id="9_2bikd"]
 [ext_resource type="PackedScene" uid="uid://bqd5hfk550pli" path="res://scenes/ability/gun_ability/gun_ability.tscn" id="13_0wntn"]
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/ui_raycast.gd" id="15_4trpf"]
+[ext_resource type="PackedScene" uid="uid://b33owggv1v17u" path="res://scenes/aim_sight/aim_sight.tscn" id="16_xqpgr"]
 [ext_resource type="Shader" uid="uid://c3x0wrix6al0p" path="res://resources/shaders/transparency_gradent/transparency_gradient.tres" id="17_yey5v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
@@ -74,6 +75,8 @@ thruster_force = 2.0
 [node name="AbilityPanel" parent="." instance=ExtResource("5_cgq1h")]
 
 [node name="GunNuzzle" type="Node3D" parent="."]
+
+[node name="AimSight" parent="." instance=ExtResource("16_xqpgr")]
 
 [node name="GrabArea" type="Area3D" parent="."]
 collision_layer = 0

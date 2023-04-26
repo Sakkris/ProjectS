@@ -1,0 +1,292 @@
+[gd_scene load_steps=9 format=3 uid="uid://dp5fc8l6187cc"]
+
+[ext_resource type="Script" path="res://scenes/tutorial/TutorialManager.gd" id="1_dj7g8"]
+[ext_resource type="MeshLibrary" uid="uid://bpnlne37s45lc" path="res://resources/mesh_library/tmp_mesh_library.tres" id="1_mq233"]
+[ext_resource type="PackedScene" uid="uid://cecv12b4nvyqn" path="res://scenes/game_object/grab_block/grab_block.tscn" id="2_bhks3"]
+[ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="3_sb81d"]
+[ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="4_empbc"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_f8n1v"]
+panorama = ExtResource("4_empbc")
+
+[sub_resource type="Sky" id="Sky_47kps"]
+sky_material = SubResource("PanoramaSkyMaterial_f8n1v")
+
+[sub_resource type="Environment" id="Environment_tefj4"]
+background_mode = 2
+background_energy_multiplier = 1.5
+sky = SubResource("Sky_47kps")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.5
+
+[node name="Tutorial" type="Node"]
+
+[node name="TutorialManager" type="Node" parent="."]
+script = ExtResource("1_dj7g8")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_mq233")
+cell_size = Vector3(1, 1, 1)
+cell_octant_size = 30
+data = {
+"cells": PackedInt32Array(65534, 0, 1048582, 65529, 0, 1048582, 65529, 65531, 1048582, 65534, 65531, 1048582, 3, 65531, 1048582, 3, 0, 1048582, 196611, 65528, 393224, 262142, 65528, 393224, 262137, 65528, 393224, 327683, 65526, 6, 393214, 65526, 6, 393209, 65526, 6, 327683, 65521, 6, 393214, 65521, 6, 393209, 65521, 6, 393209, 65516, 6, 393214, 65516, 6, 327683, 65516, 6, 65529, 5, 6, 65534, 5, 6, 3, 5, 6, 196611, 8, 851976, 262142, 8, 851976, 262137, 8, 851976, 589817, 8, 851976, 589822, 8, 851976, 524291, 8, 851976, 851971, 8, 851976, 917502, 8, 851976, 917497, 8, 851976, 196614, 5, 65544, 196614, 0, 65544, 196614, 65531, 65544, 524294, 65531, 65544, 524294, 0, 65544, 524294, 5, 65544, 851974, 5, 65544, 851974, 0, 65544, 851974, 65531, 65544, 524294, 65526, 65544, 851974, 65526, 65544, 851974, 65521, 65544, 524294, 65521, 65544, 524294, 65516, 65544, 851974, 65516, 65544, 262134, 5, 589832, 589814, 5, 589832, 917494, 5, 589832, 917494, 0, 589832, 589814, 0, 589832, 262134, 0, 589832, 262134, 65531, 589832, 589814, 65531, 589832, 917494, 65531, 589832, 917494, 65526, 589832, 589814, 65526, 589832, 589814, 65521, 589832, 917494, 65521, 589832, 589814, 65516, 589832, 917494, 65516, 589832, 1114105, 5, 1179656, 1114105, 0, 1179656, 1114110, 5, 1179656, 1048579, 5, 1179656, 1048579, 0, 1179656, 1114110, 0, 1179656, 1114105, 65531, 1179656, 1114110, 65531, 1179656, 1048579, 65531, 1179656, 1114105, 65526, 1179656, 1114110, 65526, 1179656, 1048579, 65526, 1179656, 1048579, 65521, 1179656, 1114110, 65521, 1179656, 1114105, 65521, 1179656, 1114105, 65516, 1179656, 1114110, 65516, 1179656, 1048579, 65516, 1179656)
+}
+metadata/_editor_floor_ = Vector3(-10, 16, 8)
+
+[node name="GrabBlocksSet" type="Node3D" parent="GridMap"]
+
+[node name="GrabBlock" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 2, 0)
+
+[node name="GrabBlock2" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2, 0)
+
+[node name="GrabBlock5" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 0)
+
+[node name="GrabBlock3" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 0)
+
+[node name="GrabBlock4" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 0)
+
+[node name="GrabBlock6" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 2, -3)
+
+[node name="GrabBlock7" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2, -3)
+
+[node name="GrabBlock8" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, -3)
+
+[node name="GrabBlock9" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, -3)
+
+[node name="GrabBlock10" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, -3)
+
+[node name="GrabBlock11" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 2, 3)
+
+[node name="GrabBlock12" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2, 3)
+
+[node name="GrabBlock13" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 3)
+
+[node name="GrabBlock14" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 3)
+
+[node name="GrabBlock15" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 3)
+
+[node name="GrabBlock16" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 5, 0)
+
+[node name="GrabBlock17" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 5, 0)
+
+[node name="GrabBlock18" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, 0)
+
+[node name="GrabBlock19" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, 0)
+
+[node name="GrabBlock20" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 5, 0)
+
+[node name="GrabBlock21" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 5, -3)
+
+[node name="GrabBlock22" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 5, -3)
+
+[node name="GrabBlock23" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, -3)
+
+[node name="GrabBlock24" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -3)
+
+[node name="GrabBlock25" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 5, -3)
+
+[node name="GrabBlock26" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 5, 3)
+
+[node name="GrabBlock27" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 5, 3)
+
+[node name="GrabBlock28" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, 3)
+
+[node name="GrabBlock29" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, 3)
+
+[node name="GrabBlock30" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 5, 3)
+
+[node name="GrabBlock31" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 8, 0)
+
+[node name="GrabBlock32" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 8, 0)
+
+[node name="GrabBlock33" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, 0)
+
+[node name="GrabBlock34" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, 0)
+
+[node name="GrabBlock35" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8, 0)
+
+[node name="GrabBlock36" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 8, -3)
+
+[node name="GrabBlock37" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 8, -3)
+
+[node name="GrabBlock38" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 11, -3)
+
+[node name="GrabBlock39" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -3)
+
+[node name="GrabBlock40" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8, -3)
+
+[node name="GrabBlock41" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 8, 3)
+
+[node name="GrabBlock42" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 8, 3)
+
+[node name="GrabBlock43" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, 3)
+
+[node name="GrabBlock44" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, 3)
+
+[node name="GrabBlock45" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8, 3)
+
+[node name="GrabBlock46" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 11, 0)
+
+[node name="GrabBlock47" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 11, 0)
+
+[node name="GrabBlock48" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 11, 0)
+
+[node name="GrabBlock49" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 11, 0)
+
+[node name="GrabBlock50" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 11, 0)
+
+[node name="GrabBlock51" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 11, -3)
+
+[node name="GrabBlock52" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 11, -3)
+
+[node name="GrabBlock53" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, -3)
+
+[node name="GrabBlock54" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 11, -3)
+
+[node name="GrabBlock55" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 11, -3)
+
+[node name="GrabBlock56" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 11, 3)
+
+[node name="GrabBlock57" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 11, 3)
+
+[node name="GrabBlock58" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 11, 3)
+
+[node name="GrabBlock59" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 11, 3)
+
+[node name="GrabBlock60" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 11, 3)
+
+[node name="GrabBlock61" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 2, 6)
+
+[node name="GrabBlock62" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2, 6)
+
+[node name="GrabBlock63" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 6)
+
+[node name="GrabBlock64" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 6)
+
+[node name="GrabBlock65" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 6)
+
+[node name="GrabBlock66" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 5, 6)
+
+[node name="GrabBlock67" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 5, 6)
+
+[node name="GrabBlock68" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, 6)
+
+[node name="GrabBlock69" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, 6)
+
+[node name="GrabBlock70" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 5, 6)
+
+[node name="GrabBlock71" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 8, 6)
+
+[node name="GrabBlock72" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 8, 6)
+
+[node name="GrabBlock73" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 8, 6)
+
+[node name="GrabBlock74" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, 6)
+
+[node name="GrabBlock75" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8, 6)
+
+[node name="GrabBlock76" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49976, 11, 6)
+
+[node name="GrabBlock77" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 11, 6)
+
+[node name="GrabBlock78" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 11, 6)
+
+[node name="GrabBlock79" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 11, 6)
+
+[node name="GrabBlock80" parent="GridMap/GrabBlocksSet" instance=ExtResource("2_bhks3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 11, 6)
+
+[node name="Player" parent="." instance=ExtResource("3_sb81d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 7.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tefj4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.740582, 0.671966, 0, -0.671966, 0.740582, 0, 8.76178, 4.691)
+light_energy = 3.0
+
+[editable path="Player"]
+[editable path="Player/XROrigin3D/LeftController"]
+[editable path="Player/XROrigin3D/LeftController/AbilityPanel"]
+[editable path="Player/XROrigin3D/RightController"]
+[editable path="Player/XROrigin3D/RightController/AbilityPanel"]

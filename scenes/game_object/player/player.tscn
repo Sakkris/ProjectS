@@ -91,10 +91,10 @@ material_override = SubResource("StandardMaterial3D_77qy8")
 [node name="GunNuzzle" parent="XROrigin3D/LeftController" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023, -0.015, -0.03)
 
-[node name="GrabArea" parent="XROrigin3D/LeftController" index="4"]
+[node name="GrabArea" parent="XROrigin3D/LeftController" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
 
-[node name="StateIdentifier" parent="XROrigin3D/LeftController" index="5"]
+[node name="StateIdentifier" parent="XROrigin3D/LeftController" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_856iv")
 
@@ -123,10 +123,10 @@ material_override = SubResource("StandardMaterial3D_22qbk")
 [node name="GunNuzzle" parent="XROrigin3D/RightController" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, -0.015, -0.03)
 
-[node name="GrabArea" parent="XROrigin3D/RightController" index="4"]
+[node name="GrabArea" parent="XROrigin3D/RightController" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
 
-[node name="StateIdentifier" parent="XROrigin3D/RightController" index="5"]
+[node name="StateIdentifier" parent="XROrigin3D/RightController" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_nao43")
 

@@ -10,7 +10,8 @@ func _ready():
 	area_entered.connect(on_area_entered)
 	body_entered.connect(on_body_entered)
 
-func _process(delta):
+
+func _physics_process(delta):
 	global_translate(transform.basis.z * -bullet_speed * delta)
 
 

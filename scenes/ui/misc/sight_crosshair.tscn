@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch38dt00ojdlc"]
+[gd_scene load_steps=6 format=3 uid="uid://wii5sc8x6xhg"]
 
-[ext_resource type="Texture2D" uid="uid://doh0tkva0vdfa" path="res://resources/textures/lock_crosshair/lock_crosshair.png" id="1_wrf38"]
+[ext_resource type="Texture2D" uid="uid://n7rgrdti7kib" path="res://resources/textures/sight_crosshair/sight_crosshair.png" id="1_u8xdf"]
 
 [sub_resource type="Animation" id="Animation_0nrjs"]
 resource_name = "appear"
@@ -23,17 +23,15 @@ _data = {
 "appear": SubResource("Animation_0nrjs")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5gb8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d34kb"]
 transparency = 1
-no_depth_test = true
-albedo_texture = ExtResource("1_wrf38")
-billboard_mode = 1
+albedo_texture = ExtResource("1_u8xdf")
 billboard_keep_scale = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_8kt02"]
-material = SubResource("StandardMaterial3D_d5gb8")
+[sub_resource type="QuadMesh" id="QuadMesh_e1oyf"]
+material = SubResource("StandardMaterial3D_d34kb")
 
-[node name="LockonCrosshair" type="Node3D"]
+[node name="SightCrosshair" type="Node3D"]
 transform = Transform3D(0.999997, -0.0023446, 0, 0.0023446, 0.999997, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -43,4 +41,4 @@ libraries = {
 }
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_8kt02")
+mesh = SubResource("QuadMesh_e1oyf")
