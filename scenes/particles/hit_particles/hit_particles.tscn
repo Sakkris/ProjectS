@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://smylfqdss71c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ad263"]
+shading_mode = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_7vocs"]
+
+[sub_resource type="Curve" id="Curve_vxmw4"]
+_data = [Vector2(0, 0.836364), 0.0, 0.0, 0, 0, Vector2(0.385714, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="GPUParticles3D" type="CPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_ad263")
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 30
+mesh = SubResource("QuadMesh_7vocs")
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+linear_accel_min = 3.0
+linear_accel_max = 3.0
+damping_min = 10.0
+damping_max = 10.0
+scale_amount_min = 0.05
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_vxmw4")

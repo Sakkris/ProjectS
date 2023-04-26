@@ -90,9 +90,6 @@ uniform sampler2D HologramLines;
 void fragment() {
 // ColorParameter:4
 	vec4 n_out4p0 = BaseColor;
-	float n_out4p1 = n_out4p0.r;
-	float n_out4p2 = n_out4p0.g;
-	float n_out4p3 = n_out4p0.b;
 	float n_out4p4 = n_out4p0.a;
 
 

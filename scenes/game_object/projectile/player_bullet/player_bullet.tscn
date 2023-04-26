@@ -1,6 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgfhd4gcvh0ly"]
+[gd_scene load_steps=8 format=3 uid="uid://bgfhd4gcvh0ly"]
 
 [ext_resource type="Script" path="res://scenes/game_object/projectile/player_bullet/player_bullet.gd" id="1_pcqe7"]
+[ext_resource type="PackedScene" uid="uid://smylfqdss71c" path="res://scenes/particles/hit_particles/hit_particles.tscn" id="2_frpf2"]
+
+[sub_resource type="Animation" id="Animation_461tm"]
+resource_name = "hit"
+length = 0.55
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.55),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mdm2t"]
+_data = {
+"hit": SubResource("Animation_461tm")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ax7i"]
 size = Vector3(0.3, 0.3, 0.8)
@@ -19,8 +80,23 @@ rings = 1
 
 [node name="PlayerBullet" type="Area3D"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 5
 script = ExtResource("1_pcqe7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mdm2t")
+}
+
+[node name="BulletLifeTime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="HitParticles" parent="." instance=ExtResource("2_frpf2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.477975)
+direction = Vector3(0, 0, 1)
+spread = 75.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6ax7i")
@@ -28,8 +104,3 @@ shape = SubResource("BoxShape3D_6ax7i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00113726, -0.00433946, 0.00208008)
 mesh = SubResource("CapsuleMesh_70elr")
-
-[node name="BulletLifeTime" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-autostart = true
