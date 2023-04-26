@@ -12,6 +12,7 @@ const HOOK_RETRACT_SPEED = 50.0
 @onready var hook_tip = $HookTip
 @onready var hook_line_origin = $LineOrigin
 @onready var hook_line = $%Line
+@onready var hit_particles = $HitParticles
 
 enum states {HOOKING, COLLIDING, RETRACTING}
 
@@ -111,4 +112,6 @@ func emit_finished_retracting():
 
 func on_body_entered(_other_body):
 	change_state(states.COLLIDING)
+	hit_particles.position = hook_tip.position
+	hit_particles.emitting = true
 	call_deferred("disable_collision")
