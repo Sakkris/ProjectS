@@ -52,15 +52,19 @@ func draw_enemy_icon_at_position(global_icon_position, enemy_id, distance_square
 		viewport.add_child(enemy_icon_instance)
 		enemy_icons[enemy_id] = enemy_icon_instance
 	
-	var scale_factor = inverse_lerp(MIN_DISTANCE_SQUARED, MAX_DISTANCE_SQUARED, distance_squared)
-	scale_factor = clamp(scale_factor, 0.0, 1.0)
-	scale_factor = 1 - scale_factor
-	
-	var new_scale = lerp(MIN_SCALE, MAX_SCALE, scale_factor)
+	var new_scale = get_icon_scale(distance_squared)
 	enemy_icons[enemy_id].scale = Vector2(new_scale, new_scale)
 	
 	enemy_icons[enemy_id].position = point_to_viewport_position(global_icon_position)
 #	print(point_to_viewport_position(global_icon_position))
+
+func get_icon_scale(distance_squared):
+	var scale_factor = inverse_lerp(MIN_DISTANCE_SQUARED, MAX_DISTANCE_SQUARED, distance_squared)
+	scale_factor = clamp(scale_factor, 0.0, 1.0)
+	scale_factor = 1 - scale_factor
+	
+	return lerp(MIN_SCALE, MAX_SCALE, scale_factor)
+
 
 
 func remove_enemy_icon(enemy_id):
