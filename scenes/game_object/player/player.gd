@@ -106,11 +106,8 @@ func fix_player_position(offset: Vector3, delta):
 
 
 func pause():
-	var left_controller = $XROrigin3D/LeftController
-	var right_controller = $XROrigin3D/RightController
-	
-	left_controller.change_current_state("Paused")
-	right_controller.change_current_state("Paused")
+	$XROrigin3D/LeftController.change_current_state("Paused")
+	$XROrigin3D/RightController.change_current_state("Paused")
 
 
 func turn_left():

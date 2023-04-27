@@ -17,14 +17,14 @@ func physics_update(_delta: float) -> void:
 
 
 func enter(_msg := {}) -> void:
-	print(controller)
 	var player = controller.owner
 	player_velocity_component = player.get_node("VelocityComponent")
 	player_velocity_component.can_move = false
 	
 	raycast.enabled = true
 	raycast_mesh.visible = true
-	print("hello")
+	
+	$"../../AimSight".disable_sight()
 
 
 func exit() -> void:

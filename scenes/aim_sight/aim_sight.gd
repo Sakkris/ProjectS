@@ -10,9 +10,13 @@ const MIN_SCALE = .5
 const MAX_SCALE = 1.0
 
 var space_state: PhysicsDirectSpaceState3D = null
+var disabled = false
 
 
 func _physics_process(delta):
+	if disabled: 
+		pass
+	
 	space_state = get_world_3d().direct_space_state
 	var raycast_result = get_crosshair_position()
 	
@@ -35,6 +39,16 @@ func _physics_process(delta):
 		sight_crosshair.look_at(sight_crosshair.global_position - raycast_result.normal)
 	else:
 		sight_crosshair.look_at(sight_crosshair.global_position - raycast_result.normal, Vector3.FORWARD)
+
+
+func disable_sight():
+	disabled = true
+	sight_crosshair.visible = false
+
+
+func enable_sight():
+	disabled = false
+	sight_crosshair.visible = true
 
 
 func get_crosshair_position():

@@ -11,10 +11,12 @@ func physics_update(_delta: float) -> void:
 
 
 func enter(_msg := {}) -> void:
+	$"../../AimSight".disable_sight()
 	ability_manager.use_ability("Grab")
 
 
 func exit() -> void:
+	$"../../AimSight".enable_sight()
 	await ability_manager.stop_ability("Grab")
 
 
