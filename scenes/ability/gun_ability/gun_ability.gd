@@ -7,6 +7,7 @@ class_name Gun
 @onready var bullet_scene : PackedScene = preload("res://scenes/game_object/projectile/player_bullet/player_bullet.tscn")
 
 @export var magazine_size : int = 6
+@export var knockback_force: float = .5 
 
 var is_shooting: bool
 var current_bullets: int
@@ -18,7 +19,6 @@ func _ready():
 	shooting_cooldown_timer.timeout.connect(on_shooting_cooldown_timer_timeout)
 	start_recharge_timer.timeout.connect(on_start_recharge_timer_timeout)
 	recharge_cooldown_timer.timeout.connect(on_recharge_cooldown_timer_timeout)
-	
 	
 	current_bullets = magazine_size
 
@@ -35,6 +35,11 @@ func shoot():
 	
 	shooting_cooldown_timer.start()
 	decrease_bullet_count()
+	knockback_player()
+
+
+func knockback_player():
+	velocity_component.accelerate_in_direction(gun_nuzzle.global_transform.basis.z * knockback_force, 1)
 
 
 func decrease_bullet_count():

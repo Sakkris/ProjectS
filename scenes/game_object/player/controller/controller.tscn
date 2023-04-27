@@ -71,6 +71,7 @@ thruster_force = 2.0
 [node name="GrabController" parent="AbilityManager" instance=ExtResource("9_2bikd")]
 
 [node name="GunController" parent="AbilityManager" instance=ExtResource("13_0wntn")]
+magazine_size = 6
 
 [node name="AbilityPanel" parent="." instance=ExtResource("5_cgq1h")]
 
