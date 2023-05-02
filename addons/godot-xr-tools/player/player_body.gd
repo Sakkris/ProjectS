@@ -240,7 +240,7 @@ func _physics_process(delta: float):
 
 	# Determine environmental gravity
 	var gravity_state := PhysicsServer3D.body_get_direct_state(get_rid())
-	gravity = Vector3.ZERO #gravity_state.total_gravity
+	gravity = gravity_state.total_gravity
 
 	# Update the kinematic body to be under the camera
 	_update_body_under_camera()
