@@ -13,24 +13,6 @@ const TURN_ANGLE = 2 * PI / 12
 var space_state = null
 
 
-func _ready() -> void:
-	$CanvasLayer.visible = false
-	$CanvasLayer/Button.pressed.connect(self._on_button_pressed)
-	
-	if GameProperties.webxr_interface:
-		GameEvents.emit_game_start()
-		pass
-	
-	GameProperties.webxr_interface = XRServer.find_interface("WebXR")
-	if GameProperties.webxr_interface:
-		GameProperties.webxr_interface.session_supported.connect(self._webxr_session_supported)
-		GameProperties.webxr_interface.session_started.connect(self._webxr_session_started)
-		GameProperties.webxr_interface.session_ended.connect(self._webxr_session_ended)
-		GameProperties.webxr_interface.session_failed.connect(self._webxr_session_failed)
-		
-		GameProperties.webxr_interface.is_session_supported("immersive-vr")
-
-
 func _physics_process(delta):
 	space_state = get_world_3d().direct_space_state
 	
@@ -116,41 +98,3 @@ func turn_left():
 
 func turn_right():
 	transform.basis = transform.basis.rotated(Vector3.UP, -TURN_ANGLE)
-
-
-func _webxr_session_supported(session_mode: String, supported: bool) -> void:
-	if session_mode == 'immersive-vr':
-		if supported:
-			$CanvasLayer.visible = true
-		else:
-			OS.alert("Your browser doesn't support VR")
- 
-
-func _on_button_pressed() -> void:
-	GameProperties.webxr_interface.session_mode = 'immersive-vr'
-	GameProperties.webxr_interface.requested_reference_space_types = 'bounded-floor, local-floor, local'
-	GameProperties.webxr_interface.required_features = 'local-floor'
-	GameProperties.webxr_interface.optional_features = 'bounded-floor'
-	
-	if not GameProperties.webxr_interface.initialize():
-		OS.alert("Failed to initialize WebXR")
-		return
- 
-
-func _webxr_session_started() -> void:
-	$CanvasLayer.visible = false
-	
-	get_viewport().use_xr = true
-	
-	GameEvents.emit_game_start()
-	print ("Reference space type: " + GameProperties.webxr_interface.reference_space_type)
-
-
-func _webxr_session_ended() -> void:
-	$CanvasLayer.visible = true
-	
-	get_viewport().use_xr = false
- 
-
-func _webxr_session_failed(message: String) -> void:
-	OS.alert("Failed to initialize: " + message)

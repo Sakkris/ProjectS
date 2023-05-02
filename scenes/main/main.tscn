@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://br5iirj34tefk"]
+[gd_scene load_steps=18 format=3 uid="uid://br5iirj34tefk"]
 
 [ext_resource type="PackedScene" uid="uid://cfgxjpwvok6tf" path="res://scenes/manager/game_manager/game_manager.tscn" id="1_cjaqi"]
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/enemy_manager.tscn" id="2_jpo0f"]
 [ext_resource type="Script" path="res://scenes/main/PathFinder.gd" id="3_ts5cl"]
 [ext_resource type="PackedScene" uid="uid://bfc2k8cuv6ixb" path="res://scenes/map/tmp_grid_map.tscn" id="7_27jvy"]
+[ext_resource type="PackedScene" uid="uid://c353vdj5fhpvp" path="res://scenes/start_xr/start_xr.tscn" id="8_yjdby"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xqcsk"]
 size = Vector3(0.05, 0.05, 0.05)
@@ -40,6 +41,8 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.5
 
 [node name="Main" type="Node"]
+
+[node name="StartXR" parent="." instance=ExtResource("8_yjdby")]
 
 [node name="GameManager" parent="." instance=ExtResource("1_cjaqi")]
 
