@@ -1,5 +1,4 @@
-@tool
-class_name XRToolsStaging
+class_name Staging
 extends Node3D
 
 
@@ -8,7 +7,7 @@ extends Node3D
 ## When creating a game with multiple levels where you want to
 ## make use of background loading and have some nice structure
 ## in place, the Staging scene can be used as a base to handle
-## all theBaseLevel startup and scene switching code.
+## all the startup and scene switching code.
 ## Just inherit this scene, set it up and make the resulting
 ## scene your startup scene.
 ##
@@ -55,7 +54,7 @@ signal xr_ended
 
 
 # Current scene
-var current_scene : XRToolsSceneBase
+var current_scene : MainLevel
 
 # Current scene path
 var current_scene_path : String
@@ -240,7 +239,7 @@ func load_scene(p_scene_path : String) -> void:
 	_tween = get_tree().create_tween()
 	_tween.tween_method(set_fade, 1.0, 0.0, 1.0)
 	await _tween.finished
-
+	
 	current_scene.scene_visible()
 	emit_signal("scene_visible", current_scene)
 
@@ -260,13 +259,13 @@ func set_fade(p_value : float):
 		$Fade.visible = true
 
 
-func _add_signals(p_scene : XRToolsSceneBase):
+func _add_signals(p_scene: MainLevel):
 	p_scene.connect("request_exit_to_main_menu", _on_exit_to_main_menu)
 	p_scene.connect("request_load_scene", _on_load_scene)
 	p_scene.connect("request_reset_scene", _on_reset_scene)
 
 
-func _remove_signals(p_scene : XRToolsSceneBase):
+func _remove_signals(p_scene: MainLevel):
 	p_scene.disconnect("request_exit_to_main_menu", _on_exit_to_main_menu)
 	p_scene.disconnect("request_load_scene", _on_load_scene)
 	p_scene.disconnect("request_reset_scene", _on_reset_scene)
@@ -282,11 +281,3 @@ func _on_load_scene(p_scene_path : String):
 
 func _on_reset_scene():
 	load_scene(current_scene_path)
-
-
-func _on_StartXR_xr_started():
-	emit_signal("xr_started")
-
-
-func _on_StartXR_xr_ended():
-	emit_signal("xr_ended")

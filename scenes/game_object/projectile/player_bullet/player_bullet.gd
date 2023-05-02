@@ -5,6 +5,7 @@ extends Area3D
 
 var bullet_speed = 50.0
 
+
 func _ready():
 	$BulletLifeTime.timeout.connect(self.on_lifetime_timeout)
 	area_entered.connect(on_area_entered)
@@ -18,6 +19,7 @@ func _physics_process(delta):
 func hit_target():
 	bullet_speed = 0
 	$AnimationPlayer.play("hit")
+
 
 func on_lifetime_timeout():
 	hit_target()

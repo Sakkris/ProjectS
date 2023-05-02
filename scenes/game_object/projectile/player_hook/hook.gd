@@ -24,6 +24,7 @@ var origin
 func _ready():
 	$HookTip/Area3D.body_entered.connect(on_body_entered)
 	
+	origin = global_transform.origin
 	hook_line_origin.scale.z = 0
 	hook_line.visible = true
 

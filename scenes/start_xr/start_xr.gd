@@ -9,7 +9,6 @@ func _ready():
 	start_button.pressed.connect(self._on_start_button_pressed)
 	
 	if GameProperties.webxr_interface:
-		GameEvents.emit_game_start()
 		pass
 	
 	GameProperties.webxr_interface = XRServer.find_interface("WebXR")
@@ -46,7 +45,6 @@ func _webxr_session_started() -> void:
 	
 	get_viewport().use_xr = true
 	
-	GameEvents.emit_game_start()
 	print ("Reference space type: " + GameProperties.webxr_interface.reference_space_type)
 
 

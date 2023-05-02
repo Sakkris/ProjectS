@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://br5iirj34tefk"]
+[gd_scene load_steps=15 format=3 uid="uid://br5iirj34tefk"]
 
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_7e28g"]
 [ext_resource type="PackedScene" uid="uid://cfgxjpwvok6tf" path="res://scenes/manager/game_manager/game_manager.tscn" id="1_cjaqi"]
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
 [ext_resource type="PackedScene" uid="uid://cko4rua4k8ahg" path="res://scenes/manager/game_time_manager.tscn" id="1_mj5n6"]
-[ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="2_b35sd"]
 [ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/enemy_manager.tscn" id="2_jpo0f"]
 [ext_resource type="Script" path="res://scenes/main/PathFinder.gd" id="3_ts5cl"]
 [ext_resource type="PackedScene" uid="uid://bfc2k8cuv6ixb" path="res://scenes/map/tmp_grid_map.tscn" id="7_27jvy"]
-[ext_resource type="PackedScene" uid="uid://c353vdj5fhpvp" path="res://scenes/start_xr/start_xr.tscn" id="8_yjdby"]
+[ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="7_e6uss"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xqcsk"]
 size = Vector3(0.05, 0.05, 0.05)
@@ -27,22 +27,9 @@ size = Vector3(30, 10, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rmg0i"]
 size = Vector3(4.06845, 4.19789, 28.5802)
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uyj7q"]
-panorama = ExtResource("2_b35sd")
-
-[sub_resource type="Sky" id="Sky_nef64"]
-sky_material = SubResource("PanoramaSkyMaterial_uyj7q")
-
-[sub_resource type="Environment" id="Environment_emxrp"]
-background_mode = 2
-background_energy_multiplier = 1.5
-sky = SubResource("Sky_nef64")
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.5
-
-[node name="Main" type="Node"]
-
-[node name="StartXR" parent="." instance=ExtResource("8_yjdby")]
+[node name="Main" type="Node3D"]
+script = ExtResource("1_7e28g")
+environment = ExtResource("7_e6uss")
 
 [node name="GameManager" parent="." instance=ExtResource("1_cjaqi")]
 
@@ -424,9 +411,6 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea6"]
 transform = Transform3D(1, 0, 0, 0, 1, -1.86265e-09, 0, 1.86265e-09, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_rmg0i")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_emxrp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.740582, 0.671966, 0, -0.671966, 0.740582, 0, 8.76178, 4.691)
