@@ -191,9 +191,10 @@ func load_scene(p_scene_path : String) -> void:
 		while true:
 			var progress := []
 			var res := ResourceLoader.load_threaded_get_status(p_scene_path, progress)
+			
 			if res != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 				break;
-
+			
 			$LoadingScreen.progress = progress[0]
 			await get_tree().create_timer(0.1).timeout
 

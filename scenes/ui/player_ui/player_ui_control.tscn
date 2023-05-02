@@ -38,8 +38,8 @@ text = "00:00"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="KillMarginContainer"]
 layout_mode = 2
@@ -61,8 +61,8 @@ text = "00
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="SpeedLabel" type="Label" parent="SpeedMarginContainer"]
 layout_mode = 2
@@ -76,8 +76,8 @@ text = "14 m/s
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
 
 [node name="FPSCounter" type="Label" parent="FPSMarginContainer"]
 layout_mode = 2

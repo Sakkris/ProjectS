@@ -17,7 +17,7 @@ size = Vector2(80, 60)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1o2lp"]
 transparency = 1
 shading_mode = 0
-albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="18"]
 render_priority = 0
