@@ -42,8 +42,8 @@ func on_controller_button_released(button: String) -> void:
 	state_machine.handle_input_released(button)
 
 
-func on_thumbstick_moved(name: String, value: Vector2): 
-	if name == "thumbstick":
+func on_thumbstick_moved(button_name: String, value: Vector2): 
+	if button_name == "thumbstick":
 		if !just_turned:
 			if value.x > 0.5:
 				owner.turn_right()

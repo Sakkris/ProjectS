@@ -29,14 +29,6 @@ signal request_reset_scene
 
 @export var environment : Environment
 
-## Interface
-
-func _ready() -> void:
-	pass
-
-# Add support for is_xr_class on XRTools classes
-func is_xr_class(name : String) -> bool:
-	return name == "XRToolsSceneBase"
 
 func center_player_on(p_transform : Transform3D):
 	# In order to center our player so the players feet are at the location
@@ -51,13 +43,13 @@ func center_player_on(p_transform : Transform3D):
 	view_direction.y = 0
 
 	# Now create the transform that we will use to offset our input with
-	var transform : Transform3D
-	transform = transform.looking_at(-view_direction, Vector3.UP)
-	transform.origin = camera_transform.origin
-	transform.origin.y = 0
+	var new_transform : Transform3D
+	new_transform = new_transform.looking_at(-view_direction, Vector3.UP)
+	new_transform.origin = camera_transform.origin
+	new_transform.origin.y = 0
 
 	# And now update our origin point
-	$Player/XROrigin3D.global_transform = (p_transform * transform.inverse()).orthonormalized()
+	$Player/XROrigin3D.global_transform = (p_transform * new_transform.inverse()).orthonormalized()
 
 func scene_loaded():
 	# Called after scene is loaded

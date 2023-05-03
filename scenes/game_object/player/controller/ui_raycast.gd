@@ -11,7 +11,7 @@ func _ready():
 	controller = owner
 
 
-func _process(delta):
+func _process(_delta):
 	var raycast_collider = get_collider()
 	
 	if raycast_collider:

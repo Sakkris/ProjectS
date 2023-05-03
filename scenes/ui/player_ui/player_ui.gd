@@ -24,7 +24,6 @@ func _ready():
 	GameEvents.game_time_updated.connect(on_game_time_updated)
 	GameEvents.enemy_died.connect(func(): update_kill_label())
 	
-	var viewport: SubViewport = $SubViewport
 	viewport.set_clear_mode(SubViewport.CLEAR_MODE_ALWAYS)
 	viewport.transparent_bg = true
 	
@@ -73,8 +72,8 @@ func remove_enemy_icon(enemy_id):
 		enemy_icons.erase(enemy_id)
 
 
-func point_to_viewport_position(global_position: Vector3) -> Vector2: 
-	var local_colision_point = to_local(global_position);
+func point_to_viewport_position(point_global_position: Vector3) -> Vector2: 
+	var local_colision_point = to_local(point_global_position);
 	var viewport_point = Vector2(local_colision_point.x, -local_colision_point.y)
 	
 	viewport_point = viewport_point + Vector2(0.5, 0.5)

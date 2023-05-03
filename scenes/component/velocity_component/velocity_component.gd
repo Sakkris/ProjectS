@@ -73,6 +73,11 @@ func calculate_max_overloaded_velocity() -> Vector3:
 	return velocity.normalized() * max_overloaded_speed
 
 
+func change_direction(new_direction: Vector3):
+	var direction_norm = new_direction.normalized()
+	velocity = velocity.length() * direction_norm
+
+
 func reset_if_opposite_velocity(direction: Vector3):
 	var direction_norm = direction.normalized()
 	var velocity_norm = velocity.normalized()

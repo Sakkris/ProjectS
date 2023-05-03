@@ -120,11 +120,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 
-# Add support for is_xr_class on XRTools classes
-func is_xr_class(name : String) -> bool:
-	return name == "XRToolsStaging"
-
-
 ## Load the specified scene
 func load_scene(p_scene_path : String) -> void:
 	# Do not load if in the editor

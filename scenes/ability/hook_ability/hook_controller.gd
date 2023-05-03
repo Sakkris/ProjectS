@@ -4,6 +4,8 @@ extends Ability
 
 var hook_instance
 var in_use: bool = false
+var locked: bool = false
+var locked_up: Vector3 = Vector3.ZERO
 
 
 func _physics_process(delta):
@@ -12,7 +14,10 @@ func _physics_process(delta):
 		hook_instance.update(delta)
 		
 		if hook_instance.current_state == hook_instance.states.COLLIDING:
-			go_to_collision_point(delta)
+			if locked:
+				rotate_around_point(delta)
+			else: 
+				go_to_collision_point(delta)
 
 
 func use():
@@ -38,6 +43,34 @@ func stop():
 func reset():
 	hook_instance.emit_finished_retracting()
 	hook_instance.queue_free()
+
+
+func use_modifier(modifier: String):
+	match modifier:
+		"Lock":
+			locked = true
+
+
+func stop_modifier(modifier: String):
+	match modifier:
+		"Lock":
+			locked_up = Vector3.ZERO
+			locked = false
+
+
+func rotate_around_point(delta):
+	var direction = gun_nuzzle.global_position.direction_to(hook_instance.hook_tip.global_position)
+	
+	if locked_up == Vector3.ZERO:
+		var direction_basis = Basis().looking_at(hook_instance.hook_tip.global_position, velocity_component.velocity)
+		locked_up = direction_basis.x
+	
+	direction = direction.rotated(locked_up, PI/2)
+	
+	if direction.normalized().dot(velocity_component.velocity.normalized()) < 0:
+		direction = -direction
+	
+	velocity_component.change_direction(direction)
 
 
 func go_to_collision_point(delta):

@@ -18,12 +18,12 @@ func _ready():
 	detection_area.body_exited.connect(on_detection_area_exited)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	foward_plane = Plane(player_camera.global_transform.basis.z, player_ui.global_transform.origin)
 	space_state = get_world_3d().direct_space_state
 	
 	for enemy in enemies_detected:
-		if is_player_looking_at_enemy(enemies_detected[enemy], enemy):
+		if is_player_looking_at_enemy(enemies_detected[enemy]):
 			player_ui.remove_enemy_icon(enemy)
 			
 			if (!instanciated_crosshairs.has(enemy)):
@@ -83,7 +83,7 @@ func enemy_gone(gone_enemy):
 			break
 
 
-func is_player_looking_at_enemy(enemy: CharacterBody3D, enemy_id) -> bool:
+func is_player_looking_at_enemy(enemy: CharacterBody3D) -> bool:
 	var player_camera_foward = -player_camera.global_transform.basis.z
 	var direction_to_enemy = player_camera.global_transform.origin.direction_to(enemy.global_transform.origin)
 	

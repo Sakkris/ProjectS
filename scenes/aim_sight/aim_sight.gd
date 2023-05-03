@@ -13,7 +13,7 @@ var space_state: PhysicsDirectSpaceState3D = null
 var disabled = false
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if disabled: 
 		pass
 	

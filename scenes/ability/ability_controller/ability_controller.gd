@@ -21,19 +21,36 @@ func _ready() -> void:
 func use_ability(ability_name: String):
 	ability_name = complete_ability_name(ability_name)
 	
-	await abilities[ability_name].use()
+	if abilities.has(ability_name):
+		await abilities[ability_name].use()
 
 
 func stop_ability(ability_name: String):
 	ability_name = complete_ability_name(ability_name)
 	
-	await abilities[ability_name].stop()
+	if abilities.has(ability_name):
+		await abilities[ability_name].stop()
 
 
 func reset_ability(ability_name: String):
 	ability_name = complete_ability_name(ability_name)
 	
-	abilities[ability_name].reset()
+	if abilities.has(ability_name):
+		abilities[ability_name].reset()
+
+
+func use_ability_modifier(ability_name: String, ability_modifier: String):
+	ability_name = complete_ability_name(ability_name)
+	
+	if abilities.has(ability_name):
+		abilities[ability_name].use_modifier(ability_modifier)
+
+
+func stop_ability_modifier(ability_name: String, ability_modifier: String):
+	ability_name = complete_ability_name(ability_name)
+	
+	if abilities.has(ability_name):
+		abilities[ability_name].stop_modifier(ability_modifier)
 
 
 func complete_ability_name(ability_name: String) -> String:
