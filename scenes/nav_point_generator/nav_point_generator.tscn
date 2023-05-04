@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wo7ownnsqcod"]
+
+[ext_resource type="Script" path="res://scenes/nav_point_generator/nav_point_generator.gd" id="1_q8dia"]
+
+[node name="NavPointGenerator" type="Node3D"]
+script = ExtResource("1_q8dia")
