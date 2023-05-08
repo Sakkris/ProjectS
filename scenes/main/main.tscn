@@ -428,3 +428,4 @@ data = {
 metadata/_editor_floor_ = Vector3(-20, 37, -48)
 
 [node name="NavPointGenerator" parent="." instance=ExtResource("9_uu0qj")]
+distance_limit = Vector3(6, 6, 6)

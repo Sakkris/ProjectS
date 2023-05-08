@@ -14,7 +14,7 @@ enum possible_considered_neighbours {
 @export var considered_neighbours: possible_considered_neighbours =  possible_considered_neighbours.ONLY_SIDES
 
 # Distance between each navigation point in meters
-@export_range(0, 10, 1, "or_greater") var distance_between_points: float = 2
+@export_range(0, 10, 1, "or_greater") var distance_between_points: int = 2
 
 # The Collision Mask used by the raycasts to check for possible collisions
 @export_flags_3d_physics var raycast_collision_mask: int = 0b0001
@@ -39,24 +39,46 @@ var astar: AStar3D = AStar3D.new()
 var point_queue: Array[Vector3]
 var space_state: PhysicsDirectSpaceState3D = null
 var current_point: Vector3
+var start_point: Vector3 = Vector3(0, 2, 0)
 
 var material: StandardMaterial3D
 
-var generated: bool = false
+var controller: XRController3D
+var desired_point = null
+var closest_point = null
 
 func _ready():
 	material = StandardMaterial3D.new()
 	material.vertex_color_use_as_albedo = true
-	point_queue.push_back(Vector3.UP)
+	point_queue.push_back(start_point)
+	
+	await owner.ready
+	controller = $"../Player/XROrigin3D/RightController"
 
 
-func _process(delta):
-	generate_astar()
-	set_process(false)
+func _physics_process(delta):
+	if !point_queue.is_empty():
+		generate_astar()
+	
+	if controller.is_button_pressed("by_button"):
+		if desired_point != null:
+			desired_point.queue_free()
+			closest_point.queue_free()
+		
+		var desired_position = controller.global_position
+		var desired_point_mat = StandardMaterial3D.new()
+		desired_point_mat.albedo_color = Color.GOLD
+		
+		desired_point = draw_debug_point(desired_position, desired_point_mat, Vector3(0.1, 0.1, 0.1))
+		
+		var closest_position = get_closest_point(desired_position)
+		var closest_point_mat = StandardMaterial3D.new()
+		closest_point_mat.albedo_color = Color.GREEN
+		
+		closest_point = draw_debug_point(closest_position, closest_point_mat, Vector3(0.1, 0.1, 0.1))
 
 
 func generate_astar():
-	
 	var idx = 0
 	var point_id = 0
 	
@@ -131,6 +153,28 @@ func exists_obstacle_between(current_point: Vector3, target_point: Vector3) -> b
 	return not result.is_empty()
 
 
+func get_closest_point(desired_point: Vector3) -> Vector3:
+	var x_pos: int = get_closest_coordinate(desired_point.x)
+	var y_pos: int = get_closest_coordinate(desired_point.y)
+	var z_pos: int = get_closest_coordinate(desired_point.z) 
+	
+	print(desired_point, " | ", Vector3(x_pos, y_pos, z_pos))
+	
+	return Vector3(x_pos, y_pos, z_pos)
+
+
+func get_closest_coordinate(coordinate) -> int:
+	if roundi(coordinate) % distance_between_points == 0: 
+		return roundi(coordinate)
+	else:
+		if coordinate < 0:
+			coordinate = abs(coordinate)
+			return -(((floori(coordinate) + distance_between_points/2) / distance_between_points) * distance_between_points)
+		
+		return ((floori(coordinate) + distance_between_points/2) / distance_between_points) * distance_between_points
+
+
+
 func draw_debug_line(orig_point, dest_point):
 	var vertices = PackedVector3Array()
 	
@@ -157,9 +201,11 @@ func draw_debug_line(orig_point, dest_point):
 	
 	add_child(m)
 
-func draw_debug_point(point: Vector3):
+func draw_debug_point(point: Vector3, point_material = material, point_size = Vector3(0.05, 0.05, 0.05)):
 	var myMesh: MeshInstance3D = MeshInstance3D.new()
 	myMesh.mesh = BoxMesh.new()
-	myMesh.mesh.size = Vector3(0.1, 0.1, 0.1)
+	myMesh.mesh.size = point_size
+	myMesh.material_override = point_material
 	add_child(myMesh)
 	myMesh.position = point
+	return myMesh
