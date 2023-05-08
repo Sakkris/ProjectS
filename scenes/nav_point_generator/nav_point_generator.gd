@@ -1,4 +1,4 @@
-
+@tool
 extends Node3D
 class_name NavPointGenerator
 
@@ -60,6 +60,9 @@ func generate_astar():
 			if not exists_obstacle_between(current_point, target_point):
 				var target_point_id = generate_point_id(target_point)
 				
+				if target_point_id < 0:
+					printerr("Negative id ", target_point_id, " generated from: ", target_point)
+				
 				if astar.has_point(target_point_id):
 					if not astar.are_points_connected(point_id, target_point_id):
 						astar.connect_points(point_id, target_point_id)
@@ -72,20 +75,19 @@ func generate_astar():
 
 # Generates an id from the point coordinates (Adaptation of szudzik pairing)
 func generate_point_id(point: Vector3) -> int:
-	if point.x >= point.y:
-		if point.y >= point.z:
-			return point.x * point.x + point.x + point.y
-		elif point.x >= point.z:
-			return point.x * point.x + point.x + point.z
-		else:
-			return point.z * point.z + point.y
-	else:
-		if point.x >= point.z:
-			return point.y * point.y + point.y + point.x
-		elif point.y >= point.z:
-			return point.y * point.y + point.y + point.z
-		else:
-			return point.z * point.z + point.y
+	# Convert the vector to a string and remove any spaces or parentheses
+	var str_vec = str(point).replace(" ", "").replace("(", "").replace(")", "")
+
+	# Convert the string to a unique integer using a hash function
+	var id = hash(str_vec) & 0x7FFFFFFF
+
+	# Ensure the ID is positive
+	if id < 0:
+		id += 0x7FFFFFFF + 1
+	
+	print(id, " - ", point)
+	
+	return id
 
 
 # Queries a Raycast between the current_point and the target_point and checks for any collision
@@ -97,7 +99,5 @@ func exists_obstacle_between(current_point: Vector3, target_point: Vector3) -> b
 	query.hit_back_faces = true
 	
 	var result = space_state.intersect_ray(query)
-	
-	print(result)
 	
 	return not result.is_empty()
