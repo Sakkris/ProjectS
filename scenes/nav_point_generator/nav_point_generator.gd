@@ -52,32 +52,34 @@ func _ready():
 	material.vertex_color_use_as_albedo = true
 	point_queue.push_back(start_point)
 	
-	await owner.ready
-	controller = $"../Player/XROrigin3D/RightController"
+#	await owner.ready
+#	controller = $"../Player/XROrigin3D/RightController"
 
 
 func _physics_process(_delta):
 	if !point_queue.is_empty():
 		generate_astar()
 	
-	if controller.is_button_pressed("by_button"):
-		if desired_point != null:
-			desired_point.queue_free()
-			closest_point.queue_free()
-		
-		var desired_position = controller.global_position
-		var desired_point_mat = StandardMaterial3D.new()
-		desired_point_mat.albedo_color = Color.GOLD
-		
-		desired_point = draw_debug_point(desired_position, desired_point_mat, Vector3(0.1, 0.1, 0.1))
-		
-		var closest_position = get_closest_point(desired_position)
-		var closest_point_mat = StandardMaterial3D.new()
-		closest_point_mat.albedo_color = Color.GREEN
-		
-		closest_point = draw_debug_point(closest_position, closest_point_mat, Vector3(0.1, 0.1, 0.1))
+#	if controller.is_button_pressed("by_button"):
+#		if desired_point != null:
+#			desired_point.queue_free()
+#			closest_point.queue_free()
+#
+#		var desired_position = controller.global_position
+#		var desired_point_mat = StandardMaterial3D.new()
+#		desired_point_mat.albedo_color = Color.GOLD
+#
+#		desired_point = draw_debug_point(desired_position, desired_point_mat, Vector3(0.1, 0.1, 0.1))
+#
+#		var closest_position = get_closest_point(desired_position)
+#		var closest_point_mat = StandardMaterial3D.new()
+#		closest_point_mat.albedo_color = Color.GREEN
+#
+#		closest_point = draw_debug_point(closest_position, closest_point_mat, Vector3(0.1, 0.1, 0.1))
 
 
+# Generates a Astar Object giving it points and connections according to the settings defined,
+# using a Flood Fill algorithm
 func generate_astar():
 	var idx = 0
 	var point_id = 0
@@ -153,6 +155,7 @@ func exists_obstacle_between(origin_point: Vector3, target_point: Vector3) -> bo
 	return not result.is_empty()
 
 
+# Finds the closest point in the AStar to the desired position
 func get_closest_point(desired_point_pos: Vector3) -> Vector3:
 	var x_pos: int = get_closest_coordinate(desired_point_pos.x)
 	var y_pos: int = get_closest_coordinate(desired_point_pos.y)
@@ -178,6 +181,9 @@ func get_closest_point(desired_point_pos: Vector3) -> Vector3:
 	return start_point
 
 
+# Calculates the closest coordinate that is part of the navigation grid 
+# Example: If the distance between points is 2 this will return the closest number to 'coordinate'
+#             that is multiple of 2
 func get_closest_coordinate(coordinate) -> int:
 	if roundi(coordinate) % distance_between_points == 0: 
 		return roundi(coordinate)
@@ -190,6 +196,7 @@ func get_closest_coordinate(coordinate) -> int:
 
 
 
+# Draws a debug line between the two given points
 func draw_debug_line(orig_point, dest_point):
 	var vertices = PackedVector3Array()
 	
@@ -216,6 +223,8 @@ func draw_debug_line(orig_point, dest_point):
 	
 	add_child(m)
 
+
+# Draws a debug mesh in the given position
 func draw_debug_point(point: Vector3, point_material = material, point_size = Vector3(0.05, 0.05, 0.05)):
 	var myMesh: MeshInstance3D = MeshInstance3D.new()
 	myMesh.mesh = BoxMesh.new()
