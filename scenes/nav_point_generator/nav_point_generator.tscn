@@ -4,3 +4,4 @@
 
 [node name="NavPointGenerator" type="Node3D"]
 script = ExtResource("1_q8dia")
+limit = 99999

@@ -29,6 +29,8 @@ signal request_reset_scene
 
 @export var environment : Environment
 
+func _ready():
+	pass
 
 func center_player_on(p_transform : Transform3D):
 	# In order to center our player so the players feet are at the location
