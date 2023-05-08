@@ -157,10 +157,25 @@ func get_closest_point(desired_point_pos: Vector3) -> Vector3:
 	var x_pos: int = get_closest_coordinate(desired_point_pos.x)
 	var y_pos: int = get_closest_coordinate(desired_point_pos.y)
 	var z_pos: int = get_closest_coordinate(desired_point_pos.z) 
+	var closest_point = Vector3(x_pos, y_pos, z_pos)
 	
-	print(desired_point_pos, " | ", Vector3(x_pos, y_pos, z_pos))
+	if astar.has_point(generate_point_id(closest_point)):
+		return closest_point
 	
-	return Vector3(x_pos, y_pos, z_pos)
+	var attempt_limit = 5
+	var attempt = 0
+	var attempted_point
+	
+	while attempt_limit > attempt:
+		for i in range(considered_neighbours):
+			attempted_point = closest_point + direction_dict[i] * (distance_between_points * attempt)
+			
+			if astar.has_point(generate_point_id(attempted_point)):
+				return attempted_point
+		
+		attempt += 1
+	
+	return start_point
 
 
 func get_closest_coordinate(coordinate) -> int:
