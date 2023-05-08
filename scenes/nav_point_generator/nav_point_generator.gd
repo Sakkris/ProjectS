@@ -42,18 +42,19 @@ func generate_astar():
 	var limit = 10
 	var idx = 0
 	space_state = get_world_3d().direct_space_state
-	current_point = Vector3.ZERO
+	point_queue.push_back(Vector3.UP)
 	
 	var point_id = 0
 	point_id = generate_point_id(current_point)
 	astar.add_point(point_id, current_point)
 	
-	while not point_queue.is_empty() || current_point == Vector3.ZERO:
+	while not point_queue.is_empty():
+		current_point = point_queue.pop_back()
+		
 		if idx > limit:
-			point_queue.clear()
+			return
 		
 		for i in range(considered_neighbours):
-			print(point_queue) 
 			var target_point = current_point + direction_dict[i] * distance_between_points
 			
 			if not exists_obstacle_between(current_point, target_point):
@@ -67,7 +68,6 @@ func generate_astar():
 					astar.connect_points(point_id, target_point_id)
 					point_queue.push_back(target_point)
 		idx += 1
-		current_point = point_queue.pop_back()
 
 
 # Generates an id from the point coordinates (Adaptation of szudzik pairing)
@@ -97,5 +97,7 @@ func exists_obstacle_between(current_point: Vector3, target_point: Vector3) -> b
 	query.hit_back_faces = true
 	
 	var result = space_state.intersect_ray(query)
+	
+	print(result)
 	
 	return not result.is_empty()
