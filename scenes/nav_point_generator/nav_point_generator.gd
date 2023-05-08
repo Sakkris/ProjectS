@@ -56,7 +56,7 @@ func _ready():
 	controller = $"../Player/XROrigin3D/RightController"
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !point_queue.is_empty():
 		generate_astar()
 	
@@ -140,9 +140,9 @@ func generate_point_id(point: Vector3) -> int:
 	return id
 
 
-# Queries a Raycast between the current_point and the target_point and checks for any collision
-func exists_obstacle_between(current_point: Vector3, target_point: Vector3) -> bool:
-	var query = PhysicsRayQueryParameters3D.create(current_point, target_point)
+# Queries a Raycast between the origin_point and the target_point and checks for any collision
+func exists_obstacle_between(origin_point: Vector3, target_point: Vector3) -> bool:
+	var query = PhysicsRayQueryParameters3D.create(origin_point, target_point)
 	
 	query.collision_mask = raycast_collision_mask
 	query.hit_from_inside = true
@@ -153,12 +153,12 @@ func exists_obstacle_between(current_point: Vector3, target_point: Vector3) -> b
 	return not result.is_empty()
 
 
-func get_closest_point(desired_point: Vector3) -> Vector3:
-	var x_pos: int = get_closest_coordinate(desired_point.x)
-	var y_pos: int = get_closest_coordinate(desired_point.y)
-	var z_pos: int = get_closest_coordinate(desired_point.z) 
+func get_closest_point(desired_point_pos: Vector3) -> Vector3:
+	var x_pos: int = get_closest_coordinate(desired_point_pos.x)
+	var y_pos: int = get_closest_coordinate(desired_point_pos.y)
+	var z_pos: int = get_closest_coordinate(desired_point_pos.z) 
 	
-	print(desired_point, " | ", Vector3(x_pos, y_pos, z_pos))
+	print(desired_point_pos, " | ", Vector3(x_pos, y_pos, z_pos))
 	
 	return Vector3(x_pos, y_pos, z_pos)
 

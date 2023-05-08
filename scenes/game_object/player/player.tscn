@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://7spnfacotrv5" path="res://scenes/component/velocity_component/velocity_component.tscn" id="2_25rjh"]
-[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_iackg"]
 [ext_resource type="PackedScene" uid="uid://cv7sehl8awll6" path="res://scenes/radar/radar.tscn" id="3_y0f66"]
 [ext_resource type="PackedScene" uid="uid://3qjmkjv737j6" path="res://scenes/game_object/player/controller/controller.tscn" id="4_hbqme"]
-[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_ikdel"]
 [ext_resource type="PackedScene" uid="uid://dfujh6qr0fr2t" path="res://scenes/ability/brake_ability/brake_controller.tscn" id="5_3fnfe"]
+[ext_resource type="PackedScene" uid="uid://njx823gyk04n" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_hand.tscn" id="6_46b4b"]
 [ext_resource type="PackedScene" uid="uid://dxa63lby52pci" path="res://scenes/ui/player_ui/player_ui.tscn" id="7_15od0"]
 [ext_resource type="PackedScene" uid="uid://bwxk255d7fh2x" path="res://scenes/ability/boost_ability/boost_controller.tscn" id="7_o7c0m"]
+[ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="8_cxak1"]
 [ext_resource type="Shader" uid="uid://0yj74hy4xyr1" path="res://resources/shaders/grayscale/grayscale.tres" id="10_5tqm7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
@@ -97,7 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, -0.04, 0.08)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_856iv")
 
-[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("3_iackg")]
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("6_46b4b")]
 
 [node name="RightController" parent="XROrigin3D" instance=ExtResource("4_hbqme")]
 tracker = &"right_hand"
@@ -129,7 +129,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, -0.04, 0.08)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0, 0.15)
 material_override = SubResource("StandardMaterial3D_nao43")
 
-[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("4_ikdel")]
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("8_cxak1")]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 

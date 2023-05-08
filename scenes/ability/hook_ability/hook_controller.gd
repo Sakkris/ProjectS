@@ -58,11 +58,11 @@ func stop_modifier(modifier: String):
 			locked = false
 
 
-func rotate_around_point(delta):
+func rotate_around_point(_delta):
 	var direction = gun_nuzzle.global_position.direction_to(hook_instance.hook_tip.global_position)
 	
 	if locked_up == Vector3.ZERO:
-		var direction_basis = Basis().looking_at(hook_instance.hook_tip.global_position, velocity_component.velocity)
+		var direction_basis = Basis.looking_at(hook_instance.hook_tip.global_position, velocity_component.velocity)
 		locked_up = direction_basis.x
 	
 	direction = direction.rotated(locked_up, PI/2)
