@@ -1,10 +1,11 @@
 extends Node
 
-@export var spawn_areas: Array[Node]
+@export var player: Player
 
 @onready var timer = $Timer
 
-var enemy = preload("res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn")
+var enemy = preload("res://scenes/game_object/enemy/basic_enemy/e_type/e_type.tscn")
+var spawn_areas: Array[Node]
 
 
 func _ready():
@@ -29,6 +30,7 @@ func spawn_enemy():
 	
 	var enemy_instance = enemy.instantiate()
 	enemy_instance.position = positionInArea
+	enemy_instance.player = player
 	add_child(enemy_instance)
 	
 	GameEvents.emit_enemy_spawned(enemy_instance)

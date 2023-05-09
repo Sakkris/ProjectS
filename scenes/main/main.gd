@@ -65,6 +65,7 @@ func scene_loaded():
 	# position where you want the player to spawn, even if the player is
 	# physically halfway across the room.
 	center_player_on($Player/XROrigin3D.global_transform)
+	NavPointGenerator.generate_astar()
 
 func scene_visible():
 	GameEvents.emit_game_start()

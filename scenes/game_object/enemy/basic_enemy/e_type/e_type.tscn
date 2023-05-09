@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://8f024jb2q0df"]
+
+[ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_8bk67"]
+[ext_resource type="PackedScene" uid="uid://5sd8an8bku8m" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/get_in_range.tscn" id="2_jo3bw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kdlvw"]
+radius = 10.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_io331"]
+radius = 10.0
+
+[node name="EType" instance=ExtResource("1_8bk67")]
+
+[node name="BeehaveTree" parent="." index="1"]
+actor_node_path = NodePath("..")
+
+[node name="GetInRange" parent="BeehaveTree" index="0" instance=ExtResource("2_jo3bw")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRange" index="0"]
+shape = SubResource("SphereShape3D_kdlvw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange" index="0"]
+shape = SubResource("SphereShape3D_io331")

@@ -1,30 +1,33 @@
 extends Node3D
-class_name NavPointGenerator
+
+## This script utilizes Flood Fill to generate an AStar Node within an enclosed space that can then be used for navigation porpuses
+
+@export_group("Generation Settings")
+## an Hard Limit to how many points to check before returning (stops infinite loop in case there is a gap)
+@export var limit = 9999
+
+## The Directions to consider neighbours to each point
+@export var considered_neighbours: possible_considered_neighbours =  possible_considered_neighbours.ONLY_SIDES
+
+## Distance between each navigation point in meters
+@export_range(0, 10, 1, "or_greater") var distance_between_points: int = 2
+
+## The Collision Mask used by the raycasts to check for possible collisions
+@export_flags_3d_physics var raycast_collision_mask: int = 0b0001
+
+## Maximum Distance for each side the vector (0, 0, 0) disables this
+@export var distance_limit = Vector3(0, 0, 0)
+
+@export_group("Debug")
+## Bool that defines if debug lines will be drawn representing the connections between navigation points
+@export var draw_debug_lines: bool = false
+## Bool that defines if debug meshes will be drawn representing the navigation points
+@export var draw_debug_points: bool = false
 
 enum possible_considered_neighbours {
 	WITH_DIAGONALS = 26,
 	ONLY_SIDES = 6
 }
-
-@export_category("Generation Options")
-# An Hard Limit to how many points to check before returning (stops infinite loop in case there is a gap)
-@export var limit = 9999
-
-# The Directions to consider neighbours to each point
-@export var considered_neighbours: possible_considered_neighbours =  possible_considered_neighbours.ONLY_SIDES
-
-# Distance between each navigation point in meters
-@export_range(0, 10, 1, "or_greater") var distance_between_points: int = 2
-
-# The Collision Mask used by the raycasts to check for possible collisions
-@export_flags_3d_physics var raycast_collision_mask: int = 0b0001
-
-# Maximum Distance for each side the vector (0, 0, 0) disables this
-@export var distance_limit = Vector3(0, 0, 0)
-
-@export_category("Debug")
-@export var draw_debug_lines: bool = false
-@export var draw_debug_points: bool = false
 
 var direction_dict = {
 	0: Vector3(1, 0, 0),
@@ -52,31 +55,6 @@ func _ready():
 	material.vertex_color_use_as_albedo = true
 	point_queue.push_back(start_point)
 	
-#	await owner.ready
-#	controller = $"../Player/XROrigin3D/RightController"
-
-
-func _physics_process(_delta):
-	if !point_queue.is_empty():
-		generate_astar()
-	
-#	if controller.is_button_pressed("by_button"):
-#		if desired_point != null:
-#			desired_point.queue_free()
-#			closest_point.queue_free()
-#
-#		var desired_position = controller.global_position
-#		var desired_point_mat = StandardMaterial3D.new()
-#		desired_point_mat.albedo_color = Color.GOLD
-#
-#		desired_point = draw_debug_point(desired_position, desired_point_mat, Vector3(0.1, 0.1, 0.1))
-#
-#		var closest_position = get_closest_point(desired_position)
-#		var closest_point_mat = StandardMaterial3D.new()
-#		closest_point_mat.albedo_color = Color.GREEN
-#
-#		closest_point = draw_debug_point(closest_position, closest_point_mat, Vector3(0.1, 0.1, 0.1))
-
 
 # Generates a Astar Object giving it points and connections according to the settings defined,
 # using a Flood Fill algorithm
@@ -194,6 +172,15 @@ func get_closest_coordinate(coordinate) -> int:
 		
 		return ((floori(coordinate) + distance_between_points/2) / distance_between_points) * distance_between_points
 
+
+func generate_path(origin: Vector3, destiny: Vector3):
+	origin = get_closest_point(origin)
+	var path_origin_id = generate_point_id(origin)
+	
+	destiny = get_closest_point(destiny)
+	var path_dest_id = generate_point_id(destiny)
+	
+	return astar.get_point_path(path_origin_id, path_dest_id)
 
 
 # Draws a debug line between the two given points

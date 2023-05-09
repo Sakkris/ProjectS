@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciowisqs1ayti"]
+[gd_scene load_steps=8 format=3 uid="uid://ciowisqs1ayti"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.gd" id="1_skoqc"]
+[ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="2_f7crh"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_nbiee"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_olrli"]
 
@@ -22,6 +24,12 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_skoqc")
 
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("2_f7crh")
+
+[node name="BeehaveTree" type="Node" parent="."]
+script = ExtResource("3_nbiee")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_olrli")
 
@@ -34,3 +42,7 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("BoxShape3D_pfvvh")
+
+[node name="DetectionRange" type="Area3D" parent="."]
+
+[node name="AttackRange" type="Area3D" parent="."]

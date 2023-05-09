@@ -5,6 +5,3 @@
 [node name="NavPointGenerator" type="Node3D"]
 script = ExtResource("1_q8dia")
 limit = 99999
-distance_limit = Vector3(10, 10, 10)
-draw_debug_lines = true
-draw_debug_points = true

@@ -20,10 +20,13 @@ config/icon="res://icon.svg"
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 GameEvents="*res://scenes/autoload/game_events.tscn"
 GameProperties="*res://scenes/autoload/game_properties.gd"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
+NavPointGenerator="*res://scenes/nav_point_generator/nav_point_generator.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/beehave/plugin.cfg")
 
 [layer_names]
 
