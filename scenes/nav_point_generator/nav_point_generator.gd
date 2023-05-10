@@ -176,7 +176,7 @@ func get_closest_coordinate(coordinate) -> int:
 		return ((floori(coordinate) + distance_between_points/2) / distance_between_points) * distance_between_points
 
 
-func generate_path(origin: Vector3, destiny: Vector3):
+func generate_path(origin: Vector3, destiny: Vector3) -> PackedVector3Array:
 	origin = get_closest_point(origin)
 	var path_origin_id = generate_point_id(origin)
 	

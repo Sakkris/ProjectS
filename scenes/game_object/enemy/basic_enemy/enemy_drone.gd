@@ -1,23 +1,26 @@
 extends CharacterBody3D
 
-@export var navigation_generator: Node
-
-const SPEED = 2.0
+@onready var velocity_component: VelocityComponent = $VelocityComponent
 
 var player: Player = null
-var direction = transform.basis * Vector3.LEFT
-var turn_flag = 1
+var path_to_follow: PackedVector3Array
+var last_visited_point: Vector3
 
 
 func _ready():
 	$Hurtbox.area_entered.connect(self.on_hit_taken)
 
 
-func _physics_process(_delta):
-	velocity.x = direction.x * SPEED
-	velocity.z = direction.z * SPEED
-	
-#	move_and_slide()
+func _physics_process(delta):
+	if !path_to_follow.is_empty():
+		for next_point in path_to_follow:
+			if next_point != last_visited_point:
+				var direction = (next_point - global_position).normalized()
+				velocity_component.accelerate_in_direction(direction, delta)
+				velocity_component.move(delta)
+				
+				if next_point.distance_to(global_position) < .5:
+					last_visited_point = next_point
 
 
 func on_hit_taken(_area):

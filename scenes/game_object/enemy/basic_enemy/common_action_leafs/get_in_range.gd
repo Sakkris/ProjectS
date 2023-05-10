@@ -2,6 +2,8 @@ class_name GetInRange extends ActionLeaf
 
 @onready var path_cooldown_timer = $Timer
 
+var debug_points: Array 
+var debug_lines: Array
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	# Verificar se está em Range do PLayer
@@ -19,9 +21,12 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if !path_cooldown_timer.is_stopped() && is_player_far:
 		return RUNNING
 	
-	var path = NavPointGenerator.generate_path(current_location, player_location)
+	var path: PackedVector3Array = NavPointGenerator.generate_path(current_location, player_location)
 	
 	if is_player_far:
 		path_cooldown_timer.start()
 	
+	actor.path_to_follow = path
 	return RUNNING
+
+
