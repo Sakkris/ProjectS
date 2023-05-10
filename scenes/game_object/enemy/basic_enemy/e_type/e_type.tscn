@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://8f024jb2q0df"]
+[gd_scene load_steps=7 format=3 uid="uid://8f024jb2q0df"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_8bk67"]
 [ext_resource type="PackedScene" uid="uid://5sd8an8bku8m" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/get_in_range.tscn" id="2_jo3bw"]
+[ext_resource type="Material" uid="uid://b5ukuqa1ujra8" path="res://resources/enemy_model/etype_drone_mat.tres" id="3_8r11j"]
+[ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="4_d620g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kdlvw"]
 radius = 10.0
@@ -19,24 +21,33 @@ actor_node_path = NodePath("..")
 [node name="GetInRange" parent="BeehaveTree" index="0" instance=ExtResource("2_jo3bw")]
 
 [node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.999721, 0.0236028, 0, -0.0236028, 0.999721, 0, 0, 0, 1, 0, 0.00302418, 0)
+material_override = ExtResource("3_8r11j")
 
 [node name="long_rod_A" parent="DroneMesh/bad_Ship/main_body" index="0"]
-transform = Transform3D(0.933817, -0.353892, 0.0523942, 0.240697, 0.729856, 0.639824, -0.264669, -0.584868, 0.766733, 0, 0, 0)
+transform = Transform3D(0.919525, -0.372244, -0.126126, 0.330624, 0.559097, 0.760327, -0.212511, -0.74084, 0.637177, 0, 0, 0)
+material_override = ExtResource("3_8r11j")
 
 [node name="long_rod_B" parent="DroneMesh/bad_Ship/main_body" index="1"]
-transform = Transform3D(0.99803, 0.0254741, -0.0573411, 0.00362709, 0.888924, 0.45804, 0.06264, -0.457346, 0.88708, 0, 0, 0)
+transform = Transform3D(0.966593, 0.131788, 0.219841, -0.186943, 0.949263, 0.25289, -0.175359, -0.285539, 0.942187, 0, 0, 0)
+material_override = ExtResource("3_8r11j")
 
 [node name="small_rod_A" parent="DroneMesh/bad_Ship/main_body" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.94957, 0.113969, -0.292111, 3.72529e-09, 0.931605, 0.363472, 0.313557, -0.345142, 0.884624, 0, 0, 0)
+material_override = ExtResource("3_8r11j")
 
 [node name="small_rod_B" parent="DroneMesh/bad_Ship/main_body" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.972263, 0.0250183, 0.23255, -0.0279348, 0.999567, 0.00925583, -0.232218, -0.0154954, 0.97254, -3.00788e-05, -0.000456877, 0)
+material_override = ExtResource("3_8r11j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRange" index="0"]
 shape = SubResource("SphereShape3D_kdlvw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange" index="0"]
 shape = SubResource("SphereShape3D_io331")
+
+[node name="Camera3D" type="Camera3D" parent="." index="8"]
+transform = Transform3D(0.697302, 0.240523, -0.675217, 0.248162, 0.802747, 0.54223, 0.672447, -0.545661, 0.500069, -0.460599, 0.42, 0.324347)
+environment = ExtResource("4_d620g")
 
 [editable path="DroneMesh"]

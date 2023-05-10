@@ -3628,6 +3628,12 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": null
 }
+},
+"materials": {
+"drone_mat": {
+"use_external/enabled": true,
+"use_external/path": "res://resources/enemy_model/drone_mat.tres"
+}
 }
 }
 gltf/embedded_image_handling=1
