@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ciowisqs1ayti"]
+[gd_scene load_steps=9 format=3 uid="uid://ciowisqs1ayti"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.gd" id="1_skoqc"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="2_f7crh"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_nbiee"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_olrli"]
+[ext_resource type="PackedScene" uid="uid://d2bm47ir1hhp8" path="res://resources/enemy_model/basic_enemy.glb" id="4_rrorg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm3at"]
 albedo_color = Color(1, 0.0588235, 0, 1)
@@ -17,7 +16,11 @@ material = SubResource("StandardMaterial3D_dm3at")
 radial_segments = 4
 rings = 1
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pfvvh"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_mg2do"]
+radius = 0.55
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2cweo"]
+radius = 0.55
 
 [node name="EnemyDrone" type="CharacterBody3D"]
 collision_layer = 4
@@ -30,19 +33,46 @@ script = ExtResource("2_f7crh")
 [node name="BeehaveTree" type="Node" parent="."]
 script = ExtResource("3_nbiee")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_olrli")
+[node name="DroneMesh" parent="." instance=ExtResource("4_rrorg")]
+
+[node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
+transform = Transform3D(0.997028, -0.0770434, 0, 0.0770434, 0.997028, 0, 0, 0, 1, 0, -0.000388759, 0)
+
+[node name="long_rod_A" parent="DroneMesh/bad_Ship/main_body" index="0"]
+transform = Transform3D(0.978454, -0.142301, -0.149594, 0.204984, 0.582919, 0.786249, -0.0246828, -0.799972, 0.599529, 0, 0, 0)
+
+[node name="long_rod_B" parent="DroneMesh/bad_Ship/main_body" index="1"]
+transform = Transform3D(0.956403, -0.0423767, 0.28896, -0.0553182, 0.945221, 0.321711, -0.286764, -0.32367, 0.901667, 0, 0, 0)
+
+[node name="small_rod_A" parent="DroneMesh/bad_Ship/main_body" index="2"]
+transform = Transform3D(0.804092, 0.0730062, -0.590005, 0.123578, 0.950228, 0.285998, 0.581519, -0.302881, 0.755049, 0, 0, 0)
+
+[node name="small_rod_B" parent="DroneMesh/bad_Ship/main_body" index="3"]
+transform = Transform3D(0.997074, 0.0703362, 0.0299323, -0.0739909, 0.986387, 0.146856, -0.0191955, -0.148641, 0.988705, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="DroneMesh" index="1"]
+autoplay = "idle"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_64u71")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_mg2do")
 
 [node name="Hurtbox" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
-shape = SubResource("BoxShape3D_pfvvh")
+shape = SubResource("SphereShape3D_2cweo")
 
 [node name="DetectionRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="AttackRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[editable path="DroneMesh"]

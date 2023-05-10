@@ -10,14 +10,33 @@ radius = 10.0
 radius = 10.0
 
 [node name="EType" instance=ExtResource("1_8bk67")]
+collision_layer = 5
+collision_mask = 1
 
 [node name="BeehaveTree" parent="." index="1"]
 actor_node_path = NodePath("..")
 
 [node name="GetInRange" parent="BeehaveTree" index="0" instance=ExtResource("2_jo3bw")]
 
+[node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="long_rod_A" parent="DroneMesh/bad_Ship/main_body" index="0"]
+transform = Transform3D(0.933817, -0.353892, 0.0523942, 0.240697, 0.729856, 0.639824, -0.264669, -0.584868, 0.766733, 0, 0, 0)
+
+[node name="long_rod_B" parent="DroneMesh/bad_Ship/main_body" index="1"]
+transform = Transform3D(0.99803, 0.0254741, -0.0573411, 0.00362709, 0.888924, 0.45804, 0.06264, -0.457346, 0.88708, 0, 0, 0)
+
+[node name="small_rod_A" parent="DroneMesh/bad_Ship/main_body" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="small_rod_B" parent="DroneMesh/bad_Ship/main_body" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRange" index="0"]
 shape = SubResource("SphereShape3D_kdlvw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange" index="0"]
 shape = SubResource("SphereShape3D_io331")
+
+[editable path="DroneMesh"]

@@ -49,6 +49,7 @@ var material: StandardMaterial3D
 var controller: XRController3D
 var desired_point = null
 var closest_point = null
+var generated = false
 
 func _ready():
 	material = StandardMaterial3D.new()
@@ -103,6 +104,8 @@ func generate_astar():
 					
 					if draw_debug_points:
 						draw_debug_point(target_point)
+	
+	generated = true
 
 
 # Generates an id from the point coordinates (Adaptation of szudzik pairing)
