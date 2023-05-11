@@ -1,10 +1,17 @@
 extends CharacterBody3D
 
+@export var attack_range = 10
+@export var dash_speed = 20
+
 @onready var velocity_component: VelocityComponent = $VelocityComponent
+@onready var animation_player: AnimationPlayer = $DroneMesh/AnimationPlayer
 
 var player: Player = null
 var path_to_follow: PackedVector3Array
 var target_point: Vector3 = Vector3.INF
+
+var dashing = false
+var dashing_target = Vector3.INF
 
 
 func _ready():
@@ -12,6 +19,12 @@ func _ready():
 
 
 func _physics_process(delta):
+	if dashing && dashing_target != Vector3.INF:
+		var dir_to_target = global_transform.origin.direction_to(dashing_target).normalized()
+		velocity_component.fixed_movement(dir_to_target * dash_speed * delta)
+		
+		return
+	
 	if target_point != Vector3.INF:
 		var dir_to_target = global_transform.origin.direction_to(target_point).normalized()
 		
@@ -19,6 +32,8 @@ func _physics_process(delta):
 		
 		if global_transform.origin.distance_to(target_point) < 0.5:
 			next_target_point()
+			velocity_component.change_direction(global_transform.origin.direction_to(target_point).normalized())
+			
 	else:
 		velocity_component.decelerate(delta)
 	
@@ -31,6 +46,48 @@ func next_target_point():
 	else:
 		target_point = Vector3.INF
 
+
+func get_distance_to_player() -> float:
+	return global_transform.origin.distance_to(player.global_transform.origin)
+
+
+func full_stop():
+	velocity_component.full_stop()
+
+
+func look_at_player():
+	look_at(player.global_transform.origin)
+
+
+func play_animation(animation_name):
+	if animation_player.has_animation(animation_name):
+		animation_player.play(animation_name)
+
+
+func is_animation_playing(animation_name):
+	if animation_player.current_animation == animation_name:
+		return animation_player.is_playing()
+	else: 
+		return false
+
+
+func is_current_animation(animation_name):
+	return animation_player.current_animation == animation_name
+
+
+func dash_attack(target: Vector3):
+	dashing = true
+	dashing_target = target
+	
+	var dir_to_target = global_transform.origin.direction_to(dashing_target).normalized()
+	velocity = dir_to_target * dash_speed / 2.0
+
+
+func end_dash():
+	dashing = false
+	dashing_target = Vector3.INF
+	animation_player.play("idle")
+	velocity_component.velocity = velocity
 
 func on_hit_taken(_area):
 	GameEvents.emit_enemy_died()

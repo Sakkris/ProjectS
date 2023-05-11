@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://ctlkpn1xft3jb"]
 
 [ext_resource type="Script" path="res://scenes/misc/shader_cache/shader_cache.gd" id="1_7qwpc"]
 [ext_resource type="Shader" uid="uid://rub4yl8ct3rd" path="res://resources/shaders/hologram/hologram.tres" id="2_rmnw4"]
 [ext_resource type="Texture2D" uid="uid://btymh8dvi7ugt" path="res://resources/shaders/hologram/hologram_lines.png" id="3_cficy"]
 [ext_resource type="Shader" uid="uid://c3x0wrix6al0p" path="res://resources/shaders/transparency_gradent/transparency_gradient.tres" id="4_hsnel"]
+[ext_resource type="Material" uid="uid://b5ukuqa1ujra8" path="res://resources/enemy_model/etype_drone_mat.tres" id="5_04vbc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bo0r"]
 shader = ExtResource("2_rmnw4")
@@ -33,4 +34,9 @@ mesh = SubResource("QuadMesh_ocdt2")
 [node name="Transparency" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 material_override = SubResource("ShaderMaterial_1hw1v")
+mesh = SubResource("QuadMesh_gdf61")
+
+[node name="EnemyText" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+material_override = ExtResource("5_04vbc")
 mesh = SubResource("QuadMesh_gdf61")

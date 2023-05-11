@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://8f024jb2q0df"]
+[gd_scene load_steps=12 format=3 uid="uid://d3ryuc5u8qs8q"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_8bk67"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_6vds8"]
 [ext_resource type="PackedScene" uid="uid://5sd8an8bku8m" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/get_in_range.tscn" id="2_jo3bw"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_vv3le"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/is_player_in_range.gd" id="3_5oxvx"]
 [ext_resource type="Material" uid="uid://b5ukuqa1ujra8" path="res://resources/enemy_model/etype_drone_mat.tres" id="3_8r11j"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="3_fg3ge"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/IsObstacleBetween.gd" id="5_egcyj"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/prepare_dash.gd" id="7_ey2ii"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/dash_to_player.gd" id="7_pjsmf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kdlvw"]
 radius = 10.0
@@ -16,45 +21,87 @@ collision_layer = 12
 collision_mask = 1
 
 [node name="VelocityComponent" parent="." index="0"]
-max_speed = 5.0
+max_speed = 7.5
 max_overloaded_speed = 10.0
-acceleration_coeficient = 0.1
+acceleration_coeficient = 1.0
 
 [node name="BeehaveTree" parent="." index="1"]
 actor_node_path = NodePath("..")
 
-[node name="SequenceComposite" type="Node" parent="BeehaveTree" index="0"]
-script = ExtResource("2_vv3le")
+[node name="SelectorComposite2" type="Node" parent="BeehaveTree" index="0"]
+script = ExtResource("2_6vds8")
 
-[node name="GetInRange" parent="BeehaveTree/SequenceComposite" index="0" instance=ExtResource("2_jo3bw")]
+[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite2" index="0"]
+script = ExtResource("3_fg3ge")
+
+[node name="AttackComposite" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator" index="0"]
+script = ExtResource("2_6vds8")
+
+[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="0"]
+script = ExtResource("3_fg3ge")
+
+[node name="IsPlayerInRange" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/InverterDecorator" index="0"]
+script = ExtResource("3_5oxvx")
+
+[node name="IsObstacleBetween" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="1"]
+script = ExtResource("5_egcyj")
+
+[node name="PrepareDash" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="2"]
+script = ExtResource("7_ey2ii")
+
+[node name="Timer" type="Timer" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/PrepareDash" index="0"]
+wait_time = 3.0
+one_shot = true
+
+[node name="DashToPlayer" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="3"]
+script = ExtResource("7_pjsmf")
+
+[node name="GetInRange" parent="BeehaveTree/SelectorComposite2" index="1" instance=ExtResource("2_jo3bw")]
+
+[node name="DroneMesh" parent="." index="2"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.994842, 0.101437, 0, -0.101437, 0.994842, 0, 0, 0, 1, 0, 0.00238634, 0)
 material_override = ExtResource("3_8r11j")
 
 [node name="long_rod_A" parent="DroneMesh/bad_Ship/main_body" index="0"]
-transform = Transform3D(0.933817, -0.353892, 0.0523942, 0.240697, 0.729856, 0.639824, -0.264669, -0.584868, 0.766733, 0, 0, 0)
+transform = Transform3D(0.933301, -0.35526, 0.0523395, 0.241715, 0.729308, 0.640065, -0.265561, -0.584722, 0.766536, 0, 0, 0)
 material_override = ExtResource("3_8r11j")
 
 [node name="long_rod_B" parent="DroneMesh/bad_Ship/main_body" index="1"]
-transform = Transform3D(0.99803, 0.0254741, -0.057341, 0.00362709, 0.888924, 0.45804, 0.06264, -0.457346, 0.88708, 0, 0, 0)
+transform = Transform3D(0.998049, 0.0260592, -0.0567501, 0.00279809, 0.889195, 0.45752, 0.0623846, -0.456786, 0.887386, 0, 0, 0)
 material_override = ExtResource("3_8r11j")
 
 [node name="small_rod_A" parent="DroneMesh/bad_Ship/main_body" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("3_8r11j")
 
+[node name="fx_tip_s" parent="DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22532e-19, -2.70122e-18, -1.06581e-16)
+
 [node name="small_rod_B" parent="DroneMesh/bad_Ship/main_body" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00788e-05, -0.000456877, 0)
 material_override = ExtResource("3_8r11j")
 
+[node name="fx_tip_s (1)" parent="DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000254457, -0.00297669, -0.00356195)
+
+[node name="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
 [node name="Hurtbox" parent="." index="5"]
 collision_mask = 64
 
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRange" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 shape = SubResource("SphereShape3D_kdlvw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 shape = SubResource("SphereShape3D_io331")
 
 [editable path="DroneMesh"]
