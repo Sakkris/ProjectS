@@ -9,8 +9,14 @@ const TURN_ANGLE = 2 * PI / 12
 @onready var neck_position_node = $XROrigin3D/XRCamera3D/Neck
 @onready var velocity_component = $VelocityComponent
 @onready var player_collision: CollisionShape3D = $PlayerCollision
+@onready var hurt_box: Area3D = $HurtBox
 
 var space_state = null
+
+
+func _ready():
+	hurt_box.area_entered.connect(hit)
+	hurt_box.body_entered.connect(hit)
 
 
 func _physics_process(delta):
@@ -98,3 +104,8 @@ func turn_left():
 
 func turn_right():
 	transform.basis = transform.basis.rotated(Vector3.UP, -TURN_ANGLE)
+
+
+func hit(other_area):
+	print("Was hit by", other_area)
+	GameEvents.emit_game_over()

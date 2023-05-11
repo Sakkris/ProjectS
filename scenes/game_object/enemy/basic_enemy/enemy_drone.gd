@@ -14,7 +14,9 @@ func _ready():
 func _physics_process(delta):
 	if target_point != Vector3.INF:
 		var dir_to_target = global_transform.origin.direction_to(target_point).normalized()
+		
 		velocity_component.accelerate_in_direction(dir_to_target, delta)
+		
 		if global_transform.origin.distance_to(target_point) < 0.5:
 			next_target_point()
 	else:

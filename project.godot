@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addon
 3d_physics/layer_4="Grabbable"
 3d_physics/layer_5="UI"
 3d_physics/layer_6="Player_UI"
+3d_physics/layer_7="Player_Bullets"
 
 [rendering]
 
