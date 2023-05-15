@@ -45,7 +45,7 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 process_mode = 3
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_80ysr")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_25rjh")]
@@ -54,6 +54,7 @@ max_overloaded_speed = 20.0
 acceleration_coeficient = 0.1
 
 [node name="Radar" parent="." instance=ExtResource("3_y0f66")]
+process_mode = 4
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
