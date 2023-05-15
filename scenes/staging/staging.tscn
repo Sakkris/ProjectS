@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bqumugyvkct4r" path="res://scenes/staging/loading_screen.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b78c1cqe4lkab" path="res://scenes/misc/scene_cache/scene_cache.tscn" id="3_wlm1n"]
 [ext_resource type="Shader" path="res://addons/godot-xr-tools/staging/fade.gdshader" id="4"]
-[ext_resource type="PackedScene" path="res://scenes/misc/shader_cache/shader_cache.tscn" id="4_xwsya"]
+[ext_resource type="PackedScene" uid="uid://ctlkpn1xft3jb" path="res://scenes/misc/shader_cache/shader_cache.tscn" id="4_xwsya"]
 [ext_resource type="PackedScene" uid="uid://c353vdj5fhpvp" path="res://scenes/start_xr/start_xr.tscn" id="6_jkv21"]
 
 [sub_resource type="Environment" id="Environment_tni4h"]
@@ -21,7 +21,7 @@ shader_parameter/alpha = 0.0
 
 [node name="Staging" type="Node3D"]
 script = ExtResource("1_n0xha")
-main_scene = "res://scenes/main/main.tscn"
+main_scene = "res://scenes/levels/enemy_range/enemy_range.tscn"
 
 [node name="StartXR" parent="." instance=ExtResource("6_jkv21")]
 

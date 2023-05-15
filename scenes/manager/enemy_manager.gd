@@ -2,7 +2,9 @@ extends Node
 
 @export var player: Player
 
-@onready var timer = $Timer
+@onready var timer: Timer = $Timer
+@onready var process_balancer: ProcessBalancer = $ProcessBalancer
+
 
 var enemy = preload("res://scenes/game_object/enemy/basic_enemy/e_type/e_type.tscn")
 var spawn_areas: Array[Node]
@@ -18,11 +20,13 @@ func _ready():
 	
 	spawn_areas = get_children()
 	spawn_areas.pop_front()
+	spawn_areas.pop_front()
+	print(spawn_areas)
 
 
 func spawn_enemy():
-	if number_of_enemies >= enemy_limit:
-		return
+#	if number_of_enemies >= enemy_limit:
+#		return
 	
 	if spawn_areas.is_empty():
 		return
@@ -41,6 +45,8 @@ func spawn_enemy():
 	
 	GameEvents.emit_enemy_spawned(enemy_instance)
 	number_of_enemies += 1
+	
+	process_balancer.add_to_queue(enemy_instance, Callable(enemy_instance, "test_func"))
 
 
 func get_rand_position(area):

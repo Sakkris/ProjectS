@@ -31,8 +31,3 @@ func exit() -> void:
 	player_velocity_component.can_move = true
 	raycast.enabled = false
 	raycast_mesh.visible = false
-
-
-func handle_input_pressed(button: String):
-	if button == "trigger_click":
-		print("Trigger pressed")

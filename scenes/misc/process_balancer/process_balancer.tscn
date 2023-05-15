@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4dk45kklvnv"]
+
+[ext_resource type="Script" path="res://scenes/misc/process_balancer/process_balancer.gd" id="1_ylmam"]
+
+[node name="ProcessBalancer" type="Node"]
+script = ExtResource("1_ylmam")
