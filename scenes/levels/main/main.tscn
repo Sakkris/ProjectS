@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://br5iirj34tefk"]
+[gd_scene load_steps=15 format=3 uid="uid://cbd2tqddnmh4d"]
 
-[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_7e28g"]
+[ext_resource type="Script" path="res://scenes/levels/main/main.gd" id="1_7e28g"]
 [ext_resource type="PackedScene" uid="uid://cfgxjpwvok6tf" path="res://scenes/manager/game_manager/game_manager.tscn" id="1_cjaqi"]
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
 [ext_resource type="PackedScene" uid="uid://cko4rua4k8ahg" path="res://scenes/manager/game_time_manager.tscn" id="1_mj5n6"]
 [ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/enemy_manager.tscn" id="2_jpo0f"]
-[ext_resource type="Script" path="res://scenes/main/PathFinder.gd" id="3_ts5cl"]
+[ext_resource type="Script" path="res://scenes/levels/main/PathFinder.gd" id="3_ts5cl"]
 [ext_resource type="PackedScene" uid="uid://bfc2k8cuv6ixb" path="res://scenes/map/tmp_grid_map.tscn" id="7_27jvy"]
 [ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="7_e6uss"]
 

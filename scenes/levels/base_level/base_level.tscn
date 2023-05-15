@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckrns21nitpey"]
+
+[ext_resource type="PackedScene" uid="uid://cfgxjpwvok6tf" path="res://scenes/manager/game_manager/game_manager.tscn" id="1_cjaqi"]
+[ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
+[ext_resource type="PackedScene" uid="uid://cko4rua4k8ahg" path="res://scenes/manager/game_time_manager.tscn" id="1_mj5n6"]
+[ext_resource type="Script" path="res://scenes/levels/base_level/base_level.gd" id="1_rsmg6"]
+[ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/enemy_manager.tscn" id="2_jpo0f"]
+[ext_resource type="MeshLibrary" uid="uid://bpnlne37s45lc" path="res://resources/mesh_library/tmp_mesh_library.tres" id="7_jsipj"]
+
+[node name="BaseLevel" type="Node3D"]
+script = ExtResource("1_rsmg6")
+
+[node name="GameManager" parent="." instance=ExtResource("1_cjaqi")]
+
+[node name="ProjectileManager" type="Node" parent="." groups=["projectile_manager"]]
+
+[node name="GameTimeManager" parent="." instance=ExtResource("1_mj5n6")]
+
+[node name="EnemyManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_jpo0f")]
+player = NodePath("../Player")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.740582, 0.671966, 0, -0.671966, 0.740582, 0, 8.76178, 4.691)
+light_energy = 3.0
+
+[node name="Player" parent="." instance=ExtResource("1_mct3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("7_jsipj")
+cell_size = Vector3(1, 1, 1)
