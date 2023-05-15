@@ -100,7 +100,7 @@ func end_dash():
 	velocity_component.velocity = velocity
 
 func on_hit_taken(_area):
-	GameEvents.emit_enemy_died()
+	GameEvents.emit_enemy_died(self)
 	queue_free()
 
 

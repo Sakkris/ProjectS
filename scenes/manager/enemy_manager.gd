@@ -15,13 +15,12 @@ var number_of_enemies = 0
 func _ready():
 	timer.timeout.connect(func(): spawn_enemy())
 	GameEvents.game_start.connect(func(): timer.start())
-	GameEvents.enemy_died.connect(func(): number_of_enemies -= 1)
+	GameEvents.enemy_died.connect(on_enemy_destroyed)
 	#GameEvents.enemy_died.connect(func(): spawn_enemy())
 	
 	spawn_areas = get_children()
 	spawn_areas.pop_front()
 	spawn_areas.pop_front()
-	print(spawn_areas)
 
 
 func spawn_enemy():
@@ -61,3 +60,7 @@ func get_rand_position(area):
 	
 	return positionInArea
 
+
+func on_enemy_destroyed(enemy):
+	process_balancer.remove_from_queue(enemy)
+	number_of_enemies -= 1

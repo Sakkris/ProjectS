@@ -41,13 +41,15 @@ func add_to_queue(new_item, callable: Callable):
 
 
 func remove_from_queue(item):
+	print("Removing from queue: ", item)
 	for row_index in balancing_rows:
 		var row: Array = balancing_rows[row_index]
 		
 		for pair in row:
-			if pair.get_first() == item:
-				pair = null
+			if pair != null && pair.get_first() == item:
+				print("Removed with success! ", pair.get_first(), " - ", item)
 				
+				pair = null
 				update_smallest_row()
 				return
 

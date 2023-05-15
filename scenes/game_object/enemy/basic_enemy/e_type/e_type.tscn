@@ -19,6 +19,8 @@ radius = 5.0
 [node name="EType" instance=ExtResource("1_8bk67")]
 collision_layer = 12
 collision_mask = 1
+attack_range = null
+dash_speed = null
 
 [node name="VelocityComponent" parent="." index="0"]
 max_speed = 7.5

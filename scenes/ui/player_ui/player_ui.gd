@@ -22,7 +22,7 @@ var enemy_icons = {}
 
 func _ready():
 	GameEvents.game_time_updated.connect(on_game_time_updated)
-	GameEvents.enemy_died.connect(func(): update_kill_label())
+	GameEvents.enemy_died.connect(on_enemy_destroyed)
 	
 	viewport.set_clear_mode(SubViewport.CLEAR_MODE_ALWAYS)
 	viewport.transparent_bg = true
@@ -92,4 +92,7 @@ func on_game_time_updated(time_elapsed):
 	time_label.set_text("%02d:%02d" % [minute, second])
 #	print("%02d:%02d" % [minute, second])
 
+
+func on_enemy_destroyed(_enemy):
+	update_kill_label()
 
