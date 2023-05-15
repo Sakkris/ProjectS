@@ -42,7 +42,7 @@ var astar: AStar3D = AStar3D.new()
 var point_queue: Array[Vector3]
 var space_state: PhysicsDirectSpaceState3D = null
 var current_point: Vector3
-var start_point: Vector3 = Vector3(0, 2, 0)
+var start_point: Vector3 = Vector3(0, 5, 0)
 
 var material: StandardMaterial3D
 
