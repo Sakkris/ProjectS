@@ -5,10 +5,13 @@ extends CharacterBody3D
 
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_player: AnimationPlayer = $DroneMesh/AnimationPlayer
+@onready var detection_range: Area3D = $DetectionRange
 
 var player: Player = null
 var path_to_follow: PackedVector3Array
 var target_point: Vector3 = Vector3.INF
+
+var space_state
 
 var dashing = false
 var dashing_target = Vector3.INF
@@ -19,6 +22,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	space_state = get_world_3d().direct_space_state
+	
 	if dashing && dashing_target != Vector3.INF:
 		var dir_to_target = global_transform.origin.direction_to(dashing_target).normalized()
 		velocity_component.fixed_movement(dir_to_target * dash_speed * delta)
@@ -36,6 +41,10 @@ func _physics_process(delta):
 			
 	else:
 		velocity_component.decelerate(delta)
+	
+	
+	if detection_range.has_overlapping_bodies():
+		look_at_player()
 	
 	velocity_component.move(delta)
 
@@ -57,6 +66,7 @@ func full_stop():
 
 func look_at_player():
 	look_at(player.global_transform.origin)
+	rotate_object_local(global_transform.basis.y.normalized(), PI)
 
 
 func play_animation(animation_name):
@@ -92,3 +102,7 @@ func end_dash():
 func on_hit_taken(_area):
 	GameEvents.emit_enemy_died()
 	queue_free()
+
+
+func test_func():
+	pass

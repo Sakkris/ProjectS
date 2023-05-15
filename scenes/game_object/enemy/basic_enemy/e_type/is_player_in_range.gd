@@ -1,10 +1,10 @@
 extends ConditionLeaf
 
+@export var attack_range: Area3D 
+
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	var distance = actor.get_distance_to_player()
-	
-	if distance <= actor.attack_range:
+	if attack_range.has_overlapping_areas() || attack_range.has_overlapping_bodies():
 		return SUCCESS
 	
 	return FAILURE
