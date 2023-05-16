@@ -1,5 +1,4 @@
-class_name MainLevel
-extends Node3D
+extends BaseLevel
 
 ## Request staging exit to main menu
 ##

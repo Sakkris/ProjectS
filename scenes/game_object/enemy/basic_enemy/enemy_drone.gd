@@ -22,15 +22,32 @@ func _ready():
 	$Hurtbox.area_entered.connect(self.on_hit_taken)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	space_state = get_world_3d().direct_space_state
+
+
+func tick(delta):
+	if !dash_check(delta):
+		movement_process(delta)
+		
+		if detection_range.has_overlapping_bodies():
+			look_at_player()
 	
+	velocity_component.move(delta)
+	behavior_tree.tick()
+
+
+func dash_check(delta) -> bool:
 	if dashing && dashing_target != Vector3.INF:
 		var dir_to_target = global_transform.origin.direction_to(dashing_target).normalized()
 		velocity_component.fixed_movement(dir_to_target * dash_speed * delta)
 		
-		return
+		return true
 	
+	return false
+
+
+func movement_process(delta):
 	if target_point != Vector3.INF:
 		var dir_to_target = global_transform.origin.direction_to(target_point).normalized()
 		
@@ -42,16 +59,6 @@ func _physics_process(delta):
 			
 	else:
 		velocity_component.decelerate(delta)
-	
-	
-	if detection_range.has_overlapping_bodies():
-		look_at_player()
-	
-	velocity_component.move(delta)
-
-
-func tick():
-	behavior_tree.tick()
 
 
 func next_target_point():

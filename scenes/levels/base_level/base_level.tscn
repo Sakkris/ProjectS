@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckrns21nitpey"]
+[gd_scene load_steps=8 format=3 uid="uid://ckrns21nitpey"]
 
 [ext_resource type="PackedScene" uid="uid://cfgxjpwvok6tf" path="res://scenes/manager/game_manager/game_manager.tscn" id="1_cjaqi"]
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
 [ext_resource type="PackedScene" uid="uid://cko4rua4k8ahg" path="res://scenes/manager/game_time_manager.tscn" id="1_mj5n6"]
 [ext_resource type="Script" path="res://scenes/levels/base_level/base_level.gd" id="1_rsmg6"]
 [ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/enemy_manager.tscn" id="2_jpo0f"]
+[ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="2_uawj0"]
 [ext_resource type="MeshLibrary" uid="uid://bpnlne37s45lc" path="res://resources/mesh_library/tmp_mesh_library.tres" id="7_jsipj"]
 
 [node name="BaseLevel" type="Node3D"]
 script = ExtResource("1_rsmg6")
+environment = ExtResource("2_uawj0")
 
 [node name="GameManager" parent="." instance=ExtResource("1_cjaqi")]
 

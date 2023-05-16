@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cbd2tqddnmh4d"]
 
-[ext_resource type="Script" path="res://scenes/levels/main/main.gd" id="1_7e28g"]
+[ext_resource type="Script" path="res://scenes/levels/base_level/base_level.gd" id="1_baggj"]
 [ext_resource type="PackedScene" uid="uid://cfgxjpwvok6tf" path="res://scenes/manager/game_manager/game_manager.tscn" id="1_cjaqi"]
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="1_mct3u"]
 [ext_resource type="PackedScene" uid="uid://cko4rua4k8ahg" path="res://scenes/manager/game_time_manager.tscn" id="1_mj5n6"]
@@ -28,7 +28,7 @@ size = Vector3(28, 15, 25)
 size = Vector3(24, 6, 30)
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_7e28g")
+script = ExtResource("1_baggj")
 environment = ExtResource("7_e6uss")
 
 [node name="GameManager" parent="." instance=ExtResource("1_cjaqi")]

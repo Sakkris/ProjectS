@@ -8,12 +8,12 @@ extends Node
 
 var enemy = preload("res://scenes/game_object/enemy/basic_enemy/e_type/e_type.tscn")
 var spawn_areas: Array[Node]
-var enemy_limit = 5
+var enemy_limit = 15
 var number_of_enemies = 0
 
 
 func _ready():
-#	timer.timeout.connect(func(): spawn_enemy())
+	timer.timeout.connect(func(): spawn_enemy())
 	GameEvents.game_start.connect(func(): timer.start())
 	GameEvents.enemy_died.connect(on_enemy_destroyed)
 	#GameEvents.enemy_died.connect(func(): spawn_enemy())
@@ -21,11 +21,13 @@ func _ready():
 	spawn_areas = get_children()
 	spawn_areas.pop_front()
 	spawn_areas.pop_front()
-	spawn_enemy()
+	
+	enemy_limit = process_balancer.number_of_rows * process_balancer.row_item_limit
+#	spawn_enemy()
 
 func spawn_enemy():
-#	if number_of_enemies >= enemy_limit:
-#		return
+	if number_of_enemies >= enemy_limit:
+		return
 	
 	if spawn_areas.is_empty():
 		return

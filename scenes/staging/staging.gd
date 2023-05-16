@@ -54,7 +54,7 @@ signal xr_ended
 
 
 # Current scene
-var current_scene : MainLevel
+var current_scene : BaseLevel
 
 # Current scene path
 var current_scene_path : String
@@ -255,13 +255,13 @@ func set_fade(p_value : float):
 		$Fade.visible = true
 
 
-func _add_signals(p_scene: MainLevel):
+func _add_signals(p_scene: BaseLevel):
 	p_scene.connect("request_exit_to_main_menu", _on_exit_to_main_menu)
 	p_scene.connect("request_load_scene", _on_load_scene)
 	p_scene.connect("request_reset_scene", _on_reset_scene)
 
 
-func _remove_signals(p_scene: MainLevel):
+func _remove_signals(p_scene: BaseLevel):
 	p_scene.disconnect("request_exit_to_main_menu", _on_exit_to_main_menu)
 	p_scene.disconnect("request_load_scene", _on_load_scene)
 	p_scene.disconnect("request_reset_scene", _on_reset_scene)

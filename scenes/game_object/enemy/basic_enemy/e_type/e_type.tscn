@@ -64,6 +64,7 @@ detection_range = NodePath("../../../DetectionRange")
 
 [node name="DroneMesh" parent="." index="2"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+visible = false
 
 [node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
 transform = Transform3D(0.994842, 0.101437, 0, -0.101437, 0.994842, 0, 0, 0, 1, 0, 0.00238634, 0)
@@ -90,6 +91,9 @@ material_override = ExtResource("3_8r11j")
 
 [node name="fx_tip_s (1)" parent="DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000254457, -0.00297669, -0.00356195)
+
+[node name="MeshInstance3D" parent="." index="3"]
+visible = true
 
 [node name="CollisionShape3D" parent="." index="4"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
