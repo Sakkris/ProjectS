@@ -23,11 +23,9 @@ func _ready():
 	$Hurtbox.area_entered.connect(self.on_hit_taken)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	space_state = get_world_3d().direct_space_state
-
-
-func tick(delta):
+	
 	if !dash_check(delta):
 		movement_process(delta)
 		
@@ -35,6 +33,9 @@ func tick(delta):
 			look_at_player()
 	
 	velocity_component.move(delta)
+
+
+func tick():
 	behavior_tree.tick()
 
 
@@ -63,7 +64,7 @@ func movement_process(delta):
 
 
 func next_target_point():
-	if path_to_follow.size() > 1:
+	if path_to_follow.size() > current_target_index + 1:
 		current_target_index += 1
 		target_point = path_to_follow[current_target_index]
 	else:

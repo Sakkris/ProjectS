@@ -54,6 +54,7 @@ max_overloaded_speed = 20.0
 acceleration_coeficient = 0.1
 
 [node name="Radar" parent="." instance=ExtResource("3_y0f66")]
+process_mode = 4
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -62,7 +63,7 @@ shape = SubResource("CapsuleShape3D_3fje1")
 [node name="HurtBox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 0
-collision_mask = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("CapsuleShape3D_3fje1")

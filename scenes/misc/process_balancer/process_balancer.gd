@@ -7,13 +7,11 @@ class_name ProcessBalancer
 var balancing_rows = {}
 var smallest_row: int = 0
 var frame_count = 0
-var delta_times = []
 
 
 func _ready():
 	for i in range(number_of_rows):
 		balancing_rows[i] = []
-		delta_times.append(0)
 		
 		for j in range(row_item_limit):
 			balancing_rows[i].push_back(null)
@@ -22,15 +20,9 @@ func _ready():
 func _physics_process(delta):
 	var current_row = balancing_rows[frame_count]
 	
-	for i in range(number_of_rows):
-		delta_times[i] += delta
-	
-	delta = delta_times[frame_count]
-	delta_times[frame_count] = 0
-	
 	for pair in current_row:
 		if pair != null:
-			pair.get_second().call(delta)
+			pair.get_second().call()
 	
 	frame_count += 1
 	if frame_count == number_of_rows:
