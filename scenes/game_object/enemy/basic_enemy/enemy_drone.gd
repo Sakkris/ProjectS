@@ -16,6 +16,7 @@ var space_state
 
 var dashing = false
 var dashing_target = Vector3.INF
+var current_target_index: int = 0
 
 
 func _ready():
@@ -63,7 +64,8 @@ func movement_process(delta):
 
 func next_target_point():
 	if path_to_follow.size() > 1:
-		target_point = path_to_follow[1]
+		current_target_index += 1
+		target_point = path_to_follow[current_target_index]
 	else:
 		target_point = Vector3.INF
 
@@ -108,7 +110,8 @@ func dash_attack(target: Vector3):
 func end_dash():
 	dashing = false
 	dashing_target = Vector3.INF
-	animation_player.play("idle")
+	animation_player.play_backwards("engage_transition")
+	animation_player.queue("idle")
 	velocity_component.velocity = velocity
 
 func on_hit_taken(_area):

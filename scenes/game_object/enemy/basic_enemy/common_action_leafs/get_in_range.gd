@@ -30,6 +30,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	path_cooldown_timer.start()
 	
 	actor.path_to_follow = path
+	actor.current_target_index = 0
 	actor.next_target_point()
 	return SUCCESS
 

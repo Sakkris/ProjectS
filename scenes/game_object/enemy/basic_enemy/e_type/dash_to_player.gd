@@ -6,7 +6,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	
 	var distance = actor.global_transform.origin.distance_to(blackboard.get_value("target"))
 	
-	if distance < .5:
+	if distance < 2:
 		actor.end_dash()
 		return SUCCESS
 	
