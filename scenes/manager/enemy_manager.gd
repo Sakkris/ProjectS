@@ -48,6 +48,12 @@ func spawn_enemy():
 	number_of_enemies += 1
 	
 	process_balancer.add_to_queue(enemy_instance, Callable(enemy_instance, "tick"))
+	
+	var tmp_time = timer.wait_time
+	
+	tmp_time *= .1
+	timer.wait_time = max(timer.wait_time - tmp_time, 3)
+	timer.start()
 
 
 func get_rand_position(area):
