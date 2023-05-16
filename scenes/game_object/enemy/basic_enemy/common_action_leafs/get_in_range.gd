@@ -8,16 +8,11 @@ var debug_points: Array
 var debug_lines: Array
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
-	# Verificar se está em Range do PLayer
-		# Verificar se há colisões entre o Drone e o Player (Caso não -> SUCCESS)
-	# Obter path a partir do AStar (null -> FAILURE)
-	# Seguir Path (-> RUNNING)
-	return SUCCESS
 	if !NavPointGenerator.generated:
 		return FAILURE
 	
 	if detection_range.has_overlapping_areas() || detection_range.has_overlapping_bodies():
-		print("player detected")
+		actor.target_point = actor.player.global_transform.origin
 		return SUCCESS
 	
 	var current_location = actor.global_position
@@ -29,7 +24,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	
 	var path: PackedVector3Array = NavPointGenerator.generate_path(current_location, player_location)
 	
-	print(path)
+	path.append(actor.player.global_transform.origin)
 	
 #	if is_player_far:
 	path_cooldown_timer.start()

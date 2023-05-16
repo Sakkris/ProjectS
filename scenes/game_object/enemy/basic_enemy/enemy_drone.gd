@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_player: AnimationPlayer = $DroneMesh/AnimationPlayer
 @onready var detection_range: Area3D = $DetectionRange
+@onready var behavior_tree: BeehaveTree = $BeehaveTree
 
 var player: Player = null
 var path_to_follow: PackedVector3Array
@@ -47,6 +48,10 @@ func _physics_process(delta):
 		look_at_player()
 	
 	velocity_component.move(delta)
+
+
+func tick():
+	behavior_tree.tick()
 
 
 func next_target_point():
