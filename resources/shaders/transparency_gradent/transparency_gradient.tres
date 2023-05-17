@@ -52,7 +52,7 @@ void fragment() {
 // MultiplyAdd:9
 	float n_in9p1 = 2.00000;
 	float n_in9p2 = 0.50000;
-	float n_out9p0 = (n_out2p0 * n_in9p1) + n_in9p2;
+	float n_out9p0 = fma(n_out2p0, n_in9p1, n_in9p2);
 
 
 // Output:0

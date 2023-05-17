@@ -1,30 +1,25 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://d3coygd23krps"]
 
+[ext_resource type="Script" path="res://scenes/levels/base_level/base_level.gd" id="1_1klac"]
 [ext_resource type="Script" path="res://scenes/levels/tutorial/TutorialManager.gd" id="1_dj7g8"]
 [ext_resource type="MeshLibrary" uid="uid://bpnlne37s45lc" path="res://resources/mesh_library/tmp_mesh_library.tres" id="1_mq233"]
+[ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="2_08jeq"]
 [ext_resource type="PackedScene" uid="uid://cecv12b4nvyqn" path="res://scenes/game_object/grab_block/grab_block.tscn" id="2_bhks3"]
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="3_sb81d"]
-[ext_resource type="Texture2D" uid="uid://2nldyp4e5pvl" path="res://resources/panorama/environment.png" id="4_empbc"]
+[ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/enemy_manager.tscn" id="6_5s6uh"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_f8n1v"]
-panorama = ExtResource("4_empbc")
-
-[sub_resource type="Sky" id="Sky_47kps"]
-sky_material = SubResource("PanoramaSkyMaterial_f8n1v")
-
-[sub_resource type="Environment" id="Environment_tefj4"]
-background_mode = 2
-background_energy_multiplier = 1.5
-sky = SubResource("Sky_47kps")
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.5
+[sub_resource type="BoxShape3D" id="BoxShape3D_cp7s6"]
+size = Vector3(11.2, 8.1, 9.36)
 
 [node name="Tutorial" type="Node"]
+script = ExtResource("1_1klac")
+environment = ExtResource("2_08jeq")
 
 [node name="TutorialManager" type="Node" parent="."]
 script = ExtResource("1_dj7g8")
 
 [node name="GridMap" type="GridMap" parent="."]
+visible = false
 mesh_library = ExtResource("1_mq233")
 cell_size = Vector3(1, 1, 1)
 cell_octant_size = 30
@@ -278,15 +273,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 11, 6)
 [node name="Player" parent="." instance=ExtResource("3_sb81d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 7.5)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_tefj4")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.740582, 0.671966, 0, -0.671966, 0.740582, 0, 8.76178, 4.691)
+visible = false
 light_energy = 3.0
+
+[node name="EnemyManager" parent="." instance=ExtResource("6_5s6uh")]
+
+[node name="Area3D" type="Area3D" parent="EnemyManager"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41, 1.07, -4.09)
+shape = SubResource("BoxShape3D_cp7s6")
 
 [editable path="Player"]
 [editable path="Player/XROrigin3D/LeftController"]
 [editable path="Player/XROrigin3D/LeftController/AbilityPanel"]
 [editable path="Player/XROrigin3D/RightController"]
 [editable path="Player/XROrigin3D/RightController/AbilityPanel"]
+[editable path="EnemyManager"]

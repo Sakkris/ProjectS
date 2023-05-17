@@ -35,6 +35,7 @@ transform = Transform3D(-0.739087, -0.515837, 0.4332, -0.657225, 0.69319, -0.295
 light_energy = 0.5
 
 [node name="GridMap" parent="." index="7"]
+visible = false
 cell_size = Vector3(5, 1, 5)
 
 [node name="Map" type="Node3D" parent="." index="8"]

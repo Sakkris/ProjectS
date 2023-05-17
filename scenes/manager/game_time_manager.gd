@@ -8,14 +8,14 @@ var time_checkpoint_rechead = 0
 
 
 func _ready():
-	pass
+	GameEvents.game_start.connect(func(): timer.start())
 #	timer.timeout.connect(on_timer_timeout)
 #	GameEvents.enemy_died.connect(func(): add_time())
 
 
 func _process(_delta):
-#	if timer.is_stopped():
-#		pass
+	if timer.is_stopped():
+		pass
 	
 	elapsed_time = timer.wait_time * time_checkpoint_rechead + timer.wait_time - timer.time_left
 	

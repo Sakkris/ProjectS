@@ -17,7 +17,7 @@ func _ready():
 			balancing_rows[i].push_back(null)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var current_row = balancing_rows[frame_count]
 	
 	for pair in current_row:
@@ -55,7 +55,6 @@ func remove_from_queue(item):
 func update_smallest_row():
 	var current_smallest = 0
 	var current_size = row_item_limit + 1
-	var counter = 0
 	var size_count = 0
 	
 	for row_index in balancing_rows:

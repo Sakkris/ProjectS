@@ -69,6 +69,6 @@ func get_rand_position(area):
 	return positionInArea
 
 
-func on_enemy_destroyed(enemy):
-	process_balancer.remove_from_queue(enemy)
+func on_enemy_destroyed(enemy_instance):
+	process_balancer.remove_from_queue(enemy_instance)
 	number_of_enemies -= 1

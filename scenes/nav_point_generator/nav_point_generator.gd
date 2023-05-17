@@ -42,7 +42,7 @@ var astar: AStar3D = AStar3D.new()
 var point_queue: Array[Vector3]
 var space_state: PhysicsDirectSpaceState3D = null
 var current_point: Vector3
-var start_point: Vector3 = Vector3(0, 2, 0)
+var start_point: Vector3 = Vector3(0, 5, 0)
 
 var material: StandardMaterial3D
 
@@ -141,10 +141,10 @@ func get_closest_point(desired_point_pos: Vector3) -> Vector3:
 	var x_pos: int = get_closest_coordinate(desired_point_pos.x)
 	var y_pos: int = get_closest_coordinate(desired_point_pos.y)
 	var z_pos: int = get_closest_coordinate(desired_point_pos.z) 
-	var closest_point = Vector3(x_pos, y_pos, z_pos)
+	var point = Vector3(x_pos, y_pos, z_pos)
 	
-	if astar.has_point(generate_point_id(closest_point)):
-		return closest_point
+	if astar.has_point(generate_point_id(point)):
+		return point
 	
 	var attempt_limit = 5
 	var attempt = 0
@@ -152,7 +152,7 @@ func get_closest_point(desired_point_pos: Vector3) -> Vector3:
 	
 	while attempt_limit > attempt:
 		for i in range(considered_neighbours):
-			attempted_point = closest_point + direction_dict[i] * (distance_between_points * attempt)
+			attempted_point = point + direction_dict[i] * (distance_between_points * attempt)
 			
 			if astar.has_point(generate_point_id(attempted_point)):
 				return attempted_point
@@ -173,7 +173,7 @@ func get_closest_coordinate(coordinate) -> int:
 			coordinate = abs(coordinate)
 			return -(((floori(coordinate) + distance_between_points/2) / distance_between_points) * distance_between_points)
 		
-		return ((floori(coordinate) + distance_between_points/2) / distance_between_points) * distance_between_points
+		return ((floori(coordinate) + distance_between_points / 2) / distance_between_points) * distance_between_points
 
 
 func generate_path(origin: Vector3, destiny: Vector3) -> PackedVector3Array:

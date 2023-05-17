@@ -33,10 +33,12 @@ mesh = SubResource("QuadMesh_ocdt2")
 
 [node name="Transparency" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+visible = false
 material_override = SubResource("ShaderMaterial_1hw1v")
 mesh = SubResource("QuadMesh_gdf61")
 
 [node name="EnemyText" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+visible = false
 material_override = ExtResource("5_04vbc")
 mesh = SubResource("QuadMesh_gdf61")

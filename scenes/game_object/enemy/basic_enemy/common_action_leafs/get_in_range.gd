@@ -7,7 +7,7 @@ class_name GetInRange extends ActionLeaf
 var debug_points: Array 
 var debug_lines: Array
 
-func tick(actor: Node, blackboard: Blackboard) -> int:
+func tick(actor: Node, _blackboard: Blackboard) -> int:
 	if !NavPointGenerator.generated:
 		return FAILURE
 	
