@@ -1,4 +1,11 @@
-[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://c3x0wrix6al0p"]
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://c3x0wrix6al0p"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2gvik"]
+default_input_values = [0, 0.0, 1, 2.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_8bkvg"]
+default_input_values = [0, 0.0, 1, 0.5]
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_do3w2"]
 
@@ -8,9 +15,6 @@ op_type = 2
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_enc7n"]
 input_name = "color"
-
-[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_oy3k3"]
-default_input_values = [0, 0.0, 1, 2.0, 2, 0.5]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_rk2an"]
 input_name = "vertex"
@@ -49,29 +53,35 @@ void fragment() {
 	float n_out2p0 = mix(n_in2p0, n_in2p1, n_out4p1);
 
 
-// MultiplyAdd:9
-	float n_in9p1 = 2.00000;
-	float n_in9p2 = 0.50000;
-	float n_out9p0 = fma(n_out2p0, n_in9p1, n_in9p2);
+// FloatOp:10
+	float n_in10p1 = 2.00000;
+	float n_out10p0 = n_out2p0 * n_in10p1;
+
+
+// FloatOp:11
+	float n_in11p1 = 0.50000;
+	float n_out11p0 = n_out10p0 + n_in11p1;
 
 
 // Output:0
-	ALPHA = n_out9p0;
+	ALPHA = n_out11p0;
 
 
 }
 "
-graph_offset = Vector2(-286.847, 38.2278)
+graph_offset = Vector2(-72.5732, -83.843)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_rk2an")
 nodes/vertex/2/position = Vector2(-160, 260)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 6)
-nodes/fragment/0/position = Vector2(580, 160)
+nodes/fragment/0/position = Vector2(880, 180)
 nodes/fragment/2/node = SubResource("VisualShaderNodeMix_do3w2")
 nodes/fragment/2/position = Vector2(200, 160)
 nodes/fragment/4/node = SubResource("VisualShaderNodeVectorDecompose_g7wdv")
 nodes/fragment/4/position = Vector2(-20, 160)
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_enc7n")
 nodes/fragment/5/position = Vector2(-380, 180)
-nodes/fragment/9/node = SubResource("VisualShaderNodeMultiplyAdd_oy3k3")
-nodes/fragment/9/position = Vector2(380, 180)
-nodes/fragment/connections = PackedInt32Array(4, 1, 2, 2, 5, 0, 4, 0, 2, 0, 9, 0, 9, 0, 0, 1)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatOp_2gvik")
+nodes/fragment/10/position = Vector2(440, 160)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatOp_8bkvg")
+nodes/fragment/11/position = Vector2(660, 180)
+nodes/fragment/connections = PackedInt32Array(4, 1, 2, 2, 5, 0, 4, 0, 2, 0, 10, 0, 10, 0, 11, 0, 11, 0, 0, 1)

@@ -34,7 +34,7 @@ func _ready():
 	var webxr_interface = XRServer.find_interface("WebXR")
 	if webxr_interface:
 		XRServer.tracker_added.connect(self._on_webxr_tracker_added)
-
+	
 	_load()
 
 

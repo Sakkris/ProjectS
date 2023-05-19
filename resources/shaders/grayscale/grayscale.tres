@@ -1,46 +1,8 @@
-[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://0yj74hy4xyr1"]
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4qlqf"]
-input_name = "screen_uv"
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_22mm7"]
-source = 1
-
-[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_pnwo5"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.2, 0.2, 0.2)]
+[gd_resource type="VisualShader" format=3 uid="uid://0yj74hy4xyr1"]
 
 [resource]
 code = "shader_type spatial;
-uniform sampler2D screen_tex_frg_3 : hint_screen_texture;
 
 
-
-void fragment() {
-// Input:2
-	vec2 n_out2p0 = SCREEN_UV;
-
-
-	vec4 n_out3p0;
-// Texture2D:3
-	n_out3p0 = texture(screen_tex_frg_3, n_out2p0);
-
-
-// DotProduct:4
-	vec3 n_in4p1 = vec3(0.20000, 0.20000, 0.20000);
-	float n_out4p0 = dot(vec3(n_out3p0.xyz), n_in4p1);
-
-
-// Output:0
-	ALBEDO = vec3(n_out4p0);
-
-
-}
 "
-graph_offset = Vector2(-548.81, -13.4839)
-nodes/fragment/2/node = SubResource("VisualShaderNodeInput_4qlqf")
-nodes/fragment/2/position = Vector2(-640, 180)
-nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_22mm7")
-nodes/fragment/3/position = Vector2(-320, 200)
-nodes/fragment/4/node = SubResource("VisualShaderNodeDotProduct_pnwo5")
-nodes/fragment/4/position = Vector2(-77.2103, 255.935)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 4, 0, 4, 0, 0, 0)
+graph_offset = Vector2(-456.585, -87.9823)
