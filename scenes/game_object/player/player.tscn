@@ -109,6 +109,7 @@ material_override = SubResource("StandardMaterial3D_856iv")
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("6_ecesn")]
 
 [node name="RightController" parent="XROrigin3D" instance=ExtResource("4_hbqme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.01, 0)
 tracker = &"right_hand"
 
 [node name="AbilityManager" parent="XROrigin3D/RightController" index="1" node_paths=PackedStringArray("velocity_component")]
@@ -141,6 +142,7 @@ material_override = SubResource("StandardMaterial3D_nao43")
 [node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("8_2adlc")]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="Neck" type="Node3D" parent="XROrigin3D/XRCamera3D"]
 

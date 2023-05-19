@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ch38dt00ojdlc" path="res://scenes/ui/misc/lockon_crosshair.tscn" id="3_keqyt"]
 [ext_resource type="PackedScene" uid="uid://bjii4u8mslh2n" path="res://scenes/game_object/projectile/player_hook/hook.tscn" id="4_dwkiy"]
 [ext_resource type="PackedScene" uid="uid://smylfqdss71c" path="res://scenes/particles/hit_particles/hit_particles.tscn" id="5_gcu8r"]
-[ext_resource type="PackedScene" uid="uid://d3ryuc5u8qs8q" path="res://scenes/game_object/enemy/basic_enemy/e_type/e_type.tscn" id="6_fv7w6"]
+[ext_resource type="PackedScene" uid="uid://x3j86vdkoepb" path="res://scenes/game_object/enemy/basic_enemy/e_type/e_type.tscn" id="6_fv7w6"]
 
 [node name="SceneCache" type="Node3D"]
 script = ExtResource("1_grkip")
@@ -28,8 +28,11 @@ scale_amount_min = 0.01
 scale_amount_max = 0.02
 
 [node name="EType" parent="." instance=ExtResource("6_fv7w6")]
+process_mode = 4
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, -2)
 attack_range = 0
 dash_speed = 0
 
 [editable path="GPUParticles3D"]
+[editable path="EType"]
+[editable path="EType/DroneMesh"]

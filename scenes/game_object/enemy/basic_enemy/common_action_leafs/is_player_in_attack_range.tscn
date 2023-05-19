@@ -1,7 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://dui880u3bqfvx"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/is_player_in_range.gd" id="1_o5bwv"]
 
-[node name="IsPlayerInAttackRange" type="Node" node_paths=PackedStringArray("attack_range")]
+[node name="IsPlayerInAttackRange" type="Node"]
 script = ExtResource("1_o5bwv")
-attack_range = NodePath("../../../../../../AttackRange")

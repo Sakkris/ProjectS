@@ -4,6 +4,3 @@
 
 [node name="GetInRange" type="Node"]
 script = ExtResource("1_8r6kf")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true

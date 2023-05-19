@@ -16,7 +16,7 @@ var space_state
 
 var dashing = false
 var dashing_target = Vector3.ZERO
-var current_target_index: int = 0
+var current_target_index: int = -1
 
 
 func _ready():

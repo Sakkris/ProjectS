@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://5sd8an8bku8m" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/get_in_range.tscn" id="2_jo3bw"]
 [ext_resource type="Material" uid="uid://b5ukuqa1ujra8" path="res://resources/enemy_model/etype_drone_mat.tres" id="3_8r11j"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="3_fg3ge"]
-[ext_resource type="PackedScene" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/is_player_in_attack_range.tscn" id="5_xovel"]
-[ext_resource type="PackedScene" uid="uid://dmkn70g6bqaf3" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/is_obstacle_between.tscn" id="6_dv60l"]
+[ext_resource type="PackedScene" uid="uid://dui880u3bqfvx" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/is_player_in_attack_range.tscn" id="5_xovel"]
+[ext_resource type="PackedScene" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/is_obstacle_between.tscn" id="6_dv60l"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/prepare_dash.gd" id="7_ey2ii"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/dash_to_player.gd" id="7_pjsmf"]
 
@@ -43,7 +43,8 @@ script = ExtResource("2_6vds8")
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="0"]
 script = ExtResource("3_fg3ge")
 
-[node name="IsPlayerInAttackRange" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/InverterDecorator" index="0" instance=ExtResource("5_xovel")]
+[node name="IsPlayerInAttackRange" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/InverterDecorator" index="0" node_paths=PackedStringArray("attack_range") instance=ExtResource("5_xovel")]
+attack_range = NodePath("../../../../../../AttackRange")
 
 [node name="IsObstacleBetween" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="1" instance=ExtResource("6_dv60l")]
 
@@ -57,8 +58,8 @@ one_shot = true
 [node name="DashToPlayer" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="3"]
 script = ExtResource("7_pjsmf")
 
-[node name="GetInRange" parent="BeehaveTree/SelectorComposite2" index="1" node_paths=PackedStringArray("detection_range") instance=ExtResource("2_jo3bw")]
-detection_range = NodePath("../../../DetectionRange")
+[node name="GetInRange" parent="BeehaveTree/SelectorComposite2" index="1" node_paths=PackedStringArray("attack_range") instance=ExtResource("2_jo3bw")]
+attack_range = NodePath("../../../AttackRange")
 
 [node name="DroneMesh" parent="." index="2"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)

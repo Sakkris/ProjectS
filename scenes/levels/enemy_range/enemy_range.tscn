@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cobdl2vbmow24" path="res://resources/textures/tmp/UE4_1m x 1m.png" id="2_ghrv7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8f38w"]
-size = Vector3(25, 25, 25)
+size = Vector3(12.6865, 11.747, 12.8312)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1h7t"]
 size = Vector3(50, 1, 50)
@@ -19,12 +19,12 @@ size = Vector2(50, 50)
 [node name="EnemyRange" instance=ExtResource("1_o1gxr")]
 
 [node name="SpawnArea" type="Area3D" parent="EnemyManager" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.6603, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.49011, -14.7749)
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.81545, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84901, 0)
 shape = SubResource("BoxShape3D_8f38w")
 
 [node name="DirectionalLight3D" parent="." index="4"]
@@ -33,6 +33,9 @@ transform = Transform3D(0.98604, 0.111889, -0.123315, -0.0536441, 0.914559, 0.40
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." index="5"]
 transform = Transform3D(-0.739087, -0.515837, 0.4332, -0.657225, 0.69319, -0.295877, -0.147666, -0.503389, -0.851348, 0.401881, 18.6555, 5.54404)
 light_energy = 0.5
+
+[node name="Player" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 24.1213)
 
 [node name="GridMap" parent="." index="7"]
 visible = false
