@@ -4,7 +4,10 @@ extends ConditionLeaf
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	var query = PhysicsRayQueryParameters3D.create(actor.global_transform.origin, actor.player.global_transform.origin)
+	if actor.space_state == null:
+		return SUCCESS
+	
+	var query = PhysicsRayQueryParameters3D.create(actor.global_position, actor.player.global_position)
 	
 	query.collision_mask = raycast_collision_mask
 	

@@ -54,7 +54,6 @@ max_overloaded_speed = 20.0
 acceleration_coeficient = 0.1
 
 [node name="Radar" parent="." instance=ExtResource("3_y0f66")]
-process_mode = 4
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

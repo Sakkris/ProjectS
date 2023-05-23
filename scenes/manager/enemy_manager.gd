@@ -8,7 +8,7 @@ extends Node
 
 var enemy = preload("res://scenes/game_object/enemy/basic_enemy/e_type/e_type.tscn")
 var spawn_areas: Array[Node]
-var enemy_limit = 15
+var enemy_limit = 5
 var number_of_enemies = 0
 
 

@@ -8,7 +8,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	
 	actor.full_stop()
 	actor.look_at_player()
-	blackboard.set_value("target", actor.player.global_transform.origin)
+	blackboard.set_value("target", actor.player.global_position)
 	
 	if !actor.animation_player.is_playing():
 		$Timer.start()

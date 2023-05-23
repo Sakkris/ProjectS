@@ -19,11 +19,11 @@ func _ready():
 
 func _physics_process(_delta):
 	var current_row = balancing_rows[frame_count]
-	
+
 	for pair in current_row:
 		if pair != null:
 			pair.get_second().call()
-	
+
 	frame_count += 1
 	if frame_count == number_of_rows:
 		frame_count = 0
