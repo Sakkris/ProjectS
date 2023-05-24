@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b731j8amc6ufa"]
+
+[ext_resource type="Script" path="res://scenes/misc/spawn_area/spawn_area.gd" id="1_va5ep"]
+
+[node name="SpawnArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_va5ep")

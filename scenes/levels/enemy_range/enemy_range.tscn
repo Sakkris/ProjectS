@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://y0dgt4uln7ng"]
+[gd_scene load_steps=8 format=3 uid="uid://y0dgt4uln7ng"]
 
 [ext_resource type="PackedScene" uid="uid://ckrns21nitpey" path="res://scenes/levels/base_level/base_level.tscn" id="1_o1gxr"]
+[ext_resource type="PackedScene" uid="uid://b731j8amc6ufa" path="res://scenes/misc/spawn_area/spawn_area.tscn" id="2_77f20"]
 [ext_resource type="Texture2D" uid="uid://cobdl2vbmow24" path="res://resources/textures/tmp/UE4_1m x 1m.png" id="2_ghrv7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8f38w"]
@@ -21,13 +22,10 @@ size = Vector2(50, 50)
 [node name="ProcessBalancer" parent="EnemyManager" index="0"]
 number_of_rows = 8
 
-[node name="SpawnArea" type="Area3D" parent="EnemyManager" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.49011, -14.7749)
-collision_layer = 0
-collision_mask = 0
+[node name="SpawnArea" parent="EnemyManager" index="2" instance=ExtResource("2_77f20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8294, -10.4302)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2028, 7.31806)
 shape = SubResource("BoxShape3D_8f38w")
 
 [node name="DirectionalLight3D" parent="." index="4"]
