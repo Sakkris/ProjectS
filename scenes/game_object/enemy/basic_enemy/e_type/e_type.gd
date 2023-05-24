@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_player: AnimationPlayer = $DroneMesh/AnimationPlayer
 @onready var behavior_tree: BeehaveTree = $BeehaveTree
+@onready var hurt_box_collision: CollisionShape3D = $Hurtbox/CollisionShape3D
+@onready var collision: CollisionShape3D = $CollisionShape3D
 
 var player: Player = null
 var distance_to_player: float = 0.0
@@ -22,7 +24,6 @@ var current_target_index: int = -1
 
 func _ready():
 	$Hurtbox.area_entered.connect(self.on_hit_taken)
-	distance_to_player = global_position.distance_to(player.global_position)
 
 
 func _physics_process(delta):
@@ -39,6 +40,7 @@ func tick():
 	space_state = get_world_3d().direct_space_state
 	distance_to_player = global_position.distance_to(player.global_position)
 	behavior_tree.tick()
+	pass
 
 
 func dash_check(delta) -> bool:
@@ -57,7 +59,7 @@ func movement_process(delta):
 		
 		velocity_component.accelerate_in_direction(dir_to_target, delta)
 		
-		if global_transform.origin.distance_to(target_point) < 0.5:
+		if global_transform.origin.distance_to(target_point) < 1.0:
 			next_target_point()
 			velocity_component.change_direction(global_transform.origin.direction_to(target_point).normalized())
 	else:
@@ -124,6 +126,14 @@ func end_dash():
 
 func on_hit_taken(_area):
 	GameEvents.emit_enemy_died(self)
+	
+	hurt_box_collision.disabled = true
+	collision.disabled = true
+	
+	$MeshInstance3D.visible = false
+	
+	animation_player.play("explode")
+	await animation_player.animation_finished
 	queue_free()
 
 

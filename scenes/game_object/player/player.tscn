@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctgu83ypdttse"]
+[gd_scene load_steps=21 format=3 uid="uid://ctgu83ypdttse"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://7spnfacotrv5" path="res://scenes/component/velocity_component/velocity_component.tscn" id="2_25rjh"]
-[ext_resource type="PackedScene" uid="uid://cv7sehl8awll6" path="res://scenes/radar/radar.tscn" id="3_y0f66"]
 [ext_resource type="PackedScene" uid="uid://3qjmkjv737j6" path="res://scenes/game_object/player/controller/controller.tscn" id="4_hbqme"]
 [ext_resource type="PackedScene" uid="uid://dfujh6qr0fr2t" path="res://scenes/ability/brake_ability/brake_controller.tscn" id="5_3fnfe"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="6_ecesn"]
@@ -52,8 +51,6 @@ script = ExtResource("1_80ysr")
 max_speed = 15.0
 max_overloaded_speed = 20.0
 acceleration_coeficient = 0.1
-
-[node name="Radar" parent="." instance=ExtResource("3_y0f66")]
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

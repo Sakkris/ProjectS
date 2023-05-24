@@ -1,17 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://ciowisqs1ayti"]
 
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="2_f7crh"]
+[ext_resource type="PackedScene" uid="uid://b154h8lm034rr" path="res://resources/enemy_model/bad_bot_V2.glb" id="3_7h0ll"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_nbiee"]
-[ext_resource type="PackedScene" uid="uid://d2bm47ir1hhp8" path="res://resources/enemy_model/basic_enemy.glb" id="4_rrorg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm3at"]
-albedo_color = Color(1, 0.0588235, 0, 1)
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_472vi"]
+albedo_color = Color(1, 0.0470588, 0, 1)
+emission = Color(0.905882, 0, 0, 1)
 emission_energy_multiplier = 0.5
+emission_operator = 1
 
 [sub_resource type="SphereMesh" id="SphereMesh_64u71"]
-material = SubResource("StandardMaterial3D_dm3at")
+material = SubResource("StandardMaterial3D_472vi")
 radial_segments = 4
 rings = 1
 
@@ -31,35 +31,34 @@ script = ExtResource("2_f7crh")
 [node name="BeehaveTree" type="Node" parent="."]
 script = ExtResource("3_nbiee")
 
-[node name="DroneMesh" parent="." instance=ExtResource("4_rrorg")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_64u71")
 
-[node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
-transform = Transform3D(-0.999907, 0.0127417, 0.00487612, -0.0136429, -0.933861, -0.357376, 3.21306e-08, -0.35741, 0.933948, 0, 0, -0.000967665)
+[node name="DroneMesh" parent="." instance=ExtResource("3_7h0ll")]
 
 [node name="long_rod_A" parent="DroneMesh/bad_Ship/main_body" index="0"]
-transform = Transform3D(-0.279201, -0.460631, -0.842536, 0.889148, 0.20729, -0.407978, 0.362577, -0.863046, 0.351694, 0, 0, 0)
+transform = Transform3D(0.933817, -0.353892, 0.0523942, 0.240697, 0.729856, 0.639824, -0.264669, -0.584868, 0.766733, 0, 0, 0)
 
 [node name="long_rod_B" parent="DroneMesh/bad_Ship/main_body" index="1"]
-transform = Transform3D(-0.383606, 0.488154, 0.783933, -0.489932, 0.611996, -0.620829, -0.782824, -0.622228, 0.00439665, 0, 0, 0)
+transform = Transform3D(0.99803, 0.0254741, -0.0573411, 0.00362709, 0.888924, 0.45804, 0.06264, -0.457346, 0.88708, 0, 0, 0)
 
-[node name="small_rod_A" parent="DroneMesh/bad_Ship/main_body" index="2"]
-transform = Transform3D(-0.999302, -0.000114305, -0.0373543, -0.00878241, -0.971245, 0.237919, -0.0363074, 0.238081, 0.970566, 0, 0, 0)
+[node name="head_piece" parent="DroneMesh/bad_Ship/main_body" index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.941528, -0.336936, 0, 0.336936, 0.941528, 0, 0.123876, 0.0443304)
 
-[node name="fx_tip_s" parent="DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
-transform = Transform3D(1.01543, 0, 0, 0, 1.01543, 0, 0, 0, 1.01543, 0, 0, -0.00202655)
+[node name="fx_tip_s (2)" parent="DroneMesh/bad_Ship/explosion_pieces" index="0"]
+transform = Transform3D(0.999933, -0.00324722, 0.0111479, -0.00328276, 0.841865, 0.539678, -0.0111375, -0.539678, 0.841798, 0.000224398, -0.00442911, -0.00139482)
 
-[node name="small_rod_B" parent="DroneMesh/bad_Ship/main_body" index="3"]
-transform = Transform3D(-0.999962, 0.00154584, -0.00859386, 0.0060017, -0.593184, -0.805045, -0.00634221, -0.805066, 0.593152, 0, 0, 0)
+[node name="fx_tip_s1" parent="DroneMesh/bad_Ship/explosion_pieces" index="1"]
+transform = Transform3D(0.999063, 0.00223062, 0.0432304, 0.0227847, 0.82204, -0.568973, -0.0368063, 0.569425, 0.821219, -3.62645e-13, 1.7747e-12, 9.45484e-13)
 
-[node name="fx_tip_s (1)" parent="DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
-transform = Transform3D(1.02727, 0, 0, 0, 1.02727, 0, 0, 0, 1.02727, 0.000254457, -0.0010523, -0.00658163)
+[node name="neck_glow (1)" parent="DroneMesh/bad_Ship/explosion_pieces" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.909149, -0.416471, 0, 0.416471, 0.909149, 2.4717e-18, 0.119616, 0.0547948)
+
+[node name="head_piece (1)" parent="DroneMesh/bad_Ship/explosion_pieces" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.909149, -0.416471, 0, 0.416471, 0.909149, 1.43079e-18, 0.119616, 0.0547948)
 
 [node name="AnimationPlayer" parent="DroneMesh" index="1"]
 autoplay = "idle"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("SphereMesh_64u71")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_mg2do")
