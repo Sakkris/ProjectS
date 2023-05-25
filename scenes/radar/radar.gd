@@ -13,7 +13,7 @@ var instanciated_crosshairs = {}
 var next_available_id = 0
 var space_state = null
 var foward_plane: Plane
-
+var current_frame = 0
 
 func _ready():
 	detection_area.body_entered.connect(on_detection_area_entered)
@@ -49,7 +49,7 @@ func update_next_id():
 
 func enemy_gone(gone_enemy):
 	for enemy in enemies_detected:
-		if enemies_detected[enemy] == gone_enemy:
+		if enemies_detected[enemy].enemy == gone_enemy:
 			if instanciated_crosshairs.has(enemy):
 				instanciated_crosshairs[enemy].queue_free()
 				instanciated_crosshairs.erase(enemy)
