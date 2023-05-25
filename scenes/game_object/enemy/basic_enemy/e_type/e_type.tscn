@@ -107,7 +107,6 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 visible = false
 
 [node name="fx_tip_s (2)" parent="DroneMesh/bad_Ship/explosion_pieces" index="0"]
-transform = Transform3D(0.999933, -0.00324722, 0.0111479, -0.00328276, 0.841865, 0.539678, -0.0111375, -0.539678, 0.841798, 0.000224398, -0.00442911, -0.00139482)
 material_override = ExtResource("10_gy31q")
 
 [node name="fx_tip_s1" parent="DroneMesh/bad_Ship/explosion_pieces" index="1"]

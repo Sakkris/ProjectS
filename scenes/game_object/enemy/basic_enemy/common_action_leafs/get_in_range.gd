@@ -4,8 +4,7 @@ class_name GetInRange extends ActionLeaf
 
 @onready var path_cd_timer: Timer = $Timer
 
-var debug_points: Array 
-var debug_lines: Array
+var process_tick = true
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
@@ -20,7 +19,18 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 			return RUNNING
 		
 		path_cd_timer.start()
+		
+		define_path(actor)
+		return RUNNING
 	
+	if process_tick:
+		define_path(actor)
+	
+	process_tick = !process_tick
+	return RUNNING
+
+
+func define_path(actor):
 	var current_location = actor.global_position
 	var player_location = actor.player.global_position
 	
@@ -30,7 +40,3 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 	actor.path_to_follow = path
 	actor.current_target_index = -1
 	actor.next_target_point()
-	
-	return RUNNING
-
-
