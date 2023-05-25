@@ -6,13 +6,13 @@ class_name Gun
 @onready var recharge_cooldown_timer: Timer = $RechargeCooldownTimer
 @onready var bullet_scene : PackedScene = preload("res://scenes/game_object/projectile/player_bullet/player_bullet.tscn")
 
-@export var magazine_size : int = 6
+@export var magazine_size : int = 3
 @export var knockback_force: float = .5 
 
 var is_shooting: bool
 var current_bullets: int
-var passive_recharge_cooldown: float = .6
-var fast_recharge_cooldown: float = .3
+var passive_recharge_cooldown: float = .8
+var fast_recharge_cooldown: float = .5
 
 
 func _ready():

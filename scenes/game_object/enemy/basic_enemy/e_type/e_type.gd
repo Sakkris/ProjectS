@@ -59,7 +59,7 @@ func movement_process(delta):
 		
 		velocity_component.accelerate_in_direction(dir_to_target, delta)
 		
-		if global_transform.origin.distance_to(target_point) < 1.0:
+		if global_transform.origin.distance_to(target_point) < 2.0:
 			next_target_point()
 			velocity_component.change_direction(global_transform.origin.direction_to(target_point).normalized())
 	else:
@@ -128,7 +128,9 @@ func death():
 	hurt_box_collision.disabled = true
 	collision.disabled = true
 	
-#	$MeshInstance3D.visible = false
+	if $MeshInstance3D.visible:
+		$MeshInstance3D.visible = false
+		queue_free()
 	
 	$DroneMesh/bad_Ship/main_body.visible = false
 	$DroneMesh/bad_Ship/explosion_pieces.visible = true
