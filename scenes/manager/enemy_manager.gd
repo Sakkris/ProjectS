@@ -23,7 +23,8 @@ func _ready():
 		if child is SpawnArea:
 			spawn_areas.append(child)
 	
-	enemy_limit = process_balancer.number_of_rows * process_balancer.row_item_limit
+	process_balancer.set_limits(GameProperties.max_enemies / GameProperties.max_enemies_per_frame, GameProperties.max_enemies_per_frame)
+	enemy_limit = GameProperties.max_enemies
 
 
 func spawn_enemy():

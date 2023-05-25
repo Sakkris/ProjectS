@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv7sehl8awll6"]
+[gd_scene load_steps=5 format=3 uid="uid://cv7sehl8awll6"]
 
 [ext_resource type="Script" path="res://scenes/radar/radar.gd" id="1_5mrve"]
+[ext_resource type="PackedScene" uid="uid://c4dk45kklvnv" path="res://scenes/misc/process_balancer/process_balancer.tscn" id="2_fiwdr"]
+[ext_resource type="PackedScene" uid="uid://bf7svdrj4spey" path="res://scenes/radar/radar_dot/radar_dot.tscn" id="3_vr4kk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1r5e2"]
 radius = 60.0
@@ -8,6 +10,12 @@ radius = 60.0
 [node name="Radar" type="Node3D"]
 process_priority = -1
 script = ExtResource("1_5mrve")
+radar_dot_scene = ExtResource("3_vr4kk")
+
+[node name="ProcessBalancer" parent="." instance=ExtResource("2_fiwdr")]
+process_priority = -1
+number_of_rows = 2
+row_item_limit = 4
 
 [node name="DetectionArea" type="Area3D" parent="."]
 collision_layer = 0

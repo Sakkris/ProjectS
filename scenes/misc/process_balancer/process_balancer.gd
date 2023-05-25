@@ -71,3 +71,16 @@ func update_smallest_row():
 		size_count = 0
 	
 	smallest_row = current_smallest
+
+
+func set_limits(max_rows, max_items):
+	number_of_rows = max_rows
+	row_item_limit = max_items
+	
+	for i in range(number_of_rows):
+		balancing_rows[i] = []
+		
+		for j in range(row_item_limit):
+			balancing_rows[i].push_back(null)
+
+
