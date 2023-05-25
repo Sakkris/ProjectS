@@ -22,8 +22,8 @@ func exit() -> void:
 
 
 func handle_input_pressed(button: String):
-	if button == "grip_click":
-		ability_manager.use_ability_modifier("Hook", "Lock")
+#	if button == "grip_click":
+#		ability_manager.use_ability_modifier("Hook", "Lock")
 	
 	super.handle_input_pressed(button)
 
@@ -32,7 +32,7 @@ func handle_input_released(button: String):
 	if button == "trigger_click":
 		ability_manager.stop_ability_modifier("Hook", "Lock")
 		ability_manager.stop_ability("Hook")
-	elif button == "grip_click":
-		ability_manager.stop_ability_modifier("Hook", "Lock")
+#	elif button == "grip_click":
+#		ability_manager.stop_ability_modifier("Hook", "Lock")
 	
 	super.handle_input_released(button)
