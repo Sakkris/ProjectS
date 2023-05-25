@@ -55,8 +55,8 @@ func spawn_enemy():
 func update_timer():
 	var tmp_time = timer.wait_time
 	
-	tmp_time *= .1
-	timer.wait_time = max(timer.wait_time - tmp_time, 3)
+	tmp_time *= .05
+	timer.wait_time = max(timer.wait_time - tmp_time, 1)
 	timer.start()
 
 

@@ -124,17 +124,23 @@ func end_dash():
 	velocity_component.velocity = velocity
 
 
-func on_hit_taken(_area):
-	GameEvents.emit_enemy_died(self)
-	
+func death():
 	hurt_box_collision.disabled = true
 	collision.disabled = true
 	
-	$MeshInstance3D.visible = false
+#	$MeshInstance3D.visible = false
 	
+	$DroneMesh/bad_Ship/main_body.visible = false
+	$DroneMesh/bad_Ship/explosion_pieces.visible = true
 	animation_player.play("explode")
 	await animation_player.animation_finished
 	queue_free()
+
+
+func on_hit_taken(_area):
+	GameEvents.emit_enemy_died(self)
+	
+	call_deferred("death")
 
 
 func test_func():

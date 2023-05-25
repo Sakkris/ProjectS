@@ -361,7 +361,8 @@ mesh = SubResource("BoxMesh_xqcsk")
 player = NodePath("../Player")
 
 [node name="ProcessBalancer" parent="EnemyManager" index="0"]
-number_of_rows = 8
+number_of_rows = 9
+row_item_limit = 2
 
 [node name="Timer" parent="EnemyManager" index="1"]
 wait_time = 10.0

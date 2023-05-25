@@ -107,4 +107,5 @@ func turn_right():
 
 
 func hit(other_area):
-	GameEvents.emit_game_over()
+#	GameEvents.emit_game_over()
+	pass
