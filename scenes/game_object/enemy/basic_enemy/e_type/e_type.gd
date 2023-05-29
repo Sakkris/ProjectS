@@ -132,8 +132,11 @@ func dash_attack(target: Vector3):
 func end_dash():
 	dashing = false
 	dashing_target = Vector3.ZERO
-	animation_player.play_backwards("engage_transition")
-	animation_player.queue("idle")
+	
+	if animation_player:
+		animation_player.play_backwards("engage_transition")
+		animation_player.queue("idle")
+	
 	velocity_component.velocity = velocity
 
 

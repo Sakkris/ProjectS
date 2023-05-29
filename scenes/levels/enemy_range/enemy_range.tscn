@@ -19,6 +19,8 @@ size = Vector2(50, 50)
 
 [node name="EnemyRange" instance=ExtResource("1_o1gxr")]
 
+[node name="Debugger" type="Node" parent="." index="0" groups=["Debugger"]]
+
 [node name="ProcessBalancer" parent="EnemyManager" index="0"]
 number_of_rows = 8
 
@@ -28,21 +30,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.8294, -10.4302)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyManager/SpawnArea" index="0"]
 shape = SubResource("BoxShape3D_8f38w")
 
-[node name="DirectionalLight3D" parent="." index="4"]
+[node name="DirectionalLight3D" parent="." index="5"]
 transform = Transform3D(0.98604, 0.111889, -0.123315, -0.0536441, 0.914559, 0.400879, 0.157633, -0.388667, 0.907794, 0, 8.76178, 4.691)
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." index="5"]
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." index="6"]
 transform = Transform3D(-0.739087, -0.515837, 0.4332, -0.657225, 0.69319, -0.295877, -0.147666, -0.503389, -0.851348, 0.401881, 18.6555, 5.54404)
 light_energy = 0.5
 
-[node name="Player" parent="." index="6"]
+[node name="Player" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.98, 24.1213)
 
-[node name="GridMap" parent="." index="7"]
+[node name="GridMap" parent="." index="8"]
 visible = false
 cell_size = Vector3(5, 1, 5)
 
-[node name="Map" type="Node3D" parent="." index="8"]
+[node name="Map" type="Node3D" parent="." index="9"]
 
 [node name="Floor" type="StaticBody3D" parent="Map" index="0"]
 
