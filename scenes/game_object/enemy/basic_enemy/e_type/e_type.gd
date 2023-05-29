@@ -20,18 +20,26 @@ var space_state = null
 var dashing = false
 var dashing_target = Vector3.ZERO
 var current_target_index: int = -1
+var update_path_queued: bool = false
 
 
 func _ready():
 	$Hurtbox.area_entered.connect(self.on_hit_taken)
+	
+	if player:
+		player.closest_nav_point_changed.connect(on_player_moved)
+	
+#	$DroneMesh/bad_Ship/main_body.visibility_range_begin = 0
+#	$DroneMesh/bad_Ship/main_body.visibility_range_end = 10
+#	$MeshInstance3D.visibility_range_begin = 10
 
 
 func _physics_process(delta):
 	if !dash_check(delta):
 		movement_process(delta)
 	
-		if detection_range > distance_to_player:
-			look_at_player()
+	if detection_range > distance_to_player:
+		look_at_player()
 	
 	velocity_component.move(delta)
 
@@ -93,19 +101,24 @@ func look_at_player():
 
 
 func play_animation(animation_name):
-	if animation_player.has_animation(animation_name):
-		animation_player.play(animation_name)
+	if animation_player:
+		if animation_player.has_animation(animation_name):
+			animation_player.play(animation_name)
 
 
 func is_animation_playing(animation_name):
-	if animation_player.current_animation == animation_name:
-		return animation_player.is_playing()
-	else: 
-		return false
+	if animation_player:
+		if animation_player.current_animation == animation_name:
+			return animation_player.is_playing()
+	
+	return false
 
 
 func is_current_animation(animation_name):
-	return animation_player.current_animation == animation_name
+	if animation_player:
+		return animation_player.current_animation == animation_name
+	
+	return false
 
 
 func dash_attack(target: Vector3):
@@ -122,6 +135,10 @@ func end_dash():
 	animation_player.play_backwards("engage_transition")
 	animation_player.queue("idle")
 	velocity_component.velocity = velocity
+
+
+func queue_update_path():
+	update_path_queued = true
 
 
 func death():
@@ -145,5 +162,5 @@ func on_hit_taken(_area):
 	call_deferred("death")
 
 
-func test_func():
-	pass
+func on_player_moved():
+	queue_update_path()

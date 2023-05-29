@@ -51,11 +51,12 @@ var desired_point = null
 var closest_point = null
 var generated = false
 
+
 func _ready():
 	material = StandardMaterial3D.new()
 	material.vertex_color_use_as_albedo = true
 	point_queue.push_back(start_point)
-	
+
 
 # Generates a Astar Object giving it points and connections according to the settings defined,
 # using a Flood Fill algorithm

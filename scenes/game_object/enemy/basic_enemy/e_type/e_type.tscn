@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://x3j86vdkoepb"]
+[gd_scene load_steps=10 format=3 uid="uid://x3j86vdkoepb"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_8bk67"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/e_type.gd" id="2_6k27b"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://do8u2i5w4d44j" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/is_obstacle_between.tscn" id="6_dv60l"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/prepare_dash.gd" id="7_ey2ii"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/dash_to_player.gd" id="7_pjsmf"]
-[ext_resource type="Material" uid="uid://0bubv4px3atu" path="res://resources/enemy_model/etype_drone_mat.tres" id="10_gy31q"]
 
 [node name="EType" instance=ExtResource("1_8bk67")]
 collision_layer = 12
@@ -54,127 +53,14 @@ script = ExtResource("7_pjsmf")
 [node name="GetInRange" parent="BeehaveTree/SelectorComposite2" index="1" instance=ExtResource("2_jo3bw")]
 
 [node name="MeshInstance3D" parent="." index="2"]
-visible = false
+skeleton = NodePath("")
 
-[node name="DroneMesh" parent="." index="3"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-
-[node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.16483e-08, -0.933948, -0.357409, -3.12457e-08, -0.357409, 0.933948, 0, 0, 0)
-material_override = ExtResource("10_gy31q")
-
-[node name="long_rod_A" parent="DroneMesh/bad_Ship/main_body" index="0"]
-transform = Transform3D(-0.282396, -0.458706, -0.842521, 0.88914, 0.204538, -0.409382, 0.360114, -0.864727, 0.350093, 0, 0, 0)
-material_override = ExtResource("10_gy31q")
-
-[node name="fx_tip" parent="DroneMesh/bad_Ship/main_body/long_rod_A" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="long_rod_B" parent="DroneMesh/bad_Ship/main_body" index="1"]
-transform = Transform3D(-0.385838, 0.484317, 0.785217, -0.490471, 0.613193, -0.61922, -0.781388, -0.624045, 0.000950246, 0, 0, 0)
-material_override = ExtResource("10_gy31q")
-
-[node name="fx_tip (1)" parent="DroneMesh/bad_Ship/main_body/long_rod_B" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="small_rod_A" parent="DroneMesh/bad_Ship/main_body" index="2"]
-transform = Transform3D(-0.999063, -0.00223052, -0.0432304, -0.00812485, -0.97126, 0.23788, -0.0425186, 0.238008, 0.970332, 0, 0, 0)
-material_override = ExtResource("10_gy31q")
-
-[node name="fx_tip_s" parent="DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="small_rod_B" parent="DroneMesh/bad_Ship/main_body" index="3"]
-transform = Transform3D(-0.999932, 0.00324728, -0.0111479, 0.00704652, -0.593372, -0.804897, -0.00922856, -0.804922, 0.593309, 0, 0, 0)
-material_override = ExtResource("10_gy31q")
-
-[node name="fx_tip_s (1)" parent="DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="head_piece" parent="DroneMesh/bad_Ship/main_body" index="4"]
-transform = Transform3D(-1, 8.74227e-08, 0, -8.72434e-08, -0.997948, 0.0640237, 5.59713e-09, 0.0640237, 0.997948, 0, -0.131299, 0.00842355)
-material_override = ExtResource("10_gy31q")
-
-[node name="neck_glow" parent="DroneMesh/bad_Ship/main_body/head_piece" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="eye" parent="DroneMesh/bad_Ship/main_body/head_piece" index="1"]
-transform = Transform3D(0.999824, 0.0165305, 0.0088412, -0.0174244, 0.993439, 0.113026, -0.00691482, -0.11316, 0.993553, -0.000107924, 4.28336e-05, 0.000738797)
-material_override = ExtResource("10_gy31q")
-
-[node name="explosion_pieces" parent="DroneMesh/bad_Ship" index="1"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-visible = false
-
-[node name="fx_tip_s (2)" parent="DroneMesh/bad_Ship/explosion_pieces" index="0"]
-transform = Transform3D(0.999933, -0.00324722, 0.0111479, -0.00328276, 0.841865, 0.539678, -0.0111375, -0.539678, 0.841798, 0.000224398, -0.00442911, -0.00139482)
-material_override = ExtResource("10_gy31q")
-
-[node name="fx_tip_s1" parent="DroneMesh/bad_Ship/explosion_pieces" index="1"]
-transform = Transform3D(0.999063, 0.00223062, 0.0432304, 0.0227847, 0.82204, -0.568973, -0.0368063, 0.569425, 0.821219, 0, 0, 0)
-material_override = ExtResource("10_gy31q")
-
-[node name="neck_glow (1)" parent="DroneMesh/bad_Ship/explosion_pieces" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.909149, -0.416471, 0, 0.416471, 0.909149, 0, 0.119616, 0.0547948)
-material_override = ExtResource("10_gy31q")
-
-[node name="head_piece (1)" parent="DroneMesh/bad_Ship/explosion_pieces" index="3"]
-transform = Transform3D(1, 0, 0, 0, 0.909149, -0.416471, 0, 0.416471, 0.909149, 0, 0.119616, 0.0547948)
-material_override = ExtResource("10_gy31q")
-
-[node name="shard1" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard2" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="1"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard3" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="2"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard4" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard5" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="1"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard6" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="2"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard1 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard2 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="1"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard3 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="2"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard4 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard5 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="1"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard6 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="2"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard7" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="0"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard8" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="1"]
-material_override = ExtResource("10_gy31q")
-
-[node name="shard9" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="2"]
-material_override = ExtResource("10_gy31q")
-
-[node name="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Hurtbox" parent="." index="5"]
+[node name="Hurtbox" parent="." index="4"]
 collision_layer = 4
 collision_mask = 64
 
 [node name="CollisionShape3D" parent="Hurtbox" index="0"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
-
-[editable path="DroneMesh"]

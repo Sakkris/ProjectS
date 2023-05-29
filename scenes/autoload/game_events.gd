@@ -5,6 +5,8 @@ signal enemy_died
 signal enemy_spawned
 signal game_start
 signal game_over
+signal objective_destroyed
+signal objective_created
 
 
 func emit_game_time_updated(time_elapsed):
@@ -25,3 +27,11 @@ func emit_game_start():
 
 func emit_game_over():
 	game_over.emit()
+
+
+func emit_objective_destroyed():
+	objective_destroyed.emit()
+
+
+func emit_objective_created(objective):
+	objective_created.emit(objective)

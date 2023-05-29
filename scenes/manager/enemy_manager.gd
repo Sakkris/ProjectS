@@ -15,9 +15,11 @@ var number_of_enemies = 0
 func _ready():
 	timer.timeout.connect(func(): spawn_enemy())
 	GameEvents.game_start.connect(func(): timer.start())
+	GameEvents.enemy_died.connect(on_enemy_destroyed) 
 #	GameEvents.game_start.connect(func(): spawn_enemy())
-	GameEvents.enemy_died.connect(on_enemy_destroyed)
 #	GameEvents.enemy_died.connect(func(): spawn_enemy())
+	GameEvents.game_start.connect(func(): spawn_objective())
+	GameEvents.objective_destroyed.connect(func(): spawn_objective())
 	
 	for child in get_children():
 		if child is SpawnArea:
@@ -68,7 +70,7 @@ func select_random_area():
 	selected_area = spawn_areas.pick_random()
 	
 	while selected_area.has_overlapping_areas() || selected_area.has_overlapping_bodies():
-		if number_of_tries >= 5:
+		if number_of_tries >= 10:
 			return null
 		
 		selected_area = spawn_areas.pick_random()
@@ -93,3 +95,11 @@ func get_rand_position(area):
 func on_enemy_destroyed(enemy_instance):
 	process_balancer.remove_from_queue(enemy_instance)
 	number_of_enemies -= 1
+
+
+func spawn_objective():
+	var selected_area = select_random_area()
+	if selected_area == null:
+		return
+	
+	var positionInArea = get_rand_position(selected_area)

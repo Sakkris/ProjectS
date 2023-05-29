@@ -11,6 +11,7 @@ extends Node3D
 @onready var kill_label = $SubViewport/PlayerUIControl/KillMarginContainer/HBoxContainer/KillLabel
 @onready var player_speed_label = $SubViewport/PlayerUIControl/SpeedMarginContainer/SpeedLabel
 @onready var fps_counter = $SubViewport/PlayerUIControl/FPSMarginContainer/FPSCounter
+@onready var draw_calls = $SubViewport/PlayerUIControl/FPSMarginContainer/DrawCalls
 
 @onready var viewport = $SubViewport
 @onready var collision_shape = $CollisionShape3D
@@ -35,7 +36,8 @@ func _ready():
 
 
 func _process(_delta):
-	fps_counter.set_text(str(Engine.get_frames_per_second()) + " fps")
+	fps_counter.set_text(str(Performance.get_monitor(Performance.TIME_FPS)) + " fps")
+	draw_calls.set_text("\n" + str(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)) + " Draws")
 	
 	player_speed_label.set_text("%.2f m/s" % player.velocity.length())
 

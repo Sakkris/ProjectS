@@ -36,7 +36,7 @@ transform = Transform3D(-0.739087, -0.515837, 0.4332, -0.657225, 0.69319, -0.295
 light_energy = 0.5
 
 [node name="Player" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 24.1213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.98, 24.1213)
 
 [node name="GridMap" parent="." index="7"]
 visible = false

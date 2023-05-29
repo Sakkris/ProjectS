@@ -9,31 +9,30 @@ var astar: AStar3D = AStar3D.new()
 
 
 func _ready():
-	pass
-#	GameEvents.enemy_spawned.connect(on_enemy_spawned)
-#
-#	player = get_tree().get_first_node_in_group("player")
-#
-#	var nav_points_nodes = get_children()
-#	var index = 0
-#
-#	for nav_point in nav_points_nodes:
-#		nav_points[index] = nav_point
-#		index += 1
-#
-#	material = StandardMaterial3D.new()
-#	material.vertex_color_use_as_albedo = true
-#
-#	setup_astar()
-#
-#	var orig_id = get_nearest_nav_point_to_node(player)
-#	var dest_id
-#	if destiny_node == null:
-#		dest_id = get_nearest_nav_point_to_node(player)
-#	else:
-#		dest_id = get_nearest_nav_point_to_node(destiny_node)
-#
-#	current_line = create_array_mesh(orig_id, dest_id)
+	GameEvents.enemy_spawned.connect(on_enemy_spawned)
+
+	player = get_tree().get_first_node_in_group("player")
+
+	var nav_points_nodes = get_children()
+	var index = 0
+
+	for nav_point in nav_points_nodes:
+		nav_points[index] = nav_point
+		index += 1
+
+	material = StandardMaterial3D.new()
+	material.vertex_color_use_as_albedo = true
+
+	setup_astar()
+
+	var orig_id = get_nearest_nav_point_to_node(player)
+	var dest_id
+	if destiny_node == null:
+		dest_id = get_nearest_nav_point_to_node(player)
+	else:
+		dest_id = get_nearest_nav_point_to_node(destiny_node)
+
+	current_line = create_array_mesh(orig_id, dest_id)
 
 
 func _process(_delta):

@@ -15,6 +15,7 @@ var space_state = null
 var foward_plane: Plane
 var current_frame = 0
 
+
 func _ready():
 	detection_area.body_entered.connect(on_detection_area_entered)
 	detection_area.body_exited.connect(on_detection_area_exited)

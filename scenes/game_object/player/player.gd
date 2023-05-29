@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name  Player
 
+signal closest_nav_point_changed
+
 const HEIGHT_OFFSET = .20 # cm
 const TURN_ANGLE = 2 * PI / 12
 
@@ -12,6 +14,7 @@ const TURN_ANGLE = 2 * PI / 12
 @onready var hurt_box: Area3D = $HurtBox
 
 var space_state = null
+var closest_nav_point: Vector3 = Vector3.ZERO
 
 
 func _ready():
@@ -25,6 +28,12 @@ func _physics_process(delta):
 	set_proper_player_collision(delta)
 	_process_on_physical_movement(delta)
 	velocity_component.move(delta)
+	
+	var tmp_point = NavPointGenerator.get_closest_point(global_position)
+	
+	if tmp_point != closest_nav_point:
+		closest_nav_point = tmp_point
+		closest_nav_point_changed.emit()
 
 
 func _process_on_physical_movement(delta):
@@ -81,7 +90,6 @@ func set_proper_player_collision(delta):
 			var offset_vector = Vector3.ZERO
 			offset_vector.y -= global_transform.origin.y - result.position.y - 0.01
 			fix_player_position(offset_vector, delta)
-	
 
 
 func fix_player_position(offset: Vector3, delta):

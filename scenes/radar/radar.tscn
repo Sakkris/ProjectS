@@ -14,8 +14,8 @@ radar_dot_scene = ExtResource("3_vr4kk")
 
 [node name="ProcessBalancer" parent="." instance=ExtResource("2_fiwdr")]
 process_priority = -1
-number_of_rows = 4
-row_item_limit = 4
+number_of_rows = 3
+row_item_limit = 5
 
 [node name="DetectionArea" type="Area3D" parent="."]
 collision_layer = 0

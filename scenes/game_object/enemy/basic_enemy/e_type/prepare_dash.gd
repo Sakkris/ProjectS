@@ -10,7 +10,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	actor.look_at_player()
 	blackboard.set_value("target", actor.player.global_position)
 	
-	if !actor.animation_player.is_playing():
+	if actor.animation_player and !actor.animation_player.is_playing():
 		$Timer.start()
 		return FAILURE
 	
