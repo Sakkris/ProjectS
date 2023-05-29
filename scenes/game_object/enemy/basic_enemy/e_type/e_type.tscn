@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://x3j86vdkoepb"]
+[gd_scene load_steps=11 format=3 uid="uid://x3j86vdkoepb"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_8bk67"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/e_type.gd" id="2_6k27b"]
@@ -10,10 +10,14 @@
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/prepare_dash.gd" id="7_ey2ii"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/dash_to_player.gd" id="7_pjsmf"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_d3fre"]
+radius = 1.12959
+
 [node name="EType" instance=ExtResource("1_8bk67")]
 collision_layer = 12
 collision_mask = 7
 script = ExtResource("2_6k27b")
+die_on_dash = true
 
 [node name="VelocityComponent" parent="." index="0"]
 max_speed = 7.5
@@ -64,3 +68,11 @@ collision_mask = 64
 
 [node name="CollisionShape3D" parent="Hurtbox" index="0"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="ExplosionRadius" type="Area3D" parent="." index="5"]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRadius" index="0"]
+shape = SubResource("SphereShape3D_d3fre")
+disabled = true

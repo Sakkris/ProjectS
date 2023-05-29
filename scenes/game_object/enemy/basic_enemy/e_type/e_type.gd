@@ -3,11 +3,13 @@ extends CharacterBody3D
 @export var attack_range = 10
 @export var detection_range = 15
 @export var dash_speed = 20
+@export var die_on_dash: bool = false
 
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var animation_player: AnimationPlayer = $DroneMesh/AnimationPlayer
 @onready var behavior_tree: BeehaveTree = $BeehaveTree
 @onready var hurt_box_collision: CollisionShape3D = $Hurtbox/CollisionShape3D
+@onready var explosion_radius: CollisionShape3D = $ExplosionRadius/CollisionShape3D
 @onready var collision: CollisionShape3D = $CollisionShape3D
 
 var player: Player = null
@@ -130,6 +132,9 @@ func dash_attack(target: Vector3):
 
 
 func end_dash():
+	if die_on_dash:
+		death()
+	
 	dashing = false
 	dashing_target = Vector3.ZERO
 	
@@ -145,6 +150,11 @@ func queue_update_path():
 
 
 func death():
+	GameEvents.emit_enemy_died(self)
+	
+	target_point = Vector3.ZERO
+	
+	explosion_radius.disabled = false
 	hurt_box_collision.disabled = true
 	collision.disabled = true
 	
@@ -160,8 +170,6 @@ func death():
 
 
 func on_hit_taken(_area):
-	GameEvents.emit_enemy_died(self)
-	
 	call_deferred("death")
 
 

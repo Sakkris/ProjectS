@@ -15,6 +15,7 @@ const TURN_ANGLE = 2 * PI / 12
 
 var space_state = null
 var closest_nav_point: Vector3 = Vector3.ZERO
+var height = 0
 
 
 func _ready():
@@ -77,6 +78,8 @@ func set_proper_player_collision(delta):
 	player_collision.global_transform.origin.y = ((camera_node.global_transform.origin + origin_node.global_transform.origin).y / 2) + HEIGHT_OFFSET
 	player_collision.shape.height = current_height + HEIGHT_OFFSET
 	player_collision.shape.radius = 0.3
+	
+	height = current_height + HEIGHT_OFFSET
 	
 	origin_node.global_transform.origin.y = global_transform.origin.y
 	
