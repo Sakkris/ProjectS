@@ -50,7 +50,6 @@ func tick():
 	space_state = get_world_3d().direct_space_state
 	distance_to_player = global_position.distance_to(player.global_position)
 	behavior_tree.tick()
-	pass
 
 
 func dash_check(delta) -> bool:
@@ -161,12 +160,12 @@ func death():
 	if $MeshInstance3D.visible:
 		$MeshInstance3D.visible = false
 		queue_free()
-	
-	$DroneMesh/bad_Ship/main_body.visible = false
-	$DroneMesh/bad_Ship/explosion_pieces.visible = true
-	animation_player.play("explode")
-	await animation_player.animation_finished
-	queue_free()
+	else:
+		$DroneMesh/bad_Ship/main_body.visible = false
+		$DroneMesh/bad_Ship/explosion_pieces.visible = true
+		animation_player.play("explode")
+		await animation_player.animation_finished
+		queue_free()
 
 
 func on_hit_taken(_area):
