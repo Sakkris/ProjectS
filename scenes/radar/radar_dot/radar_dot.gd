@@ -29,7 +29,7 @@ func tick():
 	if icon_position == null:
 		return
 	
-	var distance_squared = radar_ref.position.distance_squared_to(enemy.position)
+	var distance_squared = radar_ref.global_position.distance_squared_to(enemy.global_position)
 	
 	radar_ref.player_ui.draw_enemy_icon_at_position(icon_position, id, distance_squared)
 

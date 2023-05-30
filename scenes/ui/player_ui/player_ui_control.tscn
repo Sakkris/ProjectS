@@ -85,11 +85,3 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 26
 text = "18 fps"
-
-[node name="DrawCalls" type="Label" parent="FPSMarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 26
-text = "
-0 Draws"

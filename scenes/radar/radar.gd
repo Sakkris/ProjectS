@@ -40,8 +40,6 @@ func enemy_detected(detected_enemy):
 
 
 func update_next_id():
-	next_available_id = 0
-	
 	for enemy in enemies_detected:
 		next_available_id += 1
 		if not enemies_detected.has(next_available_id):

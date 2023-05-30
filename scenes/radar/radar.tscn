@@ -8,7 +8,7 @@
 radius = 40.0
 
 [node name="Radar" type="Node3D"]
-process_priority = -1
+process_priority = -2
 script = ExtResource("1_5mrve")
 radar_dot_scene = ExtResource("3_vr4kk")
 

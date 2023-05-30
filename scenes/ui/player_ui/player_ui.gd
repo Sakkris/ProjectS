@@ -2,7 +2,7 @@ extends Node3D
 
 @export var MAX_SCALE: float = 0.1
 @export var MIN_SCALE: float = 0.01
-@export var MAX_DISTANCE_SQUARED: float = 3600
+@export var MAX_DISTANCE_SQUARED: float = 1600
 @export var MIN_DISTANCE_SQUARED: float = 25
 
 @onready var enemy_icon_scene = preload("res://scenes/ui/misc/enemy_icon.tscn")
@@ -11,7 +11,6 @@ extends Node3D
 @onready var kill_label = $SubViewport/PlayerUIControl/KillMarginContainer/HBoxContainer/KillLabel
 @onready var player_speed_label = $SubViewport/PlayerUIControl/SpeedMarginContainer/SpeedLabel
 @onready var fps_counter = $SubViewport/PlayerUIControl/FPSMarginContainer/FPSCounter
-@onready var draw_calls = $SubViewport/PlayerUIControl/FPSMarginContainer/DrawCalls
 
 @onready var viewport = $SubViewport
 @onready var collision_shape = $CollisionShape3D
@@ -36,8 +35,7 @@ func _ready():
 
 
 func _process(_delta):
-	fps_counter.set_text(str(Performance.get_monitor(Performance.TIME_FPS)) + " fps")
-	draw_calls.set_text("\n" + str(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)) + " Draws")
+	fps_counter.set_text(str(Performance.get_monitor(Performance.TIME_FPS)) + " fps") 	
 	
 	player_speed_label.set_text("%.2f m/s" % player.velocity.length())
 
@@ -59,13 +57,13 @@ func draw_enemy_icon_at_position(global_icon_position, enemy_id, distance_square
 	enemy_icons[enemy_id].position = point_to_viewport_position(global_icon_position)
 #	print(point_to_viewport_position(global_icon_position))
 
+
 func get_icon_scale(distance_squared):
 	var scale_factor = inverse_lerp(MIN_DISTANCE_SQUARED, MAX_DISTANCE_SQUARED, distance_squared)
 	scale_factor = clamp(scale_factor, 0.0, 1.0)
 	scale_factor = 1 - scale_factor
 	
 	return lerp(MIN_SCALE, MAX_SCALE, scale_factor)
-
 
 
 func remove_enemy_icon(enemy_id):
