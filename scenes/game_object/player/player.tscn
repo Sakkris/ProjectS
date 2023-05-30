@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctgu83ypdttse"]
+[gd_scene load_steps=23 format=3 uid="uid://ctgu83ypdttse"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_80ysr"]
 [ext_resource type="PackedScene" uid="uid://7spnfacotrv5" path="res://scenes/component/velocity_component/velocity_component.tscn" id="2_25rjh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bwxk255d7fh2x" path="res://scenes/ability/boost_ability/boost_controller.tscn" id="7_o7c0m"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="8_2adlc"]
 [ext_resource type="Shader" uid="uid://0yj74hy4xyr1" path="res://resources/shaders/grayscale/grayscale.tres" id="10_5tqm7"]
+[ext_resource type="PackedScene" uid="uid://cuc7r0xfqysje" path="res://scenes/ui/camera_overlay/camera_overlay.tscn" id="11_8mfyc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3fje1"]
 radius = 0.3
@@ -153,6 +154,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.574398)
 visible = false
 material_override = SubResource("ShaderMaterial_kc8fj")
 mesh = SubResource("QuadMesh_wi2gc")
+
+[node name="CameraOverlay" parent="XROrigin3D/XRCamera3D" instance=ExtResource("11_8mfyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.463778)
 
 [node name="CharacterOrigin" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cuc7r0xfqysje"]
+
+[ext_resource type="Script" path="res://scenes/ui/camera_overlay/camera_overlay.gd" id="1_emksu"]
+[ext_resource type="Shader" uid="uid://rub4yl8ct3rd" path="res://resources/shaders/hologram/hologram.tres" id="1_mxi0v"]
+[ext_resource type="Texture2D" uid="uid://btymh8dvi7ugt" path="res://resources/shaders/hologram/hologram_lines.png" id="2_i37me"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gdog"]
+shader = ExtResource("1_mxi0v")
+shader_parameter/BaseColor = Color(0.109804, 0.580392, 0.690196, 0.176471)
+shader_parameter/HologramTextureTilling = Vector2(1, 15)
+shader_parameter/Speed = 0.5
+shader_parameter/HologramLines = ExtResource("2_i37me")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vp5so"]
+no_depth_test = true
+shading_mode = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_by5jv"]
+
+[node name="CameraOverlay" type="Node3D"]
+script = ExtResource("1_emksu")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Control"]
+material = SubResource("ShaderMaterial_2gdog")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_vp5so")
+mesh = SubResource("QuadMesh_by5jv")
