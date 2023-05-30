@@ -1,6 +1,7 @@
 class_name GetInRange extends ActionLeaf
 
 @export var attack_range: Area3D
+@export var show_debug_line: bool = false
 
 @onready var path_cd_timer: Timer = $Timer
 
@@ -73,10 +74,11 @@ func define_path(actor):
 	actor.path_to_follow = path
 	actor.next_target_point()
 	
-#	if current_line:
-#		update_array_mesh(path, actor)
-#	else:
-#		current_line = create_line_mesh(path, actor)
+	if show_debug_line:
+		if current_line:
+			update_array_mesh(path, actor)
+		else:
+			current_line = create_line_mesh(path, actor)
 
 
 func update_array_mesh(path: PackedVector3Array, actor):

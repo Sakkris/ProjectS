@@ -70,7 +70,7 @@ func movement_process(delta):
 		
 		if global_transform.origin.distance_to(target_point) < 2.0:
 			next_target_point()
-			velocity_component.change_direction(global_transform.origin.direction_to(target_point).normalized())
+			velocity_component.turn_target_point(target_point)
 	else:
 		velocity_component.decelerate(delta)
 

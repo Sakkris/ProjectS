@@ -23,6 +23,7 @@ die_on_dash = true
 max_speed = 7.5
 max_overloaded_speed = 10.0
 acceleration_coeficient = 2.0
+turn_speed = 2.0
 
 [node name="BeehaveTree" parent="." index="1"]
 enabled = false

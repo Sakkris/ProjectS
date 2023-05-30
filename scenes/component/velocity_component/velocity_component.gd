@@ -6,14 +6,22 @@ class_name VelocityComponent
 @export var max_speed: float = 10
 @export var max_overloaded_speed: float = 15
 @export var acceleration_coeficient: float = .5
+@export var turn_speed: float = 0.0
 
+# The Velocity vector used when moving
 var velocity: Vector3
+# Used when turning, if the turn speed is 0 it's never used
+var target_point: Vector3 = Vector3.ZERO
+# If the owner can move or not
 var can_move: bool = true
 
 
 func move(delta):
 	if !can_move:
 		return 
+	
+	if turn_speed != 0 && target_point != Vector3.ZERO:
+		turn(delta)
 	
 	if exceeds_max_speed():
 		decelerate_to_max_speed(delta)
@@ -76,6 +84,21 @@ func calculate_max_overloaded_velocity() -> Vector3:
 func change_direction(new_direction: Vector3):
 	var direction_norm = new_direction.normalized()
 	velocity = velocity.length() * direction_norm
+
+
+func turn_target_point(point):
+	target_point = point
+
+
+func turn(delta):
+	var velocity_norm = velocity.normalized()
+	var target_direction = owner.global_position.direction_to(target_point)
+	velocity_norm = velocity_norm.lerp(target_direction, turn_speed * delta)
+	
+	velocity = velocity_norm * velocity.length()
+	
+	if velocity_norm == target_direction:
+		target_direction = Vector3.ZERO
 
 
 func reset_if_opposite_velocity(direction: Vector3):
