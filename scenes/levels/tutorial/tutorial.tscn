@@ -6,7 +6,7 @@
 [ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="2_08jeq"]
 [ext_resource type="PackedScene" uid="uid://cecv12b4nvyqn" path="res://scenes/game_object/grab_block/grab_block.tscn" id="2_bhks3"]
 [ext_resource type="PackedScene" uid="uid://ctgu83ypdttse" path="res://scenes/game_object/player/player.tscn" id="3_sb81d"]
-[ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/enemy_manager.tscn" id="6_5s6uh"]
+[ext_resource type="PackedScene" uid="uid://cmd3ch858hcu5" path="res://scenes/manager/entity_manager.tscn" id="6_5s6uh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cp7s6"]
 size = Vector3(11.2, 8.1, 9.36)

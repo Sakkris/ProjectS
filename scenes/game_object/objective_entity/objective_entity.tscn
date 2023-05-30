@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7sqbe4s8snn7"]
+
+[ext_resource type="Script" path="res://scenes/game_object/objective_entity/objective_entity.gd" id="1_v7pxm"]
+
+[sub_resource type="Animation" id="Animation_i0s85"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0.785398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6tv6s"]
+resource_name = "default"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0.785398), Vector3(0.785398, 6.28319, 0.785398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0tcu3"]
+_data = {
+"RESET": SubResource("Animation_i0s85"),
+"default": SubResource("Animation_6tv6s")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6rl5"]
+albedo_color = Color(0.133333, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qcgj3"]
+material = SubResource("StandardMaterial3D_i6rl5")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bvwb8"]
+radius = 0.590232
+
+[node name="ObjectiveEntity" type="Node3D"]
+script = ExtResource("1_v7pxm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_0tcu3")
+}
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, -0.707107, 0.5, 0.5, 0.707107, 0, 0, 0)
+mesh = SubResource("BoxMesh_qcgj3")
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_mask = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_bvwb8")

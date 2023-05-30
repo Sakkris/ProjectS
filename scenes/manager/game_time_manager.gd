@@ -9,8 +9,8 @@ var time_checkpoint_rechead = 0
 
 func _ready():
 	GameEvents.game_start.connect(func(): timer.start())
-#	timer.timeout.connect(on_timer_timeout)
-#	GameEvents.enemy_died.connect(func(): add_time())
+	GameEvents.objective_destroyed.connect(func(): add_time())
+	timer.timeout.connect(on_timer_timeout)
 
 
 func _process(_delta):
@@ -22,8 +22,8 @@ func _process(_delta):
 	if last_time != int(elapsed_time):
 		last_time = int(elapsed_time)
 		
-#		GameEvents.emit_game_time_updated(timer.wait_time - elapsed_time)
-		GameEvents.emit_game_time_updated(elapsed_time)
+		GameEvents.emit_game_time_updated(timer.wait_time - elapsed_time)
+#		GameEvents.emit_game_time_updated(elapsed_time)
 
 
 func add_time():
