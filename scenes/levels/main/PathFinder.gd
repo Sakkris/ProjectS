@@ -9,7 +9,7 @@ var astar: AStar3D = AStar3D.new()
 
 
 func _ready():
-	GameEvents.enemy_spawned.connect(on_enemy_spawned)
+	GameEvents.objective_created.connect(on_objective_created)
 
 	player = get_tree().get_first_node_in_group("player")
 
@@ -36,6 +36,9 @@ func _ready():
 
 
 func _process(_delta):
+	if destiny_node == null:
+		return 
+	
 	var orig_id = get_nearest_nav_point_to_node(player)
 	var dest_id = get_nearest_nav_point_to_node(destiny_node)
 	
@@ -78,7 +81,9 @@ func create_arrays(orig_id, dest_id):
 			vertices.push_back(nav_points[prev_vertice].position)
 			vertices.push_back(nav_points[point_id].position)
 		else: 
-			vertices.push_back(player.position)
+			var player_position = player.position
+			player_position.y += player.height / 2
+			vertices.push_back(player_position)
 			vertices.push_back(nav_points[point_id].position)
 		
 		prev_vertice = point_id
@@ -155,5 +160,5 @@ func setup_astar():
 	make_astar_connections()
 
 
-func on_enemy_spawned(enemy):
-	destiny_node = enemy
+func on_objective_created(objective):
+	destiny_node = objective

@@ -39,7 +39,6 @@ environment = ExtResource("7_e6uss")
 [node name="GameTimeManager" parent="." instance=ExtResource("1_mj5n6")]
 
 [node name="PathFinder" type="Node" parent="."]
-process_mode = 4
 script = ExtResource("3_ts5cl")
 
 [node name="Point" type="Node3D" parent="PathFinder"]
@@ -363,9 +362,6 @@ player = NodePath("../Player")
 [node name="ProcessBalancer" parent="EntityManager" index="0"]
 number_of_rows = 9
 row_item_limit = 2
-
-[node name="Timer" parent="EntityManager" index="1"]
-wait_time = 10.0
 
 [node name="SpawnArea1" parent="EntityManager" instance=ExtResource("8_hrytj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 37, -1.219)
