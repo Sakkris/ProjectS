@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqs3j4pr17uml"]
+
+[ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_rm0u1"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/s_type/s_type.gd" id="2_13nvo"]
+[ext_resource type="PackedScene" uid="uid://5sd8an8bku8m" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/get_in_range.tscn" id="3_lx4p8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow5bb"]
+albedo_color = Color(0, 0.521569, 1, 1)
+
+[node name="SType" instance=ExtResource("1_rm0u1")]
+script = ExtResource("2_13nvo")
+
+[node name="VelocityComponent" parent="." index="0"]
+max_speed = 7.5
+acceleration_coeficient = 2.0
+turn_speed = 2.0
+
+[node name="BeehaveTree" parent="." index="1"]
+enabled = false
+
+[node name="GetInRange" parent="BeehaveTree" index="0" instance=ExtResource("3_lx4p8")]
+
+[node name="MeshInstance3D" parent="." index="2"]
+material_override = SubResource("StandardMaterial3D_ow5bb")

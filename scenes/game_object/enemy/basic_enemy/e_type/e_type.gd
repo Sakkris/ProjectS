@@ -13,7 +13,7 @@ func _ready():
 	$Hurtbox.area_entered.connect(self.on_hit_taken)
 	
 	if player:
-		player.closest_nav_point_changed.connect(on_player_moved)
+		player.closest_nav_point_changed.connect(self.on_player_moved)
 	
 #	$DroneMesh/bad_Ship/main_body.visibility_range_begin = 0
 #	$DroneMesh/bad_Ship/main_body.visibility_range_end = 10

@@ -1,6 +1,5 @@
 class_name GetInRange extends ActionLeaf
 
-@export var attack_range: Area3D
 @export var show_debug_line: bool = false
 
 @onready var path_cd_timer: Timer = $Timer
