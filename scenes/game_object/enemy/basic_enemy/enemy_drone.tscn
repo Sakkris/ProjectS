@@ -39,8 +39,8 @@ mesh = SubResource("SphereMesh_64u71")
 shape = SubResource("SphereShape3D_mg2do")
 
 [node name="Hurtbox" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 4
+collision_mask = 64
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("SphereShape3D_2cweo")

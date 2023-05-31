@@ -2,7 +2,10 @@ extends EnemyDrone
 
 
 func _ready():
-	$Hurtbox.area_entered.connect(self.on_hit_taken)
+	$Hurtbox.area_entered.connect(on_hit_taken)
+	
+	if player:
+		player.closest_nav_point_changed.connect(on_player_moved)
 
 
 func _physics_process(delta):
