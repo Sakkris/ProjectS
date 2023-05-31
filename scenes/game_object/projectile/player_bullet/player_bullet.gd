@@ -1,9 +1,12 @@
 extends Area3D
 
+@export var bullet_speed = 100.0
+
 @onready var hit_particles: CPUParticles3D = $HitParticles
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var bullet_speed = 50.0
+var space_state = null
+var prev_pos
 
 
 func _ready():
@@ -13,7 +16,20 @@ func _ready():
 
 
 func _physics_process(delta):
+	space_state = get_world_3d().direct_space_state
 	global_translate(transform.basis.z * -bullet_speed * delta)
+	
+	if prev_pos != null:
+		var query = PhysicsRayQueryParameters3D.create(prev_pos, global_position)
+		query.collision_mask = collision_mask
+		query.hit_from_inside = true
+		query.hit_back_faces = true
+		var result = space_state.intersect_ray(query)
+		
+		if not result.is_empty():
+			global_position = result.position
+		
+	prev_pos = global_position
 
 
 func hit_target():
