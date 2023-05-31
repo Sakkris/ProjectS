@@ -45,8 +45,6 @@ func update(delta) -> bool:
 			acceleration_offset = min(acceleration_offset + delta, 1)
 			current_acceleration = HOOK_PULL_SPEED * acceleration_curve.sample(acceleration_offset)
 			
-			print(current_acceleration)
-			
 			return true
 		states.RETRACTING:
 			retract_hook(delta)
