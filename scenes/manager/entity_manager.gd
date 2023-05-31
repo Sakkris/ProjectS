@@ -19,7 +19,7 @@ func _ready():
 #	GameEvents.game_start.connect(func(): spawn_enemy())
 #	GameEvents.enemy_died.connect(func(): spawn_enemy())
 	GameEvents.game_start.connect(func(): spawn_objective())
-	GameEvents.objective_destroyed.connect(func(): spawn_objective())
+	GameEvents.objective_destroyed.connect(func(): spawn_objective(); update_enemy_timer())
 	
 	for child in get_children():
 		if child is SpawnArea:
@@ -51,8 +51,6 @@ func spawn_enemy():
 	number_of_enemies += 1
 	
 	process_balancer.add_to_queue(enemy_instance, Callable(enemy_instance, "tick"))
-	
-	update_enemy_timer()
 
 
 func spawn_objective():

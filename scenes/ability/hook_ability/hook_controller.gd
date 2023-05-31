@@ -76,4 +76,4 @@ func rotate_around_point(_delta):
 func go_to_collision_point(delta):
 	var direction = gun_nuzzle.global_position.direction_to(hook_instance.hook_tip.global_position)
 	
-	velocity_component.accelerate_in_direction(direction * hook_instance.HOOK_PULL_SPEED, delta)
+	velocity_component.accelerate_in_direction(direction * hook_instance.current_acceleration, delta)

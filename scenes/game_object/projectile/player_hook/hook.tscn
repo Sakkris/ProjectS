@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjii4u8mslh2n"]
+[gd_scene load_steps=10 format=3 uid="uid://bjii4u8mslh2n"]
 
 [ext_resource type="Script" path="res://scenes/game_object/projectile/player_hook/hook.gd" id="1_cyy4e"]
 [ext_resource type="PackedScene" uid="uid://smylfqdss71c" path="res://scenes/particles/hit_particles/hit_particles.tscn" id="2_5fdxq"]
+
+[sub_resource type="Curve" id="Curve_cexsx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.538462, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dd4s"]
 albedo_color = Color(0, 1, 0, 1)
@@ -28,6 +32,7 @@ size = Vector3(0.04, 0.04, 0.04)
 
 [node name="Hook" type="Node3D"]
 script = ExtResource("1_cyy4e")
+acceleration_curve = SubResource("Curve_cexsx")
 
 [node name="HitParticles" parent="." instance=ExtResource("2_5fdxq")]
 

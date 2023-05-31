@@ -8,6 +8,7 @@ const HOOK_PULL_SPEED = 10.0
 const HOOK_RETRACT_SPEED = 50.0
 
 @export var hook_max_length: float = 40 
+@export var acceleration_curve: Curve
 
 @onready var hook_tip = $HookTip
 @onready var hook_line_origin = $LineOrigin
@@ -16,6 +17,8 @@ const HOOK_RETRACT_SPEED = 50.0
 
 enum states {HOOKING, COLLIDING, RETRACTING}
 
+var current_acceleration: float = 0.0
+var acceleration_offset: float = 0.0
 var current_state
 var last_length = 0
 var origin
@@ -38,6 +41,11 @@ func update(delta) -> bool:
 		states.COLLIDING:
 			if hook_current_length() < 1:
 				change_state(states.RETRACTING)
+			
+			acceleration_offset = min(acceleration_offset + delta, 1)
+			current_acceleration = HOOK_PULL_SPEED * acceleration_curve.sample(acceleration_offset)
+			
+			print(current_acceleration)
 			
 			return true
 		states.RETRACTING:
