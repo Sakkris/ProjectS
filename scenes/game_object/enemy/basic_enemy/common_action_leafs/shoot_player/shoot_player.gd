@@ -24,4 +24,4 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		
 		shooting_cooldown_timer.start()
 	
-	return RUNNING
+	return SUCCESS

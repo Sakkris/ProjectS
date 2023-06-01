@@ -5,4 +5,4 @@
 [node name="PlayerBullet" instance=ExtResource("1_qr5s7")]
 collision_layer = 64
 collision_mask = 5
-bullet_speed = 300.0
+bullet_speed = 200.0

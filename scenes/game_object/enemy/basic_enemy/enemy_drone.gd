@@ -48,6 +48,8 @@ func movement_process(delta):
 		if global_transform.origin.distance_to(target_point) < 2.0:
 			next_target_point()
 			velocity_component.turn_target_point(target_point)
+		
+		look_at(global_position + velocity_component.velocity)
 	else:
 		velocity_component.decelerate(delta)
 
@@ -125,13 +127,13 @@ func death():
 	
 	if $MeshInstance3D.visible:
 		$MeshInstance3D.visible = false
-		queue_free()
 	else:
 		$DroneMesh/bad_Ship/main_body.visible = false
 		$DroneMesh/bad_Ship/explosion_pieces.visible = true
 		animation_player.play("explode")
 		await animation_player.animation_finished
-		queue_free()
+	
+	call_deferred("queue_free")
 
 
 func on_hit_taken(_area):

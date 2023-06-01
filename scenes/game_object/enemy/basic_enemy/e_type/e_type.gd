@@ -56,7 +56,7 @@ func dash_attack(target: Vector3):
 
 func end_dash():
 	if die_on_dash:
-		death()
+		call_deferred("explode")
 	
 	dashing = false
 	dashing_target = Vector3.ZERO
@@ -68,15 +68,6 @@ func end_dash():
 	velocity_component.velocity = velocity
 
 
-func death():
+func explode():
 	explosion_radius.disabled = false
-	
-	super.death()
-
-
-func on_hit_taken(_area):
 	call_deferred("death")
-
-
-func on_player_moved():
-	queue_update_path()
