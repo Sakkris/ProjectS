@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1j55mqpvnjce"]
+
+[ext_resource type="PackedScene" uid="uid://dmtlavqr13otc" path="res://scenes/game_object/projectile/bullets/basic_bullet/basic_bullet.tscn" id="1_1fxfh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kvdb"]
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boh5w"]
+albedo_color = Color(1, 0.207843, 0.211765, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
+
+[node name="EnemyBullet" instance=ExtResource("1_1fxfh")]
+collision_layer = 128
+collision_mask = 3
+bullet_speed = 25.0
+
+[node name="AnimationPlayer" parent="." index="0"]
+autoplay = ""
+
+[node name="HitParticles" parent="." index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.477975)
+material_override = SubResource("StandardMaterial3D_4kvdb")
+
+[node name="MeshInstance3D" parent="." index="4"]
+material_override = SubResource("StandardMaterial3D_boh5w")

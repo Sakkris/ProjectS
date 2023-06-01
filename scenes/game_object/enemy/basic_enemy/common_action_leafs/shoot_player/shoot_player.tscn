@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://tmopxx552cut"]
+
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/shoot_player/shoot_player.gd" id="1_12qq8"]
+
+[node name="ShootPlayer" type="Node"]
+script = ExtResource("1_12qq8")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true

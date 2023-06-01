@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djhl36f7c2q06"]
+
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/engage_shot/engage_shot.gd" id="1_so861"]
+
+[node name="EngageShot" type="Node"]
+script = ExtResource("1_so861")

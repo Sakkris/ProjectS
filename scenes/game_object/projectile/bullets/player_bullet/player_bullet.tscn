@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7fuqk12pbybn"]
+
+[ext_resource type="PackedScene" uid="uid://dmtlavqr13otc" path="res://scenes/game_object/projectile/bullets/basic_bullet/basic_bullet.tscn" id="1_qr5s7"]
+
+[node name="PlayerBullet" instance=ExtResource("1_qr5s7")]
+collision_layer = 64
+collision_mask = 5
+bullet_speed = 300.0

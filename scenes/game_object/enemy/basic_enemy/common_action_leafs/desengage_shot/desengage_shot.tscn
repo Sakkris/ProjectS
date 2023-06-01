@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btxpohtjbepmf"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="1_fge3i"]
+
+[node name="DesengageShot" type="Node"]
+script = ExtResource("1_fge3i")

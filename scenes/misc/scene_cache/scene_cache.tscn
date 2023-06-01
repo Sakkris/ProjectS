@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b78c1cqe4lkab"]
 
 [ext_resource type="Script" path="res://scenes/misc/scene_cache/scene_cache.gd" id="1_grkip"]
-[ext_resource type="PackedScene" uid="uid://bgfhd4gcvh0ly" path="res://scenes/game_object/projectile/player_bullet/player_bullet.tscn" id="1_ok7c4"]
+[ext_resource type="PackedScene" uid="uid://bgfhd4gcvh0ly" path="res://scenes/game_object/projectile/bullets/player_bullet/player_bullet.tscn" id="1_ok7c4"]
 [ext_resource type="PackedScene" uid="uid://ch38dt00ojdlc" path="res://scenes/ui/misc/lockon_crosshair.tscn" id="3_keqyt"]
 [ext_resource type="PackedScene" uid="uid://bjii4u8mslh2n" path="res://scenes/game_object/projectile/player_hook/hook.tscn" id="4_dwkiy"]
 [ext_resource type="PackedScene" uid="uid://smylfqdss71c" path="res://scenes/particles/hit_particles/hit_particles.tscn" id="5_gcu8r"]

@@ -70,18 +70,31 @@ func full_stop():
 
 func look_at_player():
 	var direction_to_player = global_position.direction_to(player.global_position)
-	if direction_to_player == Vector3.UP || direction_to_player == Vector3.DOWN:
-		look_at(player.global_position, Vector3.FORWARD)
-	else:
-		look_at(player.global_position)
+	var looking_point = player.global_position
+	looking_point.y += player.height / 2.0
 	
-	rotate_object_local(global_transform.basis.y.normalized(), PI)
+#	var up_direction = direction_to_player.rotated()
+	if direction_to_player == Vector3.UP || direction_to_player == Vector3.DOWN:
+		look_at(looking_point, Vector3.FORWARD)
+	else:
+		look_at(looking_point)
+	
+#	rotate_object_local(global_transform.basis.y.normalized(), PI)
 
 
 func play_animation(animation_name):
 	if animation_player:
 		if animation_player.has_animation(animation_name):
 			animation_player.play(animation_name)
+
+
+func play_inverse_animation(animation_name, next_animation):
+	if animation_player:
+		if animation_player.has_animation(animation_name):
+			animation_player.play_backwards(animation_name)
+		
+		if animation_player.has_animation(next_animation):
+			animation_player.queue(next_animation)
 
 
 func is_animation_playing(animation_name):

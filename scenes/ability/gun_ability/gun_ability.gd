@@ -1,13 +1,13 @@
 extends Ability
 class_name Gun
 
+@export var bullet_scene : PackedScene 
+@export var magazine_size : int = 3
+@export var knockback_force: float = .5 
+
 @onready var shooting_cooldown_timer: Timer = $ShootingCooldownTimer
 @onready var start_recharge_timer: Timer = $StartRechargeTimer
 @onready var recharge_cooldown_timer: Timer = $RechargeCooldownTimer
-@onready var bullet_scene : PackedScene = preload("res://scenes/game_object/projectile/player_bullet/player_bullet.tscn")
-
-@export var magazine_size : int = 3
-@export var knockback_force: float = .5 
 
 var is_shooting: bool
 var current_bullets: int
