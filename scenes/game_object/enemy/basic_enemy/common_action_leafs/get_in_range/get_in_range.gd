@@ -1,6 +1,7 @@
 class_name GetInRange extends ActionLeaf
 
 @export var show_debug_line: bool = false
+@export var is_obstacle_between_checker: ConditionLeaf
 
 @onready var path_cd_timer: Timer = $Timer
 
@@ -17,12 +18,18 @@ func _ready():
 	material.vertex_color_use_as_albedo = true
 
 
-func tick(actor: Node, _blackboard: Blackboard) -> int:
+func tick(actor: Node, blackboard: Blackboard) -> int:
 	if !NavPointGenerator.generated:
 		return FAILURE
 	
 	if actor.attack_range > actor.distance_to_player:
-		return SUCCESS
+		if is_obstacle_between_checker:
+			is_obstacle_between_checker.tick(actor, blackboard)
+			
+			if not blackboard.get_value("has_obstacle"):
+				return SUCCESS
+		else: 
+			return SUCCESS
 	
 	if not actor.update_path_queued && actor.path_to_follow.size() > 0:
 		actor.path_to_follow[actor.path_to_follow.size() - 1] = actor.player.global_position

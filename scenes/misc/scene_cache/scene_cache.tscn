@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b78c1cqe4lkab"]
+[gd_scene load_steps=8 format=3 uid="uid://b78c1cqe4lkab"]
 
 [ext_resource type="Script" path="res://scenes/misc/scene_cache/scene_cache.gd" id="1_grkip"]
-[ext_resource type="PackedScene" uid="uid://bgfhd4gcvh0ly" path="res://scenes/game_object/projectile/bullets/player_bullet/player_bullet.tscn" id="1_ok7c4"]
+[ext_resource type="PackedScene" uid="uid://b7fuqk12pbybn" path="res://scenes/game_object/projectile/bullets/player_bullet/player_bullet.tscn" id="1_ok7c4"]
 [ext_resource type="PackedScene" uid="uid://ch38dt00ojdlc" path="res://scenes/ui/misc/lockon_crosshair.tscn" id="3_keqyt"]
 [ext_resource type="PackedScene" uid="uid://bjii4u8mslh2n" path="res://scenes/game_object/projectile/player_hook/hook.tscn" id="4_dwkiy"]
 [ext_resource type="PackedScene" uid="uid://smylfqdss71c" path="res://scenes/particles/hit_particles/hit_particles.tscn" id="5_gcu8r"]
 [ext_resource type="PackedScene" uid="uid://x3j86vdkoepb" path="res://scenes/game_object/enemy/basic_enemy/e_type/e_type.tscn" id="6_fv7w6"]
+[ext_resource type="PackedScene" uid="uid://bqs3j4pr17uml" path="res://scenes/game_object/enemy/basic_enemy/s_type/s_type.tscn" id="7_e0k6l"]
 
 [node name="SceneCache" type="Node3D"]
 script = ExtResource("1_grkip")
@@ -30,5 +31,8 @@ scale_amount_max = 0.02
 [node name="EType" parent="." instance=ExtResource("6_fv7w6")]
 process_mode = 4
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, -2.00111)
+
+[node name="SType" parent="." instance=ExtResource("7_e0k6l")]
+process_mode = 4
 
 [editable path="GPUParticles3D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqs3j4pr17uml"]
+[gd_scene load_steps=16 format=3 uid="uid://bqs3j4pr17uml"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_rm0u1"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/s_type/s_type.gd" id="2_13nvo"]
@@ -16,9 +16,6 @@
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/desengage_shot/desengage_shot.gd" id="12_yana7"]
 [ext_resource type="Material" uid="uid://cjref85lolkjo" path="res://resources/enemy_model/stype_drone_mat.tres" id="16_pd52y"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow5bb"]
-albedo_color = Color(0, 0.521569, 1, 1)
-
 [node name="SType" instance=ExtResource("1_rm0u1")]
 script = ExtResource("2_13nvo")
 attack_range_limit = 30
@@ -30,9 +27,6 @@ max_speed = 5.0
 max_overloaded_speed = 7.5
 acceleration_coeficient = 2.0
 turn_speed = 1.7
-
-[node name="BeehaveTree" parent="." index="1"]
-enabled = false
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree" index="0"]
 script = ExtResource("3_w1oil")
@@ -72,113 +66,106 @@ script = ExtResource("6_ax5bj")
 [node name="ShootPlayer" parent="BeehaveTree/SelectorComposite/SelectorComposite/SequenceComposite" index="3" instance=ExtResource("10_dmgx7")]
 bullet_scene = ExtResource("11_ir4ee")
 
-[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite" index="1"]
-script = ExtResource("6_ax5bj")
-
-[node name="DesengageShot" parent="BeehaveTree/SelectorComposite/SelectorComposite/InverterDecorator" index="0" instance=ExtResource("11_dpxgg")]
+[node name="DesengageShot" parent="BeehaveTree/SelectorComposite/SelectorComposite" index="1" instance=ExtResource("11_dpxgg")]
 script = ExtResource("12_yana7")
 
-[node name="GetInRange" parent="BeehaveTree/SelectorComposite" index="1" instance=ExtResource("3_lx4p8")]
+[node name="GetInRange" parent="BeehaveTree/SelectorComposite" index="1" node_paths=PackedStringArray("is_obstacle_between_checker") instance=ExtResource("3_lx4p8")]
+is_obstacle_between_checker = NodePath("../SelectorComposite/SequenceComposite/InverterDecorator/IsObstacleBetween")
 
 [node name="GunNuzzle" type="Node3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.375887)
 
-[node name="MeshInstance3D" parent="." index="3"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_ow5bb")
-
-[node name="main_body" parent="DroneMesh/bad_Ship" index="0"]
+[node name="main_body" parent="Visuals/DroneMesh/bad_Ship" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="long_rod_A" parent="DroneMesh/bad_Ship/main_body" index="0"]
-transform = Transform3D(0.933817, -0.353892, 0.0523942, 0.240697, 0.729856, 0.639824, -0.264669, -0.584867, 0.766733, 0, 0, 0)
+[node name="long_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="fx_tip" parent="DroneMesh/bad_Ship/main_body/long_rod_A" index="0"]
+[node name="fx_tip" parent="Visuals/DroneMesh/bad_Ship/main_body/long_rod_A" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="long_rod_B" parent="DroneMesh/bad_Ship/main_body" index="1"]
+[node name="long_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="fx_tip (1)" parent="DroneMesh/bad_Ship/main_body/long_rod_B" index="0"]
+[node name="fx_tip (1)" parent="Visuals/DroneMesh/bad_Ship/main_body/long_rod_B" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="small_rod_A" parent="DroneMesh/bad_Ship/main_body" index="2"]
+[node name="small_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="2"]
 material_override = ExtResource("16_pd52y")
 
-[node name="fx_tip_s" parent="DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
+[node name="fx_tip_s" parent="Visuals/DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="small_rod_B" parent="DroneMesh/bad_Ship/main_body" index="3"]
+[node name="small_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="3"]
 material_override = ExtResource("16_pd52y")
 
-[node name="fx_tip_s (1)" parent="DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
+[node name="fx_tip_s (1)" parent="Visuals/DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="head_piece" parent="DroneMesh/bad_Ship/main_body" index="4"]
+[node name="head_piece" parent="Visuals/DroneMesh/bad_Ship/main_body" index="4"]
 material_override = ExtResource("16_pd52y")
 
-[node name="neck_glow" parent="DroneMesh/bad_Ship/main_body/head_piece" index="0"]
+[node name="neck_glow" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="eye" parent="DroneMesh/bad_Ship/main_body/head_piece" index="1"]
+[node name="eye" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="fx_tip_s (2)" parent="DroneMesh/bad_Ship/explosion_pieces" index="0"]
+[node name="fx_tip_s (2)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="fx_tip_s1" parent="DroneMesh/bad_Ship/explosion_pieces" index="1"]
+[node name="fx_tip_s1" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="neck_glow (1)" parent="DroneMesh/bad_Ship/explosion_pieces" index="2"]
+[node name="neck_glow (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="2"]
 material_override = ExtResource("16_pd52y")
 
-[node name="head_piece (1)" parent="DroneMesh/bad_Ship/explosion_pieces" index="3"]
+[node name="head_piece (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="3"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard1" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="0"]
+[node name="shard1" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard2" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="1"]
+[node name="shard2" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard3" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="2"]
+[node name="shard3" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="2"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard4" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="0"]
+[node name="shard4" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard5" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="1"]
+[node name="shard5" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard6" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="2"]
+[node name="shard6" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter2" index="2"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard1 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="0"]
+[node name="shard1 (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard2 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="1"]
+[node name="shard2 (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard3 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="2"]
+[node name="shard3 (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter3" index="2"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard4 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="0"]
+[node name="shard4 (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard5 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="1"]
+[node name="shard5 (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard6 (1)" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="2"]
+[node name="shard6 (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter4" index="2"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard7" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="0"]
+[node name="shard7" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="0"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard8" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="1"]
+[node name="shard8" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="1"]
 material_override = ExtResource("16_pd52y")
 
-[node name="shard9" parent="DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="2"]
+[node name="shard9" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="2"]
 material_override = ExtResource("16_pd52y")
 
-[editable path="DroneMesh"]
+[editable path="Visuals/DroneMesh"]

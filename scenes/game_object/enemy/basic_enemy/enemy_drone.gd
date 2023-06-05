@@ -5,7 +5,7 @@ class_name EnemyDrone
 @export var detection_range = 15
 
 @onready var velocity_component: VelocityComponent = $VelocityComponent
-@onready var animation_player: AnimationPlayer = $DroneMesh/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Visuals/DroneMesh/AnimationPlayer
 @onready var behavior_tree: BeehaveTree = $BeehaveTree
 @onready var hurt_box_collision: CollisionShape3D = $Hurtbox/CollisionShape3D
 @onready var collision: CollisionShape3D = $CollisionShape3D
@@ -125,11 +125,11 @@ func death():
 	hurt_box_collision.disabled = true
 	collision.disabled = true
 	
-	if $MeshInstance3D.visible:
-		$MeshInstance3D.visible = false
+	if $Visuals/MeshInstance3D.visible:
+		$Visuals/MeshInstance3D.visible = false
 	else:
-		$DroneMesh/bad_Ship/main_body.visible = false
-		$DroneMesh/bad_Ship/explosion_pieces.visible = true
+		$Visuals/DroneMesh/bad_Ship/main_body.visible = false
+		$Visuals/DroneMesh/bad_Ship/explosion_pieces.visible = true
 		animation_player.play("explode")
 		await animation_player.animation_finished
 	

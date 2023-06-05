@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://y0dgt4uln7ng"]
+[gd_scene load_steps=9 format=3 uid="uid://y0dgt4uln7ng"]
 
 [ext_resource type="PackedScene" uid="uid://ckrns21nitpey" path="res://scenes/levels/base_level/base_level.tscn" id="1_o1gxr"]
 [ext_resource type="PackedScene" uid="uid://b731j8amc6ufa" path="res://scenes/misc/spawn_area/spawn_area.tscn" id="2_77f20"]
@@ -16,6 +16,9 @@ uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="QuadMesh" id="QuadMesh_bxyef"]
 size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eonak"]
+size = Vector3(20, 20, 1)
 
 [node name="EnemyRange" instance=ExtResource("1_o1gxr")]
 
@@ -113,3 +116,12 @@ mesh = SubResource("QuadMesh_bxyef")
 [node name="GridMap" parent="." index="9"]
 visible = false
 cell_size = Vector3(5, 1, 5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 12.9)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.95346)
+shape = SubResource("BoxShape3D_eonak")
