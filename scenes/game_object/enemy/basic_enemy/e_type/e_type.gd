@@ -23,6 +23,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_dead:
+		return
+	
 	if dashing:
 		velocity_component.fixed_movement(dash_vector * delta)
 	else:
@@ -35,6 +38,9 @@ func _physics_process(delta):
 
 
 func tick():
+	if is_dead:
+		return
+	
 	space_state = get_world_3d().direct_space_state
 	distance_to_player = global_position.distance_to(player.global_position)
 	behavior_tree.tick()

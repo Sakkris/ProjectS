@@ -15,6 +15,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_dead:
+		return
+	
 	movement_process(delta)
 	
 	if detection_range > distance_to_player:
@@ -24,6 +27,9 @@ func _physics_process(delta):
 
 
 func tick():
+	if is_dead:
+		return
+	
 	space_state = get_world_3d().direct_space_state
 	distance_to_player = global_position.distance_to(player.global_position)
 	behavior_tree.tick()

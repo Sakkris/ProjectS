@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnqnnnet4dw12"]
+[gd_scene load_steps=11 format=3 uid="uid://bnqnnnet4dw12"]
 
 [ext_resource type="Script" path="res://scenes/staging/staging.gd" id="1_n0xha"]
 [ext_resource type="PackedScene" uid="uid://bqumugyvkct4r" path="res://scenes/staging/loading_screen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bn3b7dh2wntll" path="res://scenes/manager/music_manager/music_manager.tscn" id="3_df3ih"]
 [ext_resource type="PackedScene" uid="uid://b78c1cqe4lkab" path="res://scenes/misc/scene_cache/scene_cache.tscn" id="3_wlm1n"]
 [ext_resource type="Shader" path="res://addons/godot-xr-tools/staging/fade.gdshader" id="4"]
 [ext_resource type="PackedScene" uid="uid://ctlkpn1xft3jb" path="res://scenes/misc/shader_cache/shader_cache.tscn" id="4_xwsya"]
@@ -22,9 +23,10 @@ shader_parameter/alpha = 0.0
 [node name="Staging" type="Node3D"]
 script = ExtResource("1_n0xha")
 main_scene = "res://scenes/levels/enemy_range/enemy_range.tscn"
-prompt_for_continue = false
 
 [node name="StartXR" parent="." instance=ExtResource("6_jkv21")]
+
+[node name="MusicManager" parent="." instance=ExtResource("3_df3ih")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tni4h")

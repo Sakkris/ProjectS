@@ -24,6 +24,8 @@ var current_target_index: int = -1
 var path_to_follow: PackedVector3Array
 var update_path_queued: bool = false
 
+var is_dead = false
+
 
 func _ready():
 	$Hurtbox.area_entered.connect(self.on_hit_taken)
@@ -41,6 +43,9 @@ func tick():
 
 
 func movement_process(delta):
+	if is_dead:
+		return
+	
 	if target_point != Vector3.ZERO:
 		var dir_to_target = global_transform.origin.direction_to(target_point).normalized()
 		
@@ -123,6 +128,8 @@ func death():
 	GameEvents.emit_enemy_died(self)
 	target_point = Vector3.ZERO
 	
+	is_dead = true
+	
 	hurt_box_collision.disabled = true
 	collision.disabled = true
 	
@@ -134,6 +141,9 @@ func death():
 		$Visuals/DroneMesh/bad_Ship/main_body.visible = false
 		$Visuals/DroneMesh/bad_Ship/explosion_pieces.visible = true
 		animation_player.play("explode")
+	
+	await animation_player.animation_finished
+	visible = false
 	
 	await explosion_audio.finished
 	call_deferred("queue_free")

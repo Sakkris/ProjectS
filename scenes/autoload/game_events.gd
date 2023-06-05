@@ -7,6 +7,7 @@ signal game_start
 signal game_over
 signal objective_destroyed
 signal objective_created
+signal switch_music_request
 
 
 func emit_game_time_updated(time_elapsed):
@@ -35,3 +36,7 @@ func emit_objective_destroyed():
 
 func emit_objective_created(objective):
 	objective_created.emit(objective)
+
+
+func emit_switch_music_request(new_music):
+	switch_music_request.emit(new_music)

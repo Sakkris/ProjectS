@@ -41,6 +41,7 @@ acceleration_coeficient = 2.0
 turn_speed = 2.0
 
 [node name="BeehaveTree" parent="." index="1"]
+enabled = false
 actor_node_path = NodePath("..")
 
 [node name="SelectorComposite2" type="Node" parent="BeehaveTree" index="0"]

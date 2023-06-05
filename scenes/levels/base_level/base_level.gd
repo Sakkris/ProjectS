@@ -67,8 +67,10 @@ func scene_loaded():
 	center_player_on($Player/XROrigin3D.global_transform)
 	NavPointGenerator.generate_astar()
 
+
 func scene_visible():
 	GameEvents.emit_game_start()
+	GameEvents.emit_switch_music_request(MusicManager.music_list.MAIN)
 
 
 func scene_pre_exiting():

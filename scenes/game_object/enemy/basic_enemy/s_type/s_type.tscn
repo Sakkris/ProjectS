@@ -30,6 +30,9 @@ max_overloaded_speed = 7.5
 acceleration_coeficient = 2.0
 turn_speed = 1.7
 
+[node name="BeehaveTree" parent="." index="1"]
+enabled = false
+
 [node name="SelectorComposite" type="Node" parent="BeehaveTree" index="0"]
 script = ExtResource("3_w1oil")
 

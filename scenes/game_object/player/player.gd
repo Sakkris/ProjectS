@@ -118,5 +118,5 @@ func turn_right():
 
 
 func hit(other_area):
-#	GameEvents.emit_game_over()
-	pass
+	GameEvents.emit_game_over()
+	GameEvents.emit_switch_music_request(MusicManager.music_list.GAME_OVER)
