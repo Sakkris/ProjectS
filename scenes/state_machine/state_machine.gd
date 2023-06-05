@@ -7,14 +7,16 @@ signal transitioned(controller_id, state_name)
 
 @onready var state: State = get_node(initial_state)
 @onready var ability_manager = $"../AbilityManager"
+@onready var change_state_audio = $"../ChangeStateAudio"
 
 
 func _ready() -> void:
 	await owner.ready
 	
 	for child in get_children():
-		child.state_machine = self
-		child.ability_manager = ability_manager
+		if child is State:
+			child.state_machine = self
+			child.ability_manager = ability_manager
 	
 	state.enter()
 

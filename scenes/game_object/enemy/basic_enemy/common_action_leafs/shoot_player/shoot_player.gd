@@ -3,7 +3,8 @@ extends ActionLeaf
 @export var bullet_scene: PackedScene
 
 @onready var projectile_manager = get_tree().get_first_node_in_group("projectile_manager")
-@onready var shooting_cooldown_timer = $CooldownTimer
+@onready var shooting_cooldown_timer: Timer = $CooldownTimer
+@onready var shooting_audio: AudioStreamPlayer3D = $ShootingAudio
 
 var shooting_animation = "engage_shoot"
 
@@ -21,6 +22,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		bullet.global_transform = actor.gun_nuzzle.global_transform
 		
 		actor.play_animation(shooting_animation)
+		shooting_audio.play()
 		
 		shooting_cooldown_timer.start()
 	

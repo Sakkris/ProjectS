@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf7svdrj4spey"]
+[gd_scene load_steps=3 format=3 uid="uid://bf7svdrj4spey"]
 
 [ext_resource type="Script" path="res://scenes/radar/radar_dot/radar_dot.gd" id="1_3m87e"]
+[ext_resource type="AudioStream" uid="uid://e0kkie8p3504" path="res://resources/sounds/lock_on/lock_on_03.wav" id="2_efdrp"]
 
 [node name="RadarDot" type="Node"]
 process_priority = -1
 script = ExtResource("1_3m87e")
+
+[node name="LockOnAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_efdrp")
+volume_db = -6.0
+bus = &"SFX"

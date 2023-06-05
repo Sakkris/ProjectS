@@ -1,6 +1,7 @@
 extends Node
 
 @onready var lockon_crosshair_scene = preload("res://scenes/ui/misc/lockon_crosshair.tscn")
+@onready var lock_on_audio: AudioStreamPlayer = $LockOnAudio
 
 var id
 var enemy = null
@@ -42,6 +43,7 @@ func is_player_looking_at_enemy(enemy: CharacterBody3D) -> bool:
 
 
 func instanciate_crosshair(enemy: CharacterBody3D, id):
+	lock_on_audio.play()
 	crosshair = lockon_crosshair_scene.instantiate()
 	enemy.add_child(crosshair)
 	crosshair.global_transform = enemy.global_transform

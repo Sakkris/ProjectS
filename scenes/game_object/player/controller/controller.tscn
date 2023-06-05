@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=27 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/ui_raycast.gd" id="15_4trpf"]
 [ext_resource type="PackedScene" uid="uid://b33owggv1v17u" path="res://scenes/aim_sight/aim_sight.tscn" id="16_xqpgr"]
 [ext_resource type="Shader" uid="uid://c3x0wrix6al0p" path="res://resources/shaders/transparency_gradent/transparency_gradient.tres" id="17_yey5v"]
+[ext_resource type="AudioStream" uid="uid://qqyn55s3vskn" path="res://resources/sounds/player/change_state/change_state.wav" id="19_7ioey"]
+[ext_resource type="AudioStream" uid="uid://bc0hn8nfqh8c1" path="res://resources/sounds/weapons/fire/fire_01.wav" id="20_j0ecq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
@@ -37,6 +39,12 @@ radius = 0.005
 height = 0.5
 radial_segments = 4
 rings = 1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g637r"]
+streams_count = 1
+random_pitch = 1.2
+stream_0/stream = ExtResource("20_j0ecq")
+stream_0/weight = 1.0
 
 [node name="Controller" type="XRController3D" groups=["controller"]]
 script = ExtResource("1_l0t0k")
@@ -70,7 +78,8 @@ thruster_force = 2.0
 
 [node name="GrabController" parent="AbilityManager" instance=ExtResource("9_2bikd")]
 
-[node name="GunController" parent="AbilityManager" instance=ExtResource("13_0wntn")]
+[node name="GunController" parent="AbilityManager" node_paths=PackedStringArray("shooting_audio") instance=ExtResource("13_0wntn")]
+shooting_audio = NodePath("../../ShootingAudio")
 
 [node name="AbilityPanel" parent="." instance=ExtResource("5_cgq1h")]
 
@@ -101,3 +110,14 @@ script = ExtResource("15_4trpf")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.25)
 visible = false
 mesh = SubResource("CapsuleMesh_r7n5b")
+
+[node name="ChangeStateAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("19_7ioey")
+volume_db = -12.0
+max_db = 0.0
+bus = &"SFX"
+
+[node name="ShootingAudio" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_g637r")
+volume_db = -12.0
+max_db = 0.0

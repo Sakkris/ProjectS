@@ -1,9 +1,10 @@
 extends Ability
 class_name Gun
 
-@export var bullet_scene : PackedScene 
 @export var magazine_size : int = 3
 @export var knockback_force: float = .5 
+@export var shooting_audio: AudioStreamPlayer3D
+@export var bullet_scene : PackedScene 
 
 @onready var shooting_cooldown_timer: Timer = $ShootingCooldownTimer
 @onready var start_recharge_timer: Timer = $StartRechargeTimer
@@ -32,6 +33,9 @@ func shoot():
 	
 	get_tree().get_first_node_in_group("projectile_manager").add_child(bullet)
 	bullet.global_transform = gun_nuzzle.global_transform
+	
+	if shooting_audio:
+		shooting_audio.play()
 	
 	shooting_cooldown_timer.start()
 	decrease_bullet_count()

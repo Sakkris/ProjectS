@@ -26,6 +26,8 @@ func trigger_pressed():
 
 
 func thumbstick_pressed():
+	state_machine.change_state_audio.play()
+	state_machine.change_state_audio.finished
 	state_machine.transition_to("Unarmed")
 
 

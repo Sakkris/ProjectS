@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://tmopxx552cut"]
+[gd_scene load_steps=5 format=3 uid="uid://tmopxx552cut"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/shoot_player/shoot_player.gd" id="1_12qq8"]
+[ext_resource type="AudioStream" uid="uid://dukonwoouu56o" path="res://resources/sounds/weapons/fire/fire_02.wav" id="2_hixhf"]
+[ext_resource type="AudioStream" uid="uid://ttsl3jhubbig" path="res://resources/sounds/weapons/fire/fire_03.wav" id="3_ydxap"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ynjgy"]
+streams_count = 2
+playback_mode = 1
+stream_0/stream = ExtResource("2_hixhf")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_ydxap")
+stream_1/weight = 1.0
 
 [node name="ShootPlayer" type="Node"]
 script = ExtResource("1_12qq8")
@@ -8,3 +18,6 @@ script = ExtResource("1_12qq8")
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="ShootingAudio" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ynjgy")
