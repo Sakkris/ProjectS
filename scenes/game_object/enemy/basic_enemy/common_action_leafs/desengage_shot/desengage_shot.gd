@@ -1,8 +1,10 @@
 extends ActionLeaf
 
+@export var lost_player_audio: AudioStreamPlayer3D
+
 var transition_animation = "engage_transition"
 var idle_animation = "idle"
-var is_playing = false
+var first_pass = true
 
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
@@ -12,13 +14,14 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if not blackboard.get_value("is_engaged"):
 		return FAILURE
 	
-	if actor.animation_player == null || (!actor.is_animation_playing(transition_animation) && is_playing):
+	if actor.animation_player == null || (!actor.is_animation_playing(transition_animation) && !lost_player_audio.playing && !first_pass):
 		blackboard.set_value("is_engaged", false)
-		is_playing = false
+		first_pass = true
 		return SUCCESS
 	
-	if !actor.is_animation_playing(transition_animation):
+	if first_pass:
 		actor.play_inverse_animation(transition_animation, idle_animation)
-		is_playing = true
+		lost_player_audio.play()
+		first_pass = false
 	
 	return RUNNING

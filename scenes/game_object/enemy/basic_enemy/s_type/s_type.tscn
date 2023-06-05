@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqs3j4pr17uml"]
+[gd_scene load_steps=18 format=3 uid="uid://bqs3j4pr17uml"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_rm0u1"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/s_type/s_type.gd" id="2_13nvo"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://d1j55mqpvnjce" path="res://scenes/game_object/projectile/bullets/enemy_bullet/enemy_bullet.tscn" id="11_ir4ee"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/desengage_shot/desengage_shot.gd" id="12_yana7"]
 [ext_resource type="Material" uid="uid://cjref85lolkjo" path="res://resources/enemy_model/stype_drone_mat.tres" id="16_pd52y"]
+[ext_resource type="AudioStream" uid="uid://dd18utb5gemnf" path="res://resources/sounds/lock_on/lock_on_01.wav" id="16_qfmo1"]
+[ext_resource type="AudioStream" uid="uid://0t83kxo877f" path="res://resources/sounds/lock_on/lock_on_04.wav" id="17_5pfpa"]
 
 [node name="SType" instance=ExtResource("1_rm0u1")]
 script = ExtResource("2_13nvo")
@@ -61,13 +63,15 @@ right_operand = "true"
 [node name="InverterDecorator2" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite/SequenceComposite/InverterDecorator2/SequenceComposite" index="1"]
 script = ExtResource("6_ax5bj")
 
-[node name="EngageShot" parent="BeehaveTree/SelectorComposite/SelectorComposite/SequenceComposite/InverterDecorator2/SequenceComposite/InverterDecorator2" index="0" instance=ExtResource("9_e8wlm")]
+[node name="EngageShot" parent="BeehaveTree/SelectorComposite/SelectorComposite/SequenceComposite/InverterDecorator2/SequenceComposite/InverterDecorator2" index="0" node_paths=PackedStringArray("lock_on_audio") instance=ExtResource("9_e8wlm")]
+lock_on_audio = NodePath("../../../../../../../../LockOnPlayer")
 
 [node name="ShootPlayer" parent="BeehaveTree/SelectorComposite/SelectorComposite/SequenceComposite" index="3" instance=ExtResource("10_dmgx7")]
 bullet_scene = ExtResource("11_ir4ee")
 
-[node name="DesengageShot" parent="BeehaveTree/SelectorComposite/SelectorComposite" index="1" instance=ExtResource("11_dpxgg")]
+[node name="DesengageShot" parent="BeehaveTree/SelectorComposite/SelectorComposite" index="1" node_paths=PackedStringArray("lost_player_audio") instance=ExtResource("11_dpxgg")]
 script = ExtResource("12_yana7")
+lost_player_audio = NodePath("../../../../LockOffPlayer")
 
 [node name="GetInRange" parent="BeehaveTree/SelectorComposite" index="1" node_paths=PackedStringArray("is_obstacle_between_checker") instance=ExtResource("3_lx4p8")]
 is_obstacle_between_checker = NodePath("../SelectorComposite/SequenceComposite/InverterDecorator/IsObstacleBetween")
@@ -167,5 +171,11 @@ material_override = ExtResource("16_pd52y")
 
 [node name="shard9" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter5" index="2"]
 material_override = ExtResource("16_pd52y")
+
+[node name="LockOnPlayer" parent="." index="7"]
+stream = ExtResource("17_5pfpa")
+
+[node name="LockOffPlayer" type="AudioStreamPlayer3D" parent="." index="8"]
+stream = ExtResource("16_qfmo1")
 
 [editable path="Visuals/DroneMesh"]

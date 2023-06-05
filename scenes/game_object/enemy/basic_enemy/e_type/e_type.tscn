@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://x3j86vdkoepb"]
+[gd_scene load_steps=19 format=3 uid="uid://x3j86vdkoepb"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_8bk67"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/e_type.gd" id="2_6k27b"]
@@ -12,13 +12,26 @@
 [ext_resource type="PackedScene" uid="uid://5sd8an8bku8m" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/get_in_range/get_in_range.tscn" id="9_nrxaw"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/end_dash.gd" id="10_j1a7x"]
 [ext_resource type="Material" uid="uid://0bubv4px3atu" path="res://resources/enemy_model/etype_drone_mat.tres" id="10_p3e3r"]
+[ext_resource type="AudioStream" uid="uid://ca5ndpxsvo6q4" path="res://resources/sounds/enemy/e-type/screech/screech_01.wav" id="13_l3tma"]
+[ext_resource type="AudioStream" uid="uid://ba6bs3jflpm3s" path="res://resources/sounds/enemy/e-type/screech/screech_02.wav" id="14_q8wct"]
+[ext_resource type="AudioStream" uid="uid://csjpji8n2ev8m" path="res://resources/sounds/enemy/e-type/screech/screech_03.wav" id="15_mrfdf"]
+[ext_resource type="AudioStream" uid="uid://bad782x2dn01e" path="res://resources/sounds/lock_on/lock_on_02.wav" id="16_w1rxa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d3fre"]
 radius = 1.12959
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hhjr6"]
+streams_count = 3
+stream_0/stream = ExtResource("13_l3tma")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("14_q8wct")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("15_mrfdf")
+stream_2/weight = 1.0
+
 [node name="EType" instance=ExtResource("1_8bk67")]
 script = ExtResource("2_6k27b")
-dash_speed = 30
+dash_speed = 20
 die_on_dash = true
 
 [node name="VelocityComponent" parent="." index="0"]
@@ -46,8 +59,9 @@ script = ExtResource("3_fg3ge")
 
 [node name="IsObstacleBetween" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="1" instance=ExtResource("6_tvc68")]
 
-[node name="PrepareDash" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="2"]
+[node name="PrepareDash" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="2" node_paths=PackedStringArray("lock_on_audio")]
 script = ExtResource("7_ey2ii")
+lock_on_audio = NodePath("../../../../../LockOnPlayer")
 
 [node name="DashCooldown" type="Timer" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/PrepareDash" index="0"]
 wait_time = 3.0
@@ -56,8 +70,9 @@ one_shot = true
 [node name="DashSequence" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="3"]
 script = ExtResource("8_lvjsx")
 
-[node name="DashToPlayer" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/DashSequence" index="0"]
+[node name="DashToPlayer" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/DashSequence" index="0" node_paths=PackedStringArray("screech_audio")]
 script = ExtResource("7_pjsmf")
+screech_audio = NodePath("../../../../../../ScreechAudioPlayer")
 
 [node name="EndDash" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/DashSequence" index="1"]
 script = ExtResource("10_j1a7x")
@@ -171,5 +186,12 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRadius" index="0"]
 shape = SubResource("SphereShape3D_d3fre")
 disabled = true
+
+[node name="LockOnPlayer" parent="." index="7"]
+stream = ExtResource("16_w1rxa")
+
+[node name="ScreechAudioPlayer" type="AudioStreamPlayer3D" parent="." index="8"]
+stream = SubResource("AudioStreamRandomizer_hhjr6")
+bus = &"SFX"
 
 [editable path="Visuals/DroneMesh"]

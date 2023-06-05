@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ciowisqs1ayti"]
+[gd_scene load_steps=13 format=3 uid="uid://ciowisqs1ayti"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.gd" id="1_qpdy5"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="2_f7crh"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_nbiee"]
 [ext_resource type="PackedScene" uid="uid://b154h8lm034rr" path="res://resources/enemy_model/bad_bot_V2.glb" id="4_qyw38"]
+[ext_resource type="AudioStream" uid="uid://bkhgc28ut6jtt" path="res://resources/sounds/enemy/explosion/explosion_01.wav" id="5_6vcpi"]
+[ext_resource type="AudioStream" uid="uid://cwkeg7c6s2u7a" path="res://resources/sounds/enemy/explosion/explosion_02.wav" id="6_pifk4"]
+[ext_resource type="AudioStream" uid="uid://oh7qxtb0102c" path="res://resources/sounds/enemy/explosion/explosion_03.wav" id="7_ipt5i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mg2do"]
 radius = 0.553401
@@ -21,6 +24,15 @@ rings = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2cweo"]
 radius = 0.806996
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_klioj"]
+streams_count = 3
+stream_0/stream = ExtResource("5_6vcpi")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_pifk4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_ipt5i")
+stream_2/weight = 1.0
 
 [node name="EnemyDrone" type="CharacterBody3D"]
 collision_layer = 12
@@ -46,14 +58,32 @@ skeleton = NodePath("../..")
 [node name="DroneMesh" parent="Visuals" instance=ExtResource("4_qyw38")]
 transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, 0, 0)
 
+[node name="main_body" parent="Visuals/DroneMesh/bad_Ship" index="0"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.16483e-08, -0.933948, -0.357409, -3.12457e-08, -0.357409, 0.933948, 0, 0, 0)
+
 [node name="long_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="0"]
-transform = Transform3D(0.933817, -0.353892, 0.0523942, 0.240697, 0.729856, 0.639824, -0.264669, -0.584868, 0.766733, 0, 0, 0)
+transform = Transform3D(-0.282396, -0.458706, -0.842521, 0.88914, 0.204538, -0.409381, 0.360113, -0.864727, 0.350093, 0, 0, 0)
 
 [node name="long_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="1"]
-transform = Transform3D(0.99803, 0.0254741, -0.0573411, 0.00362709, 0.888924, 0.45804, 0.06264, -0.457346, 0.88708, 0, 0, 0)
+transform = Transform3D(-0.385838, 0.484317, 0.785217, -0.490471, 0.613193, -0.619219, -0.781388, -0.624045, 0.000950246, 0, 0, 0)
+
+[node name="small_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="2"]
+transform = Transform3D(-0.999063, -0.00223052, -0.0432304, -0.00812485, -0.971261, 0.23788, -0.0425186, 0.238008, 0.970332, 0, 0, 0)
+
+[node name="fx_tip_s" parent="Visuals/DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="small_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="3"]
+transform = Transform3D(-0.999933, 0.00324728, -0.0111479, 0.00704652, -0.593372, -0.804897, -0.00922857, -0.804922, 0.593309, 0, 0, 0)
 
 [node name="head_piece" parent="Visuals/DroneMesh/bad_Ship/main_body" index="4"]
-transform = Transform3D(1, 0, 0, 0, 0.941527, -0.336936, 0, 0.336936, 0.941527, 0, 0.123876, 0.0443304)
+transform = Transform3D(-1, 8.74227e-08, 0, -8.72434e-08, -0.997948, 0.0640237, 5.59713e-09, 0.0640237, 0.997948, 0, -0.131299, 0.00842355)
+
+[node name="neck_glow" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="eye" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="1"]
+transform = Transform3D(0.999824, 0.0165305, 0.0088412, -0.0174244, 0.993439, 0.113026, -0.00691482, -0.11316, 0.993553, -0.000107924, 4.28336e-05, 0.000738797)
 
 [node name="explosion_pieces" parent="Visuals/DroneMesh/bad_Ship" index="1"]
 visible = false
@@ -79,5 +109,12 @@ collision_mask = 64
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("SphereShape3D_2cweo")
+
+[node name="ExplosionAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_klioj")
+bus = &"SFX"
+
+[node name="LockOnPlayer" type="AudioStreamPlayer3D" parent="."]
+bus = &"SFX"
 
 [editable path="Visuals/DroneMesh"]

@@ -1,5 +1,7 @@
 extends ActionLeaf
 
+@export var screech_audio: AudioStreamPlayer3D
+
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	if blackboard.get_value("dir_to_target") == Vector3.ZERO:
@@ -9,6 +11,9 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		actor.dash_vector = dir_to_target * actor.dash_speed
 		
 		blackboard.set_value("dir_to_target", dir_to_target)
+		
+		if screech_audio:
+			screech_audio.play()
 	
 	var distance = actor.global_transform.origin.distance_to(blackboard.get_value("target"))
 	

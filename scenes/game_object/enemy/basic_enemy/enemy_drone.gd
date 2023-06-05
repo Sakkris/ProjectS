@@ -9,6 +9,7 @@ class_name EnemyDrone
 @onready var behavior_tree: BeehaveTree = $BeehaveTree
 @onready var hurt_box_collision: CollisionShape3D = $Hurtbox/CollisionShape3D
 @onready var collision: CollisionShape3D = $CollisionShape3D
+@onready var explosion_audio: AudioStreamPlayer3D = $ExplosionAudioPlayer
 
 # Used for raycasts
 var space_state = null
@@ -125,14 +126,16 @@ func death():
 	hurt_box_collision.disabled = true
 	collision.disabled = true
 	
+	explosion_audio.play()
+	
 	if $Visuals/MeshInstance3D.visible:
 		$Visuals/MeshInstance3D.visible = false
 	else:
 		$Visuals/DroneMesh/bad_Ship/main_body.visible = false
 		$Visuals/DroneMesh/bad_Ship/explosion_pieces.visible = true
 		animation_player.play("explode")
-		await animation_player.animation_finished
 	
+	await explosion_audio.finished
 	call_deferred("queue_free")
 
 
