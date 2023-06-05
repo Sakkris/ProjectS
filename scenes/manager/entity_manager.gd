@@ -42,8 +42,8 @@ func spawn_enemy():
 	
 	var positionInArea = get_rand_position(selected_area)
 	
-#	var enemy_instance = enemies[0].instantiate()
-	var enemy_instance = enemies.pick_random().instantiate()
+	var enemy_instance = enemies[0].instantiate()
+#	var enemy_instance = enemies.pick_random().instantiate()
 	enemy_instance.position = positionInArea
 	enemy_instance.player = player
 	add_child(enemy_instance)

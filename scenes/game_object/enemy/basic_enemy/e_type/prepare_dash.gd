@@ -2,8 +2,9 @@ extends ActionLeaf
 
 var transition_animation = "engage_transition"
 
+
 func tick(actor: Node, blackboard: Blackboard) -> int:
-	if !$Timer.is_stopped():
+	if !$DashCooldown.is_stopped():
 		return SUCCESS
 	
 	actor.full_stop()
@@ -15,7 +16,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	blackboard.set_value("target", target_point)
 	
 	if (actor.animation_player and !actor.animation_player.is_playing()) or actor.animation_player == null:
-		$Timer.start()
+		$DashCooldown.start()
 		return FAILURE
 	
 	actor.play_animation(transition_animation)

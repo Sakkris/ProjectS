@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://x3j86vdkoepb"]
+[gd_scene load_steps=14 format=3 uid="uid://x3j86vdkoepb"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_8bk67"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/e_type.gd" id="2_6k27b"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://do8u2i5w4d44j" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/is_obstacle_between/is_obstacle_between.tscn" id="6_tvc68"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/prepare_dash.gd" id="7_ey2ii"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/dash_to_player.gd" id="7_pjsmf"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="8_lvjsx"]
 [ext_resource type="PackedScene" uid="uid://5sd8an8bku8m" path="res://scenes/game_object/enemy/basic_enemy/common_action_leafs/get_in_range/get_in_range.tscn" id="9_nrxaw"]
+[ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/e_type/end_dash.gd" id="10_j1a7x"]
 [ext_resource type="Material" uid="uid://0bubv4px3atu" path="res://resources/enemy_model/etype_drone_mat.tres" id="10_p3e3r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d3fre"]
@@ -16,7 +18,7 @@ radius = 1.12959
 
 [node name="EType" instance=ExtResource("1_8bk67")]
 script = ExtResource("2_6k27b")
-dash_speed = 20
+dash_speed = 30
 die_on_dash = true
 
 [node name="VelocityComponent" parent="." index="0"]
@@ -26,7 +28,6 @@ acceleration_coeficient = 2.0
 turn_speed = 2.0
 
 [node name="BeehaveTree" parent="." index="1"]
-enabled = false
 actor_node_path = NodePath("..")
 
 [node name="SelectorComposite2" type="Node" parent="BeehaveTree" index="0"]
@@ -48,12 +49,18 @@ script = ExtResource("3_fg3ge")
 [node name="PrepareDash" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="2"]
 script = ExtResource("7_ey2ii")
 
-[node name="Timer" type="Timer" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/PrepareDash" index="0"]
+[node name="DashCooldown" type="Timer" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/PrepareDash" index="0"]
 wait_time = 3.0
 one_shot = true
 
-[node name="DashToPlayer" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="3"]
+[node name="DashSequence" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite" index="3"]
+script = ExtResource("8_lvjsx")
+
+[node name="DashToPlayer" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/DashSequence" index="0"]
 script = ExtResource("7_pjsmf")
+
+[node name="EndDash" type="Node" parent="BeehaveTree/SelectorComposite2/InverterDecorator/AttackComposite/DashSequence" index="1"]
+script = ExtResource("10_j1a7x")
 
 [node name="GetInRange" parent="BeehaveTree/SelectorComposite2" index="1" node_paths=PackedStringArray("is_obstacle_between_checker") instance=ExtResource("9_nrxaw")]
 is_obstacle_between_checker = NodePath("../InverterDecorator/AttackComposite/IsObstacleBetween")
