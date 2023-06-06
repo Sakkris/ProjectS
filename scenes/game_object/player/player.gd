@@ -117,6 +117,6 @@ func turn_right():
 	transform.basis = transform.basis.rotated(Vector3.UP, -TURN_ANGLE)
 
 
-func hit(other_area):
+func hit(_other_area):
 	GameEvents.emit_game_over()
 	GameEvents.emit_switch_music_request(MusicManager.music_list.GAME_OVER)

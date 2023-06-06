@@ -17,7 +17,7 @@ func tick():
 		radar_ref.player_ui.remove_enemy_icon(id)
 		
 		if crosshair == null:
-			instanciate_crosshair(enemy, id)
+			instanciate_crosshair(enemy)
 		
 		return
 	
@@ -25,7 +25,7 @@ func tick():
 		crosshair.queue_free()
 		crosshair = null
 	
-	var icon_position = get_enemy_icon_position(id)
+	var icon_position = get_enemy_icon_position()
 	
 	if icon_position == null:
 		return
@@ -35,21 +35,21 @@ func tick():
 	radar_ref.player_ui.draw_enemy_icon_at_position(icon_position, id, distance_squared)
 
 
-func is_player_looking_at_enemy(enemy: CharacterBody3D) -> bool:
+func is_player_looking_at_enemy(enemy_ref: CharacterBody3D) -> bool:
 	var player_camera_foward = -(radar_ref.player_camera.global_transform.basis.z)
-	var direction_to_enemy = radar_ref.player_camera.global_transform.origin.direction_to(enemy.global_transform.origin)
+	var direction_to_enemy = radar_ref.player_camera.global_transform.origin.direction_to(enemy_ref.global_transform.origin)
 	
 	return player_camera_foward.dot(direction_to_enemy) > .85
 
 
-func instanciate_crosshair(enemy: CharacterBody3D, id):
+func instanciate_crosshair(enemy_ref: CharacterBody3D):
 	lock_on_audio.play()
 	crosshair = lockon_crosshair_scene.instantiate()
-	enemy.add_child(crosshair)
-	crosshair.global_transform = enemy.global_transform
+	enemy_ref.add_child(crosshair)
+	crosshair.global_transform = enemy_ref.global_transform
 
 
-func get_enemy_icon_position(enemy_id):
+func get_enemy_icon_position():
 	var projected_enemy_position = radar_ref.foward_plane.project(enemy.global_transform.origin)
 	
 	var query = PhysicsRayQueryParameters3D.create(projected_enemy_position, radar_ref.player_ui.global_transform.origin)

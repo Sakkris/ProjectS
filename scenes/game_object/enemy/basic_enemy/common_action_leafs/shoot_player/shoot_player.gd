@@ -9,7 +9,7 @@ extends ActionLeaf
 var shooting_animation = "engage_shoot"
 
 
-func tick(actor: Node, blackboard: Blackboard) -> int:
+func tick(actor: Node, _blackboard: Blackboard) -> int:
 	if actor.attack_range_limit < actor.distance_to_player:
 		return FAILURE
 	
