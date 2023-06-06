@@ -23,6 +23,10 @@ var current_state
 var last_length = 0
 var origin
 
+var space_state
+var prev_pos: Array[Vector3]
+var pos_checked = -1
+
 
 func _ready():
 	$HookTip/Area3D.body_entered.connect(on_body_entered)
@@ -33,6 +37,7 @@ func _ready():
 
 
 func update(delta) -> bool:
+	space_state = get_world_3d().direct_space_state
 	draw_line()
 	
 	match current_state:
@@ -55,6 +60,21 @@ func update(delta) -> bool:
 func throw_hook(delta):
 	if not are_numbers_close(hook_current_length(), hook_max_length):
 		hook_tip.global_translate(transform.basis.z * -HOOK_THROW_SPEED * delta)
+		
+		if !prev_pos.is_empty():
+			var query = PhysicsRayQueryParameters3D.create(prev_pos.front(), hook_tip.global_position)
+			query.collision_mask = $HookTip/Area3D.collision_mask
+			query.hit_from_inside = true
+			query.hit_back_faces = true
+			var result = space_state.intersect_ray(query)
+			
+			if not result.is_empty():
+				hook_tip.global_position = result.position
+		
+		prev_pos.push_back(hook_tip.global_position)
+		
+		if prev_pos.size() > 15:
+			prev_pos.pop_front()
 		
 		if hook_current_length() > hook_max_length:
 			var distance_overshot = hook_current_length() - hook_max_length
