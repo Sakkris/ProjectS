@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbd2tqddnmh4d"]
+[gd_scene load_steps=18 format=3 uid="uid://cbd2tqddnmh4d"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level/base_level.gd" id="1_baggj"]
 [ext_resource type="PackedScene" uid="uid://cfgxjpwvok6tf" path="res://scenes/manager/game_manager/game_manager.tscn" id="1_cjaqi"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bfc2k8cuv6ixb" path="res://scenes/map/tmp_grid_map.tscn" id="7_27jvy"]
 [ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="7_e6uss"]
 [ext_resource type="PackedScene" uid="uid://b731j8amc6ufa" path="res://scenes/misc/spawn_area/spawn_area.tscn" id="8_hrytj"]
+[ext_resource type="AudioStream" uid="uid://cwdblxb4geoig" path="res://resources/sounds/ambient/warning_siren.ogg" id="9_mn1uq"]
+[ext_resource type="AudioStream" uid="uid://bjs0fwa82lqn7" path="res://resources/sounds/ambient/wind.ogg" id="10_0qwf1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xqcsk"]
 size = Vector3(0.05, 0.05, 0.05)
@@ -400,6 +402,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.233, 39.069, -19.921)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282551, 0, 2.38247)
 shape = SubResource("BoxShape3D_rmg0i")
+
+[node name="AmbientSounds" type="Node" parent="."]
+
+[node name="Wind" type="AudioStreamPlayer" parent="AmbientSounds"]
+stream = ExtResource("10_0qwf1")
+volume_db = -6.0
+autoplay = true
+bus = &"Ambient"
+
+[node name="Alarm" type="AudioStreamPlayer" parent="AmbientSounds"]
+stream = ExtResource("9_mn1uq")
+volume_db = -6.0
+autoplay = true
+bus = &"ReverbAmbient"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.740582, 0.671966, 0, -0.671966, 0.740582, 0, 8.76178, 4.691)
