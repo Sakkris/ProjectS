@@ -18,6 +18,7 @@ func _ready():
 
 
 func switch_music(music: music_list):
+	return 
 	if current_music == music:
 		return
 	

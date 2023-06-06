@@ -1,5 +1,7 @@
 extends Ability
 
+@export var throw_hook_audio: AudioStreamPlayer3D
+
 @onready var hook_scene: PackedScene = preload("res://scenes/game_object/projectile/player_hook/hook.tscn")
 
 var hook_instance
@@ -24,6 +26,9 @@ func use():
 	if gun_nuzzle == null:
 		return
 	
+	if throw_hook_audio:
+		throw_hook_audio.play()
+	
 	hook_instance = hook_scene.instantiate()
 	hook_instance.origin = gun_nuzzle 
 	hook_instance.global_transform = gun_nuzzle.global_transform
@@ -37,6 +42,9 @@ func use():
 
 
 func stop():
+	if throw_hook_audio:
+		throw_hook_audio.play()
+	
 	hook_instance.change_state(hook_instance.states.RETRACTING)
 
 

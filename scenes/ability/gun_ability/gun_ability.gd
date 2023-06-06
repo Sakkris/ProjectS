@@ -3,8 +3,9 @@ class_name Gun
 
 @export var magazine_size : int = 3
 @export var knockback_force: float = .5 
-@export var shooting_audio: AudioStreamPlayer3D
 @export var bullet_scene : PackedScene 
+@export var shooting_audio: AudioStreamPlayer3D
+@export var recharge_audio: AudioStreamPlayer3D
 
 @onready var shooting_cooldown_timer: Timer = $ShootingCooldownTimer
 @onready var start_recharge_timer: Timer = $StartRechargeTimer
@@ -69,12 +70,18 @@ func start_fast_recharge():
 func recharge():
 	if current_bullets == magazine_size:
 		recharge_cooldown_timer.stop()
+		
 		if is_shooting:
 			shoot()
 		
 		return
 	
 	current_bullets += 1
+	
+	if current_bullets == magazine_size:
+		if recharge_audio:
+			recharge_audio.play()
+		return
 	recharge_cooldown_timer.start()
 
 

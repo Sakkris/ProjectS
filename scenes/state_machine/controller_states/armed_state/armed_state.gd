@@ -1,6 +1,8 @@
 extends MovingState
 class_name ArmedState
 
+@export var change_unarmed_audio: AudioStreamPlayer3D
+
 
 func _ready():
 	super()
@@ -26,8 +28,9 @@ func trigger_pressed():
 
 
 func thumbstick_pressed():
-	state_machine.change_state_audio.play()
-	state_machine.change_state_audio.finished
+	if change_unarmed_audio:
+		change_unarmed_audio.play()
+	
 	state_machine.transition_to("Unarmed")
 
 

@@ -18,7 +18,8 @@ func enter(_msg := {}) -> void:
 
 
 func exit() -> void:
-	await ability_manager.stop_ability("Hook")
+#	await ability_manager.stop_ability("Hook")
+	pass
 
 
 func handle_input_pressed(button: String):

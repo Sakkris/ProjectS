@@ -6,6 +6,8 @@ extends Ability
 @export var max_charge: float = 100
 @export var discharge_rate: float = 20 
 @export var recharge_rate: float = 30
+@export var thruster_sound: AudioStreamPlayer3D 
+@export var error_sound :AudioStreamPlayer3D
 
 var current_charge 
 var is_thrusting: bool = false
@@ -30,6 +32,7 @@ func thrust(delta):
 		return
 	
 	if is_zero_approx(current_charge):
+		thruster_sound.stop()
 		return
 	
 	var basis = gun_nuzzle.global_transform.basis
@@ -49,9 +52,14 @@ func recharge(delta):
 func use():
 	is_thrusting = true
 	is_charging = false
+	if is_zero_approx(current_charge):
+		error_sound.play()
+	else:
+		thruster_sound.play()
 	start_recharge_timer.stop()
 
 
 func stop():
 	is_thrusting = false
+	thruster_sound.stop()
 	start_recharge_timer.start()

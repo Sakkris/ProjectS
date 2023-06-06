@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=35 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
@@ -18,8 +18,15 @@
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/ui_raycast.gd" id="15_4trpf"]
 [ext_resource type="PackedScene" uid="uid://b33owggv1v17u" path="res://scenes/aim_sight/aim_sight.tscn" id="16_xqpgr"]
 [ext_resource type="Shader" uid="uid://c3x0wrix6al0p" path="res://resources/shaders/transparency_gradent/transparency_gradient.tres" id="17_yey5v"]
-[ext_resource type="AudioStream" uid="uid://qqyn55s3vskn" path="res://resources/sounds/player/change_state/change_state.wav" id="19_7ioey"]
+[ext_resource type="AudioStream" uid="uid://bo77h3fm8q86n" path="res://resources/sounds/player/change_state/change_weapon.wav" id="19_sa3nu"]
+[ext_resource type="AudioStream" uid="uid://1360b45cmc00" path="res://resources/sounds/player/change_state/change_hand.wav" id="20_gdul4"]
 [ext_resource type="AudioStream" uid="uid://bc0hn8nfqh8c1" path="res://resources/sounds/weapons/fire/fire_01.wav" id="20_j0ecq"]
+[ext_resource type="AudioStream" uid="uid://dunqehs6rgurg" path="res://resources/sounds/player/thruster/thruster_loop.ogg" id="21_uafpo"]
+[ext_resource type="AudioStream" uid="uid://dcdygs1gmjmtx" path="res://resources/sounds/player/recharge/recharge.wav" id="22_8hmt8"]
+[ext_resource type="AudioStream" uid="uid://bckg5h3ob5rgp" path="res://resources/sounds/error/error.wav" id="22_mce78"]
+[ext_resource type="AudioStream" uid="uid://c8m6qtjfd852b" path="res://resources/sounds/player/hook/hook_01.wav" id="23_we8ek"]
+[ext_resource type="AudioStream" uid="uid://dsrlpfyv6uan5" path="res://resources/sounds/player/hook/hook_02.wav" id="24_eyvpn"]
+[ext_resource type="AudioStream" uid="uid://uqdph0qgw7n8" path="res://resources/sounds/player/hook/hook_03.wav" id="25_wlxwd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
@@ -46,6 +53,15 @@ random_pitch = 1.2
 stream_0/stream = ExtResource("20_j0ecq")
 stream_0/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6duq6"]
+streams_count = 3
+stream_0/stream = ExtResource("23_we8ek")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("24_eyvpn")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("25_wlxwd")
+stream_2/weight = 1.0
+
 [node name="Controller" type="XRController3D" groups=["controller"]]
 script = ExtResource("1_l0t0k")
 
@@ -54,7 +70,8 @@ initial_state = NodePath("Unarmed")
 
 [node name="Shooting" parent="StateMachine" instance=ExtResource("5_adiki")]
 
-[node name="Unarmed" parent="StateMachine" instance=ExtResource("6_k3ev3")]
+[node name="Unarmed" parent="StateMachine" node_paths=PackedStringArray("change_armed_audio") instance=ExtResource("6_k3ev3")]
+change_armed_audio = NodePath("../../ChangeArmedAudio")
 
 [node name="Hooking" parent="StateMachine" instance=ExtResource("7_dcaof")]
 
@@ -64,22 +81,27 @@ initial_state = NodePath("Unarmed")
 raycast_mesh = NodePath("../../RayCast3D/RayCastMesh")
 raycast = NodePath("../../RayCast3D")
 
-[node name="Armed" parent="StateMachine" instance=ExtResource("4_o5uvq")]
+[node name="Armed" parent="StateMachine" node_paths=PackedStringArray("change_unarmed_audio") instance=ExtResource("4_o5uvq")]
+change_unarmed_audio = NodePath("../../ChangeUnarmedAudio")
 
 [node name="AbilityManager" parent="." instance=ExtResource("3_4f8yc")]
 
 [node name="DashController" parent="AbilityManager" instance=ExtResource("6_7bl1k")]
 dash_force = 4.0
 
-[node name="HookController" parent="AbilityManager" instance=ExtResource("8_lkbr2")]
+[node name="HookController" parent="AbilityManager" node_paths=PackedStringArray("throw_hook_audio") instance=ExtResource("8_lkbr2")]
+throw_hook_audio = NodePath("../../ThrowHookAudio")
 
-[node name="ThrusterController" parent="AbilityManager" instance=ExtResource("8_8fq8e")]
+[node name="ThrusterController" parent="AbilityManager" node_paths=PackedStringArray("thruster_sound", "error_sound") instance=ExtResource("8_8fq8e")]
 thruster_force = 2.0
+thruster_sound = NodePath("../../ThrusterAudio")
+error_sound = NodePath("../../ErrorAudio")
 
 [node name="GrabController" parent="AbilityManager" instance=ExtResource("9_2bikd")]
 
-[node name="GunController" parent="AbilityManager" node_paths=PackedStringArray("shooting_audio") instance=ExtResource("13_0wntn")]
+[node name="GunController" parent="AbilityManager" node_paths=PackedStringArray("shooting_audio", "recharge_audio") instance=ExtResource("13_0wntn")]
 shooting_audio = NodePath("../../ShootingAudio")
+recharge_audio = NodePath("../../RechargeAudio")
 
 [node name="AbilityPanel" parent="." instance=ExtResource("5_cgq1h")]
 
@@ -111,8 +133,14 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 visible = false
 mesh = SubResource("CapsuleMesh_r7n5b")
 
-[node name="ChangeStateAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("19_7ioey")
+[node name="ChangeArmedAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("19_sa3nu")
+volume_db = -12.0
+max_db = 0.0
+bus = &"SFX"
+
+[node name="ChangeUnarmedAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("20_gdul4")
 volume_db = -12.0
 max_db = 0.0
 bus = &"SFX"
@@ -121,3 +149,22 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_g637r")
 volume_db = -12.0
 max_db = 0.0
+bus = &"SFX"
+
+[node name="RechargeAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("22_8hmt8")
+bus = &"SFX"
+
+[node name="ThrusterAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("21_uafpo")
+volume_db = 3.0
+max_db = 6.0
+pitch_scale = 3.0
+bus = &"SFX"
+
+[node name="ThrowHookAudio" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_6duq6")
+
+[node name="ErrorAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("22_mce78")
+bus = &"SFX"

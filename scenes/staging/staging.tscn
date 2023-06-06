@@ -22,7 +22,7 @@ shader_parameter/alpha = 0.0
 
 [node name="Staging" type="Node3D"]
 script = ExtResource("1_n0xha")
-main_scene = "res://scenes/levels/enemy_range/enemy_range.tscn"
+main_scene = "res://scenes/levels/main/main.tscn"
 
 [node name="StartXR" parent="." instance=ExtResource("6_jkv21")]
 

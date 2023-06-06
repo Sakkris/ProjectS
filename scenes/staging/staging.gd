@@ -181,7 +181,7 @@ func load_scene(p_scene_path : String) -> void:
 	else:
 		# Start the loading in a thread
 		ResourceLoader.load_threaded_request(p_scene_path)
-
+		
 		# Loop waiting for the scene to load
 		while true:
 			var progress := []
