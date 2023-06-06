@@ -35,8 +35,8 @@ dash_speed = 20
 die_on_dash = true
 
 [node name="VelocityComponent" parent="." index="0"]
-max_speed = 7.5
-max_overloaded_speed = 10.0
+max_speed = 12.5
+max_overloaded_speed = 13.0
 acceleration_coeficient = 2.0
 turn_speed = 2.0
 

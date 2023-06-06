@@ -1,6 +1,7 @@
 extends Ability
 
 @export var throw_hook_audio: AudioStreamPlayer3D
+@export var retract_hook_audio: AudioStreamPlayer3D
 
 @onready var hook_scene: PackedScene = preload("res://scenes/game_object/projectile/player_hook/hook.tscn")
 
@@ -19,6 +20,9 @@ func _physics_process(delta):
 			if locked:
 				rotate_around_point(delta)
 			else: 
+				if retract_hook_audio and !retract_hook_audio.playing:
+					retract_hook_audio.play()
+				
 				go_to_collision_point(delta)
 
 
@@ -38,13 +42,17 @@ func use():
 	
 	in_use = true
 	await hook_instance.finished_retracting
+	
+	if throw_hook_audio:
+		throw_hook_audio.play()
+	
+	if retract_hook_audio and retract_hook_audio.playing:
+		retract_hook_audio.stop()
+	
 	in_use = false
 
 
 func stop():
-	if throw_hook_audio:
-		throw_hook_audio.play()
-	
 	hook_instance.change_state(hook_instance.states.RETRACTING)
 
 

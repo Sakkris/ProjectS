@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7sqbe4s8snn7"]
+[gd_scene load_steps=9 format=3 uid="uid://c7sqbe4s8snn7"]
 
 [ext_resource type="Script" path="res://scenes/game_object/objective_entity/objective_entity.gd" id="1_v7pxm"]
+[ext_resource type="AudioStream" uid="uid://md1cdapf7uqp" path="res://resources/sounds/ui/collected_objective.wav" id="2_uc5ck"]
 
 [sub_resource type="Animation" id="Animation_i0s85"]
 length = 0.001
@@ -94,3 +95,7 @@ collision_mask = 64
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("SphereShape3D_bvwb8")
+
+[node name="CollectedAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_uc5ck")
+bus = &"SFX"

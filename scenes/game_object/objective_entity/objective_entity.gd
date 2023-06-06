@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var collection_audio: AudioStreamPlayer = $CollectedAudio
 @onready var hurtbox: Area3D = $Hurtbox
 
 
@@ -8,6 +9,11 @@ func _ready():
 
 
 func destroy():
+	if collection_audio:
+		visible = false
+		collection_audio.play()
+		await collection_audio.finished
+	
 	GameEvents.emit_objective_destroyed()
 	queue_free()
 

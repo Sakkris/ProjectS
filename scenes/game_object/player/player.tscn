@@ -156,7 +156,7 @@ material_override = SubResource("ShaderMaterial_kc8fj")
 mesh = SubResource("QuadMesh_wi2gc")
 
 [node name="CameraOverlay" parent="XROrigin3D/XRCamera3D" instance=ExtResource("11_8mfyc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.463778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.413778)
 
 [node name="CharacterOrigin" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

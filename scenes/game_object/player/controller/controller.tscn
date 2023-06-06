@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://3qjmkjv737j6"]
+[gd_scene load_steps=40 format=3 uid="uid://3qjmkjv737j6"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/controller/controller.gd" id="1_l0t0k"]
 [ext_resource type="PackedScene" uid="uid://cbbivcrd5obv" path="res://scenes/state_machine/state_machine.tscn" id="2_klrwm"]
@@ -24,9 +24,13 @@
 [ext_resource type="AudioStream" uid="uid://dunqehs6rgurg" path="res://resources/sounds/player/thruster/thruster_loop.ogg" id="21_uafpo"]
 [ext_resource type="AudioStream" uid="uid://dcdygs1gmjmtx" path="res://resources/sounds/player/recharge/recharge.wav" id="22_8hmt8"]
 [ext_resource type="AudioStream" uid="uid://bckg5h3ob5rgp" path="res://resources/sounds/error/error.wav" id="22_mce78"]
+[ext_resource type="AudioStream" uid="uid://d2pnibd4khn06" path="res://resources/sounds/player/hook/hook_retract.wav" id="23_67igq"]
 [ext_resource type="AudioStream" uid="uid://c8m6qtjfd852b" path="res://resources/sounds/player/hook/hook_01.wav" id="23_we8ek"]
 [ext_resource type="AudioStream" uid="uid://dsrlpfyv6uan5" path="res://resources/sounds/player/hook/hook_02.wav" id="24_eyvpn"]
 [ext_resource type="AudioStream" uid="uid://uqdph0qgw7n8" path="res://resources/sounds/player/hook/hook_03.wav" id="25_wlxwd"]
+[ext_resource type="AudioStream" uid="uid://ismdyqmdkwe6" path="res://resources/sounds/player/thruster/dash_01.wav" id="27_t2vmj"]
+[ext_resource type="AudioStream" uid="uid://ch3hkcn21m15b" path="res://resources/sounds/player/thruster/dash_02.wav" id="28_3ptfk"]
+[ext_resource type="AudioStream" uid="uid://b7belpqifuw4v" path="res://resources/sounds/player/thruster/dash_03.wav" id="29_o07ge"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dapnm"]
 radius = 0.1
@@ -62,6 +66,15 @@ stream_1/weight = 1.0
 stream_2/stream = ExtResource("25_wlxwd")
 stream_2/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_omj4p"]
+streams_count = 3
+stream_0/stream = ExtResource("27_t2vmj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("28_3ptfk")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("29_o07ge")
+stream_2/weight = 1.0
+
 [node name="Controller" type="XRController3D" groups=["controller"]]
 script = ExtResource("1_l0t0k")
 
@@ -86,11 +99,13 @@ change_unarmed_audio = NodePath("../../ChangeUnarmedAudio")
 
 [node name="AbilityManager" parent="." instance=ExtResource("3_4f8yc")]
 
-[node name="DashController" parent="AbilityManager" instance=ExtResource("6_7bl1k")]
+[node name="DashController" parent="AbilityManager" node_paths=PackedStringArray("dash_audio") instance=ExtResource("6_7bl1k")]
 dash_force = 4.0
+dash_audio = NodePath("../../DashAudio")
 
-[node name="HookController" parent="AbilityManager" node_paths=PackedStringArray("throw_hook_audio") instance=ExtResource("8_lkbr2")]
-throw_hook_audio = NodePath("../../ThrowHookAudio")
+[node name="HookController" parent="AbilityManager" node_paths=PackedStringArray("throw_hook_audio", "retract_hook_audio") instance=ExtResource("8_lkbr2")]
+throw_hook_audio = NodePath("../../HookThrowAudio")
+retract_hook_audio = NodePath("../../HookRetractAudio")
 
 [node name="ThrusterController" parent="AbilityManager" node_paths=PackedStringArray("thruster_sound", "error_sound") instance=ExtResource("8_8fq8e")]
 thruster_force = 2.0
@@ -157,13 +172,19 @@ bus = &"SFX"
 
 [node name="ThrusterAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("21_uafpo")
-volume_db = 3.0
+volume_db = 6.0
 max_db = 6.0
-pitch_scale = 3.0
 bus = &"SFX"
 
-[node name="ThrowHookAudio" type="AudioStreamPlayer3D" parent="."]
+[node name="HookThrowAudio" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_6duq6")
+
+[node name="HookRetractAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("23_67igq")
+pitch_scale = 0.9
+
+[node name="DashAudio" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_omj4p")
 
 [node name="ErrorAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("22_mce78")

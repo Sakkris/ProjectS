@@ -3,6 +3,7 @@ extends Ability
 @onready var cooldown_timer: Timer = $DashCooldownTimer
 
 @export var dash_force: float = 10
+@export var dash_audio: AudioStreamPlayer3D
 
 var can_dash: bool = true
 
@@ -18,6 +19,9 @@ func use():
 	var basis = gun_nuzzle.global_transform.basis
 	velocity_component.reset_if_opposite_velocity(-basis.z)
 	velocity_component.velocity += -basis.z * dash_force
+	
+	if dash_audio:
+		dash_audio.play()
 	
 	start_cooldown()
 
