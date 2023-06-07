@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqs3j4pr17uml"]
+[gd_scene load_steps=19 format=3 uid="uid://bqs3j4pr17uml"]
 
 [ext_resource type="PackedScene" uid="uid://ciowisqs1ayti" path="res://scenes/game_object/enemy/basic_enemy/enemy_drone.tscn" id="1_rm0u1"]
 [ext_resource type="Script" path="res://scenes/game_object/enemy/basic_enemy/s_type/s_type.gd" id="2_13nvo"]
@@ -17,6 +17,9 @@
 [ext_resource type="Material" uid="uid://cjref85lolkjo" path="res://resources/enemy_model/stype_drone_mat.tres" id="16_pd52y"]
 [ext_resource type="AudioStream" uid="uid://dd18utb5gemnf" path="res://resources/sounds/lock_on/lock_on_01.wav" id="16_qfmo1"]
 [ext_resource type="AudioStream" uid="uid://0t83kxo877f" path="res://resources/sounds/lock_on/lock_on_04.wav" id="17_5pfpa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf5ao"]
+albedo_color = Color(0.168627, 0.803922, 1, 1)
 
 [node name="SType" instance=ExtResource("1_rm0u1")]
 script = ExtResource("2_13nvo")
@@ -81,6 +84,9 @@ is_obstacle_between_checker = NodePath("../SelectorComposite/SequenceComposite/I
 
 [node name="GunNuzzle" type="Node3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.375887)
+
+[node name="MeshInstance3D" parent="Visuals" index="0"]
+material_override = SubResource("StandardMaterial3D_kf5ao")
 
 [node name="main_body" parent="Visuals/DroneMesh/bad_Ship" index="0"]
 material_override = ExtResource("16_pd52y")

@@ -32,10 +32,6 @@ func _ready():
 	
 	if player:
 		player.closest_nav_point_changed.connect(on_player_moved)
-	
-#	$DroneMesh/bad_Ship/main_body.visibility_range_begin = 0
-#	$DroneMesh/bad_Ship/main_body.visibility_range_end = 10
-#	$MeshInstance3D.visibility_range_begin = 10
 
 
 func tick():
@@ -135,14 +131,12 @@ func death():
 	
 	explosion_audio.play()
 	
-	if $Visuals/MeshInstance3D.visible:
-		$Visuals/MeshInstance3D.visible = false
-	else:
-		$Visuals/DroneMesh/bad_Ship/main_body.visible = false
-		$Visuals/DroneMesh/bad_Ship/explosion_pieces.visible = true
-		animation_player.play("explode")
-	
+	$Visuals/MeshInstance3D.visible = false
+	$Visuals/DroneMesh/bad_Ship/main_body.visible = false
+	$Visuals/DroneMesh/bad_Ship/explosion_pieces.visible = true
+	animation_player.play("explode")
 	await animation_player.animation_finished
+	
 	visible = false
 	
 	await explosion_audio.finished

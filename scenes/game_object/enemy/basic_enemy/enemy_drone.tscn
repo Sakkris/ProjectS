@@ -51,7 +51,8 @@ shape = SubResource("SphereShape3D_mg2do")
 [node name="Visuals" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
-visible = false
+visibility_range_begin = 15.0
+visibility_range_begin_margin = 1.0
 mesh = SubResource("SphereMesh_64u71")
 skeleton = NodePath("../..")
 
@@ -60,30 +61,60 @@ transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 
 
 [node name="main_body" parent="Visuals/DroneMesh/bad_Ship" index="0"]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.16483e-08, -0.933948, -0.357409, -3.12457e-08, -0.357409, 0.933948, 0, 0, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="long_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="0"]
 transform = Transform3D(-0.282396, -0.458706, -0.842521, 0.88914, 0.204538, -0.409381, 0.360113, -0.864727, 0.350093, 0, 0, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
+
+[node name="fx_tip" parent="Visuals/DroneMesh/bad_Ship/main_body/long_rod_A" index="0"]
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="long_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="1"]
 transform = Transform3D(-0.385838, 0.484317, 0.785217, -0.490471, 0.613193, -0.619219, -0.781388, -0.624045, 0.000950246, 0, 0, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
+
+[node name="fx_tip (1)" parent="Visuals/DroneMesh/bad_Ship/main_body/long_rod_B" index="0"]
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="small_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="2"]
 transform = Transform3D(-0.999063, -0.00223052, -0.0432304, -0.00812485, -0.971261, 0.23788, -0.0425186, 0.238008, 0.970332, 0, 0, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="fx_tip_s" parent="Visuals/DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="small_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="3"]
 transform = Transform3D(-0.999933, 0.00324728, -0.0111479, 0.00704652, -0.593372, -0.804897, -0.00922857, -0.804922, 0.593309, 0, 0, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
+
+[node name="fx_tip_s (1)" parent="Visuals/DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="head_piece" parent="Visuals/DroneMesh/bad_Ship/main_body" index="4"]
 transform = Transform3D(-1, 8.74227e-08, 0, -8.72434e-08, -0.997948, 0.0640237, 5.59713e-09, 0.0640237, 0.997948, 0, -0.131299, 0.00842355)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="neck_glow" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="eye" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="1"]
 transform = Transform3D(0.999824, 0.0165305, 0.0088412, -0.0174244, 0.993439, 0.113026, -0.00691482, -0.11316, 0.993553, -0.000107924, 4.28336e-05, 0.000738797)
+visibility_range_end = 15.0
+visibility_range_end_margin = 1.0
 
 [node name="explosion_pieces" parent="Visuals/DroneMesh/bad_Ship" index="1"]
 visible = false

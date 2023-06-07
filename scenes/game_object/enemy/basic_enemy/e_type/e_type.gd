@@ -16,10 +16,6 @@ func _ready():
 		player.closest_nav_point_changed.connect(self.on_player_moved)
 	
 	behavior_tree.blackboard.set_value("dir_to_target", Vector3.ZERO)
-	
-#	$DroneMesh/bad_Ship/main_body.visibility_range_begin = 0
-#	$DroneMesh/bad_Ship/main_body.visibility_range_end = 10
-#	$MeshInstance3D.visibility_range_begin = 10
 
 
 func _physics_process(delta):
