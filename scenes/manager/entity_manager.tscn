@@ -14,4 +14,4 @@ objective_scene = ExtResource("3_h46la")
 [node name="ProcessBalancer" parent="." instance=ExtResource("2_xlylx")]
 
 [node name="EnemyTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 7.0

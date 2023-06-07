@@ -50,8 +50,8 @@ collision_layer = 2
 script = ExtResource("1_80ysr")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_25rjh")]
-max_speed = 15.0
-max_overloaded_speed = 20.0
+max_speed = 13.0
+max_overloaded_speed = 17.0
 acceleration_coeficient = 0.1
 
 [node name="Radar" parent="." instance=ExtResource("3_ck2ot")]

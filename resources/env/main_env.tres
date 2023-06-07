@@ -14,4 +14,4 @@ background_energy_multiplier = 1.5
 sky = SubResource("Sky_1xrxe")
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.5
-ambient_light_energy = 15.0
+ambient_light_energy = 2.0

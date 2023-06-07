@@ -25,7 +25,9 @@ var origin
 
 var space_state
 var prev_pos: Array[Vector3]
-var pos_checked = -1
+var pos_index = 0
+var pos_check = 0
+var first_pass = true
 
 
 func _ready():
@@ -34,6 +36,9 @@ func _ready():
 	origin = global_transform.origin
 	hook_line_origin.scale.z = 0
 	hook_line.visible = true
+	
+	prev_pos.resize(15)
+	prev_pos[0] = hook_tip.global_position
 
 
 func update(delta) -> bool:
@@ -62,7 +67,7 @@ func throw_hook(delta):
 		hook_tip.global_translate(transform.basis.z * -HOOK_THROW_SPEED * delta)
 		
 		if !prev_pos.is_empty():
-			var query = PhysicsRayQueryParameters3D.create(prev_pos.front(), hook_tip.global_position)
+			var query = PhysicsRayQueryParameters3D.create(prev_pos[pos_check], hook_tip.global_position)
 			query.collision_mask = $HookTip/Area3D.collision_mask
 			query.hit_from_inside = true
 			query.hit_back_faces = true
@@ -71,10 +76,19 @@ func throw_hook(delta):
 			if not result.is_empty():
 				hook_tip.global_position = result.position
 		
-		prev_pos.push_back(hook_tip.global_position)
+		pos_index += 1
+		if pos_index > prev_pos.size() - 1:
+			pos_index = 0
+			
+			if first_pass:
+				first_pass = false
 		
-		if prev_pos.size() > 15:
-			prev_pos.pop_front()
+		prev_pos.insert(pos_index, hook_tip.global_position)
+		
+		if !first_pass:
+			pos_check += 1
+			if pos_check > prev_pos.size() - 1:
+				pos_check = 0
 		
 		if hook_current_length() > hook_max_length:
 			var distance_overshot = hook_current_length() - hook_max_length
