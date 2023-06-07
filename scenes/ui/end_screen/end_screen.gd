@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var button: Button = $SubViewport/MarginContainer/Button
+@onready var button: Button = $SubViewport/MarginContainer/VBoxContainer/Button
 
 
 func _ready():

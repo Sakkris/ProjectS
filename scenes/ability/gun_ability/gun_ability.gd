@@ -31,9 +31,8 @@ func shoot():
 	
 	recharge_cooldown_timer.stop()
 	var bullet = bullet_scene.instantiate()
-	
-	get_tree().get_first_node_in_group("projectile_manager").add_child(bullet)
 	bullet.global_transform = gun_nuzzle.global_transform
+	get_tree().get_first_node_in_group("projectile_manager").add_child(bullet)
 	
 	if shooting_audio:
 		shooting_audio.play()

@@ -108,7 +108,7 @@ throw_hook_audio = NodePath("../../HookThrowAudio")
 retract_hook_audio = NodePath("../../HookRetractAudio")
 
 [node name="ThrusterController" parent="AbilityManager" node_paths=PackedStringArray("thruster_sound", "error_sound") instance=ExtResource("8_8fq8e")]
-thruster_force = 2.0
+thruster_force = 3.0
 thruster_sound = NodePath("../../ThrusterAudio")
 error_sound = NodePath("../../ErrorAudio")
 

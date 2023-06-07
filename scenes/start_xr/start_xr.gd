@@ -1,7 +1,7 @@
 extends Node
 
 @onready var canvas_layer = $CanvasLayer
-@onready var start_button = $CanvasLayer/StartButton
+@onready var start_button = $CanvasLayer/ColorRect/MarginContainer/Container/VBoxContainer/StartButton
 
 
 func _ready():
@@ -27,7 +27,7 @@ func _webxr_session_supported(session_mode: String, supported: bool) -> void:
 			canvas_layer.visible = true
 		else:
 			OS.alert("Your browser doesn't support VR")
- 
+
 
 func _on_start_button_pressed() -> void:
 	GameProperties.webxr_interface.session_mode = 'immersive-vr'

@@ -49,6 +49,7 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="forward_plus"
 renderer/rendering_method.web="forward_plus"
 textures/vram_compression/import_etc2_astc=true
+occlusion_culling/use_occlusion_culling=true
 
 [xr]
 
