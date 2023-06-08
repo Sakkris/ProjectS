@@ -7,4 +7,5 @@ func _process(_delta):
 	countdown = countdown - 1
 	
 	if countdown == 0:
-		queue_free()
+		visible = false
+		set_process(false)

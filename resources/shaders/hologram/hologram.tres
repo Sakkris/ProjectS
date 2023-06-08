@@ -83,7 +83,7 @@ default_value = Vector2(1, 5)
 
 [resource]
 code = "shader_type canvas_item;
-render_mode blend_mix, unshaded;
+render_mode unshaded;
 
 uniform vec4 BaseColor : source_color = vec4(0.110000, 0.580000, 0.690000, 0.350000);
 uniform vec2 HologramTextureTilling = vec2(1.000000, 5.000000);

@@ -34,5 +34,6 @@ transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, -2.00111)
 
 [node name="SType" parent="." instance=ExtResource("7_e0k6l")]
 process_mode = 4
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, -2)
 
 [editable path="GPUParticles3D"]
