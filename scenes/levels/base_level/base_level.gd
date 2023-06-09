@@ -32,6 +32,7 @@ signal request_reset_scene
 func _ready():
 	pass
 
+
 func center_player_on(p_transform : Transform3D):
 	# In order to center our player so the players feet are at the location
 	# indicated by p_transform, and having our player looking in the required

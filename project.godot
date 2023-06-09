@@ -28,6 +28,10 @@ NavPointGenerator="*res://scenes/nav_point_generator/nav_point_generator.tscn"
 
 gdscript/warnings/integer_division=0
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg", "res://addons/beehave/plugin.cfg")

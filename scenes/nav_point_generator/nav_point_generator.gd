@@ -3,6 +3,7 @@ extends Node3D
 ## This script utilizes Flood Fill to generate an AStar Node within an enclosed space that can then be used for navigation porpuses
 
 @export_group("Generation Settings")
+
 ## an Hard Limit to how many points to check before returning (stops infinite loop in case there is a gap)
 @export var limit = 9999
 
@@ -25,11 +26,14 @@ extends Node3D
 ## Uses JSON File to load the navigation points, in case there is one
 @export var use_json_file: bool = false
 
+@export var file_path: String = "res://nav_points.json"
+
 @export_group("Debug")
 ## Bool that defines if debug lines will be drawn representing the connections between navigation points
 @export var draw_debug_lines: bool = false
 ## Bool that defines if debug meshes will be drawn representing the navigation points
 @export var draw_debug_points: bool = false
+
 
 enum possible_considered_neighbours {
 	WITH_DIAGONALS = 26,
@@ -49,11 +53,10 @@ var astar: AStar3D = AStar3D.new()
 var point_queue: Array[Vector3]
 var space_state: PhysicsDirectSpaceState3D = null
 var current_point: Vector3
-var start_point: Vector3 = Vector3(0, 5, 0)
+var start_point: Vector3 = Vector3(0, 2, 0)
 
 var material: StandardMaterial3D
 
-var controller: XRController3D
 var desired_point = null
 var closest_point = null
 var generated = false
@@ -62,17 +65,27 @@ var generated = false
 func _ready():
 	material = StandardMaterial3D.new()
 	material.vertex_color_use_as_albedo = true
+	
+	if use_json_file && FileAccess.file_exists(file_path):
+		if read_json_file():
+			generated = true
+			return
+	
 	point_queue.push_back(start_point)
+	current_point = start_point
+
+
+func _process(delta):
+	if Engine.is_editor_hint():
+		if FileAccess.file_exists(file_path):
+			read_json_file()
+		
+	set_process(false)
 
 
 # Generates a Astar Object giving it points and connections according to the settings defined,
 # using a Flood Fill algorithm
 func generate_astar():
-	if use_json_file && FileAccess.file_exists("res://nav_points.json"):
-		if read_json_file():
-			generated = true
-			return
-	
 	var idx = 0
 	var point_id = 0
 	
@@ -95,7 +108,8 @@ func generate_astar():
 				if abs(target_point.x) > distance_limit.x || abs(target_point.y) > distance_limit.y || abs(target_point.z) > distance_limit.z:
 					continue
 			
-			if not exists_obstacle_between(current_point, target_point):
+			if not exists_obstacle_between(current_point, current_point + direction_dict[i] * distance_between_points * 1.1):
+				
 				var target_point_id = generate_point_id(target_point)
 				
 				if target_point_id < 0:
@@ -217,13 +231,13 @@ func generate_json():
 		json_dictionary[point_id] = point_dictionary
 	
 	var json_string = JSON.stringify(json_dictionary, "\t")
-	var file = FileAccess.open("res://nav_points.json", FileAccess.WRITE)
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_string(json_string)
 	file.close()
 
 
 func read_json_file() -> bool:
-	var json_file = FileAccess.open("res://nav_points.json", FileAccess.READ)
+	var json_file = FileAccess.open(file_path, FileAccess.READ)
 	var json_string = json_file.get_as_text()
 	var data = JSON.parse_string(json_string)
 	
@@ -243,7 +257,7 @@ func read_json_file() -> bool:
 			
 			astar.add_point(int_point_id, point_position)
 			
-			if draw_debug_points:
+			if draw_debug_points || Engine.is_editor_hint():
 				draw_debug_point(point_position)
 		
 		for connection in point_dictionary["connections"]:
@@ -282,6 +296,7 @@ func draw_debug_line(orig_point, dest_point):
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_LINES, arrays)
 	var m = MeshInstance3D.new()
 	
+	m.visibility_range_end
 	m.mesh = arr_mesh
 	m.material_override = material
 	
@@ -289,9 +304,11 @@ func draw_debug_line(orig_point, dest_point):
 
 
 # Draws a debug mesh in the given position
-func draw_debug_point(point: Vector3, point_material = material, point_size = Vector3(0.05, 0.05, 0.05)):
+func draw_debug_point(point: Vector3, point_material = material, point_size = Vector3(.3, .3, .3)):
 	var myMesh: MeshInstance3D = MeshInstance3D.new()
+	
 	myMesh.mesh = BoxMesh.new()
+	myMesh.visibility_range_end = 20.0
 	myMesh.mesh.size = point_size
 	myMesh.material_override = point_material
 	add_child(myMesh)
