@@ -18,6 +18,13 @@ extends Node3D
 ## Maximum Distance for each side the vector (0, 0, 0) disables this
 @export var distance_limit = Vector3(0, 0, 0)
 
+@export_group("JSON File")
+## Creates a JSON File with the Navigation Points generated
+@export var generate_json_file: bool = false
+
+## Uses JSON File to load the navigation points, in case there is one
+@export var use_json_file: bool = false
+
 @export_group("Debug")
 ## Bool that defines if debug lines will be drawn representing the connections between navigation points
 @export var draw_debug_lines: bool = false
@@ -61,6 +68,11 @@ func _ready():
 # Generates a Astar Object giving it points and connections according to the settings defined,
 # using a Flood Fill algorithm
 func generate_astar():
+	if use_json_file && FileAccess.file_exists("res://nav_points.json"):
+		if read_json_file():
+			generated = true
+			return
+	
 	var idx = 0
 	var point_id = 0
 	
@@ -107,6 +119,9 @@ func generate_astar():
 						draw_debug_point(target_point)
 	
 	generated = true
+	
+	if generate_json_file:
+		generate_json()
 
 
 # Generates an id from the point coordinates (Adaptation of szudzik pairing)
@@ -116,7 +131,7 @@ func generate_point_id(point: Vector3) -> int:
 
 	# Convert the string to a unique integer using a hash function
 	var id = hash(str_vec) & 0x7FFFFFFF
-
+	
 	# Ensure the ID is positive
 	if id < 0:
 		id += 0x7FFFFFFF + 1
@@ -185,6 +200,64 @@ func generate_path(origin: Vector3, destiny: Vector3) -> PackedVector3Array:
 	var path_dest_id = generate_point_id(destiny)
 	
 	return astar.get_point_path(path_origin_id, path_dest_id)
+
+
+# Generates a JSON file with the navigation points
+func generate_json():
+	var json_dictionary = {}
+	
+	for point_id in astar.get_point_ids():
+		var point_dictionary = {}
+		var coordinates = astar.get_point_position(point_id)
+		var connections = astar.get_point_connections(point_id)
+		
+		point_dictionary["coordinates"] = coordinates
+		point_dictionary["connections"] = connections
+		
+		json_dictionary[point_id] = point_dictionary
+	
+	var json_string = JSON.stringify(json_dictionary, "\t")
+	var file = FileAccess.open("res://nav_points.json", FileAccess.WRITE)
+	file.store_string(json_string)
+	file.close()
+
+
+func read_json_file() -> bool:
+	var json_file = FileAccess.open("res://nav_points.json", FileAccess.READ)
+	var json_string = json_file.get_as_text()
+	var data = JSON.parse_string(json_string)
+	
+	if data == null:
+		return false
+	
+	var str_vec
+	var int_point_id
+	var int_connection
+	for point_id in data:
+		int_point_id = int(point_id)
+		var point_dictionary = data[point_id]
+		
+		if not astar.has_point(int_point_id):
+			str_vec = str(point_dictionary["coordinates"]).replace(" ", "").replace("(", "").replace(")", "").split(",")
+			var point_position = Vector3(float(str_vec[0]), float(str_vec[1]), float(str_vec[2]))
+			
+			astar.add_point(int_point_id, point_position)
+			
+			if draw_debug_points:
+				draw_debug_point(point_position)
+		
+		for connection in point_dictionary["connections"]:
+			int_connection = int(connection)
+			
+			if astar.has_point(int_connection) && not astar.are_points_connected(int_point_id, int_connection):
+				astar.connect_points(int_point_id, int_connection)
+				
+				if draw_debug_lines:
+						draw_debug_line(astar.get_point_position(int_point_id), astar.get_point_position(int_connection))
+	
+	print(astar.get_point_count())
+	json_file.close()
+	return true
 
 
 # Draws a debug line between the two given points

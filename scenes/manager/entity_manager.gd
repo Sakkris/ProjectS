@@ -78,6 +78,9 @@ func update_enemy_timer():
 
 
 func select_random_area():
+	if spawn_areas.is_empty():
+		return
+	
 	var selected_area: SpawnArea
 	var number_of_tries = 0
 	
