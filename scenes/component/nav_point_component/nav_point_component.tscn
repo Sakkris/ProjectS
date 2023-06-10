@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d14rpor0im51o"]
+
+[ext_resource type="Script" path="res://scenes/nav_point_generator/nav_point.gd" id="1_cai15"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k2brs"]
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="Point" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5132, 7.91002, 32.0906)
+script = ExtResource("1_cai15")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_k2brs")

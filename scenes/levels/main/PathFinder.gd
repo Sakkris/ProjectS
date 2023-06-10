@@ -24,25 +24,25 @@ func _ready():
 	material.vertex_color_use_as_albedo = true
 
 	setup_astar()
-
-	var orig_id = get_nearest_nav_point_to_node(player)
-	var dest_id
-	if destiny_node == null:
-		dest_id = get_nearest_nav_point_to_node(player)
-	else:
-		dest_id = get_nearest_nav_point_to_node(destiny_node)
-
-	current_line = create_array_mesh(orig_id, dest_id)
-
-
-func _process(_delta):
-	if destiny_node == null:
-		return 
-	
-	var orig_id = get_nearest_nav_point_to_node(player)
-	var dest_id = get_nearest_nav_point_to_node(destiny_node)
-	
-	update_array_mesh(orig_id, dest_id)
+#
+#	var orig_id = get_nearest_nav_point_to_node(player)
+#	var dest_id
+#	if destiny_node == null:
+#		dest_id = get_nearest_nav_point_to_node(player)
+#	else:
+#		dest_id = get_nearest_nav_point_to_node(destiny_node)
+#
+#	current_line = create_array_mesh(orig_id, dest_id)
+#
+#
+#func _process(_delta):
+#	if destiny_node == null:
+#		return 
+#
+#	var orig_id = get_nearest_nav_point_to_node(player)
+#	var dest_id = get_nearest_nav_point_to_node(destiny_node)
+#
+#	update_array_mesh(orig_id, dest_id)
 
 
 func update_array_mesh(orig_id, dest_id):
@@ -156,8 +156,45 @@ func make_astar_connections():
 
 
 func setup_astar():
-	add_astar_points()
-	make_astar_connections()
+	var vertices = PackedVector3Array()
+	var children = get_children()
+	
+	for child in children:
+		if child is NavigationPoint:
+			if not astar.has_point(child.id):
+				astar.add_point(child.id, child.global_position)
+			
+			for connected_point in child.connections:
+				if not astar.has_point(connected_point.id):
+					astar.add_point(connected_point.id, connected_point.global_position)
+
+				if not astar.are_points_connected(child.id, connected_point.id):
+					astar.connect_points(child.id, connected_point.id)
+					
+					vertices.push_back(child.global_position)
+					vertices.push_back(connected_point.global_position)
+		
+		var arrays = []
+		arrays.resize(Mesh.ARRAY_MAX)
+		arrays[Mesh.ARRAY_VERTEX] = vertices
+		
+		var colors = PackedColorArray()
+		
+		for i in range(vertices.size()):
+			colors.push_back(Color.MEDIUM_SPRING_GREEN)
+		
+		arrays[Mesh.ARRAY_COLOR] = colors
+		
+		var arr_mesh = ArrayMesh.new()
+		arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_LINES, arrays)
+		var m = MeshInstance3D.new()
+		
+		m.mesh = arr_mesh
+		m.material_override = material
+		
+		add_child(m)
+#	add_astar_points()
+#	make_astar_connections()
 
 
 func on_objective_created(objective):
