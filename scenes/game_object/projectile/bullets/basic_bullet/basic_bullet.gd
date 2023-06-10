@@ -37,6 +37,7 @@ func _physics_process(delta):
 			
 			if not result.is_empty():
 				global_position = result.position
+				hit_target()
 		
 		pos_buffer += 1
 		if pos_buffer > prev_pos.size() - 1:
