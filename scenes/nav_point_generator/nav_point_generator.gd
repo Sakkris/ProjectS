@@ -1,4 +1,3 @@
-@tool
 extends Node3D
 
 ## This script utilizes Flood Fill to generate an AStar Node within an enclosed space that can then be used for navigation porpuses
@@ -61,6 +60,8 @@ var material: StandardMaterial3D
 var desired_point = null
 var closest_point = null
 var generated = false
+
+var simplified_navigation: AStar3D = null
 
 
 func _ready():
@@ -215,6 +216,34 @@ func generate_path(origin: Vector3, destiny: Vector3) -> PackedVector3Array:
 	var path_dest_id = generate_point_id(destiny)
 	
 	return astar.get_point_path(path_origin_id, path_dest_id)
+
+
+func generate_simple_path(origin: Vector3, destiny: Vector3) -> PackedVector3Array:
+	var path: PackedVector3Array
+	
+	var point_origin_id = get_closest_simple_point(origin)
+	var point_destiny_id = get_closest_simple_point(destiny)
+	
+	path.append_array(simplified_navigation.get_point_path(point_origin_id, point_destiny_id))
+	
+	path.append(destiny)
+	
+	return path
+
+
+func get_closest_simple_point(point_position: Vector3):
+	var nearest_point
+	var nearest_distance = 999.9
+	var current_distance 
+	
+	for nav_point in simplified_navigation.get_point_ids():
+		current_distance = simplified_navigation.get_point_position(nav_point).distance_squared_to(point_position)
+		
+		if current_distance < nearest_distance || nearest_point == null:
+			nearest_distance = current_distance
+			nearest_point = nav_point
+	
+	return nearest_point 
 
 
 # Generates a JSON file with the navigation points

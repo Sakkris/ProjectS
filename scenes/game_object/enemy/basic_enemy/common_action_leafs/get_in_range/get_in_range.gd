@@ -45,7 +45,11 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		path_cd_timer.wait_time = cd_base_time + randf() - 0.5
 		path_cd_timer.start()
 		
-		define_path(actor)
+		if actor.distance_to_player > 50:
+			define_simple_path(actor)
+		else:
+			define_path(actor)
+		
 		return RUNNING
 	
 	if process_tick:
@@ -55,12 +59,45 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	return RUNNING
 
 
+func define_simple_path(actor):
+	var start_position: Vector3 = actor.global_position
+	var player_position = actor.player.global_position
+	var path: PackedVector3Array
+	
+	if actor.path_to_follow.size() == 0 || not is_same_direction(actor.global_position, actor.path_to_follow[0], player_position):
+		start_position = actor.global_position
+	else:
+		path = actor.path_to_follow.slice(actor.current_target_index, actor.path_to_follow.size() - 1)
+		path.resize(path.size() / 2)
+		
+		if path.size() == 0:
+			start_position = actor.global_position
+		else:
+			start_position = path[path.size() - 1]
+	
+	path.append_array(NavPointGenerator.generate_simple_path(start_position, player_position))
+	
+	if is_same_direction(actor.global_position, path[0], path[1]):
+		actor.current_target_index = -1
+	else:
+		actor.current_target_index = 0
+	
+	actor.path_to_follow = path
+	actor.next_target_point()
+	
+	if show_debug_line:
+		if current_line:
+			update_array_mesh(path, actor)
+		else:
+			current_line = create_line_mesh(path, actor)
+
+
 func define_path(actor):
 	var start_position: Vector3
 	var player_position = actor.player.global_position
 	var path: PackedVector3Array
 	
-	if actor.path_to_follow.size() == 0:
+	if actor.path_to_follow.size() == 0 || not is_same_direction(actor.global_position, actor.path_to_follow[actor.current_target_index], player_position):
 		start_position = actor.global_position
 	else:
 		path = actor.path_to_follow.slice(actor.current_target_index, actor.path_to_follow.size() - 1)
@@ -86,6 +123,13 @@ func define_path(actor):
 		else:
 			current_line = create_line_mesh(path, actor)
 
+
+func is_same_direction(center_position: Vector3, position1: Vector3, position2: Vector3) -> bool:
+	var vec1 = center_position.direction_to(position1)
+	var vec2 = center_position.direction_to(position2)
+	
+	return vec1.dot(vec2) > 0.0
+ 
 
 func update_array_mesh(path: PackedVector3Array, actor):
 	var arr_mesh: ArrayMesh = current_line.mesh
@@ -134,7 +178,7 @@ func create_line_arrays(path: PackedVector3Array, actor):
 	var colors = PackedColorArray()
 	
 	for i in range(vertices.size()):
-		colors.push_back(Color.MEDIUM_SPRING_GREEN)
+		colors.push_back(Color.ORANGE_RED)
 	
 	arrays[Mesh.ARRAY_COLOR] = colors
 	

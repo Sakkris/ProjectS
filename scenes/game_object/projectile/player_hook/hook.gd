@@ -75,6 +75,10 @@ func throw_hook(delta):
 			
 			if not result.is_empty():
 				hook_tip.global_position = result.position
+				change_state(states.COLLIDING)
+				hit_particles.position = hook_tip.position
+				hit_particles.emitting = true
+				call_deferred("disable_collision")
 		
 		pos_index += 1
 		if pos_index > prev_pos.size() - 1:

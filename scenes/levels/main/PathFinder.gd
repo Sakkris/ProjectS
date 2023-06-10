@@ -18,6 +18,7 @@ func _ready():
 	material.vertex_color_use_as_albedo = true
 
 	setup_astar()
+	NavPointGenerator.simplified_navigation = astar
 
 	var orig_id = get_nearest_nav_point_to_node(player)
 	var dest_id
@@ -36,7 +37,7 @@ func _process(_delta):
 	var orig_id = get_nearest_nav_point_to_node(player)
 	var dest_id = get_nearest_nav_point_to_node(destiny_node)
 
-	update_array_mesh(orig_id, dest_id)
+#	update_array_mesh(orig_id, dest_id)
 
 
 func update_array_mesh(orig_id, dest_id):

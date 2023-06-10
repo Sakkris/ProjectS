@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dkl7qmbql8wqp"]
+[gd_scene load_steps=38 format=3 uid="uid://dkl7qmbql8wqp"]
 
 [ext_resource type="PackedScene" uid="uid://ckrns21nitpey" path="res://scenes/levels/base_level/base_level.tscn" id="1_2mk7o"]
 [ext_resource type="PackedScene" uid="uid://b731j8amc6ufa" path="res://scenes/misc/spawn_area/spawn_area.tscn" id="2_q00j4"]
@@ -10,6 +10,12 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i3knl"]
 size = Vector3(33, 17, 47)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_81l56"]
+size = Vector3(48, 5, 47)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lk32"]
+size = Vector3(23, 5, 47)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h4k0f"]
 size = Vector3(47, 18, 33)
@@ -29,11 +35,8 @@ size = Vector3(4, 4, 114)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1y5sa"]
 size = Vector3(4, 4, 90)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_81l56"]
-size = Vector3(48, 5, 47)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3lk32"]
-size = Vector3(23, 5, 47)
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ks1j"]
+size = Vector3(65, 30, 65)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k2brs"]
 size = Vector3(0.05, 0.05, 0.05)
@@ -96,67 +99,75 @@ size = Vector3(17.2777, 9.22253, 0.222736)
 
 [node name="FinalLevel" instance=ExtResource("1_2mk7o")]
 
-[node name="SpawnArea1" parent="." index="3" instance=ExtResource("2_q00j4")]
+[node name="Debugger" type="Node" parent="." index="0" groups=["Debugger"]]
+
+[node name="SpawnArea1" parent="EntityManager" index="2" instance=ExtResource("2_q00j4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.74, 17.6861, -72.5911)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea1" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea1" index="0"]
 shape = SubResource("BoxShape3D_i3knl")
 
-[node name="SpawnArea4" parent="." index="4" instance=ExtResource("2_q00j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7206, 30.0561, 89.3989)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea4" index="0"]
-shape = SubResource("BoxShape3D_h4k0f")
-
-[node name="SpawnArea5" parent="." index="5" instance=ExtResource("2_q00j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14441e-05, 79.4246, -110.061)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea5" index="0"]
-shape = SubResource("BoxShape3D_mourm")
-
-[node name="SpawnArea6" parent="." index="6" instance=ExtResource("2_q00j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.3734, 49.9578, 16.9969)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea6" index="0"]
-shape = SubResource("BoxShape3D_64uw4")
-
-[node name="SpawnArea7" parent="." index="7" instance=ExtResource("2_q00j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.813, 69.4988, 52.6294)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea7" index="0"]
-shape = SubResource("BoxShape3D_wstbt")
-
-[node name="SpawnArea8" parent="." index="8" instance=ExtResource("2_q00j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.813, 69.4988, -46.8791)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea8" index="0"]
-shape = SubResource("BoxShape3D_cx78n")
-
-[node name="SpawnArea9" parent="." index="9" instance=ExtResource("2_q00j4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 77.7333, 69.4988, -107.555)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea9" index="0"]
-shape = SubResource("BoxShape3D_1y5sa")
-
-[node name="SpawnArea10" parent="." index="10" instance=ExtResource("2_q00j4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 77.7333, 69.4988, 89.4194)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea10" index="0"]
-shape = SubResource("BoxShape3D_1y5sa")
-
-[node name="SpawnArea2" parent="EntityManager" index="2" instance=ExtResource("2_q00j4")]
+[node name="SpawnArea2" parent="EntityManager" index="3" instance=ExtResource("2_q00j4")]
 transform = Transform3D(0.745709, 0, 0.666272, 0, 1, 0, -0.666272, 0, 0.745709, -74.7282, 7.76329, 65.2543)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea2" index="0"]
 shape = SubResource("BoxShape3D_81l56")
 
-[node name="SpawnArea3" parent="EntityManager" index="3" instance=ExtResource("2_q00j4")]
+[node name="SpawnArea3" parent="EntityManager" index="4" instance=ExtResource("2_q00j4")]
 transform = Transform3D(0.745709, 0, 0.666272, 0, 1, 0, -0.666272, 0, 0.745709, -65.2067, 13.6838, 56.7779)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea3" index="0"]
 shape = SubResource("BoxShape3D_3lk32")
 
-[node name="PathFinder" type="Node" parent="." index="12"]
+[node name="SpawnArea4" parent="EntityManager" index="5" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7206, 30.0561, 89.3989)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea4" index="0"]
+shape = SubResource("BoxShape3D_h4k0f")
+
+[node name="SpawnArea5" parent="EntityManager" index="6" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14441e-05, 79.4246, -110.061)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea5" index="0"]
+shape = SubResource("BoxShape3D_mourm")
+
+[node name="SpawnArea6" parent="EntityManager" index="7" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.3734, 49.9578, 16.9969)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea6" index="0"]
+shape = SubResource("BoxShape3D_64uw4")
+
+[node name="SpawnArea7" parent="EntityManager" index="8" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.813, 69.4988, 52.6294)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea7" index="0"]
+shape = SubResource("BoxShape3D_wstbt")
+
+[node name="SpawnArea8" parent="EntityManager" index="9" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.813, 69.4988, -46.8791)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea8" index="0"]
+shape = SubResource("BoxShape3D_cx78n")
+
+[node name="SpawnArea9" parent="EntityManager" index="10" instance=ExtResource("2_q00j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 77.7333, 69.4988, -107.555)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea9" index="0"]
+shape = SubResource("BoxShape3D_1y5sa")
+
+[node name="SpawnArea10" parent="EntityManager" index="11" instance=ExtResource("2_q00j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 77.7333, 69.4988, 89.4194)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea10" index="0"]
+shape = SubResource("BoxShape3D_1y5sa")
+
+[node name="SpawnArea11" parent="EntityManager" index="12" instance=ExtResource("2_q00j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 80.2092, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea11" index="0"]
+shape = SubResource("BoxShape3D_4ks1j")
+
+[node name="PathFinder" type="Node" parent="." index="5"]
 script = ExtResource("5_dcmn5")
 
 [node name="NavigationPoint" type="Node3D" parent="PathFinder" index="0" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -171,28 +182,39 @@ visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint48" type="Node3D" parent="PathFinder" index="1" node_paths=PackedStringArray("connection_1", "connection_2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4589, 14.1562, -2.77794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7602, 11.8369, 8.18398)
 script = ExtResource("6_5xfm7")
 id = 48
 connection_1 = NodePath("../NavigationPoint")
-connection_2 = NodePath("../NavigationPoint49")
+connection_2 = NodePath("../NavigationPoint54")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint48" index="0"]
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint49" type="Node3D" parent="PathFinder" index="2" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint54" type="Node3D" parent="PathFinder" index="2" node_paths=PackedStringArray("connection_1", "connection_2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.933414, 16.4898, -5.45939)
+script = ExtResource("6_5xfm7")
+id = 54
+connection_1 = NodePath("../NavigationPoint48")
+connection_2 = NodePath("../NavigationPoint49")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint54" index="0"]
+visible = false
+mesh = SubResource("BoxMesh_k2brs")
+
+[node name="NavigationPoint49" type="Node3D" parent="PathFinder" index="3" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2099, 19.4703, -24.4146)
 script = ExtResource("6_5xfm7")
 id = 49
-connection_1 = NodePath("../NavigationPoint48")
+connection_1 = NodePath("../NavigationPoint54")
 connection_2 = NodePath("../NavigationPoint50")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint49" index="0"]
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint50" type="Node3D" parent="PathFinder" index="3" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
+[node name="NavigationPoint50" type="Node3D" parent="PathFinder" index="4" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2099, 49.6871, -24.4146)
 script = ExtResource("6_5xfm7")
 id = 50
@@ -204,7 +226,7 @@ connection_3 = NodePath("../NavigationPoint51")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint53" type="Node3D" parent="PathFinder" index="4" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint53" type="Node3D" parent="PathFinder" index="5" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2099, 49.6871, 8.90067)
 script = ExtResource("6_5xfm7")
 id = 53
@@ -215,17 +237,18 @@ connection_2 = NodePath("../NavigationPoint44")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint51" type="Node3D" parent="PathFinder" index="5" node_paths=PackedStringArray("connection_1")]
+[node name="NavigationPoint51" type="Node3D" parent="PathFinder" index="6" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2099, 65.9425, -24.4146)
 script = ExtResource("6_5xfm7")
-id = 1
-connection_1 = NodePath("../NavigationPoint2")
+id = 51
+connection_1 = NodePath("../NavigationPoint52")
+connection_2 = NodePath("../NavigationPoint50")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint51" index="0"]
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint52" type="Node3D" parent="PathFinder" index="6" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint52" type="Node3D" parent="PathFinder" index="7" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.477603, 67.7659, -24.4146)
 script = ExtResource("6_5xfm7")
 id = 52
@@ -236,7 +259,7 @@ connection_2 = NodePath("../NavigationPoint47")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint2" type="Node3D" parent="PathFinder" index="7" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint2" type="Node3D" parent="PathFinder" index="8" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5735, 7.91002, 39.8899)
 script = ExtResource("6_5xfm7")
 id = 2
@@ -247,7 +270,7 @@ connection_2 = NodePath("../NavigationPoint3")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint3" type="Node3D" parent="PathFinder" index="8" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint3" type="Node3D" parent="PathFinder" index="9" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.0835, 7.91002, 48.2876)
 script = ExtResource("6_5xfm7")
 id = 3
@@ -258,7 +281,7 @@ connection_2 = NodePath("../NavigationPoint4")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint4" type="Node3D" parent="PathFinder" index="9" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint4" type="Node3D" parent="PathFinder" index="10" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.4849, 7.91002, 66.4072)
 script = ExtResource("6_5xfm7")
 id = 4
@@ -269,7 +292,7 @@ connection_2 = NodePath("../NavigationPoint5")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint5" type="Node3D" parent="PathFinder" index="10" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint5" type="Node3D" parent="PathFinder" index="11" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.7661, 7.91002, 97.4084)
 script = ExtResource("6_5xfm7")
 id = 5
@@ -280,7 +303,7 @@ connection_2 = NodePath("../NavigationPoint6")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint6" type="Node3D" parent="PathFinder" index="11" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint6" type="Node3D" parent="PathFinder" index="12" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.8771, 7.91002, 98.3447)
 script = ExtResource("6_5xfm7")
 id = 6
@@ -291,7 +314,7 @@ connection_2 = NodePath("../NavigationPoint7")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint7" type="Node3D" parent="PathFinder" index="12" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
+[node name="NavigationPoint7" type="Node3D" parent="PathFinder" index="13" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.1552, 7.91002, 100.191)
 script = ExtResource("6_5xfm7")
 id = 7
@@ -303,7 +326,7 @@ connection_3 = NodePath("../NavigationPoint37")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint8" type="Node3D" parent="PathFinder" index="13" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint8" type="Node3D" parent="PathFinder" index="14" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.4738, 7.91002, 133.259)
 script = ExtResource("6_5xfm7")
 id = 8
@@ -314,7 +337,7 @@ connection_2 = NodePath("../NavigationPoint9")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint9" type="Node3D" parent="PathFinder" index="14" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint9" type="Node3D" parent="PathFinder" index="15" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.4738, 26.91, 133.259)
 script = ExtResource("6_5xfm7")
 id = 9
@@ -325,7 +348,7 @@ connection_2 = NodePath("../NavigationPoint10")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint10" type="Node3D" parent="PathFinder" index="15" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint10" type="Node3D" parent="PathFinder" index="16" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4738, 26.91, 112.259)
 script = ExtResource("6_5xfm7")
 id = 10
@@ -336,7 +359,7 @@ connection_2 = NodePath("../NavigationPoint11")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint11" type="Node3D" parent="PathFinder" index="16" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint11" type="Node3D" parent="PathFinder" index="17" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.47385, 26.91, 93.2589)
 script = ExtResource("6_5xfm7")
 id = 11
@@ -347,7 +370,7 @@ connection_2 = NodePath("../NavigationPoint12")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint12" type="Node3D" parent="PathFinder" index="17" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint12" type="Node3D" parent="PathFinder" index="18" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8226, 26.91, 89.8439)
 script = ExtResource("6_5xfm7")
 id = 12
@@ -358,7 +381,7 @@ connection_2 = NodePath("../NavigationPoint13")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint13" type="Node3D" parent="PathFinder" index="18" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint13" type="Node3D" parent="PathFinder" index="19" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8226, 40.0619, 89.8439)
 script = ExtResource("6_5xfm7")
 id = 13
@@ -369,7 +392,7 @@ connection_2 = NodePath("../NavigationPoint14")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint14" type="Node3D" parent="PathFinder" index="19" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint14" type="Node3D" parent="PathFinder" index="20" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8226, 69.5445, 89.8439)
 script = ExtResource("6_5xfm7")
 id = 14
@@ -380,7 +403,7 @@ connection_2 = NodePath("../NavigationPoint15")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint15" type="Node3D" parent="PathFinder" index="20" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint15" type="Node3D" parent="PathFinder" index="21" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.9022, 69.5445, 89.8439)
 script = ExtResource("6_5xfm7")
 id = 15
@@ -391,7 +414,7 @@ connection_2 = NodePath("../NavigationPoint16")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint16" type="Node3D" parent="PathFinder" index="21" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint16" type="Node3D" parent="PathFinder" index="22" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.682, 69.5445, 89.624)
 script = ExtResource("6_5xfm7")
 id = 16
@@ -402,7 +425,7 @@ connection_2 = NodePath("../NavigationPoint17")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint17" type="Node3D" parent="PathFinder" index="22" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint17" type="Node3D" parent="PathFinder" index="23" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.682, 69.5445, 52.8391)
 script = ExtResource("6_5xfm7")
 id = 17
@@ -413,7 +436,7 @@ connection_2 = NodePath("../NavigationPoint18")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint18" type="Node3D" parent="PathFinder" index="23" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
+[node name="NavigationPoint18" type="Node3D" parent="PathFinder" index="24" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.682, 69.5445, 15.4755)
 script = ExtResource("6_5xfm7")
 id = 18
@@ -425,7 +448,7 @@ connection_3 = NodePath("../NavigationPoint19")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint38" type="Node3D" parent="PathFinder" index="24" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint38" type="Node3D" parent="PathFinder" index="25" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.682, 59.9907, 15.4755)
 script = ExtResource("6_5xfm7")
 id = 38
@@ -436,7 +459,7 @@ connection_2 = NodePath("../NavigationPoint39")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint39" type="Node3D" parent="PathFinder" index="25" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint39" type="Node3D" parent="PathFinder" index="26" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.682, 50.5625, 15.4755)
 script = ExtResource("6_5xfm7")
 id = 39
@@ -447,7 +470,7 @@ connection_2 = NodePath("../NavigationPoint40")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint40" type="Node3D" parent="PathFinder" index="26" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint40" type="Node3D" parent="PathFinder" index="27" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.299, 50.5625, 15.4755)
 script = ExtResource("6_5xfm7")
 id = 40
@@ -458,7 +481,7 @@ connection_2 = NodePath("../NavigationPoint41")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint41" type="Node3D" parent="PathFinder" index="27" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint41" type="Node3D" parent="PathFinder" index="28" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.2155, 50.5625, 16.8849)
 script = ExtResource("6_5xfm7")
 id = 41
@@ -469,7 +492,7 @@ connection_2 = NodePath("../NavigationPoint42")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint42" type="Node3D" parent="PathFinder" index="28" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint42" type="Node3D" parent="PathFinder" index="29" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.0108, 50.5625, 11.6584)
 script = ExtResource("6_5xfm7")
 id = 42
@@ -480,7 +503,7 @@ connection_2 = NodePath("../NavigationPoint43")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint43" type="Node3D" parent="PathFinder" index="29" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint43" type="Node3D" parent="PathFinder" index="30" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.5645, 49.0356, 11.6584)
 script = ExtResource("6_5xfm7")
 id = 43
@@ -491,7 +514,7 @@ connection_2 = NodePath("../NavigationPoint44")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint44" type="Node3D" parent="PathFinder" index="30" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint44" type="Node3D" parent="PathFinder" index="31" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.885, 48.4484, 11.6584)
 script = ExtResource("6_5xfm7")
 id = 44
@@ -502,7 +525,7 @@ connection_2 = NodePath("../NavigationPoint53")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint19" type="Node3D" parent="PathFinder" index="31" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint19" type="Node3D" parent="PathFinder" index="32" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.682, 69.5445, -45.6149)
 script = ExtResource("6_5xfm7")
 id = 19
@@ -513,7 +536,7 @@ connection_2 = NodePath("../NavigationPoint20")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint20" type="Node3D" parent="PathFinder" index="32" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint20" type="Node3D" parent="PathFinder" index="33" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.682, 69.5445, -107.598)
 script = ExtResource("6_5xfm7")
 id = 20
@@ -524,7 +547,7 @@ connection_2 = NodePath("../NavigationPoint21")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint21" type="Node3D" parent="PathFinder" index="33" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint21" type="Node3D" parent="PathFinder" index="34" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.891, 69.5445, -107.598)
 script = ExtResource("6_5xfm7")
 id = 21
@@ -535,7 +558,7 @@ connection_2 = NodePath("../NavigationPoint22")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint22" type="Node3D" parent="PathFinder" index="34" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint22" type="Node3D" parent="PathFinder" index="35" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.952, 69.5445, -107.598)
 script = ExtResource("6_5xfm7")
 id = 22
@@ -546,7 +569,7 @@ connection_2 = NodePath("../NavigationPoint23")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint23" type="Node3D" parent="PathFinder" index="35" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
+[node name="NavigationPoint23" type="Node3D" parent="PathFinder" index="36" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0206528, 76.9345, -110.017)
 script = ExtResource("6_5xfm7")
 id = 23
@@ -558,7 +581,7 @@ connection_3 = NodePath("../NavigationPoint24")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint45" type="Node3D" parent="PathFinder" index="36" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint45" type="Node3D" parent="PathFinder" index="37" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0206528, 79.4637, -77.8521)
 script = ExtResource("6_5xfm7")
 id = 45
@@ -569,7 +592,7 @@ connection_2 = NodePath("../NavigationPoint46")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint46" type="Node3D" parent="PathFinder" index="37" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint46" type="Node3D" parent="PathFinder" index="38" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0206528, 72.5358, -63.7214)
 script = ExtResource("6_5xfm7")
 id = 46
@@ -580,7 +603,7 @@ connection_2 = NodePath("../NavigationPoint47")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint47" type="Node3D" parent="PathFinder" index="38" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint47" type="Node3D" parent="PathFinder" index="39" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0206528, 65.7179, -49.1508)
 script = ExtResource("6_5xfm7")
 id = 47
@@ -591,7 +614,7 @@ connection_2 = NodePath("../NavigationPoint52")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint24" type="Node3D" parent="PathFinder" index="39" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint24" type="Node3D" parent="PathFinder" index="40" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.2227, 77.569, -109.275)
 script = ExtResource("6_5xfm7")
 id = 24
@@ -602,7 +625,7 @@ connection_2 = NodePath("../NavigationPoint25")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint25" type="Node3D" parent="PathFinder" index="40" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint25" type="Node3D" parent="PathFinder" index="41" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.552, 77.4421, -109.275)
 script = ExtResource("6_5xfm7")
 id = 25
@@ -613,7 +636,7 @@ connection_2 = NodePath("../NavigationPoint26")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint26" type="Node3D" parent="PathFinder" index="41" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint26" type="Node3D" parent="PathFinder" index="42" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.552, 77.4421, -91.2985)
 script = ExtResource("6_5xfm7")
 id = 26
@@ -624,7 +647,7 @@ connection_2 = NodePath("../NavigationPoint27")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint27" type="Node3D" parent="PathFinder" index="42" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint27" type="Node3D" parent="PathFinder" index="43" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.4783, 77.4421, -91.2985)
 script = ExtResource("6_5xfm7")
 id = 27
@@ -635,7 +658,7 @@ connection_2 = NodePath("../NavigationPoint28")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint28" type="Node3D" parent="PathFinder" index="43" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint28" type="Node3D" parent="PathFinder" index="44" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.4783, 51.9624, -91.2985)
 script = ExtResource("6_5xfm7")
 id = 28
@@ -646,7 +669,7 @@ connection_2 = NodePath("../NavigationPoint29")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint29" type="Node3D" parent="PathFinder" index="44" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint29" type="Node3D" parent="PathFinder" index="45" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.4783, 27.8104, -91.2985)
 script = ExtResource("6_5xfm7")
 id = 29
@@ -657,7 +680,7 @@ connection_2 = NodePath("../NavigationPoint30")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint30" type="Node3D" parent="PathFinder" index="45" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint30" type="Node3D" parent="PathFinder" index="46" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.0803, 16.8541, -91.2985)
 script = ExtResource("6_5xfm7")
 id = 30
@@ -668,7 +691,7 @@ connection_2 = NodePath("../NavigationPoint31")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint31" type="Node3D" parent="PathFinder" index="46" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint31" type="Node3D" parent="PathFinder" index="47" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.0803, 17.4583, -47.7004)
 script = ExtResource("6_5xfm7")
 id = 31
@@ -679,7 +702,7 @@ connection_2 = NodePath("../NavigationPoint32")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint32" type="Node3D" parent="PathFinder" index="47" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint32" type="Node3D" parent="PathFinder" index="48" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.0803, 17.4583, -16.3835)
 script = ExtResource("6_5xfm7")
 id = 32
@@ -690,7 +713,7 @@ connection_2 = NodePath("../NavigationPoint33")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint33" type="Node3D" parent="PathFinder" index="48" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint33" type="Node3D" parent="PathFinder" index="49" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.0803, 17.4583, 15.4608)
 script = ExtResource("6_5xfm7")
 id = 33
@@ -701,7 +724,7 @@ connection_2 = NodePath("../NavigationPoint34")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint34" type="Node3D" parent="PathFinder" index="49" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint34" type="Node3D" parent="PathFinder" index="50" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.08, 17.4583, 34.4608)
 script = ExtResource("6_5xfm7")
 id = 34
@@ -712,7 +735,7 @@ connection_2 = NodePath("../NavigationPoint35")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint35" type="Node3D" parent="PathFinder" index="50" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint35" type="Node3D" parent="PathFinder" index="51" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.08, 17.4583, 51.4608)
 script = ExtResource("6_5xfm7")
 id = 35
@@ -723,7 +746,7 @@ connection_2 = NodePath("../NavigationPoint36")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint36" type="Node3D" parent="PathFinder" index="51" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint36" type="Node3D" parent="PathFinder" index="52" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.08, 7.45828, 51.4608)
 script = ExtResource("6_5xfm7")
 id = 36
@@ -734,7 +757,7 @@ connection_2 = NodePath("../NavigationPoint37")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="NavigationPoint37" type="Node3D" parent="PathFinder" index="52" node_paths=PackedStringArray("connection_1", "connection_2")]
+[node name="NavigationPoint37" type="Node3D" parent="PathFinder" index="53" node_paths=PackedStringArray("connection_1", "connection_2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.08, 7.45828, 74.4608)
 script = ExtResource("6_5xfm7")
 id = 37
@@ -745,7 +768,7 @@ connection_2 = NodePath("../NavigationPoint36")
 visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="divided_map" parent="." index="13" instance=ExtResource("2_q4ird")]
+[node name="divided_map" parent="." index="6" instance=ExtResource("2_q4ird")]
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="divided_map/Export_mesh" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.8147e-06, 0)
@@ -906,7 +929,7 @@ collision_mask = 0
 transform = Transform3D(0.996408, -0.0252563, -0.0808445, 0.0389073, 0.984326, 0.172024, 0.0752324, -0.174551, 0.981771, 0.872154, 0.835068, 0.188278)
 shape = SubResource("BoxShape3D_c8gd7")
 
-[node name="DirectionalLight3D" parent="." index="14"]
+[node name="DirectionalLight3D" parent="." index="7"]
 transform = Transform3D(0.643922, 0.699936, -0.308956, -0.277709, 0.590099, 0.758064, 0.712911, -0.402334, 0.574356, -0.741642, 5.51136, 2.04042)
 light_color = Color(0.556863, 1, 1, 1)
 light_energy = 1.0
@@ -914,7 +937,7 @@ light_bake_mode = 1
 directional_shadow_mode = 0
 sky_mode = 1
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." index="15"]
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." index="8"]
 transform = Transform3D(-0.80003, 0, 0.59996, 0.327885, 0.837452, 0.437226, -0.502437, 0.546511, -0.669987, 0, 1.9953, 0)
 light_color = Color(0.556863, 1, 1, 1)
 light_energy = 0.5
@@ -922,13 +945,13 @@ light_bake_mode = 1
 directional_shadow_mode = 0
 sky_mode = 1
 
-[node name="Player" parent="." index="16"]
+[node name="Player" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2144, 0)
 
 [node name="XRCamera3D" parent="Player/XROrigin3D" index="3"]
 environment = ExtResource("3_61lax")
 
-[node name="GridMap" parent="." index="17"]
+[node name="GridMap" parent="." index="10"]
 visible = false
 
 [editable path="EntityManager"]
