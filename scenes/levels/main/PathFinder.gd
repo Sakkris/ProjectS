@@ -1,10 +1,11 @@
 extends Node
 
+@export var debug_lines: bool = false
+
 var player
 var current_line: MeshInstance3D
 var material: StandardMaterial3D
 var destiny_node
-var nav_points = {}
 var astar: AStar3D = AStar3D.new()
 
 
@@ -12,37 +13,30 @@ func _ready():
 	GameEvents.objective_created.connect(on_objective_created)
 
 	player = get_tree().get_first_node_in_group("player")
-
-	var nav_points_nodes = get_children()
-	var index = 0
-
-	for nav_point in nav_points_nodes:
-		nav_points[index] = nav_point
-		index += 1
-
+	
 	material = StandardMaterial3D.new()
 	material.vertex_color_use_as_albedo = true
 
 	setup_astar()
-#
-#	var orig_id = get_nearest_nav_point_to_node(player)
-#	var dest_id
-#	if destiny_node == null:
-#		dest_id = get_nearest_nav_point_to_node(player)
-#	else:
-#		dest_id = get_nearest_nav_point_to_node(destiny_node)
-#
-#	current_line = create_array_mesh(orig_id, dest_id)
-#
-#
-#func _process(_delta):
-#	if destiny_node == null:
-#		return 
-#
-#	var orig_id = get_nearest_nav_point_to_node(player)
-#	var dest_id = get_nearest_nav_point_to_node(destiny_node)
-#
-#	update_array_mesh(orig_id, dest_id)
+
+	var orig_id = get_nearest_nav_point_to_node(player)
+	var dest_id
+	if destiny_node == null:
+		dest_id = get_nearest_nav_point_to_node(player)
+	else:
+		dest_id = get_nearest_nav_point_to_node(destiny_node)
+
+	current_line = create_array_mesh(orig_id, dest_id)
+
+
+func _process(_delta):
+	if destiny_node == null:
+		return 
+
+	var orig_id = get_nearest_nav_point_to_node(player)
+	var dest_id = get_nearest_nav_point_to_node(destiny_node)
+
+	update_array_mesh(orig_id, dest_id)
 
 
 func update_array_mesh(orig_id, dest_id):
@@ -78,18 +72,18 @@ func create_arrays(orig_id, dest_id):
 	
 	for point_id in id_path:
 		if prev_vertice != null:
-			vertices.push_back(nav_points[prev_vertice].position)
-			vertices.push_back(nav_points[point_id].position)
+			vertices.push_back(astar.get_point_position(prev_vertice))
+			vertices.push_back(astar.get_point_position(point_id))
 		else: 
 			var player_position = player.position
 			player_position.y += player.height / 2
 			vertices.push_back(player_position)
-			vertices.push_back(nav_points[point_id].position)
+			vertices.push_back(astar.get_point_position(point_id))
 		
 		prev_vertice = point_id
 	
 	if destiny_node != null:
-		vertices.push_back(nav_points[prev_vertice].position)
+		vertices.push_back(astar.get_point_position(prev_vertice))
 		vertices.push_back(destiny_node.position)
 	
 	var arrays = []
@@ -111,48 +105,14 @@ func get_nearest_nav_point_to_node(node: Node3D):
 	var nearest_distance = 999.9
 	var current_distance 
 	
-	for nav_point in nav_points:
-		current_distance = nav_points[nav_point].position.distance_squared_to(node.position)
+	for nav_point in astar.get_point_ids():
+		current_distance = astar.get_point_position(nav_point).distance_squared_to(node.position)
 		
 		if current_distance < nearest_distance || nearest_point == null:
 			nearest_distance = current_distance
 			nearest_point = nav_point
 	
 	return nearest_point 
-
-
-func get_connected_nav_points_to_point(point):
-	var connected_points = [null, null]
-	var nearest_distances = [999.9, 999.9]
-	var current_distance = 0
-	
-	for nav_point in nav_points:
-		if nav_point != point:
-			current_distance = nav_points[nav_point].position.distance_squared_to(nav_points[point].position)
-			
-			if current_distance < nearest_distances[0] || connected_points[0] == null:
-				nearest_distances[0] = current_distance
-				connected_points[0] = nav_point
-			elif current_distance < nearest_distances[1] || connected_points[1] == null:
-					nearest_distances[1] = current_distance
-					connected_points[1] = nav_point
-	
-	return connected_points
-
-
-func add_astar_points():
-	for nav_point in nav_points:
-		astar.add_point(nav_point, nav_points[nav_point].position)
-
-
-func make_astar_connections():
-	var connected_points
-	
-	for nav_point in nav_points:
-		connected_points = get_connected_nav_points_to_point(nav_point)
-		
-		astar.connect_points(nav_point, connected_points[0])
-		astar.connect_points(nav_point, connected_points[1])
 
 
 func setup_astar():
@@ -171,30 +131,30 @@ func setup_astar():
 				if not astar.are_points_connected(child.id, connected_point.id):
 					astar.connect_points(child.id, connected_point.id)
 					
-					vertices.push_back(child.global_position)
-					vertices.push_back(connected_point.global_position)
+					if debug_lines:
+						vertices.push_back(child.global_position)
+						vertices.push_back(connected_point.global_position)
 		
-		var arrays = []
-		arrays.resize(Mesh.ARRAY_MAX)
-		arrays[Mesh.ARRAY_VERTEX] = vertices
-		
-		var colors = PackedColorArray()
-		
-		for i in range(vertices.size()):
-			colors.push_back(Color.MEDIUM_SPRING_GREEN)
-		
-		arrays[Mesh.ARRAY_COLOR] = colors
-		
-		var arr_mesh = ArrayMesh.new()
-		arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_LINES, arrays)
-		var m = MeshInstance3D.new()
-		
-		m.mesh = arr_mesh
-		m.material_override = material
-		
-		add_child(m)
-#	add_astar_points()
-#	make_astar_connections()
+		if debug_lines:
+			var arrays = []
+			arrays.resize(Mesh.ARRAY_MAX)
+			arrays[Mesh.ARRAY_VERTEX] = vertices
+			
+			var colors = PackedColorArray()
+			
+			for i in range(vertices.size()):
+				colors.push_back(Color.MEDIUM_SPRING_GREEN)
+			
+			arrays[Mesh.ARRAY_COLOR] = colors
+			
+			var arr_mesh = ArrayMesh.new()
+			arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_LINES, arrays)
+			var m = MeshInstance3D.new()
+			
+			m.mesh = arr_mesh
+			m.material_override = material
+			
+			add_child(m)
 
 
 func on_objective_created(objective):

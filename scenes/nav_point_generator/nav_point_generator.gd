@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 ## This script utilizes Flood Fill to generate an AStar Node within an enclosed space that can then be used for navigation porpuses
@@ -53,7 +54,7 @@ var astar: AStar3D = AStar3D.new()
 var point_queue: Array[Vector3]
 var space_state: PhysicsDirectSpaceState3D = null
 var current_point: Vector3
-var start_point: Vector3 = Vector3(0, 2, 0)
+var start_point: Vector3 = Vector3(0, 3, 0)
 
 var material: StandardMaterial3D
 

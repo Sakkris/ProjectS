@@ -106,7 +106,10 @@ func get_rand_position(area):
 	positionInArea.y = (randi() % int(area_size.y)) - (area_size.y/2) + center_position.y
 	positionInArea.z = (randi() % int(area_size.z)) - (area_size.z/2) + center_position.z
 	
-	return positionInArea
+	var position_vector: Vector3 = positionInArea - center_position
+	position_vector = position_vector.rotated(Vector3(0, 1, 0), area.rotation.y)
+	
+	return center_position + position_vector 
 
 
 func on_enemy_destroyed(enemy_instance):

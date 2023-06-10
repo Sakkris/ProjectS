@@ -1,11 +1,39 @@
-[gd_scene load_steps=27 format=3 uid="uid://dkl7qmbql8wqp"]
+[gd_scene load_steps=37 format=3 uid="uid://dkl7qmbql8wqp"]
 
 [ext_resource type="PackedScene" uid="uid://ckrns21nitpey" path="res://scenes/levels/base_level/base_level.tscn" id="1_2mk7o"]
+[ext_resource type="PackedScene" uid="uid://b731j8amc6ufa" path="res://scenes/misc/spawn_area/spawn_area.tscn" id="2_q00j4"]
 [ext_resource type="PackedScene" uid="uid://gojhua0lkgph" path="res://resources/map/divided_map.glb" id="2_q4ird"]
 [ext_resource type="Environment" uid="uid://d0qeokfj0uabr" path="res://resources/env/main_env.tres" id="3_61lax"]
 [ext_resource type="ArrayOccluder3D" uid="uid://cu7u0f38sy5md" path="res://scenes/levels/final_level/final_level.occ" id="3_dc7hp"]
 [ext_resource type="Script" path="res://scenes/levels/main/PathFinder.gd" id="5_dcmn5"]
 [ext_resource type="Script" path="res://scenes/nav_point_generator/nav_point.gd" id="6_5xfm7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3knl"]
+size = Vector3(33, 17, 47)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h4k0f"]
+size = Vector3(47, 18, 33)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mourm"]
+size = Vector3(35, 35, 35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_64uw4"]
+size = Vector3(22, 22, 22)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wstbt"]
+size = Vector3(4, 4, 68)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cx78n"]
+size = Vector3(4, 4, 114)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1y5sa"]
+size = Vector3(4, 4, 90)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_81l56"]
+size = Vector3(48, 5, 47)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lk32"]
+size = Vector3(23, 5, 47)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k2brs"]
 size = Vector3(0.05, 0.05, 0.05)
@@ -68,7 +96,67 @@ size = Vector3(17.2777, 9.22253, 0.222736)
 
 [node name="FinalLevel" instance=ExtResource("1_2mk7o")]
 
-[node name="PathFinder" type="Node" parent="." index="4"]
+[node name="SpawnArea1" parent="." index="3" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.74, 17.6861, -72.5911)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea1" index="0"]
+shape = SubResource("BoxShape3D_i3knl")
+
+[node name="SpawnArea4" parent="." index="4" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7206, 30.0561, 89.3989)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea4" index="0"]
+shape = SubResource("BoxShape3D_h4k0f")
+
+[node name="SpawnArea5" parent="." index="5" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14441e-05, 79.4246, -110.061)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea5" index="0"]
+shape = SubResource("BoxShape3D_mourm")
+
+[node name="SpawnArea6" parent="." index="6" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.3734, 49.9578, 16.9969)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea6" index="0"]
+shape = SubResource("BoxShape3D_64uw4")
+
+[node name="SpawnArea7" parent="." index="7" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.813, 69.4988, 52.6294)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea7" index="0"]
+shape = SubResource("BoxShape3D_wstbt")
+
+[node name="SpawnArea8" parent="." index="8" instance=ExtResource("2_q00j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.813, 69.4988, -46.8791)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea8" index="0"]
+shape = SubResource("BoxShape3D_cx78n")
+
+[node name="SpawnArea9" parent="." index="9" instance=ExtResource("2_q00j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 77.7333, 69.4988, -107.555)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea9" index="0"]
+shape = SubResource("BoxShape3D_1y5sa")
+
+[node name="SpawnArea10" parent="." index="10" instance=ExtResource("2_q00j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 77.7333, 69.4988, 89.4194)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea10" index="0"]
+shape = SubResource("BoxShape3D_1y5sa")
+
+[node name="SpawnArea2" parent="EntityManager" index="2" instance=ExtResource("2_q00j4")]
+transform = Transform3D(0.745709, 0, 0.666272, 0, 1, 0, -0.666272, 0, 0.745709, -74.7282, 7.76329, 65.2543)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea2" index="0"]
+shape = SubResource("BoxShape3D_81l56")
+
+[node name="SpawnArea3" parent="EntityManager" index="3" instance=ExtResource("2_q00j4")]
+transform = Transform3D(0.745709, 0, 0.666272, 0, 1, 0, -0.666272, 0, 0.745709, -65.2067, 13.6838, 56.7779)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityManager/SpawnArea3" index="0"]
+shape = SubResource("BoxShape3D_3lk32")
+
+[node name="PathFinder" type="Node" parent="." index="12"]
 script = ExtResource("5_dcmn5")
 
 [node name="NavigationPoint" type="Node3D" parent="PathFinder" index="0" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -79,6 +167,7 @@ connection_1 = NodePath("../NavigationPoint2")
 connection_2 = NodePath("../NavigationPoint48")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint48" type="Node3D" parent="PathFinder" index="1" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -89,6 +178,7 @@ connection_1 = NodePath("../NavigationPoint")
 connection_2 = NodePath("../NavigationPoint49")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint48" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint49" type="Node3D" parent="PathFinder" index="2" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -99,6 +189,7 @@ connection_1 = NodePath("../NavigationPoint48")
 connection_2 = NodePath("../NavigationPoint50")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint49" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint50" type="Node3D" parent="PathFinder" index="3" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
@@ -110,6 +201,7 @@ connection_2 = NodePath("../NavigationPoint53")
 connection_3 = NodePath("../NavigationPoint51")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint50" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint53" type="Node3D" parent="PathFinder" index="4" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -120,6 +212,7 @@ connection_1 = NodePath("../NavigationPoint50")
 connection_2 = NodePath("../NavigationPoint44")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint53" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint51" type="Node3D" parent="PathFinder" index="5" node_paths=PackedStringArray("connection_1")]
@@ -129,6 +222,7 @@ id = 1
 connection_1 = NodePath("../NavigationPoint2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint51" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint52" type="Node3D" parent="PathFinder" index="6" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -139,6 +233,7 @@ connection_1 = NodePath("../NavigationPoint51")
 connection_2 = NodePath("../NavigationPoint47")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint52" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint2" type="Node3D" parent="PathFinder" index="7" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -149,6 +244,7 @@ connection_1 = NodePath("../NavigationPoint")
 connection_2 = NodePath("../NavigationPoint3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint2" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint3" type="Node3D" parent="PathFinder" index="8" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -159,6 +255,7 @@ connection_1 = NodePath("../NavigationPoint2")
 connection_2 = NodePath("../NavigationPoint4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint3" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint4" type="Node3D" parent="PathFinder" index="9" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -169,6 +266,7 @@ connection_1 = NodePath("../NavigationPoint3")
 connection_2 = NodePath("../NavigationPoint5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint4" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint5" type="Node3D" parent="PathFinder" index="10" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -179,6 +277,7 @@ connection_1 = NodePath("../NavigationPoint4")
 connection_2 = NodePath("../NavigationPoint6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint5" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint6" type="Node3D" parent="PathFinder" index="11" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -189,6 +288,7 @@ connection_1 = NodePath("../NavigationPoint5")
 connection_2 = NodePath("../NavigationPoint7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint6" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint7" type="Node3D" parent="PathFinder" index="12" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
@@ -200,6 +300,7 @@ connection_2 = NodePath("../NavigationPoint8")
 connection_3 = NodePath("../NavigationPoint37")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint7" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint8" type="Node3D" parent="PathFinder" index="13" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -210,6 +311,7 @@ connection_1 = NodePath("../NavigationPoint7")
 connection_2 = NodePath("../NavigationPoint9")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint8" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint9" type="Node3D" parent="PathFinder" index="14" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -220,6 +322,7 @@ connection_1 = NodePath("../NavigationPoint8")
 connection_2 = NodePath("../NavigationPoint10")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint9" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint10" type="Node3D" parent="PathFinder" index="15" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -230,6 +333,7 @@ connection_1 = NodePath("../NavigationPoint9")
 connection_2 = NodePath("../NavigationPoint11")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint10" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint11" type="Node3D" parent="PathFinder" index="16" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -240,6 +344,7 @@ connection_1 = NodePath("../NavigationPoint10")
 connection_2 = NodePath("../NavigationPoint12")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint11" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint12" type="Node3D" parent="PathFinder" index="17" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -250,6 +355,7 @@ connection_1 = NodePath("../NavigationPoint11")
 connection_2 = NodePath("../NavigationPoint13")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint12" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint13" type="Node3D" parent="PathFinder" index="18" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -260,6 +366,7 @@ connection_1 = NodePath("../NavigationPoint12")
 connection_2 = NodePath("../NavigationPoint14")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint13" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint14" type="Node3D" parent="PathFinder" index="19" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -270,6 +377,7 @@ connection_1 = NodePath("../NavigationPoint13")
 connection_2 = NodePath("../NavigationPoint15")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint14" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint15" type="Node3D" parent="PathFinder" index="20" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -280,6 +388,7 @@ connection_1 = NodePath("../NavigationPoint14")
 connection_2 = NodePath("../NavigationPoint16")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint15" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint16" type="Node3D" parent="PathFinder" index="21" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -290,6 +399,7 @@ connection_1 = NodePath("../NavigationPoint15")
 connection_2 = NodePath("../NavigationPoint17")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint16" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint17" type="Node3D" parent="PathFinder" index="22" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -300,6 +410,7 @@ connection_1 = NodePath("../NavigationPoint16")
 connection_2 = NodePath("../NavigationPoint18")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint17" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint18" type="Node3D" parent="PathFinder" index="23" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
@@ -311,6 +422,7 @@ connection_2 = NodePath("../NavigationPoint38")
 connection_3 = NodePath("../NavigationPoint19")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint18" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint38" type="Node3D" parent="PathFinder" index="24" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -321,6 +433,7 @@ connection_1 = NodePath("../NavigationPoint18")
 connection_2 = NodePath("../NavigationPoint39")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint38" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint39" type="Node3D" parent="PathFinder" index="25" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -331,6 +444,7 @@ connection_1 = NodePath("../NavigationPoint38")
 connection_2 = NodePath("../NavigationPoint40")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint39" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint40" type="Node3D" parent="PathFinder" index="26" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -341,6 +455,7 @@ connection_1 = NodePath("../NavigationPoint39")
 connection_2 = NodePath("../NavigationPoint41")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint40" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint41" type="Node3D" parent="PathFinder" index="27" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -351,6 +466,7 @@ connection_1 = NodePath("../NavigationPoint40")
 connection_2 = NodePath("../NavigationPoint42")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint41" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint42" type="Node3D" parent="PathFinder" index="28" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -361,6 +477,7 @@ connection_1 = NodePath("../NavigationPoint41")
 connection_2 = NodePath("../NavigationPoint43")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint42" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint43" type="Node3D" parent="PathFinder" index="29" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -371,6 +488,7 @@ connection_1 = NodePath("../NavigationPoint42")
 connection_2 = NodePath("../NavigationPoint44")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint43" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint44" type="Node3D" parent="PathFinder" index="30" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -381,6 +499,7 @@ connection_1 = NodePath("../NavigationPoint43")
 connection_2 = NodePath("../NavigationPoint53")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint44" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint19" type="Node3D" parent="PathFinder" index="31" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -391,6 +510,7 @@ connection_1 = NodePath("../NavigationPoint18")
 connection_2 = NodePath("../NavigationPoint20")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint19" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint20" type="Node3D" parent="PathFinder" index="32" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -401,6 +521,7 @@ connection_1 = NodePath("../NavigationPoint19")
 connection_2 = NodePath("../NavigationPoint21")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint20" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint21" type="Node3D" parent="PathFinder" index="33" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -411,6 +532,7 @@ connection_1 = NodePath("../NavigationPoint20")
 connection_2 = NodePath("../NavigationPoint22")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint21" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint22" type="Node3D" parent="PathFinder" index="34" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -421,6 +543,7 @@ connection_1 = NodePath("../NavigationPoint21")
 connection_2 = NodePath("../NavigationPoint23")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint22" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint23" type="Node3D" parent="PathFinder" index="35" node_paths=PackedStringArray("connection_1", "connection_2", "connection_3")]
@@ -432,6 +555,7 @@ connection_2 = NodePath("../NavigationPoint45")
 connection_3 = NodePath("../NavigationPoint24")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint23" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint45" type="Node3D" parent="PathFinder" index="36" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -442,6 +566,7 @@ connection_1 = NodePath("../NavigationPoint23")
 connection_2 = NodePath("../NavigationPoint46")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint45" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint46" type="Node3D" parent="PathFinder" index="37" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -452,6 +577,7 @@ connection_1 = NodePath("../NavigationPoint45")
 connection_2 = NodePath("../NavigationPoint47")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint46" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint47" type="Node3D" parent="PathFinder" index="38" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -462,6 +588,7 @@ connection_1 = NodePath("../NavigationPoint46")
 connection_2 = NodePath("../NavigationPoint52")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint47" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint24" type="Node3D" parent="PathFinder" index="39" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -472,6 +599,7 @@ connection_1 = NodePath("../NavigationPoint23")
 connection_2 = NodePath("../NavigationPoint25")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint24" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint25" type="Node3D" parent="PathFinder" index="40" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -482,6 +610,7 @@ connection_1 = NodePath("../NavigationPoint24")
 connection_2 = NodePath("../NavigationPoint26")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint25" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint26" type="Node3D" parent="PathFinder" index="41" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -492,6 +621,7 @@ connection_1 = NodePath("../NavigationPoint25")
 connection_2 = NodePath("../NavigationPoint27")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint26" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint27" type="Node3D" parent="PathFinder" index="42" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -502,6 +632,7 @@ connection_1 = NodePath("../NavigationPoint26")
 connection_2 = NodePath("../NavigationPoint28")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint27" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint28" type="Node3D" parent="PathFinder" index="43" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -512,6 +643,7 @@ connection_1 = NodePath("../NavigationPoint27")
 connection_2 = NodePath("../NavigationPoint29")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint28" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint29" type="Node3D" parent="PathFinder" index="44" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -522,6 +654,7 @@ connection_1 = NodePath("../NavigationPoint28")
 connection_2 = NodePath("../NavigationPoint30")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint29" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint30" type="Node3D" parent="PathFinder" index="45" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -532,6 +665,7 @@ connection_1 = NodePath("../NavigationPoint29")
 connection_2 = NodePath("../NavigationPoint31")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint30" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint31" type="Node3D" parent="PathFinder" index="46" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -542,6 +676,7 @@ connection_1 = NodePath("../NavigationPoint30")
 connection_2 = NodePath("../NavigationPoint32")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint31" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint32" type="Node3D" parent="PathFinder" index="47" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -552,6 +687,7 @@ connection_1 = NodePath("../NavigationPoint31")
 connection_2 = NodePath("../NavigationPoint33")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint32" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint33" type="Node3D" parent="PathFinder" index="48" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -562,6 +698,7 @@ connection_1 = NodePath("../NavigationPoint32")
 connection_2 = NodePath("../NavigationPoint34")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint33" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint34" type="Node3D" parent="PathFinder" index="49" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -572,6 +709,7 @@ connection_1 = NodePath("../NavigationPoint33")
 connection_2 = NodePath("../NavigationPoint35")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint34" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint35" type="Node3D" parent="PathFinder" index="50" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -582,6 +720,7 @@ connection_1 = NodePath("../NavigationPoint34")
 connection_2 = NodePath("../NavigationPoint36")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint35" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint36" type="Node3D" parent="PathFinder" index="51" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -592,6 +731,7 @@ connection_1 = NodePath("../NavigationPoint35")
 connection_2 = NodePath("../NavigationPoint37")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint36" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
 [node name="NavigationPoint37" type="Node3D" parent="PathFinder" index="52" node_paths=PackedStringArray("connection_1", "connection_2")]
@@ -602,9 +742,10 @@ connection_1 = NodePath("../NavigationPoint7")
 connection_2 = NodePath("../NavigationPoint36")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFinder/NavigationPoint37" index="0"]
+visible = false
 mesh = SubResource("BoxMesh_k2brs")
 
-[node name="divided_map" parent="." index="5" instance=ExtResource("2_q4ird")]
+[node name="divided_map" parent="." index="13" instance=ExtResource("2_q4ird")]
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="divided_map/Export_mesh" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.8147e-06, 0)
@@ -765,7 +906,7 @@ collision_mask = 0
 transform = Transform3D(0.996408, -0.0252563, -0.0808445, 0.0389073, 0.984326, 0.172024, 0.0752324, -0.174551, 0.981771, 0.872154, 0.835068, 0.188278)
 shape = SubResource("BoxShape3D_c8gd7")
 
-[node name="DirectionalLight3D" parent="." index="6"]
+[node name="DirectionalLight3D" parent="." index="14"]
 transform = Transform3D(0.643922, 0.699936, -0.308956, -0.277709, 0.590099, 0.758064, 0.712911, -0.402334, 0.574356, -0.741642, 5.51136, 2.04042)
 light_color = Color(0.556863, 1, 1, 1)
 light_energy = 1.0
@@ -773,7 +914,7 @@ light_bake_mode = 1
 directional_shadow_mode = 0
 sky_mode = 1
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." index="7"]
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." index="15"]
 transform = Transform3D(-0.80003, 0, 0.59996, 0.327885, 0.837452, 0.437226, -0.502437, 0.546511, -0.669987, 0, 1.9953, 0)
 light_color = Color(0.556863, 1, 1, 1)
 light_energy = 0.5
@@ -781,15 +922,16 @@ light_bake_mode = 1
 directional_shadow_mode = 0
 sky_mode = 1
 
-[node name="Player" parent="." index="8"]
+[node name="Player" parent="." index="16"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2144, 0)
 
 [node name="XRCamera3D" parent="Player/XROrigin3D" index="3"]
 environment = ExtResource("3_61lax")
 
-[node name="GridMap" parent="." index="9"]
+[node name="GridMap" parent="." index="17"]
 visible = false
 
+[editable path="EntityManager"]
 [editable path="divided_map"]
 [editable path="Player"]
 [editable path="Player/XROrigin3D/LeftController"]
