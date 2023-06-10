@@ -2,6 +2,7 @@ class_name GetInRange extends ActionLeaf
 
 @export var show_debug_line: bool = false
 @export var is_obstacle_between_checker: ConditionLeaf
+@export var teleport_ideal_distance: int = 5
 
 @onready var path_cd_timer: Timer = $Timer
 
@@ -77,6 +78,9 @@ func define_simple_path(actor):
 	
 	path.append_array(NavPointGenerator.generate_simple_path(start_position, player_position))
 	
+	if path.size() > teleport_ideal_distance:
+		path = teleport_drone_near_player(actor, path)
+	
 	if is_same_direction(actor.global_position, path[0], path[1]):
 		actor.current_target_index = -1
 	else:
@@ -90,6 +94,17 @@ func define_simple_path(actor):
 			update_array_mesh(path, actor)
 		else:
 			current_line = create_line_mesh(path, actor)
+
+
+func teleport_drone_near_player(actor, path: PackedVector3Array):
+	var ideal_point = path[path.size() - teleport_ideal_distance]
+	var next_point = path[path.size() - teleport_ideal_distance + 1]
+	
+	var teleport_position: Vector3 = randf() * (ideal_point - next_point) + ideal_point
+	
+	actor.global_position = teleport_position
+	
+	return path.slice(path.size() - teleport_ideal_distance + 1)
 
 
 func define_path(actor):

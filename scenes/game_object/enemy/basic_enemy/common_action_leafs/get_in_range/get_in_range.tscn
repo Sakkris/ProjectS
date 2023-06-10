@@ -4,6 +4,7 @@
 
 [node name="GetInRange" type="Node"]
 script = ExtResource("1_hhdin")
+teleport_ideal_distance = 6
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
