@@ -75,8 +75,9 @@ visible = false
 mesh = SubResource("BoxMesh_57e5n")
 skeleton = NodePath("")
 
-[node name="LeftController" parent="XROrigin3D" instance=ExtResource("4_hbqme")]
+[node name="LeftController" parent="XROrigin3D" node_paths=PackedStringArray("player_ui") instance=ExtResource("4_hbqme")]
 tracker = &"left_hand"
+player_ui = NodePath("../XRCamera3D/PlayerUI")
 
 [node name="AbilityManager" parent="XROrigin3D/LeftController" index="1" node_paths=PackedStringArray("velocity_component")]
 velocity_component = NodePath("../../../VelocityComponent")
@@ -107,9 +108,10 @@ material_override = SubResource("StandardMaterial3D_856iv")
 
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("6_ecesn")]
 
-[node name="RightController" parent="XROrigin3D" instance=ExtResource("4_hbqme")]
+[node name="RightController" parent="XROrigin3D" node_paths=PackedStringArray("player_ui") instance=ExtResource("4_hbqme")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02, 0.01, 0)
 tracker = &"right_hand"
+player_ui = NodePath("../XRCamera3D/PlayerUI")
 
 [node name="AbilityManager" parent="XROrigin3D/RightController" index="1" node_paths=PackedStringArray("velocity_component")]
 velocity_component = NodePath("../../../VelocityComponent")
@@ -146,7 +148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 [node name="Neck" type="Node3D" parent="XROrigin3D/XRCamera3D"]
 
 [node name="PlayerUI" parent="XROrigin3D/XRCamera3D" instance=ExtResource("7_15od0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.5)
 
 [node name="Grayscale" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.574398)

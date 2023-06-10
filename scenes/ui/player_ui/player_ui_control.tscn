@@ -1,78 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxvotxlmvuekr"]
+[gd_scene load_steps=5 format=3 uid="uid://bxvotxlmvuekr"]
 
-[ext_resource type="Texture2D" uid="uid://ccoi8n172pq3y" path="res://resources/textures/skull_icon/skull_icon.png" id="1_bvasu"]
 [ext_resource type="Theme" uid="uid://gqubivv0b1co" path="res://resources/font/default_theme.tres" id="1_s8l56"]
-[ext_resource type="Texture2D" uid="uid://bhb4lgs7dqavl" path="res://resources/textures/crosshair/crosshair.png" id="2_8sdq3"]
+[ext_resource type="Texture2D" uid="uid://clt04blyejg6b" path="res://resources/textures/player_ui/player_ui.png" id="2_ptj1r"]
+[ext_resource type="Texture2D" uid="uid://q2tncu14pwow" path="res://resources/textures/player_ui/hand_icon.png" id="3_jw8o3"]
+[ext_resource type="Texture2D" uid="uid://bthnobpu4wuoj" path="res://resources/textures/player_ui/bullet_icon.png" id="4_yg8ho"]
 
 [node name="PlayerUIControl" type="MarginContainer"]
-offset_right = 512.0
-offset_bottom = 512.0
+offset_right = 1024.0
+offset_bottom = 1024.0
 theme = ExtResource("1_s8l56")
 
-[node name="CrosshairContainer" type="MarginContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect" type="TextureRect" parent="CrosshairContainer"]
-modulate = Color(0, 0.992157, 0.85098, 0.588235)
-custom_minimum_size = Vector2(412, 412)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_8sdq3")
+texture = ExtResource("2_ptj1r")
 expand_mode = 2
 
-[node name="TimeLabel" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="TimeLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 39
+theme_override_font_sizes/font_size = 65
 text = "00:00"
 
 [node name="KillMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_top = 130
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KillMarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="KillMarginContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_bvasu")
-expand_mode = 2
-
-[node name="KillLabel" type="Label" parent="KillMarginContainer/HBoxContainer"]
+[node name="KillLabel" type="Label" parent="KillMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 52
 text = "00 
 "
 
 [node name="SpeedMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+size_flags_vertical = 0
+theme_override_constants/margin_top = 130
+theme_override_constants/margin_right = 125
 
 [node name="SpeedLabel" type="Label" parent="SpeedMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 26
-text = "14 m/s
-"
+theme_override_font_sizes/font_size = 52
+text = "14"
 
 [node name="FPSMarginContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -80,8 +64,48 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 50
 
 [node name="FPSCounter" type="Label" parent="FPSMarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 26
 text = "18 fps"
+
+[node name="LeftIconContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 94)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 80
+
+[node name="HandIcon" type="TextureRect" parent="LeftIconContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_jw8o3")
+expand_mode = 2
+flip_h = true
+
+[node name="BulletIcon" type="TextureRect" parent="LeftIconContainer"]
+layout_mode = 2
+texture = ExtResource("4_yg8ho")
+expand_mode = 2
+flip_h = true
+
+[node name="RightIconContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 94)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_right = 80
+
+[node name="HandIcon" type="TextureRect" parent="RightIconContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_jw8o3")
+expand_mode = 2
+
+[node name="BulletIcon" type="TextureRect" parent="RightIconContainer"]
+layout_mode = 2
+texture = ExtResource("4_yg8ho")
+expand_mode = 2
+flip_h = true

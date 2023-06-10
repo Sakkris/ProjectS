@@ -5,7 +5,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pt7f1"]
 height = 0.02
-radius = 0.35
+radius = 0.296731
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_se4fe"]
 no_depth_test = true
@@ -23,6 +23,7 @@ script = ExtResource("1_uakqs")
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
 transparent_bg = true
+size = Vector2i(1024, 1024)
 
 [node name="PlayerUIControl" parent="SubViewport" instance=ExtResource("2_85wfw")]
 

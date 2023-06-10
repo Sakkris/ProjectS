@@ -1,5 +1,7 @@
 extends XRController3D
 
+@export var player_ui: Node3D 
+
 @onready var grab_area_collision: CollisionShape3D = $GrabArea/CollisionShape3D 
 @onready var state_machine: StateMachine = $StateMachine
 
@@ -20,8 +22,10 @@ func change_state_identifier(new_state):
 	
 	if new_state == "Unarmed":
 		material.albedo_color = Color(0, 1, 0)
+		player_ui.change_indicator_icon(get_tracker_hand())
 	elif new_state == "Armed":
 		material.albedo_color = Color(1, 0, 0)
+		player_ui.change_indicator_icon(get_tracker_hand())
 	elif new_state == "Hooking":
 		material.albedo_color = Color(1, 1, 0)
 	elif new_state == "Paused":

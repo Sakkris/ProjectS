@@ -89,51 +89,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.375887)
 material_override = SubResource("StandardMaterial3D_kf5ao")
 
 [node name="main_body" parent="Visuals/DroneMesh/bad_Ship" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("16_pd52y")
 
 [node name="long_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="0"]
+transform = Transform3D(0.933817, -0.353892, 0.0523942, 0.240697, 0.729856, 0.639824, -0.264669, -0.584868, 0.766733, 0, 0, 0)
 material_override = ExtResource("16_pd52y")
 
 [node name="fx_tip" parent="Visuals/DroneMesh/bad_Ship/main_body/long_rod_A" index="0"]
 material_override = ExtResource("16_pd52y")
 
 [node name="long_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="1"]
+transform = Transform3D(0.99803, 0.0254741, -0.057341, 0.00362709, 0.888924, 0.45804, 0.06264, -0.457346, 0.88708, 0, 0, 0)
 material_override = ExtResource("16_pd52y")
 
 [node name="fx_tip (1)" parent="Visuals/DroneMesh/bad_Ship/main_body/long_rod_B" index="0"]
 material_override = ExtResource("16_pd52y")
 
 [node name="small_rod_A" parent="Visuals/DroneMesh/bad_Ship/main_body" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("16_pd52y")
 
 [node name="fx_tip_s" parent="Visuals/DroneMesh/bad_Ship/main_body/small_rod_A" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22532e-19, -2.70122e-18, -1.06581e-16)
 material_override = ExtResource("16_pd52y")
 
 [node name="small_rod_B" parent="Visuals/DroneMesh/bad_Ship/main_body" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("16_pd52y")
 
 [node name="fx_tip_s (1)" parent="Visuals/DroneMesh/bad_Ship/main_body/small_rod_B" index="0"]
 material_override = ExtResource("16_pd52y")
 
 [node name="head_piece" parent="Visuals/DroneMesh/bad_Ship/main_body" index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.941527, -0.336936, 0, 0.336936, 0.941527, 0, 0.123876, 0.0443304)
 material_override = ExtResource("16_pd52y")
 
 [node name="neck_glow" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04092e-18, -2.22045e-18, -1.45779e-18)
 material_override = ExtResource("16_pd52y")
 
 [node name="eye" parent="Visuals/DroneMesh/bad_Ship/main_body/head_piece" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("16_pd52y")
 
 [node name="fx_tip_s (2)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="0"]
+transform = Transform3D(0.999933, -0.00324722, 0.0111479, -0.00328276, 0.841865, 0.539678, -0.0111375, -0.539678, 0.841798, 0.000224398, -0.00442911, -0.00139482)
 material_override = ExtResource("16_pd52y")
 
 [node name="fx_tip_s1" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="1"]
+transform = Transform3D(0.999063, 0.00223062, 0.0432304, 0.0227847, 0.82204, -0.568973, -0.0368063, 0.569425, 0.821219, -3.62645e-13, 1.7747e-12, 9.45484e-13)
 material_override = ExtResource("16_pd52y")
 
 [node name="neck_glow (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.909149, -0.416471, 0, 0.416471, 0.909149, 2.4717e-18, 0.119616, 0.0547948)
 material_override = ExtResource("16_pd52y")
 
 [node name="head_piece (1)" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.909149, -0.416471, 0, 0.416471, 0.909149, 1.43079e-18, 0.119616, 0.0547948)
 material_override = ExtResource("16_pd52y")
 
 [node name="shard1" parent="Visuals/DroneMesh/bad_Ship/explosion_pieces/solidShatter1" index="0"]

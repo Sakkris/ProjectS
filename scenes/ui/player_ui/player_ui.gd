@@ -7,8 +7,8 @@ extends Node3D
 
 @onready var enemy_icon_scene = preload("res://scenes/ui/misc/enemy_icon.tscn")
 
-@onready var time_label = $SubViewport/PlayerUIControl/TimeLabel
-@onready var kill_label = $SubViewport/PlayerUIControl/KillMarginContainer/HBoxContainer/KillLabel
+@onready var time_label = $SubViewport/PlayerUIControl/MarginContainer/TimeLabel
+@onready var kill_label = $SubViewport/PlayerUIControl/KillMarginContainer/KillLabel
 @onready var player_speed_label = $SubViewport/PlayerUIControl/SpeedMarginContainer/SpeedLabel
 @onready var fps_counter = $SubViewport/PlayerUIControl/FPSMarginContainer/FPSCounter
 
@@ -37,7 +37,7 @@ func _ready():
 func _process(_delta):
 	fps_counter.set_text(str(Performance.get_monitor(Performance.TIME_FPS)) + " fps") 	
 	
-	player_speed_label.set_text("%.2f m/s" % player.velocity.length())
+	player_speed_label.set_text("%.0f" % player.velocity.length())
 
 
 func update_kill_label():
@@ -83,6 +83,16 @@ func point_to_viewport_position(point_global_position: Vector3) -> Vector2:
 	#print(viewport_point)
 	
 	return viewport_point
+
+
+func change_indicator_icon(side):
+	match side:
+		1:
+			$SubViewport/PlayerUIControl/LeftIconContainer/BulletIcon.visible = not $SubViewport/PlayerUIControl/LeftIconContainer/BulletIcon.visible
+			$SubViewport/PlayerUIControl/LeftIconContainer/HandIcon.visible = not $SubViewport/PlayerUIControl/LeftIconContainer/HandIcon.visible
+		2:
+			$SubViewport/PlayerUIControl/RightIconContainer/BulletIcon.visible = not $SubViewport/PlayerUIControl/RightIconContainer/BulletIcon.visible
+			$SubViewport/PlayerUIControl/RightIconContainer/HandIcon.visible = not $SubViewport/PlayerUIControl/RightIconContainer/HandIcon.visible
 
 
 func on_game_time_updated(time_elapsed):
