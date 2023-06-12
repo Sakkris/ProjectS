@@ -43,13 +43,17 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		if !path_cd_timer.is_stopped():
 			return RUNNING
 		
-		path_cd_timer.wait_time = cd_base_time + randf() - 0.5
-		path_cd_timer.start()
-		
 		if actor.distance_to_player > 50:
 			define_simple_path(actor)
+			
+			if actor.path_to_follow.size() == 0:
+				actor.update_path_queued = true
+				return RUNNING
 		else:
 			define_path(actor)
+		
+		path_cd_timer.wait_time = cd_base_time + randf() - 0.5
+		path_cd_timer.start()
 		
 		return RUNNING
 	
@@ -97,14 +101,25 @@ func define_simple_path(actor):
 
 
 func teleport_drone_near_player(actor, path: PackedVector3Array):
-	var ideal_point = path[path.size() - teleport_ideal_distance]
-	var next_point = path[path.size() - teleport_ideal_distance + 1]
+	if randf() > .6:
+		var rand_number = randi_range(1, 3)
+		var ideal_point = path[teleport_ideal_distance - rand_number]
+		var next_point = path[teleport_ideal_distance - rand_number + 1]
+		
+		var teleport_position: Vector3 = randf() * (ideal_point - next_point) + ideal_point
+		
+		actor.global_position = teleport_position
+		
+		return path.slice(path.size() - teleport_ideal_distance + 1)
 	
-	var teleport_position: Vector3 = randf() * (ideal_point - next_point) + ideal_point
+	var objective = get_tree().get_first_node_in_group("objective")
+	var random_direction = Vector3.UP.rotated(Vector3.FORWARD, randf_range(0.0, 2.0 * PI))
+	var teleport_position = objective.global_position - random_direction * 2
 	
 	actor.global_position = teleport_position
 	
-	return path.slice(path.size() - teleport_ideal_distance + 1)
+	path.clear()
+	return path
 
 
 func define_path(actor):
