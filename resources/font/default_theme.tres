@@ -1,7 +1,50 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://gqubivv0b1co"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://gqubivv0b1co"]
 
+[ext_resource type="Texture2D" uid="uid://drte6wvw758fx" path="res://resources/textures/button_ui/button_ui.png" id="1_6ntkx"]
 [ext_resource type="FontFile" uid="uid://drb05ogw16dvh" path="res://resources/font/80s-retro-future.ttf" id="1_cuffo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1l6d2"]
+content_margin_left = 20.0
+texture = ExtResource("1_6ntkx")
+texture_margin_left = 53.0
+texture_margin_top = 19.0
+texture_margin_right = 24.0
+texture_margin_bottom = 23.0
+expand_margin_top = 20.0
+modulate_color = Color(0, 0.705882, 0.576471, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f0fmm"]
+content_margin_left = 20.0
+texture = ExtResource("1_6ntkx")
+texture_margin_left = 53.0
+texture_margin_top = 19.0
+texture_margin_right = 24.0
+texture_margin_bottom = 23.0
+expand_margin_top = 20.0
+modulate_color = Color(0, 0.705882, 0.576471, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n0rms"]
+content_margin_left = 20.0
+texture = ExtResource("1_6ntkx")
+texture_margin_left = 53.0
+texture_margin_top = 19.0
+texture_margin_right = 24.0
+texture_margin_bottom = 23.0
+expand_margin_top = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfdju"]
+content_margin_left = 20.0
+texture = ExtResource("1_6ntkx")
+texture_margin_left = 53.0
+texture_margin_top = 19.0
+texture_margin_right = 24.0
+texture_margin_bottom = 23.0
+expand_margin_top = 20.0
 
 [resource]
 default_font = ExtResource("1_cuffo")
 default_font_size = 26
+Button/styles/focus = SubResource("StyleBoxTexture_1l6d2")
+Button/styles/hover = SubResource("StyleBoxTexture_f0fmm")
+Button/styles/normal = SubResource("StyleBoxTexture_n0rms")
+Button/styles/pressed = SubResource("StyleBoxTexture_wfdju")

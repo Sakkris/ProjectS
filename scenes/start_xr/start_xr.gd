@@ -1,7 +1,7 @@
 extends Node
 
 @onready var canvas_layer = $CanvasLayer
-@onready var start_button = $CanvasLayer/ColorRect/MarginContainer/Container/VBoxContainer/StartButton
+@onready var start_button = $CanvasLayer/ColorRect/VBoxContainer/MarginContainer/Container/VBoxContainer/StartButton
 
 
 func _ready():
