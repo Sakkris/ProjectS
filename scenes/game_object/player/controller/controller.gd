@@ -20,16 +20,17 @@ func _ready():
 func change_state_identifier(new_state):
 	var material = $StateIdentifier.material_override
 	
-	if new_state == "Unarmed":
-		material.albedo_color = Color(0, 1, 0)
-		player_ui.change_indicator_icon(get_tracker_hand())
-	elif new_state == "Armed":
-		material.albedo_color = Color(1, 0, 0)
-		player_ui.change_indicator_icon(get_tracker_hand())
-	elif new_state == "Hooking":
-		material.albedo_color = Color(1, 1, 0)
-	elif new_state == "Paused":
-		material.albedo_color = Color(1, 1, 1)
+	match new_state:
+		"Unarmed":
+			material.albedo_color = Color(0, 1, 0)
+		"Armed":
+			material.albedo_color = Color(1, 0, 0)
+		"Hooking":
+			material.albedo_color = Color(1, 1, 0)
+		"Paused":
+			material.albedo_color = Color(1, 1, 1)
+	
+	player_ui.change_indicator_icon(get_tracker_hand(), new_state)
 	
 	$StateIdentifier.material_override = material
 

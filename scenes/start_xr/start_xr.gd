@@ -1,12 +1,18 @@
 extends Node
 
 @onready var canvas_layer = $CanvasLayer
-@onready var start_button = $CanvasLayer/ColorRect/VBoxContainer/MarginContainer/Container/VBoxContainer/StartButton
+@onready var main_menu = $CanvasLayer/ColorRect/MainMenu
+@onready var controls_page = $CanvasLayer/ColorRect/ControlsPage
+@onready var start_button = $CanvasLayer/ColorRect/MainMenu/MarginContainer/Container/VBoxContainer/StartButton
+@onready var controls_button = $CanvasLayer/ColorRect/MainMenu/MarginContainer/Container/VBoxContainer/ControlsButton
+@onready var back_button = $CanvasLayer/ColorRect/ControlsPage/MarginContainer/BackButton
 
 
 func _ready():
 	canvas_layer.visible = false
 	start_button.pressed.connect(self._on_start_button_pressed)
+	controls_button.pressed.connect(self._on_controls_button_pressed)
+	back_button.pressed.connect(self._on_back_button_pressed)
 	
 	if GameProperties.webxr_interface:
 		pass
@@ -56,3 +62,13 @@ func _webxr_session_ended() -> void:
 
 func _webxr_session_failed(message: String) -> void:
 	OS.alert("Failed to initialize: " + message)
+
+
+func _on_controls_button_pressed():
+	controls_page.visible = true
+	main_menu.visible = false
+
+
+func _on_back_button_pressed():
+	controls_page.visible = false
+	main_menu.visible = true

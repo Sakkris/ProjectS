@@ -85,14 +85,25 @@ func point_to_viewport_position(point_global_position: Vector3) -> Vector2:
 	return viewport_point
 
 
-func change_indicator_icon(side):
+func change_indicator_icon(side, new_state: String):
+	var hand_icon
+	var bullet_icon
+	
 	match side:
 		1:
-			$SubViewport/PlayerUIControl/LeftIconContainer/BulletIcon.visible = not $SubViewport/PlayerUIControl/LeftIconContainer/BulletIcon.visible
-			$SubViewport/PlayerUIControl/LeftIconContainer/HandIcon.visible = not $SubViewport/PlayerUIControl/LeftIconContainer/HandIcon.visible
+			bullet_icon = $SubViewport/PlayerUIControl/LeftIconContainer/BulletIcon
+			hand_icon = $SubViewport/PlayerUIControl/LeftIconContainer/HandIcon
 		2:
-			$SubViewport/PlayerUIControl/RightIconContainer/BulletIcon.visible = not $SubViewport/PlayerUIControl/RightIconContainer/BulletIcon.visible
-			$SubViewport/PlayerUIControl/RightIconContainer/HandIcon.visible = not $SubViewport/PlayerUIControl/RightIconContainer/HandIcon.visible
+			bullet_icon = $SubViewport/PlayerUIControl/RightIconContainer/BulletIcon
+			hand_icon = $SubViewport/PlayerUIControl/RightIconContainer/HandIcon
+	
+	match new_state:
+		"Unarmed":
+			hand_icon.visible = true
+			bullet_icon.visible = false
+		"Armed":
+			hand_icon.visible = false
+			bullet_icon.visible = true
 
 
 func on_game_time_updated(time_elapsed):
